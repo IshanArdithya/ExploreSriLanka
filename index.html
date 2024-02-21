@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Sri Lanka</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+</head>
+<body>
+    
+
+    <!-- Navigation bar -->
+    <header>
+        <a href="#" class="brand">Travel</a>
+        <div class="menu-btn"></div>
+        <div class="navigation">
+            <div class="navigation-items">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Explore</a>
+                <a href="#">Gallery</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="home">
+        <video class="video-slide active" src="Video/slide1.mp4" autoplay muted loop></video>
+        <video class="video-slide" src="Video/Valorant 2024.01.28 - 02.49.43.02.DVR.mp4" autoplay muted loop></video>
+        <video class="video-slide" src="Video/Valorant 2024.01.28 - 02.49.43.02.DVR.mp4" autoplay muted loop></video>
+        <video class="video-slide" src="Video/Valorant 2024.01.28 - 02.49.43.02.DVR.mp4" autoplay muted loop></video>
+        <video class="video-slide" src="Video/Valorant 2024.01.28 - 02.49.43.02.DVR.mp4" autoplay muted loop></video>
+        <div class="content active">
+            <h1>Wonderful.<br><span>Island</span></h1>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente id praesentium nihil ea et illo, sint neque ut incidunt nulla tempora, eligendi dignissimos consequatur dicta dolore iusto fugiat minus. Quod.</p>
+            <a href="#">Read More</a>
+        </div>
+        <div class="content">
+            <h1>Camping.<br><span>Enjoy</span></h1>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente id praesentium nihil ea et illo, sint neque ut incidunt nulla tempora, eligendi dignissimos consequatur dicta dolore iusto fugiat minus. Quod.</p>
+            <a href="#">Read More</a>
+        </div>
+        <div class="content">
+            <h1>Abventures.<br><span>Off Road</span></h1>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente id praesentium nihil ea et illo, sint neque ut incidunt nulla tempora, eligendi dignissimos consequatur dicta dolore iusto fugiat minus. Quod.</p>
+            <a href="#">Read More</a>
+        </div>
+        <div class="content">
+            <h1>Wonderful.<br><span>Off Road</span></h1>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente id praesentium nihil ea et illo, sint neque ut incidunt nulla tempora, eligendi dignissimos consequatur dicta dolore iusto fugiat minus. Quod.</p>
+            <a href="#">Read More</a>
+        </div>
+        <div class="content">
+            <h1>Nature<br><span>Off Road</span></h1>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente id praesentium nihil ea et illo, sint neque ut incidunt nulla tempora, eligendi dignissimos consequatur dicta dolore iusto fugiat minus. Quod.</p>
+            <a href="#">Read More</a>
+        </div>
+
+
+        <div class="media-icons">
+            <a href="#"> <i class="fab fa-facebook-f"></i></a>
+            <a href="#"> <i class="fab fa-instagram"></i></a>
+            <a href="#"> <i class="fab fa-twitter"></i></a>
+        </div>
+        <div class="slider-navigation">
+            <div class="nav-btn active"></div>
+            <div class="nav-btn"></div>
+            <div class="nav-btn"></div>
+            <div class="nav-btn"></div>
+            <div class="nav-btn"></div>
+        </div>
+    </section>
+
+
+    <!-- js -->
+    <script type="text/javascript">
+    const menuBtn = document.querySelector(".menu-btn");
+    const navigation = document.querySelector(".navigation");
+
+    menuBtn.addEventListener("click", () => {
+        menuBtn.classList.toggle("active");
+        navigation.classList.toggle("active");
+    });
+
+    const btns = document.querySelectorAll(".nav-btn");
+    const slides = document.querySelectorAll(".video-slide");
+    const contents = document.querySelectorAll(".content");
+
+    var sliderNav = function(manual){
+        btns.forEach((btn) => {
+            btn.classList.remove("active");
+        });
+
+        slides.forEach((slide) => {
+            slide.classList.remove("active");
+        });
+
+        contents.forEach((content) => {
+            content.classList.remove("active");
+        });
+
+        btns[manual].classList.add("active");
+        slides[manual].classList.add("active");
+        contents[manual].classList.add("active");
+    }
+
+    btns.forEach((btn,i) => {
+        btn.addEventListener("click", () => {
+            sliderNav(i);
+        });
+    });
+</script>
+</body>
+</html>
