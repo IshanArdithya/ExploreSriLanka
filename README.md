@@ -14,7 +14,8 @@ Welcome to Explore Sri Lanka, your ultimate destination for exploring the breath
 
 ## Contributors (Project Members)
 
-- [Chavindu Jayakody](https://github.com/ChavinduJayakody)
-- [Lakna Premachandra](https://github.com/Lakna-Premachandra)
-- [Yasanga Ranawaka](https://github.com/yasanga69ran)
-- [Roshara Pathirage](https://github.com/rosharapathirage)
+- **Ishan Ardithya** - [Profile](https://github.com/IshanArdithya)
+- **Chavindu Jayakody** - [Profile](https://github.com/ChavinduJayakody)
+- **Lakna Premachandra** - [Profile](https://github.com/Lakna-Premachandra)
+- **Yasanga Ransith** - [Profile](https://github.com/yasanga69ran)
+- **Roshara Pathirage** - [Profile](https://github.com/rosharapathirage)
