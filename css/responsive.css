@@ -1,0 +1,150 @@
+@media(max-width:1024px){
+    .container{
+        padding: 0 1rem;
+    }  
+
+    .swiper{
+        height: 90vh;
+    }
+
+    .img-overlay p{
+        letter-spacing: 6px;
+    }
+
+    .img-overlay h2{
+        font-size: 3rem;
+        letter-spacing: 3px;
+    }
+
+}
+
+@media(max-width:900px){
+    .btn{
+        display: block;
+    } 
+
+    nav ul{
+        flex-direction: column;
+        position: fixed;
+        width: 100%;
+        height: 400px;
+        background: var(--primary-color);
+        top: -600px;
+        left: 0;
+        padding: 3rem 1rem;
+        transition: all 0.5s ease-in;
+    }
+
+    nav ul li a{
+        display: block;
+        margin: 15px;
+    }
+    
+    .close-btn{
+        position: absolute;
+        top: 0rem;
+        right: 0;
+        margin: 25px;
+    }
+
+    nav ul.display{
+        top: 0;
+        transition: all 0.5s ease-in-out;
+    }
+
+    nav ul li::before{
+        top: 45px;
+        left: 15px;
+    }
+    
+    nav ul li:hover::before{
+        width: 20%;
+    }
+    
+    /* slider */
+    .swiper{
+        height: 70vh;
+    }
+    
+    .img-overlay p{
+        letter-spacing: 4px;
+    }
+
+    .img-overlay h2{
+        font-size: 2.5rem;
+        letter-spacing: 4px;
+    }
+
+    /* search */
+
+    #location-search{
+        transform: translateY(0%);
+        margin: 2rem 0;
+    }
+
+    form{
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    /* About */
+
+    .about-content-wrapper{
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .agency-right-side img{
+        width: 95%;
+    }
+
+    .agency-right-side img::after{
+        top: 15px;
+        left: 15px;
+        bottom: 0;
+        right: 0;
+        width: 90%;
+    }
+
+
+/* Choose Place */
+
+.choose-wrapper{
+    grid-template-columns: 1fr;
+}
+
+.row-wise-img{
+grid-template-columns: 1fr;
+}
+
+.img-content{
+    bottom: 10px;
+}
+
+/* Static Counter */
+
+.static-wrapper{
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* video */
+
+#video-cover{
+    padding: 2rem 0;
+}
+.video-content h2{
+    font-size: 2rem;
+    letter-spacing: 2px;
+}
+
+.video-content span{
+    font-size: 1rem;
+}
+/* Travel areas */
+
+.travel-areas-wrapper{
+    grid-template-columns: 2fr;
+}
+.travel-areas2-wrapper{
+    grid-template-columns: 2fr;
+}
+}
