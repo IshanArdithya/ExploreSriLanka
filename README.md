@@ -11,3 +11,10 @@ Welcome to Explore Sri Lanka, your ultimate destination for exploring the breath
 - **Hotel Bookings**: Find and book accommodations that suit your needs and budget seamlessly through our platform. Whether you prefer luxury resorts, cozy guesthouses, or budget-friendly hostels, we've got options to cater to every traveler.
 
 - **Destination Insights**: Explore the diverse attractions and hidden gems that Sri Lanka has to offer. From pristine beaches and lush rainforests to ancient temples and bustling markets, uncover the wonders of this enchanting island nation.
+
+## Project Members
+
+- [Chavindu Jayakody](https://github.com/ChavinduJayakody)
+- [Lakna Premachandra](https://github.com/Lakna-Premachandra)
+- [Yasanga Ranawaka](https://github.com/yasanga69ran)
+- [Roshara Pathirage](https://github.com/rosharapathirage)
