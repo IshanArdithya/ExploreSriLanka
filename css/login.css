@@ -232,6 +232,71 @@ form.sign-in-form {
   transform: translateX(800px);
 }
 
+.back-btn {
+  position: absolute;
+  top: 80px;
+  left: 300px;
+  font-size: 1.5rem;
+  z-index: 5;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 50%; 
+  width: 40px; 
+  height: 40px; 
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.back-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  transition: 0.3s;
+}
+
+.back-btn-signup {
+  position: absolute;
+  top: 10px;
+  left: 300px;
+  font-size: 1.5rem;
+  z-index: 5;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 50%; 
+  width: 40px; 
+  height: 40px; 
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.back-btn-signup:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  transition: 0.3s;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.input-field.hidden {
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+
 /* ANIMATION */
 
 .container.sign-up-mode:before {

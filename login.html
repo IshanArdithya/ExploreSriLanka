@@ -8,67 +8,73 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="css/login.css">
-    <title>Sign in & Sign up Form</title>
+    <title>Sign-In</title>
   </head>
   <body>
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
           <form action="#" class="sign-in-form">
+            <a href="index.html" class="back-btn"><i class="fa fa-arrow-left"></i></a>
             <h2 class="title">Sign in</h2>
+            <p class="subtitle">Fill the following to continue</p>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <input type="text" placeholder="Email Address" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
               <input type="password" placeholder="Password" />
             </div>
             <input type="submit" value="Login" class="btn solid" />
-            <p class="social-text">Or Sign in with social platforms</p>
+            <p class="social-text">Or Sign in with Google</p>
             <div class="social-media">
               <a href="#" class="social-icon">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#" class="social-icon">
                 <i class="fab fa-google"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
               </a>
             </div>
           </form>
           <form action="#" class="sign-up-form">
+            <a href="index.html" class="back-btn-signup"><i class="fa fa-arrow-left"></i></a>
             <h2 class="title">Sign up</h2>
-            <div class="input-field">
-              <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
-            </div>
+            <p class="subtitle">Fill the following to continue</p>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
               <input type="email" placeholder="Email" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input type="text" placeholder="Password" />
             </div>
-            <input type="submit" class="btn" value="Sign up" />
-            <p class="social-text">Or Sign up with social platforms</p>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Re-enter Password" />
+            </div>
+            <div class="input-field hidden">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="First Name" />
+            </div>
+            <div class="input-field hidden">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Last Name" />
+            </div>
+            <div class="input-field hidden">
+              <i class="fas fa-phone"></i>
+              <input type="text" placeholder="Contact Number" />
+            </div>
+            <div class="input-field hidden">
+              <i class="fas fa-globe"></i>
+              <input type="text" placeholder="Nationality" />
+            </div>
+            <input type="button" class="btn next-btn" value="Next" />
+            <div class="button-container">
+              <input type="button" class="btn back-btn-form hidden" value="Back" />
+              <input type="button" class="btn signup-btn hidden" value="Sign up" />
+            </div>            
+            <p class="social-text">Or Sign up with Google</p>
             <div class="social-media">
               <a href="#" class="social-icon">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#" class="social-icon">
                 <i class="fab fa-google"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
               </a>
             </div>
           </form>

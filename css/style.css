@@ -145,6 +145,20 @@ nav ul li:hover::before{
     display: none;
 }
 
+.custom-btn {
+    padding: 0.7rem 1.5rem;
+    border-radius: 15px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.5s ease;
+}
+
+.custom-btn:hover {
+    background-color: #007bff; 
+}
+
 /* Slide */
 
 main{
