@@ -18,16 +18,44 @@ const hiddenFields = document.querySelectorAll('.sign-up-form .input-field:nth-o
 const buttonContainer = document.querySelector('.button-container');
 
 nextBtn.addEventListener('click', () => {
-  firstFields.forEach(field => {
-    field.style.display = 'none';
-  });
-  hiddenFields.forEach(field => {
-    field.style.display = 'grid';
-  });
-  nextBtn.style.display = 'none';
-  backBtn.style.display = 'block';
-  signupBtn.style.display = 'block';
+    
+    const email = document.getElementById('remail').value;
+    const password = document.getElementById('rpassword').value;
+    const reenterPassword = document.getElementById('reenter_password').value;
+
+    if (email.trim() === '') {
+      document.getElementById('emailError').textContent = 'Please Enter your Email!';
+      return;
+    } else {
+      document.getElementById('emailError').textContent = '';
+    }
+  
+    if (password.trim() === '') {
+      document.getElementById('passwordError').textContent = 'Please Enter your Password!';
+      return;
+    } else {
+      document.getElementById('passwordError').textContent = '';
+    }
+
+    if (password !== reenterPassword) {
+        document.getElementById('passwordError').textContent = 'Passwords do not match!';
+        
+        return false;
+    } else {
+        document.getElementById('passwordError').textContent = '';
+    }
+
+    firstFields.forEach(field => {
+        field.style.display = 'none';
+    });
+    hiddenFields.forEach(field => {
+        field.style.display = 'grid';
+    });
+    nextBtn.style.display = 'none';
+    backBtn.style.display = 'block';
+    signupBtn.style.display = 'block';
 });
+
 
 backBtn.addEventListener('click', () => {
   firstFields.forEach(field => {

@@ -464,3 +464,54 @@ form.sign-in-form {
     left: 50%;
   }
 }
+
+/* Style the modal */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 9999; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+}
+
+.modal h2 {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+/* Style the modal content */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 30px;
+  border: 1px solid #888;
+  width: 30%; /* Could be more or less, depending on screen size */
+  position: relative;
+}
+
+/* Style the close button */
+.close {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute; /* Position it absolutely */
+  top: 0px; /* Adjust top position as needed */
+  right: 10px; /* Adjust right position as needed */
+}
+
+#sendCodeBtn.disabled {
+  background-color: #ccc; /* Change background color to grey */
+  cursor: not-allowed; /* Change cursor to indicate it's disabled */
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
