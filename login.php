@@ -444,7 +444,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
           }
         } else {
           // Password is empty in the database
-          echo 'alert("This email is registered using Google authentication. Login through Google!");';
+          echo '$("#loginMessage").text("This email is registered using Google authentication. Login through Google!");';
         }
       } else {
         // No user found with the provided email
