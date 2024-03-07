@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
   $row = mysqli_fetch_assoc($result);
   $max_id = $row['max_id'];
   $next_id = $max_id + 1;
-  $customer_id = 'c' . str_pad($next_id, 5, '0', STR_PAD_LEFT);
+  $customer_id = 'C' . str_pad($next_id, 5, '0', STR_PAD_LEFT);
 
   $sql = "SELECT * FROM users WHERE email = '$email'";
   $result = mysqli_query($conn, $sql);
@@ -247,6 +247,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
+
+          <!-- Sign In -->
           <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="sign-in-form">
             <a href="index.php" class="back-btn"><i class="fa fa-arrow-left"></i></a>
             <h2 class="title">Sign in</h2>
@@ -259,6 +261,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
               <i class="fas fa-lock"></i>
               <input type="password" name="password" placeholder="Password" />
             </div>
+            <p class = "loginError" id="loginMessage" class="login-message"></p> <!-- Paragraph for displaying login messages -->
             <input type="submit" value="Login" name="login" class="btn solid" />
             <p class="social-text">Or Sign in with Google</p>
             <div class="social-media">
@@ -267,6 +270,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
               </a>
             </div>
           </form>
+
+          <!-- Sign Up -->
           <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="sign-up-form">
             <a href="index.php" class="back-btn-signup"><i class="fa fa-arrow-left"></i></a>
             <h2 class="title">Sign up</h2>
@@ -352,15 +357,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
       <span class="close">&times;</span>
       <h2>Enter Verification Code</h2>
       <form id="verificationForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+      <div>
         <div class="input-field">
           <i class="fas fa-envelope"></i>
           <input type="text" class="form-control" id="verification_code" name="verification_code" placeholder="Enter verification code" maxlength="6" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
         </div>
         <input type="hidden" id="verified_email" name="email" value="">
-        <div>
+        <div class="modalVerifyBtn">
         <button type="button" id="sendCodeBtn" class="btn btn-primary">Send Code</button>
         <button type="submit" class="btn btn-success" name="verify_email">Verify</button>
         </div>
+      </div>
         
       </form>
       <span id="cooldownText"></span>
@@ -431,7 +438,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
             }
           } else {
             // Password doesn't match
-            echo 'alert("Invalid email or password.");';
+            // echo 'alert("Invalid email or password.");';
+            echo '$("#loginMessage").text("Invalid Email or Password.");';
+            echo '$(".input-field").css("border", "1px solid red");'; // Highlight input fields with red border
           }
         } else {
           // Password is empty in the database
@@ -439,7 +448,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
         }
       } else {
         // No user found with the provided email
-        echo 'alert("Invalid email or password.");';
+        // echo 'alert("Invalid email or password.");';
+        echo '$("#loginMessage").text("Invalid Email or Password.");';
+        echo '$(".input-field").css("border", "1px solid red");'; // Highlight input fields with red border
       }
       ?>
     <?php endif; ?>
@@ -450,6 +461,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
     }
   });
 </script>
+
 
 
 
