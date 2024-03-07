@@ -97,6 +97,11 @@ form.sign-in-form {
   color: #333;
 }
 
+.loginError {
+  color: red;
+  font-size: 0.9rem;
+}
+
 .input-field input::placeholder {
   color: #aaa;
   font-weight: 500;
@@ -465,17 +470,17 @@ form.sign-in-form {
   }
 }
 
-/* Style the modal */
+
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 9999; /* Sit on top */
+  display: none; 
+  position: fixed; 
+  z-index: 9999; 
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.5); 
 }
 
 .modal h2 {
@@ -483,29 +488,33 @@ form.sign-in-form {
   margin-bottom: 5px;
 }
 
-/* Style the modal content */
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: 15% auto;
   padding: 30px;
   border: 1px solid #888;
-  width: 30%; /* Could be more or less, depending on screen size */
+  width: 25%; 
   position: relative;
+  border-radius: 20px;
 }
 
-/* Style the close button */
 .close {
   color: #aaa;
   font-size: 28px;
   font-weight: bold;
-  position: absolute; /* Position it absolutely */
-  top: 0px; /* Adjust top position as needed */
-  right: 10px; /* Adjust right position as needed */
+  position: absolute;
+  top: 0px;
+  right: 10px;
+}
+
+.modalVerifyBtn {
+  gap: 10px;
+  display: flex;
 }
 
 #sendCodeBtn.disabled {
-  background-color: #ccc; /* Change background color to grey */
-  cursor: not-allowed; /* Change cursor to indicate it's disabled */
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
 .close:hover,
