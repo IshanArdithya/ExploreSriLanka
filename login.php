@@ -49,10 +49,67 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
       $mail->addAddress($email, $full_name);
       $mail->isHTML(true);
       $mail->Subject = "Welcome to Explore Sri Lanka!";
-      $mail->Body = '<h1>Hello and welcome to Explore Sri Lanka!</h1>
+      $mail->Body = '
+        <html>
+            <head>
+                <style>
+                    /* Styling for the email content */
+                    body {
+                        font-family: "Poppins", sans-serif;
+                        background-color: #f5f5f5;
+                        margin: 0;
+                        padding: 0;
+                        box-sizing: border-box;
+                    }
+                    .container {
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        background-color: #fff;
+                        border-radius: 10px;
+                        overflow: hidden;
+                    }
+                    h1 {
+                        font-size: 2.2rem;
+                        color: #444;
+                        margin-bottom: 10px;
+                    }
+                    p {
+                        color: #666;
+                        font-size: 1.1rem;
+                        line-height: 1.6;
+                        margin-bottom: 20px;
+                    }
+                    .btn {
+                        width: 150px;
+                        padding: 15px 20px;
+                        background-color: #5995fd;
+                        border: none;
+                        outline: none;
+                        height: 49px;
+                        border-radius: 49px;
+                        color: #fff;
+                        text-transform: uppercase;
+                        font-weight: 600;
+                        margin: 10px 0;
+                        cursor: pointer;
+                        transition: 0.5s;
+                        text-decoration: none;
+                    }
+                    .btn:hover {
+                        background-color: #4d84e2;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <h1>Welcome to Explore Sri Lanka!</h1>
                     <p>Your journey starts here, ' . $first_name . ' ' . $last_name . '</p>
                     <p>Congrats—you\'ve just joined the Sri Lanka\'s largest travel community. We\'re thrilled to have you on board!</p>
-                    <p>Best regards,<br>Explore Sri Lanka Team</p>';
+                    <a href="http://localhost/ExploreSriLanka/index.php" class="btn" style="color: #fff;">Get Started</a>
+                </div>
+            </body>
+        </html>';
       $mail->send();
 
       $sql = "INSERT INTO users (email, password, first_name, last_name, contact_number, nationality, email_verified_at, customer_id) VALUES ('$email', '$password', '$first_name', '$last_name', '$contact_number', '$nationality', NULL, '$customer_id')";
@@ -297,7 +354,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
       <form id="verificationForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <div class="input-field">
           <i class="fas fa-envelope"></i>
-          <input type="text" class="form-control" id="verification_code" name="verification_code" placeholder="Enter verification code">
+          <input type="text" class="form-control" id="verification_code" name="verification_code" placeholder="Enter verification code" maxlength="6" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
         </div>
         <input type="hidden" id="verified_email" name="email" value="">
         <div>
