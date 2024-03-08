@@ -161,6 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
 //   }
 // }
 
+// Verify Email (Email Verification Modal)
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["verify_email"])) {
   $email = $_POST["email"];
   $verification_code = $_POST["verification_code"];
@@ -170,16 +171,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["verify_email"])) {
   $result = mysqli_query($conn, $sql);
 
   if (mysqli_affected_rows($conn) == 0) {
-    die("Verification code failed.");
+      echo json_encode(array("status" => "error"));
+      exit();
   }
 
   // Store the user's token in the session
   $_SESSION['customer_email'] = $email;
-  // Redirect the user to the test page
-  header("Location: index.php");
+
+  echo json_encode(array("status" => "success"));
   exit();
 }
 
+// Send Verification Code (Email Verification Modal)
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
   $email = $_POST['email'];
 
@@ -253,15 +256,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
             <a href="index.php" class="back-btn"><i class="fa fa-arrow-left"></i></a>
             <h2 class="title">Sign in</h2>
             <p class="subtitle">Fill the following to continue</p>
-            <div class="input-field">
+            <div class="input-field input-login-error">
               <i class="fas fa-user"></i>
               <input type="text" name="email" placeholder="Email Address" />
             </div>
-            <div class="input-field">
+            <div class="input-field input-login-error">
               <i class="fas fa-lock"></i>
               <input type="password" name="password" placeholder="Password" />
             </div>
-            <p class = "loginError" id="loginMessage" class="login-message"></p> <!-- Paragraph for displaying login messages -->
+            <p class = "loginError" id="loginMessage" class="login-message"></p>
             <input type="submit" value="Login" name="login" class="btn solid" />
             <p class="social-text">Or Sign in with Google</p>
             <div class="social-media">
@@ -355,14 +358,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
   <div id="verificationModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
-      <h2>Enter Verification Code</h2>
+      <h2>Verification Code</h2>
       <form id="verificationForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
       <div>
-        <div class="input-field">
+        <div class="input-field input-verify-error">
           <i class="fas fa-envelope"></i>
           <input type="text" class="form-control" id="verification_code" name="verification_code" placeholder="Enter verification code" maxlength="6" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
         </div>
         <input type="hidden" id="verified_email" name="email" value="">
+        <p class = "verifyError" id="verifyMessage" class="verify-message"></p>
         <div class="modalVerifyBtn">
         <button type="button" id="sendCodeBtn" class="btn btn-primary">Send Code</button>
         <button type="submit" class="btn btn-success" name="verify_email">Verify</button>
@@ -440,7 +444,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
             // Password doesn't match
             // echo 'alert("Invalid email or password.");';
             echo '$("#loginMessage").text("Invalid Email or Password.");';
-            echo '$(".input-field").css("border", "1px solid red");'; // Highlight input fields with red border
+            echo '$(".input-login-error").css("border", "1px solid red");'; // Highlight input fields with red border
           }
         } else {
           // Password is empty in the database
@@ -450,7 +454,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
         // No user found with the provided email
         // echo 'alert("Invalid email or password.");';
         echo '$("#loginMessage").text("Invalid Email or Password.");';
-        echo '$(".input-field").css("border", "1px solid red");'; // Highlight input fields with red border
+        echo '$(".input-login-error").css("border", "1px solid red");'; // Highlight input fields with red border
       }
       ?>
     <?php endif; ?>
@@ -467,43 +471,87 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
 
     <script>
     $(document).ready(function() {
-    $('#sendCodeBtn').on('click', function() {
-        var btn = $(this);
-        var cooldownText = $('#sendCodeBtn'); // Get the button element
-        var countdown = 60; // Set the countdown duration in seconds
-        btn.prop('disabled', true); // Disable the button during cooldown
-        btn.addClass('disabled');
-        var interval = setInterval(function() {
-            cooldownText.text('Resend Code (' + countdown + 's)'); // Update button text with countdown
-            countdown--;
-            if (countdown < 0) {
-                clearInterval(interval);
-                btn.prop('disabled', false); // Enable the button after cooldown finishes
-                cooldownText.text('Send Code'); // Revert button text to original
-            }
-        }, 1000);
-        // AJAX request to send code
-        $.ajax({
-          type: 'POST',
-          url: '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>',
-          data: {
-            send_code: true,
-            email: '<?php echo isset($email) ? $email : ''; ?>'
-          },
-          dataType: 'json',
-          success: function(response) {
-            if (response.status == 'success') {
-              alert(response.message);
-            } else {
-              alert(response.message);
-            }
-          },
-          error: function(xhr, status, error) {
-            console.error(xhr.responseText);
-          }
-        });
-      });
+  $('#verificationForm').on('submit', function(event) {
+    event.preventDefault(); // using this to prevent form submission
+
+    // gett the email, verification code
+    var verificationCode = $('#verification_code').val();
+    var email = $('#verified_email').val();
+
+    
+    $.ajax({
+      type: 'POST',
+      url: '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>',
+      data: {
+        verify_email: true,
+        email: email,
+        verification_code: verificationCode
+      },
+      dataType: 'json',
+      success: function(response) {
+    if (response.status == 'success') {
+        // alert(response.message);
+        window.location.href = 'index.php';
+    } else {
+        $(".input-verify-error").css("border", "1px solid red");
+        $('.verifyError').text("Invalid Verification Code");
+    }
+},
+      error: function(xhr, status, error) {
+        console.error(xhr.responseText);
+      }
     });
+  });
+
+  $('#sendCodeBtn').on('click', function() {
+    var btn = $(this);
+    var cooldownText = $('#sendCodeBtn');
+
+    // added a countdown to the button (60 seconds countdown & disables button)
+    var countdown = 60;
+    btn.prop('disabled', true);
+    btn.addClass('disabled');
+
+    // reset error message and the border of the input field
+    $(".input-verify-error").css("border", "none");
+    $('.verifyError').text("");
+
+    // countdown timer
+    var interval = setInterval(function() {
+      cooldownText.text('Resend Code (' + countdown + 's)');
+      countdown--;
+
+      // if countdown is 0:
+      if (countdown < 0) {
+        clearInterval(interval);
+        btn.prop('disabled', false); 
+        cooldownText.text('Send Code');
+        btn.removeClass('disabled');
+      }
+    }, 1000);
+
+    $.ajax({
+      type: 'POST',
+      url: '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>',
+      data: {
+        send_code: true,
+        email: '<?php echo isset($email) ? $email : ''; ?>'
+      },
+      dataType: 'json',
+      success: function(response) {
+        if (response.status == 'success') {
+          alert(response.message);
+        } else {
+          alert(response.message);
+        }
+      },
+      error: function(xhr, status, error) {
+        console.error(xhr.responseText);
+      }
+    });
+  });
+});
+
   </script>
 
   </body>
