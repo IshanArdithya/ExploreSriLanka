@@ -105,9 +105,10 @@ input:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s;
 }
 
-.loginError {
+.loginError, .verifyError {
   color: red;
   font-size: 0.9rem;
+  text-align: center;
 }
 
 .input-field input::placeholder {
