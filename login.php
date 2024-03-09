@@ -50,66 +50,172 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
       $mail->isHTML(true);
       $mail->Subject = "Welcome to Explore Sri Lanka!";
       $mail->Body = '
-        <html>
-            <head>
-                <style>
-                    /* Styling for the email content */
-                    body {
-                        font-family: "Poppins", sans-serif;
-                        background-color: #f5f5f5;
-                        margin: 0;
-                        padding: 0;
-                        box-sizing: border-box;
-                    }
-                    .container {
-                        max-width: 600px;
-                        margin: 0 auto;
-                        padding: 20px;
-                        background-color: #fff;
-                        border-radius: 10px;
-                        overflow: hidden;
-                    }
-                    h1 {
-                        font-size: 2.2rem;
-                        color: #444;
-                        margin-bottom: 10px;
-                    }
-                    p {
-                        color: #666;
-                        font-size: 1.1rem;
-                        line-height: 1.6;
-                        margin-bottom: 20px;
-                    }
-                    .btn {
-                        width: 150px;
-                        padding: 15px 20px;
-                        background-color: #5995fd;
-                        border: none;
-                        outline: none;
-                        height: 49px;
-                        border-radius: 49px;
-                        color: #fff;
-                        text-transform: uppercase;
-                        font-weight: 600;
-                        margin: 10px 0;
-                        cursor: pointer;
-                        transition: 0.5s;
-                        text-decoration: none;
-                    }
-                    .btn:hover {
-                        background-color: #4d84e2;
-                    }
-                </style>
-            </head>
-            <body>
-                <div class="container">
-                    <h1>Welcome to Explore Sri Lanka!</h1>
-                    <p>Your journey starts here, ' . $first_name . ' ' . $last_name . '</p>
-                    <p>Congrats—you\'ve just joined the Sri Lanka\'s largest travel community. We\'re thrilled to have you on board!</p>
-                    <a href="http://localhost/ExploreSriLanka/index.php" class="btn" style="color: #fff;">Get Started</a>
-                </div>
-            </body>
-        </html>';
+      <!DOCTYPE html>
+      <html>
+      <head>
+          <style>
+              body {
+                  font-family: "Poppins", sans-serif;
+                  background-color: #f5f5f5;
+                  margin: 0;
+                  padding: 0;
+                  box-sizing: border-box;
+              }
+              .container {
+                  max-width: 600px;
+                  margin: 0 auto;
+                  padding: 20px;
+                  background-color: #cbf2f6;
+                  border-radius: 10px;
+                  border: 1px solid #b9c9e5;
+                  overflow: hidden;
+              }
+              h1 {
+                  font-size: 1.9rem;
+                  color: #444;
+                  margin-bottom: 10px;
+                  text-align: center;
+                  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+              }
+      
+              h2 {
+                  font-size: 1.8rem;
+                  color: #444;
+                  margin-bottom: 10px;
+                  margin-top: 50px;
+                  text-align: center;
+                  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+              }
+      
+              h3 {
+                  font-size: 0.6rem;
+                  color: #444;
+                  margin-bottom: 10px;
+                  margin-top: 10px;
+                  text-align: center;
+                  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+              }
+      
+              p {
+                  color: #666;
+                  font-size: 1.3rem;
+                  line-height: 1.6;
+                  margin-bottom: 20px;
+                  text-align: center;
+              }
+      
+              .btn {
+                  width: 120px;
+                  padding: 15px 20px;
+                  background-color: #5995fd;
+                  border: none;
+                  outline: none;
+                  height: 20px;
+                  border-radius: 49px;
+                  color: #fff;
+                  text-transform: uppercase;
+                  font-weight: 600;
+                  margin: 10px auto;
+                  cursor: pointer;
+                  transition: 0.5s;
+                  text-decoration: none;
+                  display: block; 
+              }
+      
+              .btn:hover {
+                  background-color: #083076;
+              }
+      
+              .pic1 img {
+                  max-width: 100%;
+                  height: auto;
+                  overflow: hidden;
+                  border-radius: 20px;
+              }
+      
+              .service {
+                  text-align: center;
+                  margin-top: 50px;
+              }
+      
+              .service .pic1 {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  margin: 20px auto;
+                  margin-top: 70px;
+              }
+      
+              .service .pic1 img {
+                  width: 50%;
+                  margin: 0 10px;
+                  border-radius: 20px;
+                  border: #083076 solid 1px;
+              }
+      
+              .service .pic1 p {
+                  width: 50%;
+                  text-align: center;
+                  margin: 10px auto;
+              }
+      
+              .footer {
+                  margin-top: 50px;
+                  text-align: center;
+              }
+      
+              .footer .pic1 img {
+                  width: 50%; 
+                  height: 50%;
+                  margin-top: 10px;
+              }
+          </style>
+      </head>
+      <body>
+          <div class="container">
+              <div class="pic1">
+                  <img src="https://i.postimg.cc/9XTC1YS2/Travel1.png">
+                  <h1>Your journey starts here,<br> ' . $first_name . ' ' . $last_name . '</h1>
+                  <p>Congrats – you\'ve just stepped into a Explore Sri Lanka travel community! Get ready for an unforgettable journey through this amazing destination!</p>
+                  <a href="' . WEB_HOME . '" class="btn" style="color: #fff; text-align: center;">Get Started</a>
+              </div>
+              
+              <div class="service">
+                  <h2>What you can do on <br>Explore SriLanka </h2>
+                  <div class="pic1">
+                      <p><b>Plan Your Trip</b><br>Create custom itineraries and save your favourite finds.</p>
+                      <img src="https://i.postimg.cc/Nf6GGk7D/Travel3.png">
+                  </div>
+                  
+                  <div class="service">
+                      <div class="pic1">
+                          <img src="https://i.postimg.cc/85fD2Rzh/Travel7.jpg">
+                          <p><b>Craft Your Perfect Stay</b><br>Swift Bookings in Nearby Destinations, Deluxe Stays Await!</p>
+                      </div>    
+                  </div>
+      
+                  <div class="catagory">
+                      <h2>Explore by category</h2>
+                      <div class="pic1">
+                          <img src="https://i.postimg.cc/BnNqHZz1/Travel4.webp">Camping
+                          <img src="https://i.postimg.cc/FKRhZ5tC/Travel8-1.png">Tour Guidence
+                          <img src="https://i.postimg.cc/nr8ZpXXN/Travel9.jpg">Adventure
+                      </div>
+                  </div>
+              </div>
+      
+              <div class="footer">
+                  <div class="pic1">
+                      <img src="https://i.postimg.cc/YqKqwsgj/logo-no-background.png">
+                      <h3>Please do not reply directly to this email. This was sent from an address that cannot accept responses. For questions or assistance, visit our Help Centre.<br>
+                          <br>
+                          © 2024 ExploreSriLanka. All rights reserved.</h2>
+                  </div>
+              </div>
+          </div>
+      </body>
+      </html>
+      ';
       $mail->send();
 
       $sql = "INSERT INTO users (email, password, first_name, last_name, contact_number, nationality, email_verified_at, customer_id) VALUES ('$email', '$password', '$first_name', '$last_name', '$contact_number', '$nationality', NULL, '$customer_id')";
