@@ -44,4 +44,19 @@ counters.forEach((counter) => {
             counter.textContent = numCount;   
         }
     }  
-    });
+});
+
+// this script removes URL parameters when page loads.
+window.onload = function() {
+    // get the current URL
+    var url = window.location.href;
+
+    // check if the URL contains any parameters
+    if (url.indexOf('?') !== -1) {
+        // remove the parameters by getting the URL up to the '?'
+        var cleanUrl = url.substring(0, url.indexOf('?'));
+        
+        // replace the current URL with the clean URL (without parameters)
+        window.history.replaceState({}, document.title, cleanUrl);
+    }
+};

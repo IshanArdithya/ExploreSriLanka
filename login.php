@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
   $contact_number = $_POST['contact_number'];
   $nationality = $_POST['nationality'];
 
-  // Generate a unique customer ID
+  // gen a unique customer ID
   $sql = "SELECT MAX(RIGHT(customer_id, 5)) AS max_id FROM customers";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -223,9 +223,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
       $result = mysqli_query($conn, $sql);
 
       if ($result) {
-        echo "<div class='alert alert-success'>Registration successful</div>";
+        header("Location: login.php?register=1");
+        exit();
       } else {
-        echo "<div class='alert alert-danger'>Registration failed</div>";
+        header("Location: login.php?register=0");
+        exit();
       }
     } catch (Exception $e) {
       echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
@@ -233,42 +235,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
   }
 }
 
-// if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
-//   $email = $_POST['email'];
-//   $password = $_POST['password'];
+// check if email exists, when next button clicked (registration)
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["check_email"])) {
+  $email = $_POST["email"];
+  
+  $sql = "SELECT COUNT(*) AS count FROM customers WHERE email = '$email'";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_assoc($result);
+  $exists = $row['count'] > 0;
 
-//   $query = "SELECT * FROM customers WHERE email = '$email'";
-//   $result = mysqli_query($conn, $query);
+  echo json_encode(array("exists" => $exists));
+  exit();
+}
 
-//   if (mysqli_num_rows($result) == 1) {
-//     $row = mysqli_fetch_assoc($result);
-//     if (!empty($row['password'])) {
-//       // Password exists, so check if it matches
-//       if ($row['password'] == $password) {
-//         if ($row['email_verified_at'] == NULL) {
-          
-//         } else {
-//           // Store the user's token in the session
-//           $_SESSION['customer_email'] = $email;
-//           // Redirect the user to the test page
-//           header("Location: index.php");
-//           exit();
-//         }
-//       } else {
-//         // Password doesn't match
-//         echo "<div class='alert alert-danger'>Invalid email or password.</div>";
-//       }
-//     } else {
-//       // Password is empty in the database
-//       echo "<div class='alert alert-warning'>This email is registered using Google authentication. Login through Google!</div>";
-//     }
-//   } else {
-//     // No user found with the provided email
-//     echo "<div class='alert alert-danger'>Invalid email or password.</div>";
-//   }
-// }
-
-// Verify Email (Email Verification Modal)
+// verify Email (Email Verification Modal)
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["verify_email"])) {
   $email = $_POST["email"];
   $verification_code = $_POST["verification_code"];
@@ -282,7 +262,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["verify_email"])) {
       exit();
   }
 
-  // Store the user's token in the session
   $_SESSION['customer_email'] = $email;
 
   echo json_encode(array("status" => "success"));
@@ -335,6 +314,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
     echo "<div class='alert alert-danger'>Error updating verification code. Please try again later.</div>";
   }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -371,7 +351,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
             <input type="submit" value="Login" name="login" class="btn solid" />
             <p class="social-text">Or Sign in with Google</p>
             <div class="social-media">
-              <a href="#" class="social-icon">
+              <a href="<?php echo $client->createAuthUrl(); ?>" class="social-icon">
                 <i class="fab fa-google"></i>
               </a>
             </div>
@@ -576,7 +556,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
       dataType: 'json',
       success: function(response) {
     if (response.status == 'success') {
-        window.location.href = 'index.php';
+        window.location.href = 'index.php?login_success=1';
     } else {
         $(".input-verify-error").css("border", "1px solid red");
         $('.verifyError').text("Invalid Verification Code");
@@ -638,6 +618,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
 });
 
   </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+      function getUrlParameter(name) {
+          name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+          var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+          var results = regex.exec(location.search);
+          return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+      };
+
+      if (getUrlParameter('register') === '1') {
+          Swal.fire({
+              title: "Registration Successful!",
+              text: "Thank you for registering to the site!",
+              icon: "success"
+          });
+      }
+
+      if (getUrlParameter('register') === '0') {
+          Swal.fire({
+              title: "Registration Failed!",
+              text: "An error occurred while registering. Please try again later or contact support.",
+              icon: "error"
+          });
+      }
+      
+  </script>
+
 
   </body>
 </html>

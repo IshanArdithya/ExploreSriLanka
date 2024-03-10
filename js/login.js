@@ -18,44 +18,65 @@ const hiddenFields = document.querySelectorAll('.sign-up-form .input-field:nth-o
 const buttonContainer = document.querySelector('.button-container');
 
 nextBtn.addEventListener('click', () => {
-    
-    const email = document.getElementById('remail').value;
-    const password = document.getElementById('rpassword').value;
-    const reenterPassword = document.getElementById('reenter_password').value;
+  console.log("Next button clicked"); // Add this line for debugging
 
-    if (email.trim() === '') {
-      document.getElementById('emailError').textContent = 'Please Enter your Email!';
+  const email = document.getElementById('remail').value.trim(); // Trim whitespace
+  const password = document.getElementById('rpassword').value;
+  const reenterPassword = document.getElementById('reenter_password').value;
+
+  // Check if email is empty
+  if (email === '') {
+      document.getElementById('emailError').textContent = 'Please enter your email!';
       return;
-    } else {
+  } else {
       document.getElementById('emailError').textContent = '';
-    }
-  
-    if (password.trim() === '') {
-      document.getElementById('passwordError').textContent = 'Please Enter your Password!';
+  }
+
+  // Check if password is empty
+  if (password.trim() === '') {
+      document.getElementById('passwordError').textContent = 'Please enter your password!';
       return;
-    } else {
+  } else {
       document.getElementById('passwordError').textContent = '';
-    }
+  }
 
-    if (password !== reenterPassword) {
-        document.getElementById('passwordError').textContent = 'Passwords do not match!';
-        
-        return false;
-    } else {
-        document.getElementById('passwordError').textContent = '';
-    }
+  // Check if passwords match
+  if (password !== reenterPassword) {
+      document.getElementById('passwordError').textContent = 'Passwords do not match!';
+      return;
+  } else {
+      document.getElementById('passwordError').textContent = '';
+  }
 
-    firstFields.forEach(field => {
-        field.style.display = 'none';
-    });
-    hiddenFields.forEach(field => {
-        field.style.display = 'grid';
-    });
-    nextBtn.style.display = 'none';
-    backBtn.style.display = 'block';
-    signupBtn.style.display = 'block';
+  // check if email exists when next button clicked (registration)
+  $.ajax({
+      type: 'POST',
+      url: 'http://localhost/ExploreSriLanka/login.php',
+      data: {
+          check_email: true, // Add a parameter to specify this is a check for email
+          email: email
+      },
+      dataType: 'json',
+      success: function(response) {
+          if (response.exists) {
+              document.getElementById('emailError').textContent = 'Email already exists!';
+          } else {
+              firstFields.forEach(field => {
+                  field.style.display = 'none';
+              });
+              hiddenFields.forEach(field => {
+                  field.style.display = 'grid';
+              });
+              nextBtn.style.display = 'none';
+              backBtn.style.display = 'block';
+              signupBtn.style.display = 'block';
+          }
+      },
+      error: function(xhr, status, error) {
+          console.error(xhr.responseText);
+      }
+  });
 });
-
 
 backBtn.addEventListener('click', () => {
   firstFields.forEach(field => {
@@ -68,3 +89,18 @@ backBtn.addEventListener('click', () => {
   backBtn.style.display = 'none';
   signupBtn.style.display = 'none';
 });
+
+// this script removes URL parameters when page loads.
+window.onload = function() {
+    // get the current URL
+    var url = window.location.href;
+
+    // check if the URL contains any parameters
+    if (url.indexOf('?') !== -1) {
+        // remove the parameters by getting the URL up to the '?'
+        var cleanUrl = url.substring(0, url.indexOf('?'));
+        
+        // replace the current URL with the clean URL (without parameters)
+        window.history.replaceState({}, document.title, cleanUrl);
+    }
+};
