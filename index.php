@@ -580,10 +580,232 @@
 <!-- Travel Blogs -->
 <section id="travel-blog">
     <div class="container">
-        <p class="heading-normal-txt">MOST POPULAR</p>
-        <h2 class="headings">TRAVEL <span>BLOGS</span></h2>
+        <p class="heading-normal-txt">TRAVEL BLOG</p>
+        <h2 class="headings">TRAVEL <span>EXPERIENCE</span></h2>
+        <div class="top-destination-wrapper swiper2">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide blog">
+                    <img src="Images/seashore.jpg" alt="">
+                    <div class="blog-img-overlay">
+                        <div class="blog-img-content">
+                            <h2>Tours</h2>
+                            <p class="lead">Small Group Tours With Flights From USA</p>
+                        </div>
+                    </div>
+                    <div class="price-label">
+                        <p>15 Nov</p>
+                    </div>
+                </div>
+                <div class="swiper-slide blog">
+                    <img src="Images/seashore.jpg" alt="">
+                    <div class="blog-img-overlay">
+                        <div class="blog-img-content">
+                            <h2>Tours</h2>
+                            <p class="lead">Small Group Tours With Flights From USA</p>
+                        </div>
+                    </div>
+                    <div class="price-label">
+                        <p>2 Dec</p>
+                    </div>
+                </div>
+                <div class="swiper-slide blog">
+                    <img src="Images/seashore.jpg" alt="">
+                    <div class="blog-img-overlay">
+                        <div class="blog-img-content">
+                            <h2>Tours</h2>
+                            <p class="lead">Small Group Tours With Flights From USA</p>
+                        </div>
+                    </div>
+                    <div class="price-label">
+                        <p>1 Jan</p>
+                    </div>
+                </div>
+                <div class="swiper-slide blog">
+                    <img src="Images/seashore.jpg" alt="">
+                    <div class="blog-img-overlay">
+                        <div class="blog-img-content">
+                            <h2>Tours</h2>
+                            <p class="lead">Small Group Tours With Flights From USA</p>
+                        </div>
+                    </div>
+                    <div class="price-label">
+                        <p>17 Jan</p>
+                    </div>
+                </div>
+                <div class="swiper-slide blog">
+                    <img src="Images/seashore.jpg" alt="">
+                    <div class="blog-img-overlay">
+                        <div class="blog-img-content">
+                            <h2>Tours</h2>
+                            <p class="lead">Small Group Tours With Flights From USA</p>
+                        </div>
+                    </div>
+                    <div class="price-label">
+                        <p>17 Jan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
+
+<!-- review -->
+<section id="review">
+    <div class="container">
+        <p class="heading-normal-txt client-review">CLIENT REVIEW</p>
+        <h2 class="headings">WHAT <span>CLIENTS</span> SAY</h2>
+        <div class="review-wrapper swiper4">
+            <div class="swiper-wrapper">
+                <div class="review-content swiper-slide">
+                    <p class="lead">
+                        <i class="fa-solid fa-quote-left"></i>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                         Impedit ratione maxime illo temporibus voluptas, odit aliquid! Harum
+                          provident velit debitis dolores odit necessitatibus officia excepturi aliquam nobis cupiditate,
+                           voluptate animi?
+                           <i class="fa-solid fa-quote-right"></i>
+                    </p>
+                    <div class="review-img">
+                        <img src="./Images/about.jpg" alt="">
+                    </div>
+                    <div class="icons">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <p>Jonathan Brown</p>
+                        <p class="guest">Guest Review</p>
+                    </div>
+                </div>
+                <div class="review-content swiper-slide">
+                    <p class="lead">
+                        <i class="fa-solid fa-quote-left"></i>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                         Impedit ratione maxime illo temporibus voluptas, odit aliquid! Harum
+                          provident velit debitis dolores odit necessitatibus officia excepturi aliquam nobis cupiditate,
+                           voluptate animi?
+                           <i class="fa-solid fa-quote-right"></i>
+                    </p>
+                    <div class="review-img">
+                        <img src="./Images/about.jpg" alt="">
+                    </div>
+                    <div class="icons">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <p>Jonathan Brown</p>
+                        <p class="guest">Guest Review</p>
+                    </div>
+                </div>
+                <div class="review-content swiper-slide">
+                    <p class="lead">
+                        <i class="fa-solid fa-quote-left"></i>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                         Impedit ratione maxime illo temporibus voluptas, odit aliquid! Harum
+                          provident velit debitis dolores odit necessitatibus officia excepturi aliquam nobis cupiditate,
+                           voluptate animi?
+                           <i class="fa-solid fa-quote-right"></i>
+                    </p>
+                    <div class="review-img">
+                        <img src="./Images/about.jpg" alt="">
+                    </div>
+                    <div class="icons">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <p>Jonathan Brown</p>
+                        <p class="guest">Guest Review</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+
+<footer id="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="ft-content">
+                <div class="icon">
+                    <i class="fa fa-phone-volume"></i>
+                </div>
+                <div class="content">
+                    <p class="lead"> Call Us</p>
+                    <p>+94-712-858-489</p>
+                </div>
+            </div>
+            <div class="ft-content">
+                <div class="icon">
+                    <i class="fa fa-envelope-open"></i>
+                </div>
+                <div class="content">
+                    <p class="lead"> Write For Us</p>
+                    <p>admin@exploresrilanka.com</p>
+                </div>
+            </div>
+            <div class="ft-content">
+                <div class="icon">
+                    <i class="fa fa-map-location"></i>
+                </div>
+                <div class="content">
+                    <p class="lead"> Address</p>
+                    <p>18/A Flower Road, Colombo 03</p>
+                </div>
+            </div>
+        </div>
+        
+<!-- Footer content -->
+        <div class="footer-wraper">
+            <div class="about">
+                <div class="img-logo">
+                    <img src="Images/logo.png" alt="">
+                </div>
+                <p class="lead">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    uis ipsum suspendisse ultrices gravida.
+                    Risus commodo viverra maecenas accumsan lacus vel facilisis.
+                </p>
+                <div class="social-icons">
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-pinterest"></i>
+                </div>
+            </div>
+                <div class="links">
+                    <h2>Quick Links</h2>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="#">Tours</a></li>
+                        <li><a href="#">Destination</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">Gallery</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="subscribe">
+                    <h2>Subscribe</h2>
+                    <p class="lead">Join With Us As A Tour Guide</p>
+                    <form action="#">
+                        <input type="text" placeholder="Email Address">
+                        <button type="button" class="button">Send</button>
+                    </form>
+                </div>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2024 Innovative Software Solutions. All Right Reserved</p>
+        </div>
+    </div>
+</footer>
 
 <!-- js -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

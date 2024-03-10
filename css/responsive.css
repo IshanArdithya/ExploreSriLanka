@@ -16,6 +16,15 @@
         letter-spacing: 3px;
     }
 
+    .custom-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .headings{
+        font-size: 2.2rem;
+    }
+
 }
 
 @media(max-width:900px){
@@ -60,6 +69,12 @@
     nav ul li:hover::before{
         width: 20%;
     }
+
+    .custom-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
     
     /* slider */
     .swiper{
@@ -147,4 +162,48 @@ grid-template-columns: 1fr;
 .travel-areas2-wrapper{
     grid-template-columns: 2fr;
 }
+
+/* blog */
+
+.blog-img-content{
+    bottom: 10px;
+}
+
+/* footer */
+.footer-content{
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.footer-wraper{
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.subscribe button{
+    top: 25%;
+    right: 3%;
+}
+
+}
+
+@media screen and (max-width: 768px) {
+    .custom-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 645px) {
+    html {
+        font-size: 14px;
+    }
+
+    /* footer */
+
+    .footer-content{
+        grid-template-columns:repeat(1, 1fr);
+    }
+
+    .footer-wraper{
+        grid-template-columns: repeat(1, 1fr);
+    }
 }
