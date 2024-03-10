@@ -532,7 +532,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
             } else {
               
               $_SESSION['customer_email'] = $email;
-              echo 'window.location.href = "index.php";';
+              echo 'window.location.href = "index.php?login_success=1";';
             }
           } else {
             echo '$("#loginMessage").text("Invalid Email or Password.");';
