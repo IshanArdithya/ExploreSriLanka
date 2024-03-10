@@ -7,6 +7,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
+// Register
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
 
   $email = $_POST['remail'];
@@ -17,18 +18,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
   $nationality = $_POST['nationality'];
 
   // Generate a unique customer ID
-  $sql = "SELECT MAX(RIGHT(customer_id, 5)) AS max_id FROM users";
+  $sql = "SELECT MAX(RIGHT(customer_id, 5)) AS max_id FROM customers";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
   $max_id = $row['max_id'];
   $next_id = $max_id + 1;
   $customer_id = 'C' . str_pad($next_id, 5, '0', STR_PAD_LEFT);
 
-  $sql = "SELECT * FROM users WHERE email = '$email'";
+  $sql = "SELECT * FROM customers WHERE email = '$email'";
   $result = mysqli_query($conn, $sql);
 
+  // if email doesn't exists, then the user can register
   if (mysqli_num_rows($result) > 0) {
-    // echo "<script>alert('Email already exists');</script>";
     echo "<div class='alert alert-danger'>Email already exists</div>";
   } else {
     
@@ -218,7 +219,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
       ';
       $mail->send();
 
-      $sql = "INSERT INTO users (email, password, first_name, last_name, contact_number, nationality, email_verified_at, customer_id) VALUES ('$email', '$password', '$first_name', '$last_name', '$contact_number', '$nationality', NULL, '$customer_id')";
+      $sql = "INSERT INTO customers (email, password, first_name, last_name, contact_number, nationality, email_verified_at, customer_id) VALUES ('$email', '$password', '$first_name', '$last_name', '$contact_number', '$nationality', NULL, '$customer_id')";
       $result = mysqli_query($conn, $sql);
 
       if ($result) {
@@ -236,7 +237,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
 //   $email = $_POST['email'];
 //   $password = $_POST['password'];
 
-//   $query = "SELECT * FROM users WHERE email = '$email'";
+//   $query = "SELECT * FROM customers WHERE email = '$email'";
 //   $result = mysqli_query($conn, $query);
 
 //   if (mysqli_num_rows($result) == 1) {
@@ -273,7 +274,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["verify_email"])) {
   $verification_code = $_POST["verification_code"];
 
   // mark email as verified
-  $sql = "UPDATE users SET email_verified_at = NOW(), verification_code = NULL WHERE email = '" . $email . "' AND verification_code = '" . $verification_code . "'";
+  $sql = "UPDATE customers SET email_verified_at = NOW(), verification_code = NULL WHERE email = '" . $email . "' AND verification_code = '" . $verification_code . "'";
   $result = mysqli_query($conn, $sql);
 
   if (mysqli_affected_rows($conn) == 0) {
@@ -296,7 +297,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
   $verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
 
   // Update verification code in the database
-  $sql = "UPDATE users SET verification_code = '$verification_code' WHERE email = '$email'";
+  $sql = "UPDATE customers SET verification_code = '$verification_code' WHERE email = '$email'";
   $result = mysqli_query($conn, $sql);
 
   if ($result) {
@@ -334,11 +335,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
     echo "<div class='alert alert-danger'>Error updating verification code. Please try again later.</div>";
   }
 }
-    
-  
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -486,7 +483,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
 
   <script src="js/login.js"></script>
 
-
     <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -500,80 +496,64 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
 
       verifiedEmailInput.value = email; // Set the email in the hidden input
 
-      // When the user clicks on <span> (x), close the modal
+      // close modal when user click x
       span.onclick = function() {
         modal.style.display = "none";
       }
 
-      // // When the user clicks anywhere outside of the modal, close it
-      // window.onclick = function(event) {
-      //   if (event.target == modal) {
-      //     modal.style.display = "none";
-      //   }
-      // }
-
-      // Prevent the modal from closing when clicking outside of it
+      // this prevents user from closing the modal by clicking outside of it
       modal.onclick = function(event) {
         if (event.target === modal) {
           return false; // Prevent closing the modal
         }
       }
 
-      // Display the modal
+      // display the modal
       modal.style.display = "block";
     }
 
-    // Check if the email and password match, if yes, and email is not verified, display verification modal
+    // check if the email and password match, if yes, and email is not verified, display verification modal
     <?php if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])): ?>
       <?php
       $email = $_POST['email'];
       $password = $_POST['password'];
 
-      $query = "SELECT * FROM users WHERE email = '$email'";
+      $query = "SELECT * FROM customers WHERE email = '$email'";
       $result = mysqli_query($conn, $query);
 
       if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_assoc($result);
         if (!empty($row['password'])) {
-          // Password exists, so check if it matches
+          
           if ($row['password'] == $password) {
             if ($row['email_verified_at'] == NULL) {
               echo 'var needVerificationModal = true;';
               echo 'var userEmail = "' . $email . '";';
             } else {
-              // Store the user's token in the session
+              
               $_SESSION['customer_email'] = $email;
-              // Redirect the user to the test page
               echo 'window.location.href = "index.php";';
             }
           } else {
-            // Password doesn't match
-            // echo 'alert("Invalid email or password.");';
             echo '$("#loginMessage").text("Invalid Email or Password.");';
-            echo '$(".input-login-error").css("border", "1px solid red");'; // Highlight input fields with red border
+            echo '$(".input-login-error").css("border", "1px solid red");';
           }
         } else {
-          // Password is empty in the database
+          // if password is empty in the database (that means user registered using Google authentication)
           echo '$("#loginMessage").text("This email is registered using Google authentication. Login through Google!");';
         }
       } else {
-        // No user found with the provided email
-        // echo 'alert("Invalid email or password.");';
         echo '$("#loginMessage").text("Invalid Email or Password.");';
-        echo '$(".input-login-error").css("border", "1px solid red");'; // Highlight input fields with red border
+        echo '$(".input-login-error").css("border", "1px solid red");';
       }
       ?>
     <?php endif; ?>
 
-    // Execute logic based on the JavaScript variables
     if (needVerificationModal) {
       displayVerificationModal(userEmail);
     }
   });
 </script>
-
-
-
 
     <script>
     $(document).ready(function() {
@@ -596,7 +576,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
       dataType: 'json',
       success: function(response) {
     if (response.status == 'success') {
-        // alert(response.message);
         window.location.href = 'index.php';
     } else {
         $(".input-verify-error").css("border", "1px solid red");
