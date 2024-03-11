@@ -33,9 +33,36 @@
                     <li><a href="#">Contact</a></li>
                 </ul>
 
-                <div class="sign-in-up-btn">
-                    <a href="login.php" class="custom-btn">Sign In Now</a>
-                </div>
+                <?php
+                
+                require_once 'config.php';
+
+                if (isset($_SESSION['customer_email'])) {
+
+                    // Prepare and execute the query to fetch the user's picture path
+                    $customer_email = $_SESSION['customer_email'];
+                    $sql = "SELECT picture FROM customers WHERE email = '$customer_email'";
+                    $result = mysqli_query($conn, $sql);
+
+                    if ($result && mysqli_num_rows($result) > 0) {
+                        $row = mysqli_fetch_assoc($result);
+                        $user_picture_path = $row['picture'];
+
+                        echo '<div class="user-picture">';
+                        echo '<a href="logout.php"> <img src="' . $user_picture_path . '" alt="User Picture" class="avatar">';
+                        echo '</div>';
+                    } else {
+                        echo 'User picture not found.';
+                    }
+
+                    mysqli_close($conn);
+                } else {
+                    // If user is not signed in, display sign in button
+                    echo '<div class="sign-in-up-btn">';
+                    echo '<a href="login.php" class="custom-btn">Sign In Now</a>';
+                    echo '</div>';
+                }
+                ?>
                 <div class="btn">
                     <i class="fas fa-bars menu-btn"></i>
                 </div>

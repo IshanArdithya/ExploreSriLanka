@@ -885,3 +885,9 @@ form{
     padding: 1rem 0;
     color: var(--white-color);
 }
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
