@@ -52,170 +52,171 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
       $mail->Subject = "Welcome to Explore Sri Lanka!";
       $mail->Body = '
       <!DOCTYPE html>
-      <html>
-      <head>
-          <style>
-              body {
-                  font-family: "Poppins", sans-serif;
-                  background-color: #f5f5f5;
-                  margin: 0;
-                  padding: 0;
-                  box-sizing: border-box;
-              }
-              .container {
-                  max-width: 600px;
-                  margin: 0 auto;
-                  padding: 20px;
-                  background-color: #cbf2f6;
-                  border-radius: 10px;
-                  border: 1px solid #b9c9e5;
-                  overflow: hidden;
-              }
-              h1 {
-                  font-size: 1.9rem;
-                  color: #444;
-                  margin-bottom: 10px;
-                  text-align: center;
-                  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-              }
-      
-              h2 {
-                  font-size: 1.8rem;
-                  color: #444;
-                  margin-bottom: 10px;
-                  margin-top: 50px;
-                  text-align: center;
-                  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-              }
-      
-              h3 {
-                  font-size: 0.6rem;
-                  color: #444;
-                  margin-bottom: 10px;
-                  margin-top: 10px;
-                  text-align: center;
-                  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-              }
-      
-              p {
-                  color: #666;
-                  font-size: 1.3rem;
-                  line-height: 1.6;
-                  margin-bottom: 20px;
-                  text-align: center;
-              }
-      
-              .btn {
-                  width: 120px;
-                  padding: 15px 20px;
-                  background-color: #5995fd;
-                  border: none;
-                  outline: none;
-                  height: 20px;
-                  border-radius: 49px;
-                  color: #fff;
-                  text-transform: uppercase;
-                  font-weight: 600;
-                  margin: 10px auto;
-                  cursor: pointer;
-                  transition: 0.5s;
-                  text-decoration: none;
-                  display: block; 
-              }
-      
-              .btn:hover {
-                  background-color: #083076;
-              }
-      
-              .pic1 img {
-                  max-width: 100%;
-                  height: auto;
-                  overflow: hidden;
-                  border-radius: 20px;
-              }
-      
-              .service {
-                  text-align: center;
-                  margin-top: 50px;
-              }
-      
-              .service .pic1 {
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  margin: 20px auto;
-                  margin-top: 70px;
-              }
-      
-              .service .pic1 img {
-                  width: 50%;
-                  margin: 0 10px;
-                  border-radius: 20px;
-                  border: #083076 solid 1px;
-              }
-      
-              .service .pic1 p {
-                  width: 50%;
-                  text-align: center;
-                  margin: 10px auto;
-              }
-      
-              .footer {
-                  margin-top: 50px;
-                  text-align: center;
-              }
-      
-              .footer .pic1 img {
-                  width: 50%; 
-                  height: 50%;
-                  margin-top: 10px;
-              }
-          </style>
-      </head>
-      <body>
-          <div class="container">
-              <div class="pic1">
-                  <img src="https://i.postimg.cc/9XTC1YS2/Travel1.png">
-                  <h1>Your journey starts here,<br> ' . $first_name . ' ' . $last_name . '</h1>
-                  <p>Congrats – you\'ve just stepped into a Explore Sri Lanka travel community! Get ready for an unforgettable journey through this amazing destination!</p>
-                  <a href="' . WEB_HOME . '" class="btn" style="color: #fff; text-align: center;">Get Started</a>
-              </div>
-              
-              <div class="service">
-                  <h2>What you can do on <br>Explore SriLanka </h2>
-                  <div class="pic1">
-                      <p><b>Plan Your Trip</b><br>Create custom itineraries and save your favourite finds.</p>
-                      <img src="https://i.postimg.cc/Nf6GGk7D/Travel3.png">
-                  </div>
-                  
-                  <div class="service">
-                      <div class="pic1">
-                          <img src="https://i.postimg.cc/85fD2Rzh/Travel7.jpg">
-                          <p><b>Craft Your Perfect Stay</b><br>Swift Bookings in Nearby Destinations, Deluxe Stays Await!</p>
-                      </div>    
-                  </div>
-      
-                  <div class="catagory">
-                      <h2>Explore by category</h2>
-                      <div class="pic1">
-                          <img src="https://i.postimg.cc/BnNqHZz1/Travel4.webp">Camping
-                          <img src="https://i.postimg.cc/FKRhZ5tC/Travel8-1.png">Tour Guidence
-                          <img src="https://i.postimg.cc/nr8ZpXXN/Travel9.jpg">Adventure
-                      </div>
-                  </div>
-              </div>
-      
-              <div class="footer">
-                  <div class="pic1">
-                      <img src="https://i.postimg.cc/YqKqwsgj/logo-no-background.png">
-                      <h3>Please do not reply directly to this email. This was sent from an address that cannot accept responses. For questions or assistance, visit our Help Centre.<br>
-                          <br>
-                          © 2024 ExploreSriLanka. All rights reserved.</h2>
-                  </div>
-              </div>
-          </div>
-      </body>
-      </html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #232525;
+            border-radius: 10px;
+            border: 1px solid #b9c9e5;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 1.9rem;
+            color: #fffcfc;
+            margin-bottom: 10px;
+            text-align: center;
+            font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #58cbdd;
+            margin-bottom: 10px;
+            margin-top: 50px;
+            text-align: center;
+            font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        }
+
+        h3 {
+            font-size: 0.6rem;
+            color: #c9bdbd;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            text-align: center;
+            font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        }
+
+        p {
+            color: #dff3f6;
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .btn {
+            width: 120px;
+            padding: 15px 20px;
+            background-color: #5995fd;
+            border: none;
+            outline: none;
+            height: 20px;
+            border-radius: 49px;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin: 10px auto;
+            cursor: pointer;
+            transition: 0.5s;
+            text-decoration: none;
+            display: block; 
+        }
+
+        .btn:hover {
+            background-color: #083076;
+        }
+
+        .pic1 img {
+            max-width: 100%;
+            height: auto;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .service {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .service .pic1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+            margin-top: 70px;
+        }
+
+        .service .pic1 img {
+            width: 50%;
+            margin: 0 10px;
+            border-radius: 20px;
+            border: #083076 solid 1px;
+        }
+
+        .service .pic1 p {
+            width: 50%;
+            text-align: center;
+            margin: 10px auto;
+        }
+
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .footer .pic1 img {
+            width: 50%; 
+            height: 50%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pic1">
+            <img src="https://i.postimg.cc/9XTC1YS2/Travel1.png">
+            <h1>Your journey starts here,<br> ' . $first_name . ' ' . $last_name . '</h1>
+            <p>Congrats – you\'ve just stepped into a Explore Sri Lanka travel community! Get ready for an unforgettable journey through this amazing destination!"</p>
+            <a href="' . WEB_HOME . '" class="btn" style="color: #fff; text-align: center;">Get Started</a>
+        </div>
+        
+        <div class="service">
+            <h2>What you can do on <br>Explore SriLanka </h2>
+            <div class="pic1">
+                <p><b>Plan Your Trip</b><br>Create custom itineraries and save your favourite finds.</p>
+                <img src="https://i.postimg.cc/Nf6GGk7D/Travel3.png">
+            </div>
+            
+            <div class="service">
+                <div class="pic1">
+                    <img src="https://i.postimg.cc/85fD2Rzh/Travel7.jpg">
+                    <p><b>Craft Your Perfect Stay</b><br>Swift Bookings in Nearby Destinations, Deluxe Stays Await!</p>
+                </div>    
+            </div>
+
+            <div class="catagory">
+                <h2>Explore by category</h2>
+                <div class="pic1">
+                    <img src="https://i.postimg.cc/BnNqHZz1/Travel4.webp"><h3>Camping</h3>
+                    <img src="https://i.postimg.cc/FKRhZ5tC/Travel8-1.png"><h3>Tour Guides</h3>
+                    <img src="https://i.postimg.cc/nr8ZpXXN/Travel9.jpg"><h3>Adventure</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="pic1">
+                <img src="https://i.postimg.cc/YqKqwsgj/logo-no-background.png">
+                <h3>Please do not reply directly to this email. This was sent from an address that cannot accept responses. For questions or assistance, visit our Help Centre.<br>
+                    <br>
+                    © 2024 ExploreSriLanka. All rights reserved.</h2>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
       ';
       $mail->send();
 
@@ -301,7 +302,101 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
       // Email content
       $mail->isHTML(true);
       $mail->Subject = 'Email Verification';
-      $mail->Body = 'Your verification code is: ' . $verification_code;
+      $mail->Body = '
+      <!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #232525;
+            border-radius: 10px;
+            border: 1px solid #b9c9e5;
+            overflow: hidden;
+        }
+        h1, h2, h3 {
+            text-align: center;
+            font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        }
+        h1 {
+            font-size: 1rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 1.9rem;
+            color: #58cbdd;
+            margin-top: 50px;
+            margin-bottom: 10px;
+        }
+        h3 {
+            font-size: 0.8rem;
+            color: #fafafa;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        h4 {
+            font-size: 0.6rem;
+            color: #fafafa;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #666;
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .pic1 img {
+            max-width: 60%;
+            height: auto;
+            padding: 10px;
+            margin: 0 auto;
+            display: block;
+            border-radius: 20px;
+        }
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+        }
+        .footer .pic1 img {
+            width: 30%; 
+            height: auto;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pic1">
+            <img src="https://i.postimg.cc/0yVhJm5v/logo-no-background-Copy.png">
+            <h1>Your ExploreSrilanka Security Code:</h1>
+            <h2>' . $verification_code . '</h2>
+            <br>
+            <h3>If you didn\'t request this code, you can safely ignore this email. Someone else might have typed your email address by mistake. <br>
+                For assistance, please contact ExploreSriLanka Help.
+                <br><br>Thanks for helping us to verify your account.<br><br>Safe Travels,<br>The Explore SriLanka Team</h3>
+        </div>
+        <div class="footer">
+            <div class="pic1">
+                <img src="https://i.postimg.cc/YqKqwsgj/logo-no-background.png">
+                <h4>Please do not reply directly to this email. This was sent from an address that cannot accept responses. For questions or assistance, visit our Help Centre.<br><br>© 2024 ExploreSriLanka. All rights reserved.</h3>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+';
 
       // Send email
       $mail->send();
