@@ -643,9 +643,19 @@ width: 100%;
     padding: 6rem 0;
 }
 
-.blog h2{
+.headings-travel{
+    font-size: 3rem;
+    font-family: "ubuntu";
+    padding-bottom: 2rem;
+    letter-spacing: 2px;
+    color: var(--white-color);
     color: var(--light-gray-color);
 }
+
+.headings-travel span{
+    color: var(--primary-color);
+}
+
 
 .blog:hover::before{
     content: "";
@@ -884,4 +894,54 @@ form{
     text-align: center;
     padding: 1rem 0;
     color: var(--white-color);
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+
+/*        About Us Page        */
+
+.top-image {
+    height: 50vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(32, 149, 174,0.5),rgba(0,0,0,0.5)), url(../Images/about.jpg);
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: var(--white-color);
+}
+.sub-heading{
+    padding-top: 20vh;
+}
+
+.breadcrumbs-list{
+    padding: 10px;
+    font-family: "poppins" , sans-serif;
+}
+
+.breadcrumbs-item{
+    display: inline-block;
+}
+
+.breadcrumbs-item:not(:last-of-type)::after{
+    content: '\203a';
+    margin: 0 5px;
+    color: var(--blue-color);
+}
+
+.breadcrumbs-link{
+    text-decoration: none;
+}
+
+.breadcrumbs-link:hover{
+    text-decoration: underline;
+}
+
+.breadcrumbs-link-active{
+    color: var(--primary-color);
+    font-weight: 500;
 }

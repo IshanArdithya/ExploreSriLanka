@@ -581,7 +581,7 @@
 <section id="travel-blog">
     <div class="container">
         <p class="heading-normal-txt">TRAVEL BLOG</p>
-        <h2 class="headings">TRAVEL <span>EXPERIENCE</span></h2>
+        <h2 class="headings-travel">TRAVEL <span>EXPERIENCE</span></h2>
         <div class="top-destination-wrapper swiper2">
             <div class="swiper-wrapper">
                 <div class="swiper-slide blog">
@@ -774,9 +774,9 @@
                     Risus commodo viverra maecenas accumsan lacus vel facilisis.
                 </p>
                 <div class="social-icons">
-                    <i class="fa-brands fa-facebook"></i>
+                    <a href="https://www.facebook.com/ishan.ardithya/"><i class="fa-brands fa-facebook"></i></a>
                     <i class="fa-brands fa-twitter"></i>
-                    <i class="fa-brands fa-instagram"></i>
+                    <a href="https://www.instagram.com/roshara__?igsh=Ymw5bWtmaHJtbWoz"><i class="fa-brands fa-instagram"></i></a>
                     <i class="fa-brands fa-pinterest"></i>
                 </div>
             </div>
