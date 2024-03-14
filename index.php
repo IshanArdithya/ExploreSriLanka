@@ -11,67 +11,10 @@
 </head>
 <body>
 
-<!-- Header -->
-
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">
-                    <img src="Images/logo.png" alt="">
-                </div>
-                <ul>
-                    <div class="btn">
-                        <i class="fas fa-times close-btn"></i>
-                    </div>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="#">Tours</a></li>
-                    <li><a href="#">Destination</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="#">Gallery</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-                
-                <?php
-                require_once 'config.php';
-
-                if (isset($_SESSION['customer_email'])) {
-
-                    $customer_email = $_SESSION['customer_email'];
-                    $sql = "SELECT picture FROM customers WHERE email = '$customer_email'";
-                    $result = mysqli_query($conn, $sql);
-
-                    if ($result && mysqli_num_rows($result) > 0) {
-                        $row = mysqli_fetch_assoc($result);
-                        $user_picture_path = $row['picture'];
-                
-                        // Check if the picture path is NULL or the image doesn't load
-                        if ($user_picture_path && file_exists($user_picture_path)) {
-                            echo '<div class="user-picture">';
-                            echo '<a href="logout.php"> <img src="' . $user_picture_path . '" alt="User Picture" class="avatar"></a>';
-                            echo '</div>';
-                        } else {
-                            echo '<div class="user-picture">';
-                            echo '<a href="logout.php"><img src="Images/users/avatar_placeholder.png" alt="User Picture" class="avatar"></a>';
-                            echo '</div>';
-                        }
-                    } else {
-                        echo 'User picture not found.';
-                    }
-                    mysqli_close($conn);
-                } else {
-                    // if user not signed in, then:
-                    echo '<div class="sign-in-up-btn">';
-                    echo '<a href="login.php" class="custom-btn">Sign In Now</a>';
-                    echo '</div>';
-                }
-                ?>
-                <div class="btn">
-                    <i class="fas fa-bars menu-btn"></i>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <!-- Header -->
+    <?php
+    include 'components/header.php';
+    ?>
 
 <!-- Slide -->
 <main>
@@ -756,85 +699,10 @@
     </div>
 </section>
 
-<!-- Footer -->
-
-<footer id="footer">
-    <div class="container">
-        <div class="footer-content">
-            <div class="ft-content">
-                <div class="icon">
-                    <i class="fa fa-phone-volume"></i>
-                </div>
-                <div class="content">
-                    <p class="lead"> Call Us</p>
-                    <p>+94-712-858-489</p>
-                </div>
-            </div>
-            <div class="ft-content">
-                <div class="icon">
-                    <i class="fa fa-envelope-open"></i>
-                </div>
-                <div class="content">
-                    <p class="lead"> Write For Us</p>
-                    <p>admin@exploresrilanka.com</p>
-                </div>
-            </div>
-            <div class="ft-content">
-                <div class="icon">
-                    <i class="fa fa-map-location"></i>
-                </div>
-                <div class="content">
-                    <p class="lead"> Address</p>
-                    <p>18/A Flower Road, Colombo 03</p>
-                </div>
-            </div>
-        </div>
-        
-<!-- Footer content -->
-        <div class="footer-wraper">
-            <div class="about">
-                <div class="img-logo">
-                    <img src="Images/logo.png" alt="">
-                </div>
-                <p class="lead">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    uis ipsum suspendisse ultrices gravida.
-                    Risus commodo viverra maecenas accumsan lacus vel facilisis.
-                </p>
-                <div class="social-icons">
-                    <a href="https://www.facebook.com/ishan.ardithya/"><i class="fa-brands fa-facebook"></i></a>
-                    <i class="fa-brands fa-twitter"></i>
-                    <a href="https://www.instagram.com/roshara__?igsh=Ymw5bWtmaHJtbWoz"><i class="fa-brands fa-instagram"></i></a>
-                    <i class="fa-brands fa-pinterest"></i>
-                </div>
-            </div>
-                <div class="links">
-                    <h2>Quick Links</h2>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="#">Tours</a></li>
-                        <li><a href="#">Destination</a></li>
-                        <li><a href="#">Shop</a></li>
-                        <li><a href="#">Gallery</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="subscribe">
-                    <h2>Subscribe</h2>
-                    <p class="lead">Join With Us As A Tour Guide</p>
-                    <form action="#">
-                        <input type="text" placeholder="Email Address">
-                        <button type="button" class="button">Send</button>
-                    </form>
-                </div>
-        </div>
-        <div class="footer-copyright">
-            <p>&copy; 2024 Innovative Software Solutions. All Right Reserved</p>
-        </div>
-    </div>
-</footer>
+ <!-- Footer -->
+ <?php
+include 'components/footer.php';
+?>
 
 <!-- js -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -867,7 +735,7 @@
               icon: "success",
               title: "Signed in successfully"
             });
-        }
+        };
 
     </script>
 </body>
