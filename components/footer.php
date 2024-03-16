@@ -35,7 +35,7 @@
         <div class="footer-wraper">
             <div class="about">
                 <div class="img-logo">
-                    <img src="Images/logo.png" alt="">
+                    <img src="/ExploreSriLanka/Images/logo.png" alt="">
                 </div>
                 <p class="lead">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -44,10 +44,10 @@
                     Risus commodo viverra maecenas accumsan lacus vel facilisis.
                 </p>
                 <div class="social-icons">
-                    <a href="https://www.facebook.com/ishan.ardithya/"><i class="fa-brands fa-facebook"></i></a>
-                    <i class="fa-brands fa-twitter"></i>
-                    <a href="https://www.instagram.com/roshara__?igsh=Ymw5bWtmaHJtbWoz"><i class="fa-brands fa-instagram"></i></a>
-                    <i class="fa-brands fa-pinterest"></i>
+                    <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://twitter.com/"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.pinterest.com/"><i class="fa-brands fa-pinterest"></i></a>
                 </div>
             </div>
             <div class="links">

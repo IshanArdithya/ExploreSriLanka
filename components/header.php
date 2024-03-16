@@ -2,23 +2,23 @@
     <div class="container">
         <nav>
             <div class="logo">
-                <img src="Images/logo.png" alt="">
+                <img src="/ExploreSriLanka/Images/logo.png" alt="">
             </div>
             <ul>
                 <div class="btn">
                     <i class="fas fa-times close-btn"></i>
                 </div>
-                <li><a <?php if(basename($_SERVER['PHP_SELF']) == 'index.php') echo 'class="active"'; ?> href="index.php">Home</a></li>
-                <li><a <?php if(basename($_SERVER['PHP_SELF']) == 'about.php') echo 'class="active"'; ?> href="about.php">About</a></li>
-                <li><a <?php if(basename($_SERVER['PHP_SELF']) == 'tours.php') echo 'class="active"'; ?> href="tours.php">Tours</a></li>
-                <li><a <?php if(basename($_SERVER['PHP_SELF']) == 'destination.php') echo 'class="active"'; ?> href="destination.php">Destination</a></li>
-                <li><a <?php if(basename($_SERVER['PHP_SELF']) == 'shop.php') echo 'class="active"'; ?> href="shop.php">Shop</a></li>
-                <li><a <?php if(basename($_SERVER['PHP_SELF']) == 'gallery.php') echo 'class="active"'; ?> href="gallery.php">Gallery</a></li>
-                <li><a <?php if(basename($_SERVER['PHP_SELF']) == 'contact.php') echo 'class="active"'; ?> href="contact.php">Contact</a></li>
+                <li><a <?php if(basename($_SERVER['PHP_SELF']) == 'index.php') echo 'class="active"'; ?> href="/ExploreSriLanka/index.php">Home</a></li>
+                <li><a <?php if(basename($_SERVER['PHP_SELF']) == 'about.php') echo 'class="active"'; ?> href="/ExploreSriLanka/about.php">About</a></li>
+                <li><a <?php if(basename($_SERVER['PHP_SELF']) == 'tours.php') echo 'class="active"'; ?> href="/ExploreSriLanka/tours.php">Tours</a></li>
+                <li><a <?php if(basename($_SERVER['PHP_SELF']) == 'destination.php') echo 'class="active"'; ?> href="/ExploreSriLanka/destination.php">Destination</a></li>
+                <li><a <?php if(basename($_SERVER['PHP_SELF']) == 'shop.php') echo 'class="active"'; ?> href="/ExploreSriLanka/shop.php">Shop</a></li>
+                <li><a <?php if(basename($_SERVER['PHP_SELF']) == 'gallery.php') echo 'class="active"'; ?> href="/ExploreSriLanka/gallery.php">Gallery</a></li>
+                <li><a <?php if(basename($_SERVER['PHP_SELF']) == 'contact.php') echo 'class="active"'; ?> href="/ExploreSriLanka/contact.php">Contact</a></li>
             </ul>
             
             <?php
-            require_once '../ExploreSriLanka/config.php';
+            require_once __DIR__ . '/../config.php';
 
             if (isset($_SESSION['customer_email'])) {
 
@@ -31,19 +31,18 @@
                     $user_picture_path = $row['picture'];
             
                     // Check if the picture path is NULL or the image doesn't load
-                    if ($user_picture_path && file_exists($user_picture_path)) {
-
-                        echo '<div class="profile-avatar">';
-                        echo '<ul>';
-                        echo '<li>';
-                        echo '<img src="' . $user_picture_path . '" alt="User Picture" class="avatar"/>';
+                    if ($user_picture_path && file_exists($_SERVER['DOCUMENT_ROOT'] . '/ExploreSriLanka/' . $user_picture_path)) {
+                      echo '<div class="profile-avatar">';
+                      echo '<ul>';
+                      echo '<li>';
+                      echo '<img src="/ExploreSriLanka/' . $user_picture_path . '" alt="User Picture" class="avatar"/>';
                     } else {
 
 
                         echo '<div class="profile-avatar">';
                         echo '<ul>';
                         echo '<li>';
-                        echo '<img src="Images/users/avatar_placeholder.png" alt="User Picture" class="avatar"/>';
+                        echo '<img src="/ExploreSriLanka/Images/users/avatar_placeholder.png" alt="User Picture" class="avatar"/>';
                     }
                     echo '<ul>';
                     echo '<li class="avatar-sub-item">';
@@ -69,7 +68,7 @@
             } else {
                 // if user not signed in, then:
                 echo '<div class="sign-in-up-btn">';
-                echo '<a href="login.php" class="custom-btn">Sign In Now</a>';
+                echo '<a href="/ExploreSriLanka/login.php" class="custom-btn">Sign In Now</a>';
                 echo '</div>';
             }
             ?>
