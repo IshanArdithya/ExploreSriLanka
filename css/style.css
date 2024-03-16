@@ -924,21 +924,34 @@ form{
 .breadcrumbs-list{
     padding: 10px;
     font-family: "poppins" , sans-serif;
+    text-decoration: none;
+
 }
 
 .breadcrumbs-item{
     display: inline-block;
+    text-decoration: none;
+
 }
 
 .breadcrumbs-item:not(:last-of-type)::after{
     content: '\203a';
     margin: 0 5px;
-    color: var(--blue-color);
+    color: var(black);
+    text-decoration: none;
 }
 
 .breadcrumbs-link{
     text-decoration: none;
+    color: black;
+
 }
+
+.breadcrumbs-link i{
+    text-decoration: none;
+    color: black;
+}
+
 
 .breadcrumbs-link:hover{
     text-decoration: underline;
