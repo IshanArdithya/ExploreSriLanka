@@ -931,6 +931,7 @@ form{
 .breadcrumbs-item{
     display: inline-block;
     text-decoration: none;
+    text-wrap: uppercase;
 
 }
 
