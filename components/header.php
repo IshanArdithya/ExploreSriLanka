@@ -128,7 +128,7 @@
 .profile-avatar .material-icons-outlined:hover {
   color: #ff9800;
   transform: scale(1.25) translateY(-4px);
-  cursor: pointer;
+  cursor : pointer;
 }
 
 .profile-avatar .profile {
