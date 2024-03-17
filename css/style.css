@@ -66,6 +66,10 @@ a{
     text-align: justify;
 }
 
+.mini-lead{
+    margin-bottom: 20px;
+}
+
 .primary-btn{
     width: 50%;
     outline: none;
