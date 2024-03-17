@@ -42,15 +42,10 @@
 
             </ul>
         </div>
-    </div>
 
-    <div class="container">
         <h1 class="headings mini-heading">Wildlife Adventure</h1>
-        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque corporis repellat incidunt ex, libero accusantium eum quia sed praesentium, odit itaque! Aliquam possimus veritatis, repudiandae vel, temporibus debitis eos reiciendis voluptates recusandae maiores autem nostrum dignissimos voluptatibus libero distinctio sed veniam exercitationem? Facilis fuga dignissimos perferendis vel ullam eius cumque.</p>
-    </div>
+        <p class="lead mini-lead"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque corporis repellat incidunt ex, libero accusantium eum quia sed praesentium, odit itaque! Aliquam possimus veritatis, repudiandae vel, temporibus debitis eos reiciendis voluptates recusandae maiores autem nostrum dignissimos voluptatibus libero distinctio sed veniam exercitationem? Facilis fuga dignissimos perferendis vel ullam eius cumque.</p>
 
-
-    <div class="container">
         <div class="owl-carousel owl-theme">
             <div> <img src="../Images/about.jpg" alt=""> </div>
             <div> <img src="../Images/about.jpg" alt=""> </div>
@@ -58,7 +53,6 @@
             <div> <img src="../Images/about.jpg" alt=""> </div>
             <div> <img src="../Images/about.jpg" alt=""> </div>
         </div>
-
     </div>
 
 
@@ -68,8 +62,9 @@
     include '../components/footer.php';
     ?>
 
-    <script src="/node_modules/jquery/dist/jquery.js"></script>
-    <script src="/node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
+    <script src="../js/script.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -81,7 +76,7 @@
         owl.owlCarousel({
             items: 4,
             loop: true,
-            margin: 10,
+            margin: 5,
             autoplay: true,
             autoplayTimeout: 2500,
             autoplayHoverPause: true,
