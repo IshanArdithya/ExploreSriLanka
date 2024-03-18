@@ -1465,3 +1465,40 @@ form {
     text-align: justify;
     text-align-last: left;
 }
+
+/* Destinations */
+
+.content-paragraph{
+    padding: 1rem;
+    line-height: 32px;
+    font-size: 0.9rem;
+    text-align: left;
+  }
+
+   .content-destination-tittle{
+    padding: 0.5rem;
+    text-align: left;
+  } 
+
+  .destination-content-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .destination-image-container {
+    width: 45%;
+  }
+
+  .destination-content-container{
+    margin: 1rem;
+    border-bottom: 1px solid lightblue;
+  }
+
+  .destination-content-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
