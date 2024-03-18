@@ -43,6 +43,13 @@ a {
     color: var(--primary-color);
 }
 
+.heading-normal-txt-mini {
+    font-size: 2rem;
+    letter-spacing: 6px;
+    color: var(--white-color);
+}
+
+
 .headings {
     font-size: 3rem;
     font-family: "ubuntu";
@@ -68,6 +75,7 @@ a {
 
 .mini-lead {
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .primary-btn {
@@ -1012,6 +1020,12 @@ form {
 
 .mini-heading {
     text-align: center;
+    font-size: 3rem;
+    font-family: "ubuntu";
+    text-transform: uppercase;
+    padding-bottom: 2rem;
+    letter-spacing: 10px;
+
 }
 
 /* search */
