@@ -105,9 +105,9 @@
 
     <div class="container">
         <div class="tour-items-wrapper row-wise-img">
-            <a class="item-box" href="#">
+            <a class="item-box" href="tours/Wildlife Adventure.php">
                 <div class="img-wrapper">
-                    <img src="Images/counter.jpg" alt="Tusker Elephant in the Jungle">
+                    <img src="Images/counter.jpg" alt="">
                 </div>
                 <div class="text-item-box tour-item-box">
                     <div class="heading-legend">Wildlife Experience</div>
@@ -121,9 +121,8 @@
                     <span><i class="fa fa-user"></i>12+</span><br>
                     <span><i class="fa fa-location-dot"></i>Anuradhapura</span>
                 </div>
-
             </a>
-            <a class="item-box" href="#">
+            <a class="item-box" href="tours/Wildlife Adventure.php">
                 <div class="img-wrapper">
                     <img src="Images/counter.jpg" alt="Nature in Hiriwaduna Village">
                 </div>
@@ -135,7 +134,7 @@
                     </div>
                 </div>
             </a>
-            <a class="item-box" href="#">
+            <a class="item-box" href="tours/Wildlife Adventure.php">
                 <div class="img-wrapper">
                     <img src="Images/counter.jpg" alt="Nature in Hiriwaduna Village">
                 </div>
