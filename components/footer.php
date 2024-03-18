@@ -64,12 +64,16 @@
             </div>
             <div class="subscribe">
                 <h2>Subscribe</h2>
+                <p class="lead">Join With Us As A Tour Guide</p><br>
+
+                <h2>Subscribe</h2>
                 <p class="lead">Join With Us As A Tour Guide</p>
                 <form action="#">
                     <input type="text" placeholder="Email Address">
                     <button type="button" class="button">Send</button>
                 </form>
             </div>
+
         </div>
         <div class="footer-copyright">
             <p>&copy; <?php echo date("Y"); ?> Innovative Software Solutions. All Right Reserved</p>

@@ -28,29 +28,13 @@
 
     <!-- Breadcrumbs -->
     <div class="container">
-        <div class="col-lg-12 col-md-12">
             <div class="row">
                 <ol class="breadcrumb">
-                    <li><a href="#" title="Explore Sri Lanka" class="bolds">Home</a></li>
-                    <li><a href="#">Tours</a></li>
+                    <li><a href="../index.php" title="Explore Sri Lanka" class="bolds">Home</a></li>
+                    <li><a href="../tours.php">Tours</a></li>
                     <li class="active">Wildlife Adventure</li>
                 </ol>
             </div>
-        </div>
-
-
-
-        <h1 class="headings mini-heading">Wildlife Adventure</h1>
-        <p class="lead mini-lead"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque corporis repellat incidunt ex, libero accusantium eum quia sed praesentium, odit itaque! Aliquam possimus veritatis, repudiandae vel, temporibus debitis eos reiciendis voluptates recusandae maiores autem nostrum dignissimos voluptatibus libero distinctio sed veniam exercitationem? Facilis fuga dignissimos perferendis vel ullam eius cumque.</p>
-
-        <div class="owl-carousel owl-theme">
-            <div> <img src="../Images/about.jpg" alt=""> </div>
-            <div> <img src="../Images/about.jpg" alt=""> </div>
-            <div> <img src="../Images/about.jpg" alt=""> </div>
-            <div> <img src="../Images/about.jpg" alt=""> </div>
-            <div> <img src="../Images/about.jpg" alt=""> </div>
-        </div>
-    </div>
 
     <!-- Content -->
 
@@ -204,7 +188,7 @@
                         <div class="place-details-wrap">
                             <div class="place-item">
                                 <div class="place-img">
-                                    <img src="https://www.steuartholidays.com/wp-content/uploads/2019/02/Fishing-Boat-Beach-View-20-1.jpg" alt="Fishing Boats in the Beach">
+                                    <img src="../Images/counter.jpg" alt="">
                                 </div>
                                 <div class="place-text">
                                     <div class="text-heading">
@@ -214,23 +198,23 @@
 
                                     </div>
                                     <div class="btn-wrapper-common">
-                                        <a href="https://www.steuartholidays.com/experiences/induruwa-a-complete-beach-escape.html">read more</a>
+                                        <a href="#">read more</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="place-item">
                                 <div class="place-img">
-                                    <img src="https://www.steuartholidays.com/wp-content/uploads/2019/02/Beach-View-25.jpg" alt="">
+                                    <img src="../Images/counter.jpg" alt="">
                                 </div>
                                 <div class="place-text">
                                     <div class="text-heading">
-                                        Bentota
+                                        Induruwa
                                     </div>
                                     <div class="content-text">
-                                        Bentota does not boast of an ancient history of its own. However, it has been mentioned in the history of the country, therefore its cultural importance must not be dismissed.
+
                                     </div>
                                     <div class="btn-wrapper-common">
-                                        <a href="https://www.steuartholidays.com/experiences/bentota-the-beach-the-bawa-experience.html">read more</a>
+                                        <a href="#">read more</a>
                                     </div>
                                 </div>
                             </div>
@@ -254,6 +238,20 @@
             </div>
         </div>
     </div>
+
+
+        <h1 class="headings mini-heading">Wildlife Adventure</h1>
+        <p class="lead mini-lead"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque corporis repellat incidunt ex, libero accusantium eum quia sed praesentium, odit itaque! Aliquam possimus veritatis, repudiandae vel, temporibus debitis eos reiciendis voluptates recusandae maiores autem nostrum dignissimos voluptatibus libero distinctio sed veniam exercitationem? Facilis fuga dignissimos perferendis vel ullam eius cumque.</p>
+
+        <div class="owl-carousel owl-theme">
+            <div> <img src="../Images/about.jpg" alt=""> </div>
+            <div> <img src="../Images/about.jpg" alt=""> </div>
+            <div> <img src="../Images/about.jpg" alt=""> </div>
+            <div> <img src="../Images/about.jpg" alt=""> </div>
+            <div> <img src="../Images/about.jpg" alt=""> </div>
+        </div>
+    </div>
+
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {

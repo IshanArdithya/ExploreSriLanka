@@ -932,7 +932,7 @@ form {
     padding-top: 20vh;
 }
 
-
+/* BreadCrumb */
 .breadcrumb {
     margin: 15px 0;
     list-style: none;
@@ -1218,6 +1218,7 @@ form {
 .tab-package .tabbed-content {
     background: #fff;
     float: left;
+    display: relative;
     width: 100%;
 }
 
