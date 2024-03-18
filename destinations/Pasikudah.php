@@ -91,7 +91,7 @@
                 </div>
                 <div class="destination-hotel-contntents">
                   <h3 class="content-title">MAALU MAALU RESORT</h3>
-                  <p class="content-paragraph">The intrinsic splendour of Passikudah, Sri Lanka is brought to life by Maalu Maalu Resort and Spa. The vast infinite pool appears to be seamless connection between the ocean and hotel.</p>
+                  <p class="content-paragraph">The intrinsic splendour of Pasikudah, Sri Lanka is brought to life by Maalu Maalu Resort and Spa. The vast infinite pool appears to be seamless connection between the ocean and hotel.</p>
                   <p class="content-paragraph">Read more</p>
                 </div>
               </div>
@@ -101,7 +101,7 @@
                 </div>
                 <div class="destination-hotel-contntents">
                   <h3 class="content-title">MAALU MAALU RESORT</h3>
-                  <p class="content-paragraph">The intrinsic splendour of Passikudah, Sri Lanka is brought to life by Maalu Maalu Resort and Spa. The vast infinite pool appears to be seamless connection between the ocean and hotel.</p>
+                  <p class="content-paragraph">The intrinsic splendour of Pasikudah, Sri Lanka is brought to life by Maalu Maalu Resort and Spa. The vast infinite pool appears to be seamless connection between the ocean and hotel.</p>
                   <p class="content-paragraph">Read more</p>
                 </div>
               </div>
@@ -111,7 +111,7 @@
                 </div>
                 <div class="destination-hotel-contntents">
                   <h3 class="content-title">MAALU MAALU RESORT</h3>
-                  <p class="content-paragraph">The intrinsic splendour of Passikudah, Sri Lanka is brought to life by Maalu Maalu Resort and Spa. The vast infinite pool appears to be seamless connection between the ocean and hotel.</p>
+                  <p class="content-paragraph">The intrinsic splendour of Pasikudah, Sri Lanka is brought to life by Maalu Maalu Resort and Spa. The vast infinite pool appears to be seamless connection between the ocean and hotel.</p>
                   <p class="content-paragraph">Read more</p>
                 </div>
               </div>
@@ -131,7 +131,7 @@
                   </div>
                   <div class="destination-hotel-contntents">
                     <h3 class="content-title">MAALU MAALU RESORT</h3>
-                    <p class="content-paragraph">The intrinsic splendour of Passikudah, Sri Lanka is brought to life by Maalu Maalu Resort and Spa. The vast infinite pool appears to be seamless connection between the ocean and hotel.</p>
+                    <p class="content-paragraph">The intrinsic splendour of Pasikudah, Sri Lanka is brought to life by Maalu Maalu Resort and Spa. The vast infinite pool appears to be seamless connection between the ocean and hotel.</p>
                     <p class="content-paragraph">Read more</p>
                   </div>
                 </div>
@@ -141,7 +141,7 @@
                   </div>
                   <div class="destination-hotel-contntents">
                     <h3 class="content-title">MAALU MAALU RESORT</h3>
-                    <p class="content-paragraph">The intrinsic splendour of Passikudah, Sri Lanka is brought to life by Maalu Maalu Resort and Spa. The vast infinite pool appears to be seamless connection between the ocean and hotel.</p>
+                    <p class="content-paragraph">The intrinsic splendour of Pasikudah, Sri Lanka is brought to life by Maalu Maalu Resort and Spa. The vast infinite pool appears to be seamless connection between the ocean and hotel.</p>
                     <p class="content-paragraph">Read more</p>
                   </div>
                 </div>
@@ -151,7 +151,7 @@
                   </div>
                   <div class="destination-hotel-contntents">
                     <h3 class="content-title">MAALU MAALU RESORT</h3>
-                    <p class="content-paragraph">The intrinsic splendour of Passikudah, Sri Lanka is brought to life by Maalu Maalu Resort and Spa. The vast infinite pool appears to be seamless connection between the ocean and hotel.</p>
+                    <p class="content-paragraph">The intrinsic splendour of Pasikudah, Sri Lanka is brought to life by Maalu Maalu Resort and Spa. The vast infinite pool appears to be seamless connection between the ocean and hotel.</p>
                     <p class="content-paragraph">Read more</p>
                   </div>
                 </div>

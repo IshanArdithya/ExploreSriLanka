@@ -1476,6 +1476,13 @@ form {
     color: var(--blue-color);
   }
 
+  .text-content{
+    padding: 1rem;
+    line-height: 32px;
+    font-size: 0.9rem;
+    text-align: left;
+    color: var(--blue-color);}
+
    .content-destination-tittle{
     padding: 0.5rem;
     text-align: left;
@@ -1494,7 +1501,7 @@ form {
 
   .destination-content-container{
     margin: 1rem;
-    border-bottom: 1px solid lightblue;
+    border-bottom: 1px solid var(--primary-color);
   }
 
   .destination-content-container{
@@ -1503,3 +1510,14 @@ form {
     align-items: center;
     gap: 1rem;
   }
+
+  .tourguide-image-container {
+    width: 45%;
+    overflow: hidden;
+}
+
+.tourguide-image-container img {
+    border-radius: 50%; 
+    width: 100%; 
+    display: block; 
+}
