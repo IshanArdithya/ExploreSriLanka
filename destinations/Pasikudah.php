@@ -124,37 +124,43 @@
             <div class="places-content">
               <div class="place-details-wrap">
 
-                <div class="destination-content-container">
+              <?php
+                require_once '../config.php';
+                $conn = mysqli_connect($hostname, $username, $password, $database);
 
-                  <div class="destination-image-container">
-                    <img src="../Images/slide1.jpg" alt="">
-                  </div>
-                  <div class="destination-hotel-contntents">
-                    <h3 class="content-title">MAALU MAALU RESORT</h3>
-                    <p class="content-paragraph">The intrinsic splendour of Pasikudah, Sri Lanka is brought to life by Maalu Maalu Resort and Spa. The vast infinite pool appears to be seamless connection between the ocean and hotel.</p>
-                    <p class="content-paragraph">Read more</p>
-                  </div>
-                </div>
-                <div class="destination-content-container">
-                  <div class="destination-image-container">
-                    <img src="../Images/slide1.jpg" alt="">
-                  </div>
-                  <div class="destination-hotel-contntents">
-                    <h3 class="content-title">MAALU MAALU RESORT</h3>
-                    <p class="content-paragraph">The intrinsic splendour of Pasikudah, Sri Lanka is brought to life by Maalu Maalu Resort and Spa. The vast infinite pool appears to be seamless connection between the ocean and hotel.</p>
-                    <p class="content-paragraph">Read more</p>
-                  </div>
-                </div>
-                <div class="destination-content-container">
-                  <div class="destination-image-container">
-                    <img src="../Images/slide1.jpg" alt="">
-                  </div>
-                  <div class="destination-hotel-contntents">
-                    <h3 class="content-title">MAALU MAALU RESORT</h3>
-                    <p class="content-paragraph">The intrinsic splendour of Pasikudah, Sri Lanka is brought to life by Maalu Maalu Resort and Spa. The vast infinite pool appears to be seamless connection between the ocean and hotel.</p>
-                    <p class="content-paragraph">Read more</p>
-                  </div>
-                </div>
+                if (!$conn) {
+                    die("Connection failed: " . mysqli_connect_error());
+                }
+
+                $sql = "SELECT full_name, short_desc, hotel_picture FROM hotels WHERE city = 'Kandy'";
+                $result = mysqli_query($conn, $sql);
+
+                // Check if any rows are returned
+                if (mysqli_num_rows($result) > 0) {
+                    // Output data of each row
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        // Generate HTML dynamically for each hotel
+                        echo '<div class="destination-content-container">';
+                        echo '<div class="destination-image-container">';
+                        $image_location = $row['hotel_picture'];
+                        echo '<img src="../' . $image_location . '" alt="">';
+                        echo '</div>';
+                        echo '<div class="destination-hotel-container">';
+                        echo '<h3 class="content-title">' . $row['full_name'] . '</h3>';
+                        echo '<p class="content-paragraph">' . $row['short_desc'] . '</p>';
+                        echo '<p class="content-paragraph">Read more</p>';
+                        echo '</div>';
+                        echo '</div>';
+                    }
+                } else {
+                    echo "No hotels found in Kandy.";
+                }
+
+                // Close database connection
+                mysqli_close($conn);
+              ?>
+
+                
               </div>
             </div>
           </div>
