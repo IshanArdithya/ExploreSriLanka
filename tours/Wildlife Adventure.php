@@ -85,36 +85,38 @@
                     <div class="item-content">
                         <div class="itinerary-content">
 
-                            <div class="destination-content-container">
-                                <div class="destination-image-container">
-                                    <img src="../Images/slide1.jpg" alt="">
-                                </div>
-                                <div class="destination-hotel-container">
-                                    <h3 class="content-title">MAALU MAALU RESORT</h3>
-                                    <p class="content-paragraph">The intrinsic splendour of Pasikudah, Sri Lanka is brought to life by Maalu Maalu Resort and Spa. The vast infinite pool appears to be seamless connection between the ocean and hotel.</p>
-                                    <p class="content-paragraph">Read more</p>
-                                </div>
-                            </div>
-                            <div class="destination-content-container">
-                                <div class="destination-image-container">
-                                    <img src="../Images/slide1.jpg" alt="">
-                                </div>
-                                <div class="destination-hotel-container">
-                                    <h3 class="content-title">MAALU MAALU RESORT</h3>
-                                    <p class="content-paragraph">The intrinsic splendour of Pasikudah, Sri Lanka is brought to life by Maalu Maalu Resort and Spa. The vast infinite pool appears to be seamless connection between the ocean and hotel.</p>
-                                    <p class="content-paragraph">Read more</p>
-                                </div>
-                            </div>
-                            <div class="destination-content-container">
-                                <div class="destination-image-container">
-                                    <img src="../Images/slide1.jpg" alt="">
-                                </div>
-                                <div class="destination-hotel-container">
-                                    <h3 class="content-title">MAALU MAALU RESORT</h3>
-                                    <p class="content-paragraph">The intrinsic splendour of Pasikudah, Sri Lanka is brought to life by Maalu Maalu Resort and Spa. The vast infinite pool appears to be seamless connection between the ocean and hotel.</p>
-                                    <p class="content-paragraph">Read more</p>
-                                </div>
-                            </div>
+                        <?php
+                require_once '../config.php';
+                $conn = mysqli_connect($hostname, $username, $password, $database);
+
+                if (!$conn) {
+                    die("Connection failed: " . mysqli_connect_error());
+                }
+
+                $sql = "SELECT full_name, short_desc, hotel_picture FROM hotels WHERE city IN ('Kandy', 'Colombo')";
+                $result = mysqli_query($conn, $sql);
+
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+
+                        echo '<div class="destination-content-container">';
+                        echo '<div class="destination-image-container">';
+                        $image_location = $row['hotel_picture'];
+                        echo '<img src="../' . $image_location . '" alt="">';
+                        echo '</div>';
+                        echo '<div class="destination-hotel-container">';
+                        echo '<h3 class="content-title">' . $row['full_name'] . '</h3>';
+                        echo '<p class="content-paragraph">' . $row['short_desc'] . '</p>';
+                        echo '<p class="content-paragraph">Read more</p>';
+                        echo '</div>';
+                        echo '</div>';
+                    }
+                } else {
+                    echo "No hotels found in Kandy.";
+                }
+
+                mysqli_close($conn);
+              ?>
                         </div>
                     </div>
                 </div>

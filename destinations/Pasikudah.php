@@ -135,11 +135,9 @@
                 $sql = "SELECT full_name, short_desc, hotel_picture FROM hotels WHERE city = 'Kandy'";
                 $result = mysqli_query($conn, $sql);
 
-                // Check if any rows are returned
                 if (mysqli_num_rows($result) > 0) {
-                    // Output data of each row
                     while ($row = mysqli_fetch_assoc($result)) {
-                        // Generate HTML dynamically for each hotel
+                        
                         echo '<div class="destination-content-container">';
                         echo '<div class="destination-image-container">';
                         $image_location = $row['hotel_picture'];
@@ -156,7 +154,6 @@
                     echo "No hotels found in Kandy.";
                 }
 
-                // Close database connection
                 mysqli_close($conn);
               ?>
 
