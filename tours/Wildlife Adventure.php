@@ -41,7 +41,7 @@
         <h1 class="mini-heading" style="margin-top: 20px;">Wildlife Adventure</h1>
         <p class="lead mini-lead"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque corporis repellat incidunt ex, libero accusantium eum quia sed praesentium, odit itaque! Aliquam possimus veritatis, repudiandae vel, temporibus debitis eos reiciendis voluptates recusandae maiores autem nostrum dignissimos voluptatibus libero distinctio sed veniam exercitationem? Facilis fuga dignissimos perferendis vel ullam eius cumque.</p>
 
-        <div class="owl-carousel owl-theme">
+        <div class="owl-carousel owl-theme" id="owl1">
             <div> <img src="../Images/about.jpg" alt=""> </div>
             <div> <img src="../Images/about.jpg" alt=""> </div>
             <div> <img src="../Images/about.jpg" alt=""> </div>
@@ -85,38 +85,38 @@
                     <div class="item-content">
                         <div class="itinerary-content">
 
-                        <?php
-                require_once '../config.php';
-                $conn = mysqli_connect($hostname, $username, $password, $database);
+                            <?php
+                            require_once '../config.php';
+                            $conn = mysqli_connect($hostname, $username, $password, $database);
 
-                if (!$conn) {
-                    die("Connection failed: " . mysqli_connect_error());
-                }
+                            if (!$conn) {
+                                die("Connection failed: " . mysqli_connect_error());
+                            }
 
-                $sql = "SELECT full_name, short_desc, hotel_picture FROM hotels WHERE city IN ('Kandy', 'Colombo')";
-                $result = mysqli_query($conn, $sql);
+                            $sql = "SELECT full_name, short_desc, hotel_picture FROM hotels WHERE city IN ('Kandy', 'Colombo')";
+                            $result = mysqli_query($conn, $sql);
 
-                if (mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
 
-                        echo '<div class="destination-content-container">';
-                        echo '<div class="destination-image-container">';
-                        $image_location = $row['hotel_picture'];
-                        echo '<img src="../' . $image_location . '" alt="">';
-                        echo '</div>';
-                        echo '<div class="destination-hotel-container">';
-                        echo '<h3 class="content-title">' . $row['full_name'] . '</h3>';
-                        echo '<p class="content-paragraph">' . $row['short_desc'] . '</p>';
-                        echo '<p class="content-paragraph">Read more</p>';
-                        echo '</div>';
-                        echo '</div>';
-                    }
-                } else {
-                    echo "No hotels found in Kandy.";
-                }
+                                    echo '<div class="destination-content-container">';
+                                    echo '<div class="destination-image-container">';
+                                    $image_location = $row['hotel_picture'];
+                                    echo '<img src="../' . $image_location . '" alt="">';
+                                    echo '</div>';
+                                    echo '<div class="destination-hotel-container">';
+                                    echo '<h3 class="content-title">' . $row['full_name'] . '</h3>';
+                                    echo '<p class="content-paragraph">' . $row['short_desc'] . '</p>';
+                                    echo '<p class="content-paragraph">Read more</p>';
+                                    echo '</div>';
+                                    echo '</div>';
+                                }
+                            } else {
+                                echo "No hotels found in Kandy.";
+                            }
 
-                mysqli_close($conn);
-              ?>
+                            mysqli_close($conn);
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -200,7 +200,7 @@
 
         <h1 class="headings">Related <span>Tours</span></h1>
 
-        <div class="owl-carousel-1 owl-theme">
+        <div class="owl-carousel owl-theme" id="owl2">
             <div> <img src="../Images/about.jpg" alt=""> </div>
             <div> <img src="../Images/about.jpg" alt=""> </div>
             <div> <img src="../Images/about.jpg" alt=""> </div>
@@ -246,30 +246,25 @@
     <script src="../js/script.js"></script>
 
     <script>
-$(document).ready(function() {
-    // First Owl Carousel with 4 items per view
-    var owl = $('.owl-carousel');
-    owl.owlCarousel({
-        items: 4,
-        loop: true,
-        margin: 5,
-        autoplay: true,
-        autoplayTimeout: 2500,
-        autoplayHoverPause: true
-    });
+        $(document).ready(function() {
+            $('#owl1').owlCarousel({
+                items: 4,
+                loop: true,
+                margin: 5,
+                autoplay: true,
+                autoplayTimeout: 2500,
+                autoplayHoverPause: true
+            });
 
-    // Second Owl Carousel with 3 items per view
-    var owl1 = $('.owl-carousel-1');
-    owl1.owlCarousel({
-        items: 3,
-        loop: true,
-        margin: 5,
-        autoplay: true,
-        autoplayTimeout: 2500,
-        autoplayHoverPause: true
-    });
-});
-
+            $('#owl1').owlCarousel({
+                items: 3,
+                loop: true,
+                margin: 5,
+                autoplay: true,
+                autoplayTimeout: 2500,
+                autoplayHoverPause: true
+            });
+        });
     </script>
 </body>
 
