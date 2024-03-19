@@ -23,7 +23,8 @@
     ?>
 
     <div class="top-image">
-        <h1 class="headings sub-heading">Destinations</h1>
+        <!-- <h1 class="headings sub-heading">Wildlife Adventure</h1>
+        <h2 class="heading-normal-txt-mini">Tours</h2> -->
     </div>
 
     <!-- Breadcrumbs -->
@@ -37,7 +38,7 @@
         </div>
 
         <!-- Heading -->
-        <h1 class="headings mini-heading">Wildlife Adventure</h1>
+        <h1 class="mini-heading" style="margin-top: 20px;">Wildlife Adventure</h1>
         <p class="lead mini-lead"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque corporis repellat incidunt ex, libero accusantium eum quia sed praesentium, odit itaque! Aliquam possimus veritatis, repudiandae vel, temporibus debitis eos reiciendis voluptates recusandae maiores autem nostrum dignissimos voluptatibus libero distinctio sed veniam exercitationem? Facilis fuga dignissimos perferendis vel ullam eius cumque.</p>
 
         <div class="owl-carousel owl-theme">
@@ -197,7 +198,7 @@
 
         <h1 class="headings">Related <span>Tours</span></h1>
 
-        <div class="owl-carousel owl-theme">
+        <div class="owl-carousel-1 owl-theme">
             <div> <img src="../Images/about.jpg" alt=""> </div>
             <div> <img src="../Images/about.jpg" alt=""> </div>
             <div> <img src="../Images/about.jpg" alt=""> </div>
@@ -243,20 +244,30 @@
     <script src="../js/script.js"></script>
 
     <script>
-        $(document).ready(function() {
-            $('.owl-carousel').owlCarousel();
+$(document).ready(function() {
+    // First Owl Carousel with 4 items per view
+    var owl = $('.owl-carousel');
+    owl.owlCarousel({
+        items: 4,
+        loop: true,
+        margin: 5,
+        autoplay: true,
+        autoplayTimeout: 2500,
+        autoplayHoverPause: true
+    });
 
-        });
+    // Second Owl Carousel with 3 items per view
+    var owl1 = $('.owl-carousel-1');
+    owl1.owlCarousel({
+        items: 3,
+        loop: true,
+        margin: 5,
+        autoplay: true,
+        autoplayTimeout: 2500,
+        autoplayHoverPause: true
+    });
+});
 
-        var owl = $('.owl-carousel');
-        owl.owlCarousel({
-            items: 4,
-            loop: true,
-            margin: 5,
-            autoplay: true,
-            autoplayTimeout: 2500,
-            autoplayHoverPause: true,
-        });
     </script>
 </body>
 
