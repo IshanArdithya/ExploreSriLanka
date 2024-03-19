@@ -30,7 +30,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Footer content -->
         <div class="footer-wraper">
             <div class="about">
@@ -51,7 +51,9 @@
                 </div>
             </div>
             <div class="links">
-                <h2>Quick Links</h2>
+                <div class="footer-topic">
+                    <h2>Quick Links</h2>
+                </div>
                 <ul>
                     <li><a href="index.php">Home</a></li>
                     <li><a href="about.php">About</a></li>
@@ -62,16 +64,14 @@
                     <li><a href="#">Contact</a></li>
                 </ul>
             </div>
-            <div class="subscribe">
-                <h2>Subscribe</h2>
-                <p class="lead">Join With Us As A Tour Guide</p><br>
-
-                <h2>Subscribe</h2>
-                <p class="lead">Join With Us As A Tour Guide</p>
-                <form action="#">
-                    <input type="text" placeholder="Email Address">
-                    <button type="button" class="button">Send</button>
-                </form>
+            <div class="others">
+            <div class="footer-topic">
+                    <h2>Others</h2>
+                </div>
+                <ul>
+                    <li><a href="guidelogin.php">Join With Us As Tour Guide</a></li>
+                    <li><a href="hotellogin.php">Join With Us As Hotel Partner</a></li>
+                </ul>
             </div>
 
         </div>

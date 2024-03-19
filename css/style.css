@@ -875,38 +875,36 @@ select {
     color: var(--white-color);
 }
 
-.subscribe .lead {
-    font-size: 1.1rem;
-    letter-spacing: 1;
+.links ul li a:hover{
+    color: var(--primary-color);
 }
 
-form {
-    position: relative;
+.others ul {
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+
 }
 
-.subscribe input {
-    width: 100%;
-    outline: none;
-    border: 1px solid var(--light-gray-color);
-    padding: 0.6rem 1rem;
-    border-radius: 5px;
-    margin-top: 1rem;
-}
-
-.subscribe button {
-    position: absolute;
-    display: block;
-    top: 30%;
-    right: 4%;
-    padding: 0.5rem 1.5rem;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    background: var(--primary-color);
-    color: var(--white-color);
-    cursor: pointer;
+.others ul li {
+    margin: 1rem 0;
     font-size: 1rem;
 }
+
+.others ul li a {
+    color: var(--white-color);
+}
+
+.others ul li a:hover{
+    color: var(--primary-color);
+}
+
+
+.footer-topic {
+    border-bottom: 1px solid var(--light-gray-color);
+    border-width: auto;
+}
+
 
 .footer-copyright {
     border-top: 1px solid var(--light-gray-color);
@@ -924,7 +922,7 @@ form {
     border-radius: 50%;
 }
 
-/*        Page Format        */
+/*       Secondary Page Format        */
 
 .top-image {
     height: 50vh;
@@ -1125,6 +1123,7 @@ form {
     display: block;
     border-radius: 10px;
     transition: opacity 0.3s ease;
+    aspect-ratio: 3 / 4;
 }
 
 .img-wrapper::after {
@@ -1155,6 +1154,8 @@ form {
 
 .item-box:hover .text-item-box {
     background-color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 50px;
+    height: 25%;
 }
 
 .heading-legend {
@@ -1174,6 +1175,7 @@ form {
     overflow: hidden;
     transition: all 0.3s ease;
     margin-left: auto;
+    align-items: center;
 }
 
 .btn-wrapper-common span::before {
@@ -1207,6 +1209,9 @@ form {
     position: absolute;
     top: 30%;
     left: 50%;
+    align-items: center;
+    justify-content: center;
+    right: 5px;
     transform: translate(-50%, -50%);
     opacity: 0;
     visibility: hidden;
@@ -1214,7 +1219,7 @@ form {
     padding: 20px;
     border: none;
     color: var(--white-color);
-    gap: 5px;
+    gap: 10px;
 }
 
 .hidden-content-package span {
@@ -1482,15 +1487,7 @@ form {
 
 /* Destinations */
 
-.content-paragraph{
-    padding: 1rem;
-    line-height: 32px;
-    font-size: 0.9rem;
-    text-align: left;
-    color: var(--blue-color);
-  }
-
-.text-content{
+.content-paragraph {
     padding: 1rem;
     line-height: 32px;
     font-size: 0.9rem;
@@ -1498,10 +1495,18 @@ form {
     color: var(--blue-color);
 }
 
-.content-destination-tittle{
+.text-content {
+    padding: 1rem;
+    line-height: 32px;
+    font-size: 0.9rem;
+    text-align: left;
+    color: var(--blue-color);
+}
+
+.content-destination-tittle {
     padding: 0.5rem;
     text-align: left;
-} 
+}
 
 .destination-content-container {
     display: flex;
@@ -1535,7 +1540,7 @@ form {
 }
 
 .tourguide-image-container img {
-    border-radius: 50%; 
-    width: 100%; 
+    border-radius: 50%;
+    width: 100%;
     display: block;
 }
