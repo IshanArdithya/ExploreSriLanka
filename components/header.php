@@ -181,8 +181,7 @@
 
   $(document).ready(function() {
     $('.country-select').countrySelect();
-});
-
+  });
 </script>
 
 
@@ -204,7 +203,7 @@
 
   .profile-avatar li ul {
     flex-direction: column;
-    position: absolute;
+    position: fixed;
     background-color: white;
     align-items: flex-start;
     transition: all 0.5s ease;
@@ -323,5 +322,4 @@
   .country-name {
     font-size: 13px;
   }
-
 </style>
