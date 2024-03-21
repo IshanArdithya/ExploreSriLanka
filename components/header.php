@@ -20,13 +20,13 @@
       <?php
       require_once __DIR__ . '/../config.php';
 
-      if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_number'], $_POST['nationality'])) {
+      if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_number'], $_POST['country'])) {
         $contactNumber = mysqli_real_escape_string($conn, $_POST['contact_number']);
-        $nationality = mysqli_real_escape_string($conn, $_POST['nationality']);
+        $country = mysqli_real_escape_string($conn, $_POST['country']);
 
         $customerEmail = $_SESSION['customer_email'];
 
-        $sql = "UPDATE customers SET contact_number = '$contactNumber', nationality = '$nationality' WHERE email = '$customerEmail'";
+        $sql = "UPDATE customers SET contact_number = '$contactNumber', country = '$country' WHERE email = '$customerEmail'";
         $result = mysqli_query($conn, $sql);
 
         if ($result) {
@@ -40,7 +40,7 @@
       if (isset($_SESSION['customer_email'])) {
 
         $customer_email = $_SESSION['customer_email'];
-        $sql = "SELECT picture, contact_number, nationality FROM customers WHERE email = '$customer_email'";
+        $sql = "SELECT picture, contact_number, country FROM customers WHERE email = '$customer_email'";
         $result = mysqli_query($conn, $sql);
 
         if ($result && mysqli_num_rows($result) > 0) {
@@ -78,14 +78,14 @@
           echo '</ul>';
           echo '</div>';
 
-          if (empty($row['contact_number']) || empty($row['nationality'])) {
+          if (empty($row['contact_number']) || empty($row['country'])) {
 
       ?>
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
             <script>
               Swal.fire({
                 title: "Complete Profile",
-                html: '<div class="completeprofile"><input type="tel" id="contact_number" placeholder="Contact Number"><div class="input-with-icon"><input type="text" id="nationality" placeholder="Nationality" class="country-select"></div><p>You have to fill these fields to continue in to the site!</p></div>',
+                html: '<div class="completeprofile"><input type="tel" id="contact_number" placeholder="Contact Number"><div class="input-with-icon"><input type="text" id="country" placeholder="Country" class="country-select"></div><p>You have to fill these fields to continue in to the site!</p></div>',
                 icon: "info",
                 showCancelButton: false,
                 confirmButtonText: "Submit",
@@ -93,10 +93,10 @@
                 allowOutsideClick: false,
                 preConfirm: () => {
                   const contactNumber = document.getElementById("contact_number").value;
-                  const nationality = document.getElementById("nationality").value;
+                  const country = document.getElementById("country").value;
                   const countryCode = phoneInput.getSelectedCountryData().dialCode;
 
-                  if (!contactNumber || !nationality) {
+                  if (!contactNumber || !country) {
                     Swal.showValidationMessage("Please fill out both fields.");
                     return false;
                   }
@@ -108,7 +108,7 @@
                     },
                     body: new URLSearchParams({
                       contact_number: countryCode + contactNumber,
-                      nationality: nationality,
+                      country: country,
                     }),
                   }).then(response => {
                     if (!response.ok) {
@@ -131,19 +131,19 @@
               });
 
               const contactNumberInput = document.getElementById("contact_number");
-              const nationalityInput = document.getElementById("nationality");
+              const countryInput = document.getElementById("country");
               const submitButton = Swal.getConfirmButton();
 
               submitButton.disabled = true;
 
               contactNumberInput.addEventListener("input", toggleSubmitButtonState);
-              nationalityInput.addEventListener("input", toggleSubmitButtonState);
+              countryInput.addEventListener("input", toggleSubmitButtonState);
 
               function toggleSubmitButtonState() {
                 const contactNumber = contactNumberInput.value.trim();
-                const nationality = nationalityInput.value.trim();
+                const country = countryInput.value.trim();
 
-                submitButton.disabled = !(contactNumber && nationality);
+                submitButton.disabled = !(contactNumber && country);
               }
             </script>
       <?php
@@ -275,7 +275,7 @@
   }
 
   #contact_number,
-  #nationality {
+  #country {
     margin-bottom: 10px;
     width: 100%;
     padding: 10px;

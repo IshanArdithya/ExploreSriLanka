@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
   $first_name = $_POST['first_name'];
   $last_name = $_POST['last_name'];
   $contact_number = $_POST['contact_number'];
-  $nationality = $_POST['nationality'];
+  $country = $_POST['country'];
 
   // gen a unique customer ID
   $sql = "SELECT MAX(RIGHT(customer_id, 5)) AS max_id FROM customers";
@@ -220,7 +220,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
       ';
       $mail->send();
 
-      $sql = "INSERT INTO customers (email, password, first_name, last_name, contact_number, nationality, email_verified_at, customer_id) VALUES ('$email', '$password', '$first_name', '$last_name', '$contact_number', '$nationality', NULL, '$customer_id')";
+      $sql = "INSERT INTO customers (email, password, first_name, last_name, contact_number, country, email_verified_at, customer_id) VALUES ('$email', '$password', '$first_name', '$last_name', '$contact_number', '$country', NULL, '$customer_id')";
       $result = mysqli_query($conn, $sql);
 
       if ($result) {
@@ -485,7 +485,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
             </div>
             <div class="input-field hidden">
               <i class="fas fa-globe"></i>
-              <input type="text" id="nationality" name="nationality" placeholder="Nationality" required />
+              <input type="text" id="country" name="country" placeholder="Country" required />
             </div>
             <input type="button" class="btn next-btn" value="Next" />
             <div class="button-container">

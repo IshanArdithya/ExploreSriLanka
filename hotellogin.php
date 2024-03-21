@@ -22,6 +22,7 @@
         </div>
         <div class="login" id="loginForm">
             <!-- <a href="index.php"><span class="close-icon" >&times;</span></a> -->
+            
             <h3 class="title">User Login</h3>
             <div class="text-input">
                 <i class="fas fa-user"></i>
