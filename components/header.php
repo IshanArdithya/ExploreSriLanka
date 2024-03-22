@@ -54,29 +54,37 @@
             echo '<img src="/ExploreSriLanka/' . $user_picture_path . '" alt="User Picture" class="avatar"/>';
           } else {
 
-
             echo '<div class="profile-avatar">';
             echo '<ul>';
             echo '<li>';
             echo '<img src="/ExploreSriLanka/Images/users/avatar_placeholder.png" alt="User Picture" class="avatar"/>';
           }
-          echo '<ul>';
-          echo '<li class="avatar-sub-item">';
-          echo '<span class="material-icons-outlined"> account_circle </span>';
-          echo '<p>Profile</p>';
-          echo '</li>';
-          echo '<li class="avatar-sub-item">';
-          echo '<span class="material-icons-outlined"> manage_accounts </span>';
-          echo '<p>Settings</p>';
-          echo '</li>';
-          echo '<li class="avatar-sub-item">';
-          echo '<span class="material-icons-outlined"> logout </span>';
-          echo '<p>Logout</p>';
-          echo '</li>';
-          echo '</ul>';
-          echo '</li>';
-          echo '</ul>';
-          echo '</div>';
+          ?>
+          <ul>
+                    <li class="avatar-sub-item">
+                        <a href="/ExploreSriLanka/profile.php">
+                            <i class="fa-solid fa-circle-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="avatar-sub-item">
+                        <a href="/ExploreSriLanka/settings.php">
+                            <i class="fa-solid fa-gear"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                    <li class="avatar-sub-item">
+                        <a href="/ExploreSriLanka/logout.php">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <span>logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+          <?php
 
           if (empty($row['contact_number']) || empty($row['country'])) {
 
@@ -184,8 +192,6 @@
   });
 </script>
 
-
-
 <style>
   .profile-avatar ul {
     margin: 0;
@@ -207,8 +213,7 @@
     background-color: white;
     align-items: flex-start;
     transition: all 0.5s ease;
-    width: 20rem;
-    right: -3rem;
+    width: 15em;
     top: 4.5rem;
     border-radius: 0.325rem;
     gap: 0;
@@ -217,6 +222,26 @@
     box-shadow: 0px 0px 100px rgba(20, 18, 18, 0.25);
     display: none;
   }
+
+  .avatar-sub-item a {
+    display: flex;
+    align-items: center;
+    gap: 0.725rem;
+    text-decoration: none;
+    color: black;
+    font-size: 1rem;
+}
+
+.avatar-sub-item a i {
+    flex-shrink: 0;
+    color: black;
+}
+
+.avatar-sub-item a span {
+    flex-grow: 1;
+    color: black;
+}
+
 
   .profile-avatar ul li:hover>ul,
   .profile-avatar ul li ul:hover {
@@ -317,6 +342,10 @@
 
   .country-select {
     width: 100%;
+  }
+
+  .country-list {
+    max-height: 75px !important;
   }
 
   .country-name {
