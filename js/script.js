@@ -20,9 +20,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-
 // Static counter
-
 const counters = document.querySelectorAll('.numbers');
 counters.forEach((counter) => {
     counter.textContent = '0';
@@ -46,17 +44,29 @@ counters.forEach((counter) => {
     }  
 });
 
-// this script removes URL parameters when page loads.
 window.onload = function() {
-    // get the current URL
     var url = window.location.href;
-
-    // check if the URL contains any parameters
     if (url.indexOf('?') !== -1) {
-        // remove the parameters by getting the URL up to the '?'
         var cleanUrl = url.substring(0, url.indexOf('?'));
-        
-        // replace the current URL with the clean URL (without parameters)
         window.history.replaceState({}, document.title, cleanUrl);
     }
 };
+
+let toTop = document.getElementById('toTop');
+let isVisible = false;
+
+window.addEventListener('scroll', () => {
+    if (this.scrollY > 500 && !isVisible) {
+        toTop.classList.add('show');
+        isVisible = true;
+        toTop.addEventListener('click', scrollToTop);
+    } else if (this.scrollY <= 500 && isVisible) {
+        toTop.classList.remove('show');
+        isVisible = false;
+        toTop.removeEventListener('click', scrollToTop);
+    }
+});
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}

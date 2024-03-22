@@ -1544,3 +1544,40 @@ select {
     width: 100%;
     display: block;
 }
+
+.tab{
+    height: 100vh;
+    background-color: aqua;
+    font-size: 100px;
+    font-family: monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tab:nth-child(even){
+    background-color: blueviolet;
+}
+
+#toTop {
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: opacity 0.3s, transform 0.3s, box-shadow 0.3s;
+    z-index: 1000;
+    opacity: 0;
+}
+
+#toTop.show {
+    opacity: 1;
+}
+
+#toTop:active{
+    transform: translateY(10px);
+    box-shadow: none;
+}

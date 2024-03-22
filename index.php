@@ -699,6 +699,8 @@
     </div>
 </section>
 
+<button id="toTop" class="fa fa-arrow-up"></button>
+
  <!-- Footer -->
  <?php
 include 'components/footer.php';
