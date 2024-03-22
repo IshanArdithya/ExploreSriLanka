@@ -59,102 +59,102 @@
             echo '<li>';
             echo '<img src="/ExploreSriLanka/Images/users/avatar_placeholder.png" alt="User Picture" class="avatar"/>';
           }
-          ?>
+      ?>
           <ul>
-                    <li class="avatar-sub-item">
-                        <a href="/ExploreSriLanka/profile.php">
-                            <i class="fa-solid fa-circle-user"></i>
-                            <span>Profile</span>
-                        </a>
-                    </li>
-                    <li class="avatar-sub-item">
-                        <a href="/ExploreSriLanka/settings.php">
-                            <i class="fa-solid fa-gear"></i>
-                            <span>Settings</span>
-                        </a>
-                    </li>
-                    <li class="avatar-sub-item">
-                        <a href="/ExploreSriLanka/logout.php">
-                            <i class="fa-solid fa-right-from-bracket"></i>
-                            <span>logout</span>
-                        </a>
-                    </li>
-                </ul>
+            <li class="avatar-sub-item">
+              <a href="/ExploreSriLanka/profile.php">
+                <i class="fa-solid fa-circle-user"></i>
+                <span>Profile</span>
+              </a>
             </li>
-        </ul>
-    </div>
+            <li class="avatar-sub-item">
+              <a href="/ExploreSriLanka/settings.php">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+              </a>
+            </li>
+            <li class="avatar-sub-item">
+              <a href="/ExploreSriLanka/logout.php">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>logout</span>
+              </a>
+            </li>
+          </ul>
+          </li>
+          </ul>
+  </div>
 
-          <?php
+  <?php
 
           if (empty($row['contact_number']) || empty($row['country'])) {
 
-      ?>
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-            <script>
-              Swal.fire({
-                title: "Complete Profile",
-                html: '<div class="completeprofile"><input type="tel" id="contact_number" placeholder="Contact Number"><div class="input-with-icon"><input type="text" id="country" placeholder="Country" class="country-select"></div><p>You have to fill these fields to continue in to the site!</p></div>',
-                icon: "info",
-                showCancelButton: false,
-                confirmButtonText: "Submit",
-                showLoaderOnConfirm: true,
-                allowOutsideClick: false,
-                preConfirm: () => {
-                  const contactNumber = document.getElementById("contact_number").value;
-                  const country = document.getElementById("country").value;
-                  const countryCode = phoneInput.getSelectedCountryData().dialCode;
+  ?>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+      Swal.fire({
+        title: "Complete Profile",
+        html: '<div class="completeprofile"><input type="tel" id="contact_number" placeholder="Contact Number"><div class="input-with-icon"><input type="text" id="country" placeholder="Country" class="country-select"></div><p>You have to fill these fields to continue in to the site!</p></div>',
+        icon: "info",
+        showCancelButton: false,
+        confirmButtonText: "Submit",
+        showLoaderOnConfirm: true,
+        allowOutsideClick: false,
+        preConfirm: () => {
+          const contactNumber = document.getElementById("contact_number").value;
+          const country = document.getElementById("country").value;
+          const countryCode = phoneInput.getSelectedCountryData().dialCode;
 
-                  if (!contactNumber || !country) {
-                    Swal.showValidationMessage("Please fill out both fields.");
-                    return false;
-                  }
+          if (!contactNumber || !country) {
+            Swal.showValidationMessage("Please fill out both fields.");
+            return false;
+          }
 
-                  return fetch("", {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/x-www-form-urlencoded",
-                    },
-                    body: new URLSearchParams({
-                      contact_number: countryCode + contactNumber,
-                      country: country,
-                    }),
-                  }).then(response => {
-                    if (!response.ok) {
-                      throw new Error(response.statusText);
-                    }
-                    return response.json();
-                  }).catch(error => {
-                    Swal.showValidationMessage(`Request failed: ${error}`);
-                  });
-                },
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  Swal.fire({
-                    title: "Profile Updated",
-                    icon: "success",
-                  }).then(() => {
-                    location.reload();
-                  });
-                }
-              });
+          return fetch("", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: new URLSearchParams({
+              contact_number: countryCode + contactNumber,
+              country: country,
+            }),
+          }).then(response => {
+            if (!response.ok) {
+              throw new Error(response.statusText);
+            }
+            return response.json();
+          }).catch(error => {
+            Swal.showValidationMessage(`Request failed: ${error}`);
+          });
+        },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: "Profile Updated",
+            icon: "success",
+          }).then(() => {
+            location.reload();
+          });
+        }
+      });
 
-              const contactNumberInput = document.getElementById("contact_number");
-              const countryInput = document.getElementById("country");
-              const submitButton = Swal.getConfirmButton();
+      const contactNumberInput = document.getElementById("contact_number");
+      const countryInput = document.getElementById("country");
+      const submitButton = Swal.getConfirmButton();
 
-              submitButton.disabled = true;
+      submitButton.disabled = true;
 
-              contactNumberInput.addEventListener("input", toggleSubmitButtonState);
-              countryInput.addEventListener("input", toggleSubmitButtonState);
+      contactNumberInput.addEventListener("input", toggleSubmitButtonState);
+      countryInput.addEventListener("input", toggleSubmitButtonState);
 
-              function toggleSubmitButtonState() {
-                const contactNumber = contactNumberInput.value.trim();
-                const country = countryInput.value.trim();
+      function toggleSubmitButtonState() {
+        const contactNumber = contactNumberInput.value.trim();
+        const country = countryInput.value.trim();
 
-                submitButton.disabled = !(contactNumber && country);
-              }
-            </script>
-      <?php
+        submitButton.disabled = !(contactNumber && country);
+      }
+    </script>
+<?php
           }
         } else {
           echo 'User picture not found.';
@@ -165,12 +165,12 @@
         echo '<a href="/ExploreSriLanka/login.php" class="custom-btn">Sign In Now</a>';
         echo '</div>';
       }
-      ?>
-      <div class="btn">
-        <i class="fas fa-bars menu-btn"></i>
-      </div>
-    </nav>
-  </div>
+?>
+<div class="btn">
+  <i class="fas fa-bars menu-btn"></i>
+</div>
+</nav>
+</div>
 </header>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
@@ -230,17 +230,17 @@
     text-decoration: none;
     color: black;
     font-size: 1rem;
-}
+  }
 
-.avatar-sub-item a i {
+  .avatar-sub-item a i {
     flex-shrink: 0;
     color: black;
-}
+  }
 
-.avatar-sub-item a span {
+  .avatar-sub-item a span {
     flex-grow: 1;
     color: black;
-}
+  }
 
 
   .profile-avatar ul li:hover>ul,
