@@ -1,5 +1,4 @@
 <header>
-<<<<<<< Updated upstream
   <div class="container">
     <nav>
       <div class="logo">
@@ -17,28 +16,6 @@
         <li><a <?php if (basename($_SERVER['PHP_SELF']) == 'gallery.php') echo 'class="active"'; ?> href="/ExploreSriLanka/gallery.php">Gallery</a></li>
         <li><a <?php if (basename($_SERVER['PHP_SELF']) == 'contact.php') echo 'class="active"'; ?> href="/ExploreSriLanka/contact.php">Contact</a></li>
       </ul>
-=======
-    <div class="container">
-        <nav>
-            <div class="logo">
-                <img src="/ExploreSriLanka/Images/logo.png" alt="">
-            </div>
-            <ul>
-                <div class="btn">
-                    <i class="fas fa-times close-btn"></i>
-                </div>
-                <li><a <?php if(basename($_SERVER['PHP_SELF']) == 'index.php') echo 'class="active"'; ?> href="/ExploreSriLanka/index.php">Home</a></li>
-                <li><a <?php if(basename($_SERVER['PHP_SELF']) == 'about.php') echo 'class="active"'; ?> href="/ExploreSriLanka/about.php">About</a></li>
-                <li><a <?php if(basename($_SERVER['PHP_SELF']) == 'tours.php') echo 'class="active"'; ?> href="/ExploreSriLanka/tours.php">Tours</a></li>
-                <li><a <?php if(basename($_SERVER['PHP_SELF']) == 'destination.php') echo 'class="active"'; ?> href="/ExploreSriLanka/destinations.php">Destination</a></li>
-                <li><a <?php if(basename($_SERVER['PHP_SELF']) == 'shop.php') echo 'class="active"'; ?> href="/ExploreSriLanka/shop.php">Shop</a></li>
-                <li><a <?php if(basename($_SERVER['PHP_SELF']) == 'gallery.php') echo 'class="active"'; ?> href="/ExploreSriLanka/gallery.php">Gallery</a></li>
-                <li><a <?php if(basename($_SERVER['PHP_SELF']) == 'contact.php') echo 'class="active"'; ?> href="/ExploreSriLanka/contact.php">Contact</a></li>
-            </ul>
-            
-            <?php
-            require_once __DIR__ . '/../config.php';
->>>>>>> Stashed changes
 
       <?php
       require_once __DIR__ . '/../config.php';
