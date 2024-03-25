@@ -1545,7 +1545,7 @@ select {
     border-radius: 50%; 
     width: 100%; 
     display: block;
-<<<<<<< Updated upstream
+
 }
 
 .tab{
@@ -1584,9 +1584,3 @@ select {
     transform: translateY(10px);
     box-shadow: none;
 }
-=======
-    padding-bottom: 10px;
-}
-
-
->>>>>>> Stashed changes
