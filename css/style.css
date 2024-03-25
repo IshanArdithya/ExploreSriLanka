@@ -1300,6 +1300,7 @@ select {
     float: left;
     width: 100%;
     margin-top: 15px;
+    margin-bottom: 2.5rem;
 }
 
 .tab-package .item {
@@ -1535,14 +1536,16 @@ select {
 }
 
 .tourguide-image-container {
-    width: 45%;
+    width: 20%;
+    aspect-ratio: 1 / 1;
     overflow: hidden;
 }
 
 .tourguide-image-container img {
-    border-radius: 50%;
-    width: 100%;
+    border-radius: 50%; 
+    width: 100%; 
     display: block;
+<<<<<<< Updated upstream
 }
 
 .tab{
@@ -1581,3 +1584,9 @@ select {
     transform: translateY(10px);
     box-shadow: none;
 }
+=======
+    padding-bottom: 10px;
+}
+
+
+>>>>>>> Stashed changes
