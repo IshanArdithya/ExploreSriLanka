@@ -1,3 +1,68 @@
+<?php
+require_once '../config.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selectedDate'])) {
+  // Step 1: Fetch the selected date from the date picker
+  $selectedDate = $_POST['selectedDate'];
+
+  // Step 2: Calculate the next day
+  $nextDay = date('Y-m-d', strtotime($selectedDate . ' +1 day'));
+
+  // Step 3: Query the hotelrooms table to get the available hotels
+  // Modify your SQL query to fetch available hotels
+  $sqlHotels = "SELECT DISTINCT h.name 
+                FROM hotelrooms h
+                LEFT JOIN hotelreservation r 
+                ON h.hotel_id = r.hotel_id 
+                AND ('$selectedDate' <= r.reserved_till) 
+                AND ('$nextDay' >= r.reserved_from) 
+                WHERE h.add_to_packages = 'Yes' 
+                AND h.city = 'Kandy'
+                AND r.hotel_id IS NULL";
+
+  $resultHotels = mysqli_query($conn, $sqlHotels);
+
+  // Fetch available hotels from query result
+  $availableHotels = array();
+  while ($row = mysqli_fetch_assoc($resultHotels)) {
+    $availableHotels[] = $row['name'];
+  }
+
+  // Step 4: Query the tourguide table to get available tour guides
+  // Modify your SQL query to fetch available tour guides
+  $sqlTourGuides = "SELECT tg.full_name 
+                    FROM tourguide tg
+                    LEFT JOIN tourguidebooking tb
+                    ON tg.tg_id = tb.tg_id
+                    AND ('$selectedDate' <= tb.booked_till) 
+                    AND ('$nextDay' >= tb.booked_from)
+                    WHERE tg.city = 'Kandy'
+                    AND tg.active = 1
+                    AND tb.tg_id IS NULL";
+
+  $resultTourGuides = mysqli_query($conn, $sqlTourGuides);
+
+  // Fetch available tour guides from query result
+  $availableTourGuides = array();
+  while ($row = mysqli_fetch_assoc($resultTourGuides)) {
+    $availableTourGuides[] = $row['full_name'];
+  }
+
+  // Step 5: Encode the list of available hotels and tour guides as JSON
+  $response = array(
+    'hotels' => $availableHotels,
+    'tourGuides' => $availableTourGuides
+  );
+
+  // Send the JSON response
+  echo json_encode($response);
+
+  // Terminate the script to prevent further output
+  exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -115,6 +180,8 @@
 
                 <h3 class="content-destination-tittle">Price: LKR 80,000</h3>
 
+                <button id="book-now-btn" class="btn-book-now">Book Now</button>
+
               </div>
             </div>
           </div>
@@ -131,7 +198,7 @@
                 die("Connection failed: " . mysqli_connect_error());
               }
 
-              $sql = "SELECT full_name, short_desc, hotel_picture FROM hotels WHERE city IN ('Kandy', 'Colombo')";
+              $sql = "SELECT name, short_desc, hotel_picture FROM hotels WHERE city IN ('Kandy', 'Colombo')";
               $result = mysqli_query($conn, $sql);
 
               if (mysqli_num_rows($result) > 0) {
@@ -143,7 +210,7 @@
                   echo '<img src="../' . $image_location . '" alt="">';
                   echo '</div>';
                   echo '<div class="destination-hotel-container">';
-                  echo '<h3 class="content-title">' . $row['full_name'] . '</h3>';
+                  echo '<h3 class="content-title">' . $row['name'] . '</h3>';
                   echo '<p class="content-paragraph">' . $row['short_desc'] . '</p>';
                   echo '<p class="content-paragraph">Read more</p>';
                   echo '</div>';
@@ -202,7 +269,6 @@
 
       </div>
     </div>
-
 
     <h1 class="headings">Related <span>Packages</span></h1>
 
@@ -271,6 +337,127 @@
       });
     });
   </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const bookNowButton = document.querySelector('.btn-book-now');
+
+      bookNowButton.addEventListener('click', function() {
+        // Check if session "customer_email" exists
+        const customerEmail = "<?php echo isset($_SESSION['customer_email']) ? $_SESSION['customer_email'] : '' ?>";
+
+        if (!customerEmail) {
+          // If session does not exist, show login message
+          Swal.fire({
+            title: "Login",
+            text: "You're not logged in. Please login.",
+            icon: "error"
+          });
+        } else {
+          // If session exists, show date picker
+          Swal.fire({
+            title: "Select the Date",
+            html: '<input id="datepicker" class="custom-datepicker" type="date">',
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Next",
+            cancelButtonText: "Cancel",
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              const selectedDate = document.getElementById('datepicker').value;
+
+              // Send the selected date to the PHP script using AJAX
+              $.ajax({
+                url: '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                  selectedDate: selectedDate
+                },
+                success: function(response) {
+                  // Close the current dialog
+                  Swal.close();
+
+                  // Show the next dialog with available hotels and tour guides
+                  Swal.fire({
+                    title: "Choose a hotel and a tour guide",
+                    html: `
+                          <p>Selected Date: ${selectedDate}</p>
+                          <div class="package-book-swal">
+                              <p class="small-paragraph">Hotels: <select id="hotels"></select></p>
+                              <p class="small-paragraph">Tour guides: <select id="tourGuides"></select></p>
+                              <p class="small-paragraph">Please note this is the hotel and tour guide you'll be accompanied with.</p>
+                          </div>
+                        `,
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Next",
+                    cancelButtonText: "Cancel",
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    didRender: () => {
+                      // Populate the dropdown menu with the available hotels
+                      const hotelsDropdown = document.getElementById('hotels');
+                      hotelsDropdown.innerHTML = '';
+                      response.hotels.forEach(function(hotel) {
+                        const option = document.createElement('option');
+                        option.value = hotel;
+                        option.text = hotel;
+                        hotelsDropdown.appendChild(option);
+                      });
+
+                      // Populate the dropdown menu with the available tour guides
+                      const tourguideDropdown = document.getElementById('tourGuides');
+                      tourguideDropdown.innerHTML = '';
+                      response.tourGuides.forEach(function(tourguide) {
+                        const option = document.createElement('option');
+                        option.value = tourguide;
+                        option.text = tourguide;
+                        tourguideDropdown.appendChild(option);
+                      });
+
+                      if (response.hotels.length === 0) {
+                        // Add "Not found" option to hotels dropdown
+                        const notFoundOption = document.createElement('option');
+                        notFoundOption.text = 'Not found';
+                        hotelsDropdown.appendChild(notFoundOption);
+                      }
+
+                      if (response.tourGuides.length === 0) {
+                        // Add "Not found" option to tour guides dropdown
+                        const notFoundOption = document.createElement('option');
+                        notFoundOption.text = 'Not found';
+                        tourguideDropdown.appendChild(notFoundOption);
+                      }
+                    }
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      // Handle next button click if needed
+                      // For now, let's just close the dialog
+                      Swal.close();
+                    }
+                  });
+                },
+                error: function(xhr, status, error) {
+                  // Handle errors
+                  console.error(error);
+                }
+              });
+            }
+          });
+        }
+      });
+    });
+  </script>
+
+
+
+
 </body>
 
 </html>

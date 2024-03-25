@@ -1604,3 +1604,47 @@ select {
 #pkg_filter_btn {
   margin-left: 4rem;
 }
+
+.btn-book-now {
+    width: auto;
+    padding: 0.7rem 1.5rem;
+    border-radius: 4px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-book-now:hover {
+    background-color: #007bff;
+}
+
+.package-book-swal {
+    margin-top: 10px;
+}
+
+.package-book-swal p {
+    margin: 5px 0;
+}
+
+.small-paragraph {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+/* Align select elements */
+.package-book-swal select{
+    width: 100%;
+    font-size: 0.9rem;
+}
+
+.custom-datepicker {
+    padding: 8px; /* Adjust padding as needed */
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 4px; /* Add border radius */
+    font-size: 14px; /* Adjust font size */
+    color: #333; /* Adjust font color */
+    /* Add any additional styling as needed */
+}

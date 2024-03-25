@@ -127,7 +127,7 @@
                 die("Connection failed: " . mysqli_connect_error());
               }
 
-              $sql = "SELECT full_name, short_desc, hotel_picture FROM hotels WHERE city IN ('Kandy', 'Colombo')";
+              $sql = "SELECT name, short_desc, hotel_picture FROM hotels WHERE city IN ('Kandy', 'Colombo')";
               $result = mysqli_query($conn, $sql);
 
               if (mysqli_num_rows($result) > 0) {
@@ -139,7 +139,7 @@
                   echo '<img src="../' . $image_location . '" alt="">';
                   echo '</div>';
                   echo '<div class="destination-hotel-container">';
-                  echo '<h3 class="content-title">' . $row['full_name'] . '</h3>';
+                  echo '<h3 class="content-title">' . $row['name'] . '</h3>';
                   echo '<p class="content-paragraph">' . $row['short_desc'] . '</p>';
                   echo '<p class="content-paragraph">Read more</p>';
                   echo '</div>';
