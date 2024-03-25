@@ -20,13 +20,56 @@ body {
   width: 50vw;
   height: 60vh;
   display: grid;
+  grid-template-columns: 2fr;
   grid-template-columns: 100%;
   grid-template-areas: "login";
   box-shadow: 0 0 17px 10px rgb(0 0 0 / 30%);
   border-radius: 20px;
   background: white;
   overflow: hidden;
+  justify-items: left;
 }
+
+.forms-container {
+  /* position: absolute; */
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.login-form-box {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: all 0.2s 0.7s;
+  margin-top: 20%; 
+  overflow: hidden;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.register-form-box {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: all 0.2s 0.7s;
+  overflow: hidden;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+/* .signin-signup {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 75%;
+  width: 50%;
+  transition: 1s 0.7s ease-in-out;
+  display: grid;
+  grid-template-columns: 1fr;
+  z-index: 5;
+} */
 
 .design {
   grid-area: design;
@@ -79,16 +122,6 @@ body {
   border-radius: 70px;
 }
 
-.login {
-  grid-area: login;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  background: white;
-}
-
 .login h3.title {
   margin: 15px 0;
 }
@@ -121,6 +154,40 @@ body {
   color: #9a9a9a;
 }
 
+.btn {
+  width: 68%;
+  padding: 10px;
+  color: white;
+  background: linear-gradient(to right, #2095ae, #206eae, #875adb);
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: 0.5s;
+  text-transform: uppercase;
+  font-weight: 600;
+
+}
+
+.button-container {
+  justify-content: center;
+}
+
+.text-input .hidden {
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+
+.btn:hover {
+  background-color: #4d84e2;
+}
+
+
 .login-btn {
   width: 68%;
   padding: 10px;
@@ -142,14 +209,23 @@ a {
 
 a.forgot {
   margin-top: 15px;
+  text-align: center;
+  justify-items: center;
 }
 
-.create {
+a.forgot:hover {
+  margin-top: 15px;
+  text-align: center;
+  text-decoration: underline;
+}
+
+
+/* .create {
   display: flex;
   align-items: center;
   position: absolute;
   bottom: 30px;
-}
+} */
 
 .create i {
   color: #9a9a9a;
@@ -158,7 +234,7 @@ a.forgot {
 
 /* Sign in */
 
-.login {
+/* .login {
   grid-area: login;
   display: flex;
   flex-direction: column;
@@ -167,9 +243,11 @@ a.forgot {
   position: relative; 
   background: white;
   padding: 20px;
-}
+} */
 .login h3.title {
   margin: 15px 0;
+  margin-bottom: 20px;
+
 }
 
 .login .text-input {
@@ -220,12 +298,12 @@ a.forgot {
   text-decoration: underline;
 }
 
-.login .create {
+/* .login .create {
   display: flex;
   align-items: center;
   position: absolute;
   bottom: 30px;
-}
+} */
 
 .login .create i {
   color: #9a9a9a;
@@ -234,7 +312,7 @@ a.forgot {
 
 /* Sign up */
 
-.register {
+/* .register {
   display: none;
   grid-area: login;
   background: white;
@@ -243,7 +321,7 @@ a.forgot {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
+} */
 
 .register h3.title {
   margin: 15px 0;
@@ -269,7 +347,7 @@ a.forgot {
   margin-left: 10px;
 }
 
-.register span{
+.register span {
   align-items: center;
 }
 
@@ -314,7 +392,8 @@ a.forgot {
   font-size: 50px;
   cursor: pointer;
   color: #686868;
-  margin: 11.25rem 31.25rem 12.5rem 31.25rem;}
+  margin: 11.25rem 31.25rem 12.5rem 31.25rem;
+}
 
 .close-icon:hover {
   color: #000

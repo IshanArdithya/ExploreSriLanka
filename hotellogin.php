@@ -20,67 +20,88 @@
             <div class="pill-3 rotate-45"></div>
             <div class="pill-4 rotate-45"></div>
         </div>
-        <div class="login" id="loginForm">
-            <!-- <a href="index.php"><span class="close-icon" >&times;</span></a> -->
-            
-            <h3 class="title">User Login</h3>
-            <div class="text-input">
-                <i class="fas fa-user"></i>
-                <input type="text" placeholder="Username">
-            </div>
-            <div class="text-input">
-                <i class="fas fa-lock"></i>
-                <input type="password" placeholder="Password">
-            </div>
-            <button class="login-btn">LOGIN</button>
-            <a href="#" class="forgot">Forgot Password?</a>
-            <div class="create" id="createAccountLink">
-                <a href="#" onclick="toggleForms()">Create Your Account</a>
-                <i class="fas fa-arrow-right"></i>
-            </div>
-        </div>
-        <span class="close-icon" onclick="index.php">&times;</span>
 
-        <div class="register" id="registerForm" style="display:none;">
-        <div>
-            <h3 class="title">Create Your Account</h3>
-        </div>
-            <div class="text-input ">
-                <i class="fas fa-envelope"></i>
-                <input type="email" placeholder="Email">
+        <div class="forms-container">
+            <div class="signin-signup">
+                <div class="login-form-box">
+                    <form action="" class="login" id="loginForm">
+                        <!-- <a href="index.php"><span class="close-icon" >&times;</span></a> -->
+                        <h3 class="title">User Login</h3>
+                        <div class="text-input">
+                            <i class="fas fa-user"></i>
+                            <input type="text" placeholder="Username">
+                        </div>
+                        <div class="text-input">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" placeholder="Password">
+                        </div>
+                        <button class="login-btn">LOGIN</button>
+                        <div>
+                            <a href="#" class="forgot">Forgot Password?</a>
+                        </div>
+                        <div class="create" id="createAccountLink">
+                            <a href="#" onclick="toggleForms(),hideAdditionalFields()">Create Your Account</a>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </form>
+                </div>
+                <span class="close-icon" onclick="index.php">&times;</span>
+
+                <div class="register-form-box">
+                    <form action="" class="register" id="registerForm" style="display:none;">
+                        <div>
+                            <h3 class="title">Create Your Account</h3>
+                        </div>
+
+                        <div class="text-input ">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" placeholder="Email">
+                        </div>
+                        <div class="text-input ">
+                            <i class="fas fa-building"></i>
+                            <input type="text" placeholder="Hotel Name">
+                        </div>
+
+                        <div class="text-input ">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" placeholder="Password">
+                        </div>
+                        <div class="text-input ">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" placeholder="Confirm Password">
+                        </div>
+
+                        <div class="text-input hidden">
+                            <i class="fas fa-location-dot"></i>
+                            <input type="text" placeholder="Hotel Address">
+                        </div>
+                        <div class="text-input hidden">
+                            <i class="fas fa-phone"></i>
+                            <input type="tel" placeholder="Contact Number">
+                        </div>
+                        <div class="text-input hidden">
+                            <i class="fas fa-globe"></i>
+                            <input type="text" placeholder="City">
+                        </div>
+                        <div class="text-input hidden">
+                            <i class="ri-pin-distance-fill"></i>
+                            <input type="text" placeholder="Distance From City">
+                        </div>
+
+                        <button type="button" class="btn next-btn" onclick="showAdditionalFields()">Next</button>
+                        <div class="button-container hidden">
+                            <button type="button" class="btn back-btn-form" onclick="hideAdditionalFields()">Back</button>
+                            <input type="submit" class="btn signup-btn" name="register" value="Sign up" />
+                        </div>
+
+                        <br>
+                        <a href="hotellogin.php">Back to Login</a>
+                    </form>
+                </div>
             </div>
-            <div class="text-input ">
-                <i class="fas fa-lock"></i>
-                <input type="password" placeholder="Password">
-            </div>
-            <div class="text-input ">
-                <i class="fas fa-lock"></i>
-                <input type="password" placeholder="Confirm Password">
-            </div>
-            <div class="text-input ">
-                <i class="fas fa-building"></i>
-                <input type="text" placeholder="Hotel Full Name">
-            </div>
-            <div class="text-input ">
-                <i class="fas fa-location-dot"></i>
-                <input type="text" placeholder="Hotel Address">
-            </div>
-            <div class="text-input ">
-                <i class="fas fa-phone"></i>
-                <input type="tel" placeholder="Contact Number">
-            </div>
-            <div class="text-input ">
-                <i class="fas fa-globe"></i>
-                <input type="text" placeholder="City">
-            </div>
-            <div class="text-input ">
-                <i class="ri-pin-distance-fill"></i>
-                <input type="text" placeholder="Distance From City">
-            </div>
-            <button class="login-btn" style="align-items: center;">CREATE ACCOUNT</button><br>
-            <a href="hotellogin.php">Back to Login</a>
         </div>
     </div>
+
 
     <script>
         function toggleForms() {
@@ -89,12 +110,34 @@
 
             if (loginForm.style.display === "none") {
                 loginForm.style.display = "block";
-                loginForm.style.position = "relative";
+                // loginForm.style.position = "relative";
                 registerForm.style.display = "none";
             } else {
                 loginForm.style.display = "none";
                 registerForm.style.display = "block";
             }
+        }
+
+        function showAdditionalFields() {
+            document.querySelectorAll('.register .text-input.hidden').forEach(function(input) {
+                input.style.display = 'flex';
+            });
+            document.querySelectorAll('.register .text-input:not(.hidden)').forEach(function(input) {
+                input.style.display = 'none';
+            });
+            document.querySelector('.next-btn').classList.add('hidden');
+            document.querySelector('.button-container').classList.remove('hidden');
+        }
+
+        function hideAdditionalFields() {
+            document.querySelectorAll('.register .text-input.hidden').forEach(function(input) {
+                input.style.display = 'none';
+            });
+            document.querySelectorAll('.register .text-input:not(.hidden)').forEach(function(input) {
+                input.style.display = 'flex';
+            });
+            document.querySelector('.next-btn').classList.remove('hidden');
+            document.querySelector('.button-container').classList.add('hidden');
         }
     </script>
 
