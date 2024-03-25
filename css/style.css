@@ -1584,3 +1584,23 @@ select {
     transform: translateY(10px);
     box-shadow: none;
 }
+
+.package-list li{
+  list-style: none;
+}
+
+.package-main-list {
+  padding-left:2rem;
+}
+
+.package-main-list li{
+  margin-bottom:1.2rem;
+}
+
+.owl-caousel-item img{  
+  aspect-ratio: 6 / 4;
+}
+
+#pkg_filter_btn {
+  margin-left: 4rem;
+}
