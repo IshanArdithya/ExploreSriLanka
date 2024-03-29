@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Ubuntu:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Noticia+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 :root {
     --primary-color: #2095ae;
@@ -1153,42 +1154,56 @@ select {
 }
 
 .item-box:hover .text-item-box {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.336);
     margin-bottom: 50px;
     height: 25%;
 }
 
 .heading-legend {
     font-size: 1.2rem;
+    font-family: "comfortaa";
+    color: var(--white-color);
+    text-transform: uppercase;
+    text-decoration: bold;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-top: 20px;
+}
+
+.heading-legend::after{
+    font-size: 1.2rem;
     font-family: "ubuntu";
     color: var(--primary-color);
 }
 
+
 .btn-wrapper-common span {
     display: inline-block;
-    padding: 15px 40px;
-    border-radius: 30px;
-    background-color: var(--primary-color);
+    margin-top: 20px;
+    background-color: transparent;
     color: var(--white-color);
     font-size: 1.1rem;
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
-    margin-left: auto;
+    /* margin-left: auto; */
     align-items: center;
+    text-align: center;
 }
 
 .btn-wrapper-common span::before {
-    content: '';
+    content: '-';
     position: absolute;
     top: 0;
     left: 50%;
     width: 150%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
     z-index: -1;
     transform: translateX(-50%) scaleX(0);
+    color: var(--primary-color);
+
 }
 
 .btn-wrapper-common span:hover::before {
@@ -1196,13 +1211,17 @@ select {
 }
 
 .btn-wrapper-common span:hover {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 0  rgba(0, 0, 0, 0.2);
     color: var(--primary-color);
+
 }
 
 .text-small-legend {
+    position: a;
     font-size: 1rem;
-    color: var(--blue-color);
+    color: var(--light-gray-color);
+    opacity: 0;
+    visibility: hidden;
 }
 
 .hidden-content-package {
@@ -1226,10 +1245,18 @@ select {
     align-content: space-between;
 }
 
+.item-box:hover .text-small-legend {
+    opacity: 1;
+    visibility: visible;
+    /* transition: opacity 0.3s ease, visibility 0s linear 0s; */
+    transition: all 0.3s ease-in-out;
+}
+
 .item-box:hover .hidden-content-package {
     opacity: 1;
     visibility: visible;
     transition: opacity 0.3s ease, visibility 0s linear 0s;
+    
 }
 
 /* Package Content */

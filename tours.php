@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <title>About - Explore Srilanka</title>
+    <title>Tour - Explore Srilanka</title>
 </head>
 
 <body>
@@ -101,7 +101,7 @@
                     </div>
                     <div class="text-item-box ">
                         <div class="heading-legend">Adventure Expedition</div>
-                        <div class="text-small-legend"></div>
+                        <div class="text-small-legend">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus, perspiciatis?</div>
                         <div class="btn-wrapper-common">
                             <span>Find Out More</span>
                             <!-- <button>Find Out More</button> -->
