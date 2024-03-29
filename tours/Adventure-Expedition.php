@@ -1,67 +1,213 @@
 <?php
+
+$packageName = 'Adventure Expedition';
+$packagedays = 1;
+
 require_once '../config.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selectedDate'])) {
-  // Step 1: Fetch the selected date from the date picker
-  $selectedDate = $_POST['selectedDate'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // Check if action parameter is set
+  if (isset($_POST['action'])) {
+    $action = $_POST['action'];
 
-  // Step 2: Calculate the next day
-  $nextDay = date('Y-m-d', strtotime($selectedDate . ' +1 day'));
-
-  // Step 3: Query the hotelrooms table to get the available hotels
-  // Modify your SQL query to fetch available hotels
-  $sqlHotels = "SELECT DISTINCT h.name 
-                FROM hotelrooms h
-                LEFT JOIN hotelreservation r 
-                ON h.hotel_id = r.hotel_id 
-                AND ('$selectedDate' <= r.reserved_till) 
-                AND ('$nextDay' >= r.reserved_from) 
-                WHERE h.add_to_packages = 'Yes' 
-                AND h.city = 'Kandy'
-                AND r.hotel_id IS NULL";
-
-  $resultHotels = mysqli_query($conn, $sqlHotels);
-
-  // Fetch available hotels from query result
-  $availableHotels = array();
-  while ($row = mysqli_fetch_assoc($resultHotels)) {
-    $availableHotels[] = $row['name'];
+    // Handle action based on its value
+    switch ($action) {
+      case 'fetchData':
+        handleFetchData();
+        break;
+      case 'addReservation':
+        handleAddReservation();
+        break;
+      default:
+        // Invalid action
+        echo json_encode(array(
+          'success' => false,
+          'message' => 'Invalid action specified.'
+        ));
+        break;
+    }
+  } else {
+    // No action parameter provided
+    echo json_encode(array(
+      'success' => false,
+      'message' => 'No action specified.'
+    ));
   }
-
-  // Step 4: Query the tourguide table to get available tour guides
-  // Modify your SQL query to fetch available tour guides
-  $sqlTourGuides = "SELECT tg.full_name 
-                    FROM tourguide tg
-                    LEFT JOIN tourguidebooking tb
-                    ON tg.tg_id = tb.tg_id
-                    AND ('$selectedDate' <= tb.booked_till) 
-                    AND ('$nextDay' >= tb.booked_from)
-                    WHERE tg.city = 'Kandy'
-                    AND tg.active = 1
-                    AND tb.tg_id IS NULL";
-
-  $resultTourGuides = mysqli_query($conn, $sqlTourGuides);
-
-  // Fetch available tour guides from query result
-  $availableTourGuides = array();
-  while ($row = mysqli_fetch_assoc($resultTourGuides)) {
-    $availableTourGuides[] = $row['full_name'];
-  }
-
-  // Step 5: Encode the list of available hotels and tour guides as JSON
-  $response = array(
-    'hotels' => $availableHotels,
-    'tourGuides' => $availableTourGuides
-  );
-
-  // Send the JSON response
-  echo json_encode($response);
-
-  // Terminate the script to prevent further output
-  exit;
 }
 
+// Function to handle fetching available hotels and tour guides
+function handleFetchData()
+{
+  global $conn, $packagedays;
+
+  // Check if selectedDate parameter is set
+  if (isset($_POST['selectedDate'])) {
+    // Retrieve selected date from the POST request
+    $selectedDate = $_POST['selectedDate'];
+
+    // Step 2: Calculate the next day
+    $nextDay = date('Y-m-d', strtotime($selectedDate . ' +' . $packagedays . ' day'));
+
+    // Step 3: Query the hotelrooms table to get the available hotels
+    // Modify your SQL query to fetch available hotels with their IDs
+    $sqlHotels = "SELECT h.hotel_id, h.name, hr.room_id
+                    FROM hotelrooms hr
+                    JOIN hotels h ON hr.hotel_id = h.hotel_id
+                    LEFT JOIN hotelreservation r 
+                    ON hr.hotel_id = r.hotel_id 
+                    AND hr.room_id = r.room_number
+                    AND ('$selectedDate' <= r.reserved_till) 
+                    AND ('$nextDay' >= r.reserved_from) 
+                    WHERE hr.add_to_packages = 'Yes' 
+                    AND hr.city = 'Kandy'
+                    AND r.room_number IS NULL";
+
+    $resultHotels = mysqli_query($conn, $sqlHotels);
+
+    $availableHotels = array();
+    while ($row = mysqli_fetch_assoc($resultHotels)) {
+      $availableHotels[] = array(
+        'id' => $row['hotel_id'],
+        'name' => $row['name'],
+        'roomNumber' => $row['room_id']
+      );
+    }
+
+    // Step 4: Query the tourguide table to get available tour guides
+    // Modify your SQL query to fetch available tour guides with their IDs
+    $sqlTourGuides = "SELECT tg.tg_id, tg.full_name 
+                        FROM tourguide tg
+                        LEFT JOIN tourguidebooking tb
+                        ON tg.tg_id = tb.tg_id
+                        AND ('$selectedDate' <= tb.booked_till) 
+                        AND ('$nextDay' >= tb.booked_from)
+                        WHERE tg.city = 'Kandy'
+                        AND tg.active = 1
+                        AND tb.tg_id IS NULL";
+
+    $resultTourGuides = mysqli_query($conn, $sqlTourGuides);
+
+    // Fetch available tour guides with IDs from query result
+    $availableTourGuides = array();
+    while ($row = mysqli_fetch_assoc($resultTourGuides)) {
+      $availableTourGuides[] = array(
+        'id' => $row['tg_id'],
+        'name' => $row['full_name']
+      );
+    }
+
+    // Step 5: Encode the list of available hotels and tour guides as JSON
+    $response = array(
+      'hotels' => $availableHotels,
+      'tourGuides' => $availableTourGuides
+    );
+
+    // Send the JSON response
+    echo json_encode($response);
+
+    // Terminate the script to prevent further output
+    exit;
+  } else {
+    // selectedDate parameter not provided
+    echo json_encode(array(
+      'success' => false,
+      'message' => 'Selected date not provided.'
+    ));
+  }
+}
+
+// Function to handle adding reservation
+function handleAddReservation()
+{
+  global $conn, $packagedays, $packageName;
+
+  // Check if all required parameters are set
+  if (isset($_POST['selectedDate'], $_POST['hotelId'], $_POST['hotelName'], $_POST['tourGuideId'], $_POST['tourGuideName'], $_POST['roomNumber'], $_POST['customerId'], $_POST['customerName']) && isset($_SESSION['customer_email'])) {
+    $reservedFrom = $_POST['selectedDate'];
+    $hotelId = $_POST['hotelId'];
+    $hotelName = $_POST['hotelName'];
+    $tourGuideId = $_POST['tourGuideId'];
+    $tourGuideName = $_POST['tourGuideName'];
+    $roomNumber = $_POST['roomNumber'];
+    $customerId = $_POST['customerId'];
+    $customerName = $_POST['customerName'];
+
+    $reservedTill = date('Y-m-d', strtotime($reservedFrom . ' +' . $packagedays . ' day'));
+
+    // retrieve customer logged email from sessionn
+    $customerEmail = $_SESSION['customer_email'];
+    $sqlCustomer = "SELECT customer_id, customer_name FROM customers WHERE email = '$customerEmail'";
+    $resultCustomer = mysqli_query($conn, $sqlCustomer);
+
+    if (mysqli_num_rows($resultCustomer) > 0) {
+      $rowCustomer = mysqli_fetch_assoc($resultCustomer);
+      $customerId = $rowCustomer['customer_id'];
+      $customerName = $rowCustomer['customer_name'];
+
+    $sql = "SELECT MAX(RIGHT(pkg_order_id, 5)) AS max_id FROM packageorders";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $max_id = $row['max_id'];
+    $next_id = $max_id + 1;
+    $pkg_order_id = 'PKG' . str_pad($next_id, 5, '0', STR_PAD_LEFT);
+
+    $sqlInsertPackageOrder = "INSERT INTO packageorders (pkg_order_id, package_name, customer_id, customer_name, reserved_from, reserved_till) 
+                                VALUES ('$pkg_order_id', '$packageName', '$customerId', '$customerName', '$reservedFrom', '$reservedTill')";
+
+    if (mysqli_query($conn, $sqlInsertPackageOrder)) {
+
+      $sql = "SELECT MAX(RIGHT(reservation_id, 5)) AS max_id FROM hotelreservation";
+      $result = mysqli_query($conn, $sql);
+      $row = mysqli_fetch_assoc($result);
+      $max_id = $row['max_id'];
+      $next_id = $max_id + 1;
+      $reservation_id = 'RES' . str_pad($next_id, 5, '0', STR_PAD_LEFT);
+
+      $sqlInsertReservation = "INSERT INTO hotelreservation (reservation_id, hotel_id, name, room_number, reserved_from, reserved_till, pkg_order_id) 
+                                VALUES ('$reservation_id', '$hotelId', '$hotelName', '$roomNumber', '$reservedFrom', '$reservedTill', '$pkg_order_id')";
+
+      mysqli_query($conn, $sqlInsertReservation);
+
+      $sql = "SELECT MAX(RIGHT(booking_id, 5)) AS max_id FROM tourguidebooking";
+      $result = mysqli_query($conn, $sql);
+      $row = mysqli_fetch_assoc($result);
+      $max_id = $row['max_id'];
+      $next_id = $max_id + 1;
+      $tg_booking_id = 'B' . str_pad($next_id, 5, '0', STR_PAD_LEFT);
+
+      // Step 7: Insert tour guide booking data into the tourguidebooking table
+      $sqlInsertTourGuideBooking = "INSERT INTO tourguidebooking (booking_id, tg_id, full_name, booked_from, booked_till, pkg_order_id) 
+                                    VALUES ('$tg_booking_id', '$tourGuideId', '$tourGuideName', '$reservedFrom', '$reservedTill', '$pkg_order_id')";
+
+      mysqli_query($conn, $sqlInsertTourGuideBooking);
+
+      $response = array(
+        'success' => true,
+        'message' => 'Reservation added successfully.'
+      );
+    } else {
+      $response = array(
+        'success' => false,
+        'message' => 'Failed to add reservation: ' . mysqli_error($conn)
+      );
+    }
+
+    // Step 6: Send response back to JavaScript
+    echo json_encode($response);
+
+    // Terminate the script to prevent further output
+    exit;
+  } else {
+    // Required parameters not provided
+    echo json_encode(array(
+      'success' => false,
+      'message' => 'One or more required parameters are missing.'
+    ));
+  }
+}
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -355,7 +501,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selectedDate'])) {
             icon: "error"
           });
         } else {
-          // If session exists, show date picker
           Swal.fire({
             title: "Select the Date",
             html: '<input id="datepicker" class="custom-datepicker" type="date">',
@@ -370,29 +515,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selectedDate'])) {
             if (result.isConfirmed) {
               const selectedDate = document.getElementById('datepicker').value;
 
-              // Send the selected date to the PHP script using AJAX
               $.ajax({
                 url: '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>',
                 type: 'POST',
                 dataType: 'json',
                 data: {
+                  action: 'fetchData',
                   selectedDate: selectedDate
                 },
                 success: function(response) {
-                  // Close the current dialog
                   Swal.close();
 
-                  // Show the next dialog with available hotels and tour guides
                   Swal.fire({
                     title: "Choose a hotel and a tour guide",
                     html: `
-                          <p>Selected Date: ${selectedDate}</p>
-                          <div class="package-book-swal">
-                              <p class="small-paragraph">Hotels: <select id="hotels"></select></p>
-                              <p class="small-paragraph">Tour guides: <select id="tourGuides"></select></p>
-                              <p class="small-paragraph">Please note this is the hotel and tour guide you'll be accompanied with.</p>
-                          </div>
-                        `,
+                    <p>Selected Date: ${selectedDate}</p>
+                    <div class="package-book-swal">
+                        <p class="small-paragraph">Hotels: <select id="hotels" class="swal-select"></select></p>
+                        <p class="small-paragraph">Tour guides: <select id="tourGuides" class="swal-select"></select></p>
+                        <p class="small-paragraph">Please note this is the hotel and tour guide you'll be accompanied with.</p>
+                    </div>
+                  `,
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
@@ -401,35 +544,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selectedDate'])) {
                     allowOutsideClick: false,
                     allowEscapeKey: false,
                     didRender: () => {
-                      // Populate the dropdown menu with the available hotels
                       const hotelsDropdown = document.getElementById('hotels');
-                      hotelsDropdown.innerHTML = '';
                       response.hotels.forEach(function(hotel) {
                         const option = document.createElement('option');
-                        option.value = hotel;
-                        option.text = hotel;
+                        option.value = hotel.id;
+                        option.setAttribute('hotel-name', hotel.name);
+                        option.setAttribute('hotel-room-number', hotel.roomNumber);
+                        option.text = `${hotel.name} - Room ${hotel.roomNumber}`;
                         hotelsDropdown.appendChild(option);
                       });
 
-                      // Populate the dropdown menu with the available tour guides
                       const tourguideDropdown = document.getElementById('tourGuides');
-                      tourguideDropdown.innerHTML = '';
                       response.tourGuides.forEach(function(tourguide) {
                         const option = document.createElement('option');
-                        option.value = tourguide;
-                        option.text = tourguide;
+                        option.value = tourguide.id;
+                        option.text = tourguide.name;
                         tourguideDropdown.appendChild(option);
                       });
 
                       if (response.hotels.length === 0) {
-                        // Add "Not found" option to hotels dropdown
                         const notFoundOption = document.createElement('option');
                         notFoundOption.text = 'Not found';
                         hotelsDropdown.appendChild(notFoundOption);
                       }
 
                       if (response.tourGuides.length === 0) {
-                        // Add "Not found" option to tour guides dropdown
                         const notFoundOption = document.createElement('option');
                         notFoundOption.text = 'Not found';
                         tourguideDropdown.appendChild(notFoundOption);
@@ -437,15 +576,64 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selectedDate'])) {
                     }
                   }).then((result) => {
                     if (result.isConfirmed) {
-                      // Handle next button click if needed
-                      // For now, let's just close the dialog
-                      Swal.close();
+                      const selectedHotelId = document.getElementById('hotels').value;
+                      const selectedHotelName = document.getElementById('hotels').options[document.getElementById('hotels').selectedIndex].getAttribute('hotel-name');
+                      const selectedHotelRoomNumber = document.getElementById('hotels').options[document.getElementById('hotels').selectedIndex].getAttribute('hotel-room-number');
+                      const selectedTourGuideId = document.getElementById('tourGuides').value;
+                      const selectedTourGuideName = document.getElementById('tourGuides').options[document.getElementById('tourGuides').selectedIndex].text;
+
+                      const reservedTill = new Date(selectedDate);
+                      reservedTill.setDate(reservedTill.getDate() + 1);
+
+                      const data = {
+                        action: 'addReservation',
+                        selectedDate: selectedDate,
+                        hotelId: selectedHotelId,
+                        hotelName: selectedHotelName,
+                        tourGuideId: selectedTourGuideId,
+                        tourGuideName: selectedTourGuideName,
+                        roomNumber: selectedHotelRoomNumber
+                      };
+
+                      $.ajax({
+                        url: '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: data,
+                        success: function(response) {
+                          if (response.success) {
+                            Swal.fire({
+                              title: 'Success!',
+                              text: response.message,
+                              icon: 'success'
+                            });
+                          } else {
+                            Swal.fire({
+                              title: 'Error!',
+                              text: response.message,
+                              icon: 'error'
+                            });
+                          }
+                        },
+                        error: function(xhr, status, error) {
+                          console.error(error);
+                          Swal.fire({
+                            title: 'Error!',
+                            text: 'Failed to add reservation. Please try again later.',
+                            icon: 'error'
+                          });
+                        }
+                      });
                     }
                   });
                 },
                 error: function(xhr, status, error) {
-                  // Handle errors
                   console.error(error);
+                  Swal.fire({
+                    title: 'Error!',
+                    text: 'Failed to fetch available hotels and tour guides. Please try again later.',
+                    icon: 'error'
+                  });
                 }
               });
             }
@@ -454,6 +642,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selectedDate'])) {
       });
     });
   </script>
+
+
 
 
 
