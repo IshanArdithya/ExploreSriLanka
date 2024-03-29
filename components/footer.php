@@ -69,7 +69,7 @@
                     <h2>Others</h2>
                 </div>
                 <ul>
-                    <li><a href="guidelogin.php">Join With Us As Tour Guide</a></li>
+                    <li><a href="tourguidelogin.php">Join With Us As Tour Guide</a></li>
                     <li><a href="hotellogin.php">Join With Us As Hotel Partner</a></li>
                 </ul>
             </div>
