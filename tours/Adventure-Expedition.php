@@ -119,31 +119,46 @@ function handleFetchData()
 // Function to handle adding reservation
 function handleAddReservation()
 {
-  global $conn, $packagedays, $packageName;
+  global $conn, $packagedays;
 
   // Check if all required parameters are set
-  if (isset($_POST['selectedDate'], $_POST['hotelId'], $_POST['hotelName'], $_POST['tourGuideId'], $_POST['tourGuideName'], $_POST['roomNumber'], $_POST['customerId'], $_POST['customerName']) && isset($_SESSION['customer_email'])) {
-    $reservedFrom = $_POST['selectedDate'];
+  if (isset($_POST['selectedDate'], $_POST['hotelId'], $_POST['hotelName'], $_POST['tourGuideId'], $_POST['tourGuideName'], $_POST['roomNumber']) && isset($_SESSION['customer_email'])) {
+    // Retrieve selected data from the POST request
+    $selectedDate = $_POST['selectedDate'];
     $hotelId = $_POST['hotelId'];
     $hotelName = $_POST['hotelName'];
     $tourGuideId = $_POST['tourGuideId'];
     $tourGuideName = $_POST['tourGuideName'];
     $roomNumber = $_POST['roomNumber'];
-    $customerId = $_POST['customerId'];
-    $customerName = $_POST['customerName'];
 
-    $reservedTill = date('Y-m-d', strtotime($reservedFrom . ' +' . $packagedays . ' day'));
+    // Retrieve customer data from session
+    $customer_email = $_SESSION['customer_email'];
 
-    // retrieve customer logged email from sessionn
-    $customerEmail = $_SESSION['customer_email'];
-    $sqlCustomer = "SELECT customer_id, customer_name FROM customers WHERE email = '$customerEmail'";
-    $resultCustomer = mysqli_query($conn, $sqlCustomer);
+    // Fetch customer data from the database using the email
+    $sql = "SELECT * FROM customers WHERE email = '$customer_email'";
+    $result = mysqli_query($conn, $sql);
 
-    if (mysqli_num_rows($resultCustomer) > 0) {
-      $rowCustomer = mysqli_fetch_assoc($resultCustomer);
-      $customerId = $rowCustomer['customer_id'];
-      $customerName = $rowCustomer['customer_name'];
+    if (mysqli_num_rows($result) > 0) {
+      $customer_data = mysqli_fetch_assoc($result);
+      $customer_id = $customer_data['customer_id'];
+      $customer_name = $customer_data['full_name'];
+    } else {
+      // Customer not found
+      echo json_encode(array(
+        'success' => false,
+        'message' => 'Customer not found.'
+      ));
+      exit;
+    }
 
+    // Step 2: Calculate the reserved till date
+    $nextDay = date('Y-m-d', strtotime($selectedDate . ' +' . $packagedays . ' day'));
+
+    // Step 3: Prepare data for insertion into packageorders table
+    $reservedFrom = $selectedDate;
+    $reservedTill = $nextDay;
+
+    // Generate a unique package order ID
     $sql = "SELECT MAX(RIGHT(pkg_order_id, 5)) AS max_id FROM packageorders";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
@@ -151,11 +166,14 @@ function handleAddReservation()
     $next_id = $max_id + 1;
     $pkg_order_id = 'PKG' . str_pad($next_id, 5, '0', STR_PAD_LEFT);
 
+
+    $package_name = 'Adventure Expedition';
+
     $sqlInsertPackageOrder = "INSERT INTO packageorders (pkg_order_id, package_name, customer_id, customer_name, reserved_from, reserved_till) 
-                                VALUES ('$pkg_order_id', '$packageName', '$customerId', '$customerName', '$reservedFrom', '$reservedTill')";
+                                    VALUES ('$pkg_order_id', '$package_name', '$customer_id', '$customer_name', '$reservedFrom', '$reservedTill')";
 
     if (mysqli_query($conn, $sqlInsertPackageOrder)) {
-
+      // Step 5: Prepare data for insertion into hotelreservation table
       $sql = "SELECT MAX(RIGHT(reservation_id, 5)) AS max_id FROM hotelreservation";
       $result = mysqli_query($conn, $sql);
       $row = mysqli_fetch_assoc($result);
@@ -163,48 +181,59 @@ function handleAddReservation()
       $next_id = $max_id + 1;
       $reservation_id = 'RES' . str_pad($next_id, 5, '0', STR_PAD_LEFT);
 
+      // Step 6: Insert reservation data into the hotelreservation table
       $sqlInsertReservation = "INSERT INTO hotelreservation (reservation_id, hotel_id, name, room_number, reserved_from, reserved_till, pkg_order_id) 
                                 VALUES ('$reservation_id', '$hotelId', '$hotelName', '$roomNumber', '$reservedFrom', '$reservedTill', '$pkg_order_id')";
 
-      mysqli_query($conn, $sqlInsertReservation);
+      if (mysqli_query($conn, $sqlInsertReservation)) {
+        // Reservation and package order successfully added
 
-      $sql = "SELECT MAX(RIGHT(booking_id, 5)) AS max_id FROM tourguidebooking";
-      $result = mysqli_query($conn, $sql);
-      $row = mysqli_fetch_assoc($result);
-      $max_id = $row['max_id'];
-      $next_id = $max_id + 1;
-      $tg_booking_id = 'B' . str_pad($next_id, 5, '0', STR_PAD_LEFT);
+        $sql = "SELECT MAX(RIGHT(booking_id, 5)) AS max_id FROM tourguidebooking";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $max_id = $row['max_id'];
+        $next_id = $max_id + 1;
+        $booking_id = 'B' . str_pad($next_id, 5, '0', STR_PAD_LEFT);
 
-      // Step 7: Insert tour guide booking data into the tourguidebooking table
-      $sqlInsertTourGuideBooking = "INSERT INTO tourguidebooking (booking_id, tg_id, full_name, booked_from, booked_till, pkg_order_id) 
-                                    VALUES ('$tg_booking_id', '$tourGuideId', '$tourGuideName', '$reservedFrom', '$reservedTill', '$pkg_order_id')";
+        $sqlInsertTourGuideBooking = "INSERT INTO tourguidebooking (booking_id, tg_id, name, booked_from, booked_till, pkg_order_id) 
+                                        VALUES ('$booking_id', '$tourGuideId', '$tourGuideName', '$reservedFrom', '$reservedTill', '$pkg_order_id')";
 
-      mysqli_query($conn, $sqlInsertTourGuideBooking);
+        if (mysqli_query($conn, $sqlInsertTourGuideBooking)) {
 
-      $response = array(
-        'success' => true,
-        'message' => 'Reservation added successfully.'
-      );
+          $response = array(
+            'success' => true,
+            'message' => 'Reservation, package order, and tour guide booking added successfully.'
+          );
+        } else {
+          $response = array(
+            'success' => false,
+            'message' => 'Failed to add tour guide booking: ' . mysqli_error($conn)
+          );
+        }
+      } else {
+        $response = array(
+          'success' => false,
+          'message' => 'Failed to add reservation: ' . mysqli_error($conn)
+        );
+      }
     } else {
       $response = array(
         'success' => false,
-        'message' => 'Failed to add reservation: ' . mysqli_error($conn)
+        'message' => 'Failed to add package order: ' . mysqli_error($conn)
       );
     }
 
-    // Step 6: Send response back to JavaScript
     echo json_encode($response);
 
-    // Terminate the script to prevent further output
     exit;
   } else {
-    // Required parameters not provided
     echo json_encode(array(
       'success' => false,
-      'message' => 'One or more required parameters are missing.'
+      'message' => 'One or more required parameters are missing or customer email not found in session.'
     ));
   }
 }
+
 ?>
 
 
@@ -344,7 +373,7 @@ function handleAddReservation()
                 die("Connection failed: " . mysqli_connect_error());
               }
 
-              $sql = "SELECT name, short_desc, hotel_picture FROM hotels WHERE city IN ('Kandy', 'Colombo')";
+              $sql = "SELECT name, short_desc, hotel_picture, distance, city, hotel_url FROM hotels WHERE city IN ('Kandy', 'Colombo')";
               $result = mysqli_query($conn, $sql);
 
               if (mysqli_num_rows($result) > 0) {
@@ -358,7 +387,8 @@ function handleAddReservation()
                   echo '<div class="destination-hotel-container">';
                   echo '<h3 class="content-title">' . $row['name'] . '</h3>';
                   echo '<p class="content-paragraph">' . $row['short_desc'] . '</p>';
-                  echo '<p class="content-paragraph">Read more</p>';
+                  echo '<p class="content-paragraph">' . $row['distance'] . ' km away from ' . $row['city'] . '.</p>';
+                  echo '<p class="content-paragraph"><a href="../hotels/' . $row['hotel_url'] . '">Read more</a></p>';
                   echo '</div>';
                   echo '</div>';
                 }
@@ -533,13 +563,13 @@ function handleAddReservation()
                     <div class="package-book-swal">
                         <p class="small-paragraph">Hotels: <select id="hotels" class="swal-select"></select></p>
                         <p class="small-paragraph">Tour guides: <select id="tourGuides" class="swal-select"></select></p>
-                        <p class="small-paragraph">Please note this is the hotel and tour guide you'll be accompanied with.</p>
+                        <p class="small-paragraph" id="package-swal-text">Please note this is the hotel and tour guide you'll be accompanied with.</p>
                     </div>
                   `,
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
-                    confirmButtonText: "Next",
+                    confirmButtonText: "Confirm",
                     cancelButtonText: "Cancel",
                     allowOutsideClick: false,
                     allowEscapeKey: false,
@@ -564,14 +594,21 @@ function handleAddReservation()
 
                       if (response.hotels.length === 0) {
                         const notFoundOption = document.createElement('option');
-                        notFoundOption.text = 'Not found';
+                        notFoundOption.text = 'No Available Hotels';
                         hotelsDropdown.appendChild(notFoundOption);
+                        hotelsDropdown.disabled = true;
                       }
 
                       if (response.tourGuides.length === 0) {
                         const notFoundOption = document.createElement('option');
-                        notFoundOption.text = 'Not found';
+                        notFoundOption.text = 'No Available Tour Guides';
                         tourguideDropdown.appendChild(notFoundOption);
+                        tourguideDropdown.disabled = true;
+                      }
+
+                      if (response.hotels.length === 0 || response.tourGuides.length === 0) {
+                        document.querySelector('.swal2-confirm').disabled = true;
+                        document.getElementById('package-swal-text').innerText = "Unfortunately, there are no tour guides / hotels available for the selected date.";
                       }
                     }
                   }).then((result) => {
