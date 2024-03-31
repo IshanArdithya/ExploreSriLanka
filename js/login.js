@@ -18,13 +18,11 @@ const hiddenFields = document.querySelectorAll('.sign-up-form .input-field:nth-o
 const buttonContainer = document.querySelector('.button-container');
 
 nextBtn.addEventListener('click', () => {
-  console.log("Next button clicked"); // Add this line for debugging
 
-  const email = document.getElementById('remail').value.trim(); // Trim whitespace
+  const email = document.getElementById('remail').value.trim();
   const password = document.getElementById('rpassword').value;
   const reenterPassword = document.getElementById('reenter_password').value;
 
-  // Check if email is empty
   if (email === '') {
       document.getElementById('emailError').textContent = 'Please enter your email!';
       return;
@@ -32,7 +30,6 @@ nextBtn.addEventListener('click', () => {
       document.getElementById('emailError').textContent = '';
   }
 
-  // Check if password is empty
   if (password.trim() === '') {
       document.getElementById('passwordError').textContent = 'Please enter your password!';
       return;
@@ -40,7 +37,6 @@ nextBtn.addEventListener('click', () => {
       document.getElementById('passwordError').textContent = '';
   }
 
-  // Check if passwords match
   if (password !== reenterPassword) {
       document.getElementById('passwordError').textContent = 'Passwords do not match!';
       return;
