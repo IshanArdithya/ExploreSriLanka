@@ -2,20 +2,21 @@
   <div class="container">
     <nav>
       <div class="logo">
-        <img src="/ExploreSriLanka/Images/logo.png" alt="">
+        <a href="/ExploreSriLanka/index.php"><img src="/ExploreSriLanka/Images/logo.png" alt=""></a>
       </div>
       <ul>
-        <div class="btn">
-          <i class="fas fa-times close-btn"></i>
-        </div>
-        <li><a <?php if (basename($_SERVER['PHP_SELF']) == 'index.php') echo 'class="active"'; ?> href="/ExploreSriLanka/index.php">Home</a></li>
-        <li><a <?php if (basename($_SERVER['PHP_SELF']) == 'about.php') echo 'class="active"'; ?> href="/ExploreSriLanka/about.php">About</a></li>
-        <li><a <?php if (basename($_SERVER['PHP_SELF']) == 'tours.php') echo 'class="active"'; ?> href="/ExploreSriLanka/tours.php">Tours</a></li>
-        <li><a <?php if (basename($_SERVER['PHP_SELF']) == 'destination.php') echo 'class="active"'; ?> href="/ExploreSriLanka/destinations.php">Destination</a></li>
-        <li><a <?php if (basename($_SERVER['PHP_SELF']) == 'shop.php') echo 'class="active"'; ?> href="/ExploreSriLanka/shop.php">Shop</a></li>
-        <li><a <?php if (basename($_SERVER['PHP_SELF']) == 'gallery.php') echo 'class="active"'; ?> href="/ExploreSriLanka/gallery.php">Gallery</a></li>
-        <li><a <?php if (basename($_SERVER['PHP_SELF']) == 'contact.php') echo 'class="active"'; ?> href="/ExploreSriLanka/contact.php">Contact</a></li>
-      </ul>
+    <div class="btn">
+        <i class="fas fa-times close-btn"></i>
+    </div>
+    <li class="main-navigation <?php echo (basename($_SERVER['PHP_SELF']) == 'index.php') ? 'active' : ''; ?>"><a href="/ExploreSriLanka/index.php">Home</a></li>
+    <li class="main-navigation <?php echo (basename($_SERVER['PHP_SELF']) == 'about.php') ? 'active' : ''; ?>"><a href="/ExploreSriLanka/about.php">About</a></li>
+    <li class="main-navigation <?php echo (basename($_SERVER['PHP_SELF']) == 'tours.php') ? 'active' : ''; ?>"><a href="/ExploreSriLanka/tours.php">Tours</a></li>
+    <li class="main-navigation <?php echo (basename($_SERVER['PHP_SELF']) == 'destinations.php') ? 'active' : ''; ?>"><a href="/ExploreSriLanka/destinations.php">Destination</a></li>
+    <li class="main-navigation <?php echo (basename($_SERVER['PHP_SELF']) == 'shop.php') ? 'active' : ''; ?>"><a href="/ExploreSriLanka/shop.php">Shop</a></li>
+    <li class="main-navigation <?php echo (basename($_SERVER['PHP_SELF']) == 'hotelbooking.php') ? 'active' : ''; ?>"><a href="/ExploreSriLanka/hotelbooking.php">Hotel</a></li>
+    <li class="main-navigation <?php echo (basename($_SERVER['PHP_SELF']) == 'gallery.php') ? 'active' : ''; ?>"><a href="/ExploreSriLanka/gallery.php">Gallery</a></li>
+    <li class="main-navigation <?php echo (basename($_SERVER['PHP_SELF']) == 'contact.php') ? 'active' : ''; ?>"><a href="/ExploreSriLanka/contact.php">Contact</a></li>
+</ul>
 
       <?php
       require_once __DIR__ . '/../config.php';
@@ -49,14 +50,14 @@
 
           if ($user_picture_path && file_exists($_SERVER['DOCUMENT_ROOT'] . '/ExploreSriLanka/' . $user_picture_path)) {
             echo '<div class="profile-avatar">';
-            echo '<ul>';
-            echo '<li>';
+            echo '<ul class="image-profile">';
+            echo '<li class="image-profile">';
             echo '<img src="/ExploreSriLanka/' . $user_picture_path . '" alt="User Picture" class="avatar"/>';
           } else {
 
             echo '<div class="profile-avatar">';
-            echo '<ul>';
-            echo '<li>';
+            echo '<ul class="image-profile">';
+            echo '<li class="image-profile">';
             echo '<img src="/ExploreSriLanka/Images/users/avatar_placeholder.png" alt="User Picture" class="avatar"/>';
           }
       ?>
@@ -193,12 +194,21 @@
 </script>
 
 <style>
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-decoration: none;
+}
   .profile-avatar ul {
     margin: 0;
     padding: 0;
     display: flex;
     align-items: center;
     gap: 3rem;
+    text-decoration: none;
+
   }
 
   .profile-avatar li {
@@ -221,6 +231,13 @@
     opacity: 0;
     box-shadow: 0px 0px 100px rgba(20, 18, 18, 0.25);
     display: none;
+    text-decoration: none;
+
+  }
+
+  .profile-avatar li ul:hover {
+    transform: translate(0, 0) !important;
+    
   }
 
   .avatar-sub-item a {
@@ -231,6 +248,8 @@
     color: black;
     font-size: 1rem;
   }
+
+  
 
   .avatar-sub-item a i {
     flex-shrink: 0;

@@ -1,3 +1,4 @@
+
 <!-- Footer -->
 <footer id="footer">
     <div class="container">
@@ -58,9 +59,9 @@
                     <li><a href="index.php">Home</a></li>
                     <li><a href="about.php">About</a></li>
                     <li><a href="tours.php">Tours</a></li>
-                    <li><a href="#">Destination</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="#">Gallery</a></li>
+                    <li><a href="destinations.php">Destination</a></li>
+                    <li><a href="shop.php">Shop</a></li>
+                    <li><a href="gallery.php">Gallery</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
             </div>
