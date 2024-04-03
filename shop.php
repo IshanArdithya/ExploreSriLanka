@@ -49,24 +49,24 @@
       </div>
 
       <div class="shopping-row">
-        
-        <div class="shopping-col-4">
-        <a href="./product-details.php">
-          <img src="images/shop/slide1.jpg" alt="">
-          <h4>Handmade Elephant Figurine</h4>
 
-          <div class="shopping-rating">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star-o"></i>
-          </div>
-          <p class="shop-details">Nicely crafted elephant figurine made by local artisans. Perfect souvenir to remind you of your journey.</p>
-          <p class="shop-price">LKR 2,500</p>
+        <div class="shopping-col-4">
+          <a href="./product-details.php">
+            <img src="images/shop/slide1.jpg" alt="">
+            <h4>Handmade Elephant Figurine</h4>
+
+            <div class="shopping-rating">
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star-o"></i>
+            </div>
+            <p class="shop-details">Nicely crafted elephant figurine made by local artisans. Perfect souvenir to remind you of your journey.</p>
+            <p class="shop-price">LKR 2,500</p>
           </a>
         </div>
-        
+
 
         <div class="shopping-col-4">
           <img src="images/shop/peo2.jpeg" alt="">
@@ -114,39 +114,44 @@
       <h1 class="headings mini-heading">Latest Products</h1>
 
       <div class="shopping-row">
-        <div class="shopping-col-4">
-          <img src="images/shop/pro1.jpg" alt="">
-          <h4>Handmade Elephant Figurine</h4>
+        <?php
 
-          <div class="shopping-rating">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star-o"></i>
-          </div>
-          <p class="shop-details">Nicely crafted elephant figurine made by local artisans. Perfect souvenir to remind you of your journey.</p>
-          <p class="shop-price">LKR 2,500</p>
-        </div>
+        $conn = new mysqli($hostname, $username, $password, $database);
 
-        <div class="shopping-col-4">
-          <img src="images/shop/peo2.jpeg" alt="">
-          <h4>Ceylon Tea Gift Set Pack</h4>
-          <div class="shopping-rating">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star-o"></i>
-          </div>
-          <p class="shop-details">Delightful gift set featuring premium Ceylon tea blends. Includes assorted teas packed in an elegant gift box.</p>
-          <p class="shop-price">LKR 3,200</p>
-        </div>
+        if ($conn->connect_error) {
+          die("Connection failed: " . $conn->connect_error);
+        }
+
+        $sql = "SELECT * FROM shopitems";
+        $result = mysqli_query($conn, $sql);
+
+        if (mysqli_num_rows($result) > 0) {
+          while ($row = mysqli_fetch_assoc($result)) {
+            echo '<div class="shopping-col-4">';
+            echo '<a href="' . $row['shopitemurl'] . '">';
+            echo '<img src="' . $row['item_photo'] . '" alt="">';
+            echo '<h4>' . $row['item_name'] . '</h4>';
+            echo '<div class="shopping-rating">';
+
+            for ($i = 0; $i < 4; $i++) {
+              echo '<i class="fa fa-star"></i>';
+            }
+            echo '<i class="fa fa-star-o"></i>';
+            echo '</div>';
+            echo '<p class="shop-details">' . $row['item_description'] . '</p>';
+            echo '<p class="shop-price">LKR ' . $row['item_price'] . '</p>';
+            echo '</a>';
+            echo '</div>';
+          }
+        } else {
+          echo "No products found.";
+        }
+        ?>
       </div>
 
       <!--Reviews-->
       <div class="shopping-row">
- 
+
 
         <div class="shopping-col-3">
           <i class="fa fa-quote-left"></i>
