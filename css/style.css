@@ -1812,6 +1812,23 @@ Align select elements .package-book-swal select {
   margin-bottom: 1.5rem;
 }
 
+.shopping-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Adjust as needed */
+}
+
+.shopping-item {
+  width: calc(25% - 20px); /* Adjust as needed */
+  margin-bottom: 20px; /* Adjust spacing between items */
+  /* Add any additional styling for each product item */
+}
+
+.a-ratio img {
+  width: 100%;
+  aspect-ratio: 1  / 1;
+}
+
 .add-to-cart-btn {
   background-color: darkblue;
   color: whitesmoke;

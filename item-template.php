@@ -118,6 +118,8 @@ $product = $stmt->fetch(PDO::FETCH_ASSOC);
 
     <h1 class="headings mini-heading">Latest Products</h1>
 
+    <div class="shopping-grid">
+
     <?php
 
 // Fetch the last 4 products from the shopitems table
@@ -128,7 +130,7 @@ $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
     // Output data of each row
     while ($row = mysqli_fetch_assoc($result)) {
-        echo '<div class="shopping-col-4 a-ratio">';
+        echo '<div class="shopping-col-4 a-ratio shopping-item">';
         echo '<a href="../' . $row['shopitemurl'] . '">';
         echo '<img src="../' . $row['item_photo'] . '" alt="">';
         echo '<h4>' . $row['item_name'] . '</h4>';
@@ -151,6 +153,8 @@ if (mysqli_num_rows($result) > 0) {
 // Close the database connection
 $conn->close();
 ?>
+
+</div>
 
 
   </div>
