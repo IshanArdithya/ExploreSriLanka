@@ -39,10 +39,9 @@
                     <img src="/ExploreSriLanka/Images/logo.png" alt="">
                 </div>
                 <p class="lead">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    uis ipsum suspendisse ultrices gravida.
-                    Risus commodo viverra maecenas accumsan lacus vel facilisis.
+                Discover the beauty of Sri Lanka with Explore Sri Lanka! 
+                    Our curated tours and personalized experiences offer a glimpse into the rich culture and stunning landscapes of this tropical paradise. 
+                    Start your journey with us today and create memories that will last a lifetime!
                 </p>
                 <div class="social-icons">
                     <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook"></i></a>

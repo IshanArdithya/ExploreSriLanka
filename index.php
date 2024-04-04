@@ -111,7 +111,7 @@
                         <li>
                             <div class="icons">
                                 <i class="fa fa-phone-volume"></i>
-                                <p>+94 77 826 6684</p>
+                                <p>+94 71 285 8489</p>
                             </div>
                         </li>
 
