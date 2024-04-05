@@ -27,6 +27,8 @@ $cityCondition = "'Galle'";
   ?>
 
   <div class="top-image">
+  <img src="./Images/slide26.jpg" alt="">
+
   </div>
 
   <!-- Breadcrumbs -->

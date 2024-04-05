@@ -27,6 +27,7 @@ $cityCondition = "'Badulla'";
   ?>
 
   <div class="top-image">
+  <img src="./Images/slide2.jpg" alt="">
   </div>
 
   <!-- Breadcrumbs -->

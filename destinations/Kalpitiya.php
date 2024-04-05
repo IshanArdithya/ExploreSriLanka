@@ -27,6 +27,7 @@ $cityCondition = "'Puttalam'";
   ?>
 
   <div class="top-image">
+  <img src="./Images/slide24.jpg" alt="">
   </div>
 
   <!-- Breadcrumbs -->

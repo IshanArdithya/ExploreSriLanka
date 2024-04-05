@@ -27,6 +27,7 @@ $cityCondition = "'Gampaha'";
   ?>
 
   <div class="top-image">
+  <img src="./Images/slide22.jpeg" alt="">
   </div>
 
   <!-- Breadcrumbs -->

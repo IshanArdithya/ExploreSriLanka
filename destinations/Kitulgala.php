@@ -27,6 +27,7 @@ $cityCondition = "'Kegalle'";
   ?>
 
   <div class="top-image">
+  <img src="./Images/slide17-1.jpg" alt="">
   </div>
 
   <!-- Breadcrumbs -->

@@ -26,7 +26,8 @@ $cityCondition = "'Matara'";
   include '../components/header.php';
   ?>
 
-  <div class="top-image">
+<div class="top-image">
+  <img src="./Images/slide15.jpg" alt="">
   </div>
 
   <!-- Breadcrumbs -->

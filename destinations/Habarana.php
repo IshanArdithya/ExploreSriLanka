@@ -27,6 +27,7 @@ $cityCondition = "'Anuradhapura'";
   ?>
 
   <div class="top-image">
+  <img src="./Images/slide30.jpg" alt="">
   </div>
 
   <!-- Breadcrumbs -->

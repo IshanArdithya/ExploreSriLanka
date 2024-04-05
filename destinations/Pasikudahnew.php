@@ -27,6 +27,7 @@ $cityCondition = "'Batticaloa'";
   ?>
 
   <div class="top-image">
+  <img src="./Images/slide7-1.png" alt="">
     <!-- <h1 class="headings sub-heading">Destinations</h1> -->
   </div>
 

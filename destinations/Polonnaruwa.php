@@ -27,6 +27,7 @@ $cityCondition = "'Polonnaruwa'";
   ?>
 
   <div class="top-image">
+  <img src="./Images/slide9-2.jpg" alt="">
   </div>
 
   <!-- Breadcrumbs -->

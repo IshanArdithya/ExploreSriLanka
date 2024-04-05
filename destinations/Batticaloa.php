@@ -27,6 +27,7 @@ $cityCondition = "'Batticaloa'";
   ?>
 
   <div class="top-image">
+  <img src="./Images/slide29.jpg" alt="">
   </div>
 
   <!-- Breadcrumbs -->

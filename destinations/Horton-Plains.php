@@ -27,6 +27,7 @@ $cityCondition = "'Nuwara Eliya'";
   ?>
 
   <div class="top-image">
+  <img src="./Images/slide32.jpg" alt="">
   </div>
 
   <!-- Breadcrumbs -->

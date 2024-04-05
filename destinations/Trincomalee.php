@@ -27,6 +27,7 @@ $cityCondition = "'Trincomalee'";
   ?>
 
   <div class="top-image">
+  <img src="./Images/slide11.jpg" alt="">
   </div>
 
   <!-- Breadcrumbs -->

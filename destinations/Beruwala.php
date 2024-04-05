@@ -29,6 +29,7 @@ $cityCondition = "'Kalutara'";
   ?>
 
   <div class="top-image">
+  <img src="./Images/slide18.jpg" alt="">
   </div>
 
   <!-- Breadcrumbs -->

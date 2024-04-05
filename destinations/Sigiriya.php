@@ -27,6 +27,7 @@ $cityCondition = "'Matale'";
   ?>
 
   <div class="top-image">
+  <img src="./Images/slide9-1webp.jpg" alt="">
   </div>
 
   <!-- Breadcrumbs -->

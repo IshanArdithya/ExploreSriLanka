@@ -27,6 +27,7 @@ $cityCondition = "'Matara'";
   ?>
 
   <div class="top-image">
+  <img src="./Images/slide19.jpg" alt="">
   </div>
 
   <!-- Breadcrumbs -->

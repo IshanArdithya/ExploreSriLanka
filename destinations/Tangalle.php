@@ -27,6 +27,7 @@ $cityCondition = "'Hambantota'";
   ?>
 
   <div class="top-image">
+  <img src="./Images/slide10.jpg" alt="">
   </div>
 
   <!-- Breadcrumbs -->
