@@ -20,6 +20,7 @@
     ?>
 
     <div class="top-image">
+        <img src="./Images/slides/slide-18.jpg" alt="">
         <h1 class="headings sub-heading"></h1>
     </div>
 
@@ -151,25 +152,13 @@
                     </a>
 
 
-                    <a class="item-box" href="destinations/Kalpitiya.php">
-                        <div class="img-wrapper">
-                            <img src="./destinations/Images/kalpitiyamain.jpg" alt="">
-                        </div>
-                        <div class="text-item-box tour-item-box">
-                            <div class="heading-legend">Kalpitiya</div>
-                            <div class="text-small-legend"></div>
-                            <div class="btn-wrapper-common">
-                                <span>Find Out More</span>
-                            </div>
-                        </div>
-                    </a>
 
-                    <a class="item-box" href="destinations/Kalutara.php">
+                    <a class="item-box" href="destinations/Mirissa.php">
                         <div class="img-wrapper">
-                            <img src="./destinations/Images/kalutaramain.avif" alt="">
+                            <img src="./destinations/Images/mirissamain.avif" alt="">
                         </div>
                         <div class="text-item-box tour-item-box">
-                            <div class="heading-legend">Kalutara</div>
+                            <div class="heading-legend">Mirissa</div>
                             <div class="text-small-legend"></div>
                             <div class="btn-wrapper-common">
                                 <span>Find Out More</span>
@@ -190,77 +179,13 @@
                         </div>
                     </a>
 
-                    <a class="item-box" href="destinations/Kitulgala.php">
-                        <div class="img-wrapper">
-                            <img src="./destinations/Images/kitulgalamain.jpeg" alt="">
-                        </div>
-                        <div class="text-item-box tour-item-box">
-                            <div class="heading-legend">Kitulgala</div>
-                            <div class="text-small-legend"></div>
-                            <div class="btn-wrapper-common">
-                                <span>Find Out More</span>
-                            </div>
-                        </div>
-                    </a>
 
-                    <a class="item-box" href="destinations/Matara.php">
+                    <a class="item-box" href="destinations/Kalutara.php">
                         <div class="img-wrapper">
-                            <img src="./destinations/Images/mataramain.avif" alt="">
+                            <img src="./destinations/Images/kalutaramain.avif" alt="">
                         </div>
                         <div class="text-item-box tour-item-box">
-                            <div class="heading-legend">Matara</div>
-                            <div class="text-small-legend"></div>
-                            <div class="btn-wrapper-common">
-                                <span>Find Out More</span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a class="item-box" href="destinations/Mihintale.php">
-                        <div class="img-wrapper">
-                            <img src="./destinations/Images/mihintalemain.avif" alt="">
-                        </div>
-                        <div class="text-item-box tour-item-box">
-                            <div class="heading-legend">Mihintale</div>
-                            <div class="text-small-legend"></div>
-                            <div class="btn-wrapper-common">
-                                <span>Find Out More</span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a class="item-box" href="destinations/Mirissa.php">
-                        <div class="img-wrapper">
-                            <img src="./destinations/Images/mirissamain.avif" alt="">
-                        </div>
-                        <div class="text-item-box tour-item-box">
-                            <div class="heading-legend">Mirissa</div>
-                            <div class="text-small-legend"></div>
-                            <div class="btn-wrapper-common">
-                                <span>Find Out More</span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a class="item-box" href="destinations/Dabulla.php">
-                        <div class="img-wrapper">
-                            <img src="./destinations/Images/dabullamain.jpg" alt="">
-                        </div>
-                        <div class="text-item-box tour-item-box">
-                            <div class="heading-legend">Dabulla</div>
-                            <div class="text-small-legend"></div>
-                            <div class="btn-wrapper-common">
-                                <span>Find Out More</span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a class="item-box" href="destinations/Negombo.php">
-                        <div class="img-wrapper">
-                            <img src="./destinations/Images/negombomain.avif" alt="">
-                        </div>
-                        <div class="text-item-box tour-item-box">
-                            <div class="heading-legend">Negombo</div>
+                            <div class="heading-legend">Kalutara</div>
                             <div class="text-small-legend"></div>
                             <div class="btn-wrapper-common">
                                 <span>Find Out More</span>
@@ -313,19 +238,6 @@
                         </div>
                         <div class="text-item-box tour-item-box">
                             <div class="heading-legend">Sigiriya</div>
-                            <div class="text-small-legend"></div>
-                            <div class="btn-wrapper-common">
-                                <span>Find Out More</span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a class="item-box" href="destinations/Sinharaja.php">
-                        <div class="img-wrapper">
-                            <img src="./destinations/Images/sinharajamain.jpeg" alt="">
-                        </div>
-                        <div class="text-item-box tour-item-box">
-                            <div class="heading-legend">Sinharaja</div>
                             <div class="text-small-legend"></div>
                             <div class="btn-wrapper-common">
                                 <span>Find Out More</span>
@@ -413,6 +325,132 @@
                         </div>
                     </a>
 
+                    <a class="item-box" href="destinations/Sinharaja.php">
+                        <div class="img-wrapper">
+                            <img src="./destinations/Images/sinharajamain.jpeg" alt="">
+                        </div>
+                        <div class="text-item-box tour-item-box">
+                            <div class="heading-legend">Sinharaja</div>
+                            <div class="text-small-legend"></div>
+                            <div class="btn-wrapper-common">
+                                <span>Find Out More</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a class="item-box" href="destinations/Hikkaduwa.php">
+                        <div class="img-wrapper">
+                            <img src="./destinations/Images/hikkaduwamainew.avif" alt="">
+                        </div>
+                        <div class="text-item-box tour-item-box">
+                            <div class="heading-legend">Hikkaduwa</div>
+                            <div class="text-small-legend"></div>
+                            <div class="btn-wrapper-common">
+                                <span>Find Out More</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a class="item-box" href="destinations/Beruwala.php">
+                        <div class="img-wrapper">
+                            <img src="./destinations/Images/beruwalamain.jpeg" alt="">
+                        </div>
+                        <div class="text-item-box tour-item-box">
+                            <div class="heading-legend">Beruwala</div>
+                            <div class="text-small-legend"></div>
+                            <div class="btn-wrapper-common">
+                                <span>Find Out More</span>
+                            </div>
+                        </div>
+                    </a>
+
+
+
+
+                    <a class="item-box" href="destinations/Matara.php">
+                        <div class="img-wrapper">
+                            <img src="./destinations/Images/mataramain.avif" alt="">
+                        </div>
+                        <div class="text-item-box tour-item-box">
+                            <div class="heading-legend">Matara</div>
+                            <div class="text-small-legend"></div>
+                            <div class="btn-wrapper-common">
+                                <span>Find Out More</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a class="item-box" href="destinations/Mihintale.php">
+                        <div class="img-wrapper">
+                            <img src="./destinations/Images/mihintalemain.avif" alt="">
+                        </div>
+                        <div class="text-item-box tour-item-box">
+                            <div class="heading-legend">Mihintale</div>
+                            <div class="text-small-legend"></div>
+                            <div class="btn-wrapper-common">
+                                <span>Find Out More</span>
+                            </div>
+                        </div>
+                    </a>
+
+
+
+                    <a class="item-box" href="destinations/Dabulla.php">
+                        <div class="img-wrapper">
+                            <img src="./destinations/Images/dabullamain.jpg" alt="">
+                        </div>
+                        <div class="text-item-box tour-item-box">
+                            <div class="heading-legend">Dabulla</div>
+                            <div class="text-small-legend"></div>
+                            <div class="btn-wrapper-common">
+                                <span>Find Out More</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a class="item-box" href="destinations/Negombo.php">
+                        <div class="img-wrapper">
+                            <img src="./destinations/Images/negombomain.avif" alt="">
+                        </div>
+                        <div class="text-item-box tour-item-box">
+                            <div class="heading-legend">Negombo</div>
+                            <div class="text-small-legend"></div>
+                            <div class="btn-wrapper-common">
+                                <span>Find Out More</span>
+                            </div>
+                        </div>
+                    </a>
+
+
+                    <a class="item-box" href="destinations/Kitulgala.php">
+                        <div class="img-wrapper">
+                            <img src="./destinations/Images/kitulgalamain.jpeg" alt="">
+                        </div>
+                        <div class="text-item-box tour-item-box">
+                            <div class="heading-legend">Kitulgala</div>
+                            <div class="text-small-legend"></div>
+                            <div class="btn-wrapper-common">
+                                <span>Find Out More</span>
+                            </div>
+                        </div>
+                    </a>
+
+
+                    <a class="item-box" href="destinations/Kalpitiya.php">
+                        <div class="img-wrapper">
+                            <img src="./destinations/Images/kalpitiyamain.jpg" alt="">
+                        </div>
+                        <div class="text-item-box tour-item-box">
+                            <div class="heading-legend">Kalpitiya</div>
+                            <div class="text-small-legend"></div>
+                            <div class="btn-wrapper-common">
+                                <span>Find Out More</span>
+                            </div>
+                        </div>
+                    </a>
+
+
+
                 </a>
                 <a class="item-box" href="destinations/Arugam-Bay.php">
                     <div class="img-wrapper">
@@ -427,18 +465,6 @@
                     </div>
                 </a>
 
-                <a class="item-box" href="destinations/Hikkaduwa.php">
-                    <div class="img-wrapper">
-                        <img src="./destinations/Images/hikkaduwamainew.avif" alt="">
-                    </div>
-                    <div class="text-item-box tour-item-box">
-                        <div class="heading-legend">Hikkaduwa</div>
-                        <div class="text-small-legend"></div>
-                        <div class="btn-wrapper-common">
-                            <span>Find Out More</span>
-                        </div>
-                    </div>
-                </a>
 
                 <a class="item-box" href="destinations/Induruwa.php">
                     <div class="img-wrapper">
@@ -479,18 +505,7 @@
                     </div>
                 </a>
 
-                <a class="item-box" href="destinations/Beruwala.php">
-                    <div class="img-wrapper">
-                        <img src="./destinations/Images/beruwalamain.jpeg" alt="">
-                    </div>
-                    <div class="text-item-box tour-item-box">
-                        <div class="heading-legend">Beruwala</div>
-                        <div class="text-small-legend"></div>
-                        <div class="btn-wrapper-common">
-                            <span>Find Out More</span>
-                        </div>
-                    </div>
-                </a>
+
 
                 <a class="item-box" href="destinations/Batticaloa.php">
                     <div class="img-wrapper">
