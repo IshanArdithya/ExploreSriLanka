@@ -1,3 +1,69 @@
+<?php require_once 'config.php';
+
+if (isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM hotels WHERE email='$email' AND password='$password'";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) == 1) {
+        $_SESSION['email'] = $email;
+        header('Location: hotel_dashboard.php');
+        exit();
+    } else {
+        $_SESSION['login_error'] = "Invalid email or password";
+        header('Location: hotellogin.php');
+        exit();
+    }
+}
+
+// registration handling
+if (isset($_POST['register'])) {
+    $email = $_POST['email'];
+    $name = $_POST['hotelName'];
+    $password = $_POST['password'];
+    $confirmPassword = $_POST['confirmPassword'];
+    $address = isset($_POST['hotelAddress']) ? $_POST['hotelAddress'] : '';
+    $contact_number = isset($_POST['contactNumber']) ? $_POST['contactNumber'] : '';
+    $city = isset($_POST['city']) ? $_POST['city'] : '';
+    $distance = isset($_POST['distanceFromCity']) ? $_POST['distanceFromCity'] : '';
+
+    //passwod cheking
+    if ($password !== $confirmPassword) {
+        $_SESSION['register_error'] = "Passwords do not match";
+        header('Location: hotellogin.php');
+        exit();
+    }
+
+    //email existing cheaking
+    $sql_check_email = "SELECT * FROM hotels WHERE email='$email'";
+    $result_check_email = mysqli_query($conn, $sql_check_email);
+    if (mysqli_num_rows($result_check_email) > 0) {
+        $_SESSION['register_error'] = "Email is already registered";
+        header('Location: hotellogin.php');
+        exit();
+    }
+
+   
+    $hotel_id = uniqid();
+
+    // insert new hotel login details into the database
+    $sql_insert = "INSERT INTO hotels (hotel_id, email, name, password, address, contact_number, city, distance) 
+                    VALUES ('$hotel_id', '$email', '$name', '$password', '$address', '$contact_number', '$city', '$distance')";
+    if (mysqli_query($conn, $sql_insert)) {
+        $_SESSION['register_success'] = "Registration successful. You can now login.";
+        header('Location: hotellogin.php');
+        exit();
+    } else {
+        $_SESSION['register_error'] = "Registration failed. Please try again later.";
+        header('Location: hotellogin.php');
+        exit();
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,18 +90,22 @@
         <div class="forms-container">
             <div class="signin-signup">
                 <div class="login-form-box">
-                    <form action="" class="login" id="loginForm">
-                        <!-- <a href="index.php"><span class="close-icon" >&times;</span></a> -->
+                    <form action="" class="login" id="loginForm" method="POST">
+
                         <h3 class="title">Hotel Login</h3>
+                        <?php if(isset($_SESSION['login_error'])): ?>
+                            <div class="error-message"><?php echo $_SESSION['login_error']; ?></div>
+                            <?php unset($_SESSION['login_error']); ?>
+                        <?php endif; ?>
                         <div class="text-input">
                             <i class="fas fa-user"></i>
-                            <input type="text" placeholder="Username">
+                            <input type="text" name="email" placeholder="Email Address" required>
                         </div>
                         <div class="text-input">
                             <i class="fas fa-lock"></i>
-                            <input type="password" placeholder="Password">
+                            <input type="password" name="password" placeholder="Password" required>
                         </div>
-                        <button class="login-btn">LOGIN</button>
+                        <button class="login-btn" type="submit" name="login">LOGIN</button>
                         <div>
                             <a href="#" class="forgot">Forgot Password?</a>
                         </div>
@@ -45,47 +115,56 @@
                         </div>
                     </form>
                 </div>
-                <a href="index.php"><span class="close-icon" >&times;</span></a>
+                <span class="close-icon" onclick="index.php">&times;</span>
 
                 <div class="register-form-box">
-                    <form action="" class="register" id="registerForm" style="display:none;">
+                    <form action="" class="register" id="registerForm" style="display:none;" method="POST">
                         <div>
                             <h3 class="title">Create Your Account</h3>
                         </div>
 
+                        <?php if(isset($_SESSION['register_error'])): ?>
+                            <div class="error-message"><?php echo $_SESSION['register_error']; ?></div>
+                            <?php unset($_SESSION['register_error']); ?>
+                        <?php endif; ?>
+                        <?php if(isset($_SESSION['register_success'])): ?>
+                            <div class="success-message"><?php echo $_SESSION['register_success']; ?></div>
+                            <?php unset($_SESSION['register_success']); ?>
+                        <?php endif; ?>
+
                         <div class="text-input ">
                             <i class="fas fa-envelope"></i>
-                            <input type="email" placeholder="Email">
+                            <input type="email" name="email" placeholder="Email" required>
                         </div>
                         <div class="text-input ">
                             <i class="fas fa-building"></i>
-                            <input type="text" placeholder="Hotel Name">
+                            <input type="text" name="hotelName" placeholder="Hotel Name" required>
                         </div>
 
                         <div class="text-input ">
                             <i class="fas fa-lock"></i>
-                            <input type="password" placeholder="Password">
+                            <input type="password" name="password" placeholder="Password" required>
                         </div>
                         <div class="text-input ">
                             <i class="fas fa-lock"></i>
-                            <input type="password" placeholder="Confirm Password">
+                            <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
                         </div>
 
                         <div class="text-input hidden">
                             <i class="fas fa-location-dot"></i>
-                            <input type="text" placeholder="Hotel Address">
+                            <input type="text" name="hotelAddress" placeholder="Hotel Address">
                         </div>
                         <div class="text-input hidden">
                             <i class="fas fa-phone"></i>
-                            <input type="tel" placeholder="Contact Number">
+                            <input type="tel" name="contactNumber" placeholder="Contact Number">
                         </div>
                         <div class="text-input hidden">
                             <i class="fas fa-globe"></i>
-                            <input type="text" placeholder="City">
+                            <input type="text" name="city" placeholder="City">
                         </div>
                         <div class="text-input hidden">
                             <i class="ri-pin-distance-fill"></i>
-                            <input type="text" placeholder="Distance From City">
+                            <input type="text" name="distanceFromCity" placeholder="Distance From City">
                         </div>
 
                         <button type="button" class="btn next-btn" onclick="showAdditionalFields()">Next</button>
@@ -110,7 +189,6 @@
 
             if (loginForm.style.display === "none") {
                 loginForm.style.display = "block";
-                // loginForm.style.position = "relative";
                 registerForm.style.display = "none";
             } else {
                 loginForm.style.display = "none";

@@ -1,3 +1,73 @@
+<?php
+require_once 'config.php';
+
+if (isset($_POST['login'])) {
+    // fetch form data
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM tourguide WHERE email='$email' AND password='$password'";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) == 1) {
+        $_SESSION['email'] = $email;
+        header('Location: tour_guide_dashboard.php');
+        exit();
+    } else {
+        $_SESSION['login_error'] = "Invalid email or password";
+        header('Location: tourguidelogin.php');
+        exit();
+    }
+}
+
+// registration handling
+if (isset($_POST['register'])) {
+    // fetch form data
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $confirmPassword = $_POST['confirmPassword'];
+    $first_name = isset($_POST['firstName']) ? $_POST['firstName'] : '';
+    $last_name = isset($_POST['lastName']) ? $_POST['lastName'] : '';
+    $age = isset($_POST['age']) ? $_POST['age'] : '';
+    $contact_number = isset($_POST['contactNumber']) ? $_POST['contactNumber'] : '';
+    $city = isset($_POST['city']) ? $_POST['city'] : '';
+    $experience = isset($_POST['experience']) ? $_POST['experience'] : '';
+    $specialty = isset($_POST['specialty']) ? $_POST['specialty'] : '';
+
+
+    $full_name = $first_name . " " . $last_name;
+
+    if ($password !== $confirmPassword) {
+        $_SESSION['register_error'] = "Passwords do not match";
+        header('Location: tourguidelogin.php');
+        exit();
+    }
+
+    //email already exist
+    $sql_check_email = "SELECT * FROM tourguide WHERE email='$email'";
+    $result_check_email = mysqli_query($conn, $sql_check_email);
+
+    if (mysqli_num_rows($result_check_email) > 0) {
+        $_SESSION['register_error'] = "Email already registered";
+        header('Location: tourguidelogin.php');
+        exit();
+    }
+
+    $sql_insert = "INSERT INTO tourguide (email, password, first_name, last_name, full_name, age, contact_number, city, experience, specialty) 
+                    VALUES ('$email','$password', '$first_name', '$last_name', '$full_name', '$age', '$contact_number', '$city', '$experience', '$specialty')";
+
+    if (mysqli_query($conn, $sql_insert)) {
+        $_SESSION['register_success'] = "Registration successful. You can now login.";
+        header('Location: tourguidelogin.php');
+        exit();
+    } else {
+        $_SESSION['register_error'] = "Registration failed. Please try again later.";
+        header('Location: tourguidelogin.php');
+        exit();
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,18 +94,21 @@
         <div class="forms-container">
             <div class="signin-signup">
                 <div class="login-form-box">
-                    <form action="" class="login" id="loginForm">
-                        <!-- <a href="index.php"><span class="close-icon" >&times;</span></a> -->
+                    <form action="" class="login" id="loginForm" method="POST">
                         <h3 class="title">Tour Guide Login</h3>
+                        <?php if(isset($_SESSION['login_error'])): ?>
+                            <div class="error-message"><?php echo $_SESSION['login_error']; ?></div>
+                            <?php unset($_SESSION['login_error']); ?>
+                        <?php endif; ?>
                         <div class="text-input">
-                            <i class="fas fa-user"></i>
-                            <input type="text" placeholder="Username">
+                            <i class="fas fa-envelope"></i>
+                            <input type="text" name="email" placeholder="Email" required>
                         </div>
                         <div class="text-input">
                             <i class="fas fa-lock"></i>
-                            <input type="password" placeholder="Password">
+                            <input type="password" name="password" placeholder="Password" required>
                         </div>
-                        <button class="login-btn btn">LOGIN</button>
+                        <button class="login-btn" type="submit" name="login">LOGIN</button>
                         <div>
                             <a href="#" class="forgot">Forgot Password?</a>
                         </div>
@@ -48,46 +121,73 @@
                 <a href="index.php"><span class="close-icon" >&times;</span></a>
 
                 <div class="register-form-box">
-                    <form action="" class="register" id="registerForm" style="display:none;">
+                    <form action="" class="register" id="registerForm" style="display:none;" method="POST">
                         <div>
                             <h3 class="title">Create Your Account</h3>
                         </div>
 
+                        <?php if(isset($_SESSION['register_error'])): ?>
+                            <div class="error-message"><?php echo $_SESSION['register_error']; ?></div>
+                            <?php unset($_SESSION['register_error']); ?>
+                        <?php endif; ?>
+                        <?php if(isset($_SESSION['register_success'])): ?>
+                            <div class="success-message"><?php echo $_SESSION['register_success']; ?></div>
+                            <?php unset($_SESSION['register_success']); ?>
+                        <?php endif; ?>
+
                         <div class="text-input ">
                             <i class="fas fa-envelope"></i>
-                            <input type="email" placeholder="Email">
+                            <input type="email" name="email" placeholder="Email" required>
                         </div>
                         <div class="text-input ">
-                            <i class="fas fa-building"></i>
-                            <input type="text" placeholder="Hotel Name">
+                            <i class="fas fa-user"></i>
+                            <input type="text" name="username" placeholder="Username" required>
                         </div>
 
                         <div class="text-input ">
                             <i class="fas fa-lock"></i>
-                            <input type="password" placeholder="Password">
+                            <input type="password" name="password" placeholder="Password" required>
                         </div>
                         <div class="text-input ">
                             <i class="fas fa-lock"></i>
-                            <input type="password" placeholder="Confirm Password">
+                            <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
                         </div>
 
                         <div class="text-input hidden">
-                            <i class="fas fa-location-dot"></i>
-                            <input type="text" placeholder="Hotel Address">
+                            <i class="fas fa-user"></i>
+                            <input type="text" name="firstName" placeholder="First Name">
                         </div>
+
+                        <div class="text-input hidden">
+                            <i class="fas fa-user"></i>
+                            <input type="text" name="lastName" placeholder="Last Name">
+                        </div>
+
+                        <div class="text-input hidden">
+                            <i class="fas fa-user"></i>
+                            <input type="text" name="age" placeholder="Age">
+                        </div>
+
                         <div class="text-input hidden">
                             <i class="fas fa-phone"></i>
-                            <input type="tel" placeholder="Contact Number">
-                        </div>
-                        <div class="text-input hidden">
-                            <i class="fas fa-globe"></i>
-                            <input type="text" placeholder="City">
-                        </div>
-                        <div class="text-input hidden">
-                            <i class="ri-pin-distance-fill"></i>
-                            <input type="text" placeholder="Distance From City">
+                            <input type="tel" name="contactNumber" placeholder="Contact Number">
                         </div>
 
+                        <div class="text-input hidden">
+                            <i class="fas fa-city"></i>
+                            <input type="text" name="city" placeholder="City">
+                        </div>
+
+                        <div class="text-input hidden">
+                            <i class="fas fa-bolt"></i>
+                            <input type="number" name="experience" placeholder="Experience" min="0">
+                        </div>
+
+                        <div class="text-input hidden">
+                            <i class="fa-solid fa-star"></i>
+                            <input type="text" name="specialty" placeholder="Specialty">
+                        </div>
+                        
                         <button type="button" class="btn next-btn" onclick="showAdditionalFields()">Next</button>
                         <div class="button-container hidden">
                             <button type="button" class="btn back-btn-form" onclick="hideAdditionalFields()">Back</button>
@@ -110,7 +210,6 @@
 
             if (loginForm.style.display === "none") {
                 loginForm.style.display = "block";
-                // loginForm.style.position = "relative";
                 registerForm.style.display = "none";
             } else {
                 loginForm.style.display = "none";
