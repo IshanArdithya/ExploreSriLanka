@@ -19,6 +19,7 @@
     ?>
 
     <div class="top-image">
+        <img src="./Images/slides/slide-22.jpg" alt="">
         <h1 class="headings sub-heading"></h1>
     </div>
 
