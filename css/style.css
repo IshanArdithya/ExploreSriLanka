@@ -1827,13 +1827,12 @@ Align select elements .package-book-swal select {
 .shopping-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; /* Adjust as needed */
+  justify-content: space-between;
 }
 
 .shopping-item {
-  width: calc(25% - 20px); /* Adjust as needed */
-  margin-bottom: 20px; /* Adjust spacing between items */
-  /* Add any additional styling for each product item */
+  width: calc(25% - 20px);
+  margin-bottom: 20px;
 }
 
 .a-ratio img {
