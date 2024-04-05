@@ -1,3 +1,7 @@
+<?php
+$cityCondition = "'Galle'";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +16,7 @@
   <link rel="stylesheet" href="../node_modules/owl.carousel/dist/assets/owl.carousel.min.css" />
 
 
-  <title>Desinations - Explore Srilanka</title>
+  <title>Galle | Explore Srilanka</title>
 </head>
 
 <body>
@@ -55,7 +59,7 @@
           <ul>
             <li><a href="#tab1" class="active">Overview</a></li>
             <li><a href="#tab3">Related Hotels</a></li>
-            
+
           </ul>
         </nav>
 
@@ -72,7 +76,7 @@
               <p class="content-paragraph">Galle's history is deeply rooted in its strategic location as a key trading port along ancient maritime routes. Originally inhabited by indigenous communities, the city flourished under successive colonial powers, including the Portuguese, Dutch, and British. Today, Galle is renowned for its well-preserved colonial architecture, particularly within the UNESCO-listed Galle Fort. Visitors can wander through its narrow streets, exploring centuries-old buildings, charming boutiques, and quaint cafes nestled amidst the fort's imposing ramparts. Beyond its historic fortifications, Galle boasts a diverse array of attractions, from vibrant markets and cultural landmarks to pristine beaches and lush greenery. The city's bustling markets offer a glimpse into daily life, with vendors selling fresh produce, handmade crafts, and aromatic spices. Meanwhile, cultural enthusiasts can explore the National Maritime Museum, which showcases Sri Lanka's maritime heritage through a fascinating collection of artifacts and exhibits.</p>
 
               <p class="content-paragraph"> Nature lovers will find solace in Galle's natural beauty, with tranquil beaches like Unawatuna and Jungle Beach providing the perfect backdrop for sunbathing, swimming, and water sports. For those seeking adventure, treks through the nearby rainforests offer a chance to encounter exotic wildlife and breathtaking scenery. Overall, Galle is a destination that captivates the senses and offers a glimpse into Sri Lanka's rich and diverse heritage.
-</p>
+              </p>
 
               <h3 class="content-destination-tittle">ATTRACTIONS IN GALLE</h3>
               <p class="content-paragraph">Explore the UNESCO-listed Galle Fort, a testament to the city's colonial past. Wander through its historic streets, marvel at Dutch colonial buildings, and soak in panoramic views from the fort's ramparts. Dive into the fascinating history of the fort as you discover hidden gems within its walls, including ancient churches, mosques, and museums.</p>
@@ -99,40 +103,41 @@
             <div class="places-content">
               <div class="place-details-wrap">
 
-              <?php
+                <?php
                 require_once '../config.php';
                 $conn = mysqli_connect($hostname, $username, $password, $database);
 
                 if (!$conn) {
-                    die("Connection failed: " . mysqli_connect_error());
+                  die("Connection failed: " . mysqli_connect_error());
                 }
 
-                $sql = "SELECT full_name, short_desc, hotel_picture FROM hotels WHERE city = 'Kandy'";
+                $sql = "SELECT name, short_desc, hotel_picture, distance, district, hotel_url FROM hotels WHERE district IN ($cityCondition) AND active = 1";
                 $result = mysqli_query($conn, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        
-                        echo '<div class="destination-content-container">';
-                        echo '<div class="destination-image-container">';
-                        $image_location = $row['hotel_picture'];
-                        echo '<img src="../' . $image_location . '" alt="">';
-                        echo '</div>';
-                        echo '<div class="destination-hotel-container">';
-                        echo '<h3 class="content-title">' . $row['full_name'] . '</h3>';
-                        echo '<p class="content-paragraph">' . $row['short_desc'] . '</p>';
-                        echo '<p class="content-paragraph">Read more</p>';
-                        echo '</div>';
-                        echo '</div>';
-                    }
+                  while ($row = mysqli_fetch_assoc($result)) {
+
+                    echo '<div class="destination-content-container">';
+                    echo '<div class="destination-image-container">';
+                    $image_location = $row['hotel_picture'];
+                    echo '<img src="../' . $image_location . '" alt="">';
+                    echo '</div>';
+                    echo '<div class="destination-hotel-container">';
+                    echo '<h3 class="content-title">' . $row['name'] . '</h3>';
+                    echo '<p class="content-paragraph">' . $row['short_desc'] . '</p>';
+                    echo '<p class="content-paragraph">' . $row['distance'] . ' km away from ' . $row['district'] . '.</p>';
+                    echo '<p class="content-paragraph"><a href="../hotels/' . $row['hotel_url'] . '">Read more</a></p>';
+                    echo '</div>';
+                    echo '</div>';
+                  }
                 } else {
-                    echo "No hotels found in Kandy.";
+                  echo "No hotels found in $cityCondition.";
                 }
 
                 mysqli_close($conn);
-              ?>
+                ?>
 
-                
+
               </div>
             </div>
           </div>
@@ -182,7 +187,6 @@
 
   <script src="../node_modules/jquery/dist/jquery.js"></script>
   <script src="../node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
-  <script src="../js/script.js"></script>
 
   <script>
     $(document).ready(function() {
@@ -200,6 +204,10 @@
       autoplayHoverPause: true,
     });
   </script>
+
+  <button id="toTop" class="fa fa-arrow-up"></button>
+  <script src="../js/script.js"></script>
+
 </body>
 
 </html>

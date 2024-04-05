@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <title>About - Explore Srilanka</title>
+    <title>Destinations - Explore Srilanka</title>
 </head>
 
 <body>
@@ -27,7 +27,7 @@
     <div class="container">
         <div class="row">
             <ol class="breadcrumb">
-                <li><a href="../index.php" title="Explore Sri Lanka" class="bolds">Home</a></li>
+                <li><a href="index.php" title="Explore Sri Lanka" class="bolds">Home</a></li>
                 <li class="active">Destinations</li>
             </ol>
         </div>

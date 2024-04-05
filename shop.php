@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css">
-  <title>Shop</title>
+  <title>Shop - Explore Srilanka</title>
 
 </head>
 
@@ -29,7 +29,7 @@
   <div class="container">
     <div class="row">
       <ol class="breadcrumb">
-        <li><a href="../index.php" title="Explore Sri Lanka" class="bolds">Home</a></li>
+        <li><a href="index.php" title="Explore Sri Lanka" class="bolds">Home</a></li>
         <li class="active">Shop</li>
       </ol>
     </div>
@@ -111,7 +111,7 @@
         </div>
       </div>
 
-      <h1 class="headings mini-heading">Latest Products</h1>
+      <h1 class="headings mini-heading">All Products</h1>
 
       <div class="shopping-row">
         <?php
@@ -149,61 +149,6 @@
         ?>
       </div>
 
-      <!--Reviews-->
-      <div class="shopping-row">
-
-
-        <div class="shopping-col-3">
-          <i class="fa fa-quote-left"></i>
-
-          <p>I purchased the Sri Lankan Handmade Elephant Figurine and it's absolutely stunning! It serves as a beautiful reminder of my trip to Sri Lanka.</p>
-
-          <div class="shopping-rating">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star-o"></i>
-          </div>
-          <img src="./Images/user5.jpeg" alt="">
-
-          <h3>Emily Watson</h3>
-        </div>
-
-        <div class="shopping-col-3">
-          <i class="fa fa-quote-left"></i>
-
-          <p>The Sri Lankan Spices Collection is a must-have for anyone who loves cooking! The flavors are rich & authentic, adding a delicious twist to my dishes.</p>
-
-          <div class="shopping-rating">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star-o"></i>
-          </div>
-          <img src="./Images/user4.jpg" alt="">
-
-          <h3>Sarah James</h3>
-        </div>
-
-        <div class="shopping-col-3">
-          <i class="fa fa-quote-left"></i>
-
-          <p>I'm a tea enthusiast, and the Ceylon Tea Gift Set exceeded my expectations! The variety of teas and their quality are exceptional. </p>
-          <div class="shopping-rating">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star-o"></i>
-          </div>
-          <img src="./Images/user6.png" alt="">
-
-          <h3>Matt Wilson</h3>
-        </div>
-
-      </div>
     </div>
 
   </div>
@@ -212,7 +157,7 @@
   include 'components/footer.php';
   ?>
 
-<button id="toTop" class="fa fa-arrow-up"></button>
+  <button id="toTop" class="fa fa-arrow-up"></button>
 
   <script src="js/script.js"></script>
 

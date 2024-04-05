@@ -1,3 +1,7 @@
+<?php
+$cityCondition = "'Colombo'";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +16,7 @@
   <link rel="stylesheet" href="../node_modules/owl.carousel/dist/assets/owl.carousel.min.css" />
 
 
-  <title>Desinations - Explore Srilanka</title>
+  <title>Colombo | Explore Srilanka</title>
 </head>
 
 <body>
@@ -38,7 +42,7 @@
     <div class="container">
       <h1 class="headings mini-heading">Colombo</h1>
       <p class="lead mini-lead">Sri Lanka’s Commercial Capital. Home to nearly six million people, the commercial capital of Sri Lanka, Colombo is an intriguing metropolis. Considered to be the cultural hub of the country, Colombo encapsulates its visitors with its history and evolving cityscape.
-</p>
+      </p>
     </div>
 
     <!-- Content -->
@@ -47,7 +51,7 @@
       <div class="owl-caousel-item"> <img src="./Images/colombo.jpg" alt=""> </div>
       <div class="owl-caousel-item"> <img src="./Images/Colombooo.jpg" alt=""> </div>
       <div class="owl-caousel-item"> <img src="./Images/colomboo.jpg" alt=""> </div>
-    
+
 
     </div>
 
@@ -57,7 +61,7 @@
           <ul>
             <li><a href="#tab1" class="active">Overview</a></li>
             <li><a href="#tab3">Related Hotels</a></li>
-            
+
           </ul>
         </nav>
 
@@ -103,40 +107,41 @@
             <div class="places-content">
               <div class="place-details-wrap">
 
-              <?php
+                <?php
                 require_once '../config.php';
                 $conn = mysqli_connect($hostname, $username, $password, $database);
 
                 if (!$conn) {
-                    die("Connection failed: " . mysqli_connect_error());
+                  die("Connection failed: " . mysqli_connect_error());
                 }
 
-                $sql = "SELECT full_name, short_desc, hotel_picture FROM hotels WHERE city = 'Kandy'";
+                $sql = "SELECT name, short_desc, hotel_picture, distance, district, hotel_url FROM hotels WHERE district IN ($cityCondition) AND active = 1";
                 $result = mysqli_query($conn, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        
-                        echo '<div class="destination-content-container">';
-                        echo '<div class="destination-image-container">';
-                        $image_location = $row['hotel_picture'];
-                        echo '<img src="../' . $image_location . '" alt="">';
-                        echo '</div>';
-                        echo '<div class="destination-hotel-container">';
-                        echo '<h3 class="content-title">' . $row['full_name'] . '</h3>';
-                        echo '<p class="content-paragraph">' . $row['short_desc'] . '</p>';
-                        echo '<p class="content-paragraph">Read more</p>';
-                        echo '</div>';
-                        echo '</div>';
-                    }
+                  while ($row = mysqli_fetch_assoc($result)) {
+
+                    echo '<div class="destination-content-container">';
+                    echo '<div class="destination-image-container">';
+                    $image_location = $row['hotel_picture'];
+                    echo '<img src="../' . $image_location . '" alt="">';
+                    echo '</div>';
+                    echo '<div class="destination-hotel-container">';
+                    echo '<h3 class="content-title">' . $row['name'] . '</h3>';
+                    echo '<p class="content-paragraph">' . $row['short_desc'] . '</p>';
+                    echo '<p class="content-paragraph">' . $row['distance'] . ' km away from ' . $row['district'] . '.</p>';
+                    echo '<p class="content-paragraph"><a href="../hotels/' . $row['hotel_url'] . '">Read more</a></p>';
+                    echo '</div>';
+                    echo '</div>';
+                  }
                 } else {
-                    echo "No hotels found in Kandy.";
+                  echo "No hotels found in $cityCondition.";
                 }
 
                 mysqli_close($conn);
-              ?>
+                ?>
 
-                
+
               </div>
             </div>
           </div>
@@ -186,7 +191,6 @@
 
   <script src="../node_modules/jquery/dist/jquery.js"></script>
   <script src="../node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
-  <script src="../js/script.js"></script>
 
   <script>
     $(document).ready(function() {
@@ -204,6 +208,10 @@
       autoplayHoverPause: true,
     });
   </script>
+
+  <button id="toTop" class="fa fa-arrow-up"></button>
+  <script src="../js/script.js"></script>
+
 </body>
 
 </html>
