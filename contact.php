@@ -20,6 +20,7 @@
     ?>
 
     <div class="top-image">
+        <img src="./Images/slides/slide-27.jpeg" alt="">
         <h1 class="headings sub-heading"></h1>
     </div>
 
@@ -32,7 +33,7 @@
             </ol>
         </div>
 
-        <div class="container">
+        <!-- <div class="container"> -->
             <h1 class="headings mini-heading">Contact</h1>
             <p class="lead mini-lead" style="text-align: center;">For any inquiries, please call or email us. Alternatively, you can fill in the following contact form.</p>
 
@@ -71,7 +72,7 @@
                     </div>
                 </div>
             </section>
-        </div>
+        <!-- </div> -->
     </div>
 
     <!-- Footer -->
