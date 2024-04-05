@@ -44,23 +44,19 @@
                     <div class="form-group">
                         <label for="pkg_category">Category</label>
                         <select aria-label="Title" class="form-control" name="pkg_category" id="pkg_category">
-                            <option value="">Please Select</option>
-                            <option value="Adventure-Expedition">Adventure-Expedition</option>
-                            <option value="Ancient-Cities-Exploration">Ancient-Cities-Exploration</option>
-                            <option value="Beach-Bliss-Retreat">Beach-Bliss-Retreat</option>
-                            <option value="Coastal-Dive-Expedition">Coastal-Dive-Expedition</option>
-                            <option value="Nothern-Discovery">Nothern-Discovery</option>
-                            <option value="Rainforest-Adventure-Trek">Rainforest-Adventure-Trek</option>
-                            <option value="Scenic-Hillside-Retreat">Scenic-Hillside-Retreat</option>
-                            <option value="Coastal-Escape-Retreat">Coastal-Escape-Retreat</option>
-                            <option value="Wildlife-Safari-Adventure">Wildlife-Safari-Adventure</option>
+                            <option value="">All</option>
+                            <option value="Adventure-Expeditions">Adventure Expeditions</option>
+                            <option value="Historical and Cultural Exploration">Historical and Cultural Exploration</option>
+                            <option value="Beach and Coastal Retreats">Beach and Coastal Retreats</option>
+                            <option value="Nature Retreats and Scenic Tours">Nature Retreats and Scenic Tours</option>
+                            <option value="Northern Exploration">Northern Exploration</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="pkg_destination">Destinations</label>
                         <select aria-label="Destination" class="form-control" name="pkg_destination" id="pkg_destination">
-                            <option value="">Please Select</option>
+                            <option value="">All</option>
                             <option value="Anuradhapura">Anuradhapura</option>
                             <option value="Ella">Ella</option>
                             <option value="Jaffna">Jaffna</option>
@@ -74,14 +70,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="pkg_nights">Number of Nights</label>
-                        <select aria-label="Number of Nights" class="form-control" name="pkg_nights" id="pkg_nights">
-                            <option value="">Please Select</option>
-                            <option value="2">2</option>
-                            <option value="7">7</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
+                        <label for="pkg_days">Number of Days</label>
+                        <select aria-label="Number of Nights" class="form-control" name="pkg_days" id="pkg_days">
+                            <option value="">All</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
                         </select>
                     </div>
 
@@ -101,21 +95,21 @@
                     </div>
                     <div class="text-item-box ">
                         <div class="heading-legend">Adventure Expedition</div>
-                        <div class="text-small-legend">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus, perspiciatis?</div>
+                        <!-- <div class="text-small-legend">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus, perspiciatis?</div> -->
                         <div class="btn-wrapper-common">
                             <span>Find Out More</span>
                             <!-- <button>Find Out More</button> -->
                         </div>
                     </div>
                     <div class="hidden-content-package">
-                        <span><i class="fa fa-moon"></i> 9 Nights</span><br>
-                        <span><i class="fa fa-clock"></i> 10 Days</span><br>
-                        <span><i class="fa fa-user"></i> 12+</span><br>
+                        <span><i class="fa fa-moon"></i> 2 Nights</span><br>
+                        <span><i class="fa fa-clock"></i> 3 days </span><br>
+                        <span><i class="fa fa-user"></i> 4 Persons</span><br>
                     </div>
                 </a>
                 <a class="item-box" href="tours/Ancient-Cities-Exploration.php">
                     <div class="img-wrapper">
-                        <img src="./tours/Images/ancienr01.webp" alt="Nature in Hiriwaduna Village">
+                        <img src="./tours/Images/ancienr01.webp" alt="">
                     </div>
                     <div class="text-item-box tour-item-box">
                         <div class="heading-legend">Ancient Cities Exploration</div>
@@ -124,11 +118,16 @@
                             <span>Find Out More</span>
                         </div>
                     </div>
+                    <div class="hidden-content-package">
+                        <span><i class="fa fa-moon"></i> 2 Nights</span><br>
+                        <span><i class="fa fa-clock"></i> 3 Days</span><br>
+                        <span><i class="fa fa-user"></i> 6 Persons</span><br>
+                    </div>
                 </a>
 
                 <a class="item-box" href="tours/Beach-Bliss-Retreat.php">
                     <div class="img-wrapper">
-                        <img src="./tours/Images/beach01.jpeg" alt="Nature in Hiriwaduna Village">
+                        <img src="./tours/Images/beach01.jpeg" alt="">
                     </div>
                     <div class="text-item-box tour-item-box">
                         <div class="heading-legend">Beach Bliss Retreat</div>
@@ -137,11 +136,16 @@
                             <span>Find Out More</span>
                         </div>
                     </div>
+                    <div class="hidden-content-package">
+                        <span><i class="fa fa-moon"></i> 2 Nights</span><br>
+                        <span><i class="fa fa-clock"></i> 3 Days</span><br>
+                        <span><i class="fa fa-user"></i> 6 Persons</span><br>
+                    </div>
                 </a>
 
                 <a class="item-box" href="tours/Coastal-Dive-Expedition.php">
                     <div class="img-wrapper">
-                        <img src="./tours/Images/coastal01.jpeg" alt="Nature in Hiriwaduna Village">
+                        <img src="./tours/Images/coastal01.jpeg" alt="">
                     </div>
                     <div class="text-item-box tour-item-box">
                         <div class="heading-legend">Coastal Dive Expedition</div>
@@ -150,24 +154,34 @@
                             <span>Find Out More</span>
                         </div>
                     </div>
+                    <div class="hidden-content-package">
+                        <span><i class="fa fa-moon"></i> 2 Nights</span><br>
+                        <span><i class="fa fa-clock"></i> 3 Days</span><br>
+                        <span><i class="fa fa-user"></i> 6 Persons</span><br>
+                    </div>
                 </a>
 
                 <a class="item-box" href="tours/Northern-Discovery.php">
                     <div class="img-wrapper">
-                        <img src="./tours/Images/north01.avif" alt="Nature in Hiriwaduna Village">
+                        <img src="./tours/Images/north01.avif" alt="">
                     </div>
                     <div class="text-item-box tour-item-box">
-                        <div class="heading-legend">Northern Discovery </div>
+                        <div class="heading-legend">Northern Discovery</div>
                         <div class="text-small-legend"></div>
                         <div class="btn-wrapper-common">
                             <span>Find Out More</span>
                         </div>
                     </div>
+                    <div class="hidden-content-package">
+                        <span><i class="fa fa-moon"></i> 3 Nights</span><br>
+                        <span><i class="fa fa-clock"></i> 4 Days</span><br>
+                        <span><i class="fa fa-user"></i> 6 Persons</span><br>
+                    </div>
                 </a>
 
                 <a class="item-box" href="tours/Rainforest-Adventure-Trek.php">
                     <div class="img-wrapper">
-                        <img src="./tours/Images/forest01.jpeg" alt="Nature in Hiriwaduna Village">
+                        <img src="./tours/Images/forest01.jpeg" alt="">
                     </div>
                     <div class="text-item-box tour-item-box">
                         <div class="heading-legend"> Rainforest Adventure Trek</div>
@@ -176,11 +190,16 @@
                             <span>Find Out More</span>
                         </div>
                     </div>
+                    <div class="hidden-content-package">
+                        <span><i class="fa fa-moon"></i> 2 Nights</span><br>
+                        <span><i class="fa fa-clock"></i> 3 Days</span><br>
+                        <span><i class="fa fa-user"></i> 6 Persons</span><br>
+                    </div>
                 </a>
 
                 <a class="item-box" href="tours/Scenic-Hillside-Retreat.php">
                     <div class="img-wrapper">
-                        <img src="./tours/Images/hills01.avif" alt="Nature in Hiriwaduna Village">
+                        <img src="./tours/Images/hills01.avif" alt="">
                     </div>
                     <div class="text-item-box tour-item-box">
                         <div class="heading-legend">Scenic Hillside Retreat </div>
@@ -189,11 +208,16 @@
                             <span>Find Out More</span>
                         </div>
                     </div>
+                    <div class="hidden-content-package">
+                        <span><i class="fa fa-moon"></i> 4 Nights</span><br>
+                        <span><i class="fa fa-clock"></i> 5 Days</span><br>
+                        <span><i class="fa fa-user"></i> 8 Persons</span><br>
+                    </div>
                 </a>
 
                 <a class="item-box" href="tours/Wildlife-Safari-Adventure.php">
                     <div class="img-wrapper">
-                        <img src="./tours/Images/safari01.jpg" alt="Nature in Hiriwaduna Village">
+                        <img src="./tours/Images/safari01.jpg" alt="">
                     </div>
                     <div class="text-item-box tour-item-box">
                         <div class="heading-legend">Wildlife Safari Adventure </div>
@@ -202,11 +226,16 @@
                             <span>Find Out More</span>
                         </div>
                     </div>
+                    <div class="hidden-content-package">
+                        <span><i class="fa fa-moon"></i> 3 Nights</span><br>
+                        <span><i class="fa fa-clock"></i> 4 Days</span><br>
+                        <span><i class="fa fa-user"></i> 8 Persons</span><br>
+                    </div>
                 </a>
 
                 <a class="item-box" href="tours/Coastal-Escape-Retreat.php">
                     <div class="img-wrapper">
-                        <img src="./tours/Images/escape001.jpeg" alt="Nature in Hiriwaduna Village">
+                        <img src="./tours/Images/escape001.jpeg" alt="">
                     </div>
                     <div class="text-item-box tour-item-box">
                         <div class="heading-legend"> Coastal Escape Retreat</div>
@@ -215,8 +244,12 @@
                             <span>Find Out More</span>
                         </div>
                     </div>
+                    <div class="hidden-content-package">
+                        <span><i class="fa fa-moon"></i> 2 Nights</span><br>
+                        <span><i class="fa fa-clock"></i> 3 Days</span><br>
+                        <span><i class="fa fa-user"></i> 8 Persons</span><br>
+                    </div>
                 </a>
-
             </div>
         </div>
     </div>
@@ -232,6 +265,51 @@
 
     <script src="js/script.js"></script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get references to select elements and search button
+            var categorySelect = document.getElementById("pkg_category");
+            var tourItems = document.querySelectorAll(".item-box");
+            var searchButton = document.getElementById("pkg_filter_btn");
+
+            // Event listener for search button click
+            searchButton.addEventListener("click", function(event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                // Get the selected category
+                var selectedCategory = categorySelect.value;
+
+                // Hide all tour items
+                tourItems.forEach(function(item) {
+                    item.style.display = "none";
+                });
+
+                // Show tour items based on selected category
+                if (selectedCategory === "Adventure-Expeditions") {
+                    showTourItems(["Adventure-Expedition", "Rainforest-Adventure-Trek", "Wildlife-Safari-Adventure"]);
+                } else if (selectedCategory === "Historical and Cultural Exploration") {
+                    showTourItems(["Ancient-Cities-Exploration"]);
+                } else if (selectedCategory === "Beach and Coastal Retreats") {
+                    showTourItems(["Beach-Bliss-Retreat", "Coastal-Dive-Expedition", "Coastal-Escape-Retreat"]);
+                } else if (selectedCategory === "Nature Retreats and Scenic Tours") {
+                    showTourItems(["Scenic-Hillside-Retreat"]);
+                } else if (selectedCategory === "Northern Exploration") {
+                    showTourItems(["Northern-Discovery"]);
+                }
+            });
+
+            // Function to show specific tour items
+            function showTourItems(tourItemIds) {
+                tourItemIds.forEach(function(itemId) {
+                    var tourItem = document.querySelector('a[href="tours/' + itemId + '.php"]');
+                    if (tourItem) {
+                        tourItem.style.display = "block";
+                    }
+                });
+            }
+        });
+
+</script>    
 </body>
 
 </html>
