@@ -46,7 +46,6 @@
                         <h2>Enveloped in Elegance</h2>
                     </div>
                 </div>
-
             </div>
         </div>
     </main>
@@ -54,32 +53,25 @@
 
     <!-- Search Location -->
 
-    <!-- <section id="location-search">
+    <section id="location-search">
         <div class="container">
-            <div class="form-wrapper">
-                <form action="#">
-                    <input type="text" placeholder="Where to" class="form-control">
-                    <select class="form-control">
-                        <option value="Destination">Destination</option>
-                        <option value="Destination">Sigiriya</option>
-                        <option value="Destination">Down South</option>
-                        <option value="Destination">Piliyandala</option>
-                        <option value="Destination">Negombo</option>
-                    </select>
-                    <select class="form-control">
-                        <option value="Duration">Duration</option>
-                        <option value="5 Days">5 Days Tour</option>
-                        <option value="7 Days">7 Days Tour</option>
-                        <option value="12 Days">12 Days Tour</option>
-                        <option value="14 Days">14 Days Tour</option>
-                    </select>
-
-                    <button type="button" class="primary-btn">Search Now</button>
-                </form>
+            <div id="scroll-down">
+                <a href="#location-search" class="scroll-down-link">
+                    <span><i class="fa-solid fa-angles-down"></i></span>
+                </a>
             </div>
         </div>
-    </section> -->
+    </section>
 
+    <!-- <section id="get-started">
+    <div class="container">
+        <div class="get-started-wrapper">
+            <h2 class="headings">Ready to Explore Sri Lanka?</h2>
+            <p class="lead">Start planning your adventure today!</p>
+            <a href="#" class="primary-btn1">Get Started</a>
+        </div>
+    </div>
+</section> -->
     <!-- About -->
 
     <section id="about">
@@ -132,9 +124,9 @@
             <h2 class="headings">POPULAR <span>TRAVELS</span></h2>
             <div class="choose-wrapper">
                 <div class="img-left-side">
-                <a href="./tours/Adventure-Expedition.php">
+                    <a href="./tours/Adventure-Expedition.php">
 
-                    <div class="lg-img">
+                        <div class="lg-img">
                             <img src="Images/ella1.jpg" style="aspect-ratio: 16/9;" alt="">
                             <div class="img-content">
                                 <h2>Adventure-Expedition</h2>
@@ -147,87 +139,87 @@
                             <div class="price-label">
                                 <p>Rs.80,000</p>
                             </div>
-                       
-                    </div>
-                </a>
+
+                        </div>
+                    </a>
                 </div>
 
                 <div class="img-right-side">
-                <a href="./tours/Ancient-Cities-Exploration.php">
-                    <div class="lg-img">
-                
-                        <img src="Images/packagenew3.jpg" alt="">
-                        <div class="img-content">
-                            <h2>Ancient-Cities-Exploration</h2>
-                            <div class="hidden-content">
-                                <span><i class="fa fa-clock"></i>3 Days</span>
-                                <span><i class="fa fa-user"></i>6 Persons</span>
-                                <span><i class="fa fa-location-dot"></i>Anuradhapura</span>
+                    <a href="./tours/Ancient-Cities-Exploration.php">
+                        <div class="lg-img">
+
+                            <img src="Images/packagenew3.jpg" alt="">
+                            <div class="img-content">
+                                <h2>Ancient-Cities-Exploration</h2>
+                                <div class="hidden-content">
+                                    <span><i class="fa fa-clock"></i>3 Days</span>
+                                    <span><i class="fa fa-user"></i>6 Persons</span>
+                                    <span><i class="fa fa-location-dot"></i>Anuradhapura</span>
+                                </div>
                             </div>
+                            <div class="price-label">
+                                <p>Rs.60,000</p>
+                            </div>
+
                         </div>
-                        <div class="price-label">
-                            <p>Rs.60,000</p>
-                        </div>
-               
-                    </div>
                     </a>
                 </div>
             </div>
 
             <div class="row-wise-img">
-            <a href="./tours/Beach-Bliss-Retreat.php">
-                <div class="lg-img">
-               
-                    <img src="Images/packagenew1.jpg" alt="">
-                    <div class="img-content">
-                        <h2>Beach-Bliss-Retreat</h2>
-                        <div class="hidden-content">
-                            <span><i class="fa fa-clock"></i>3 Days</span>
-                            <span><i class="fa fa-user"></i>6 Persons</span>
-                            <span><i class="fa fa-location-dot"></i>Trincomalee</span>
+                <a href="./tours/Beach-Bliss-Retreat.php">
+                    <div class="lg-img">
+
+                        <img src="Images/packagenew1.jpg" alt="">
+                        <div class="img-content">
+                            <h2>Beach-Bliss-Retreat</h2>
+                            <div class="hidden-content">
+                                <span><i class="fa fa-clock"></i>3 Days</span>
+                                <span><i class="fa fa-user"></i>6 Persons</span>
+                                <span><i class="fa fa-location-dot"></i>Trincomalee</span>
+                            </div>
                         </div>
+                        <div class="price-label">
+                            <p>Rs.70,000</p>
+                        </div>
+
                     </div>
-                    <div class="price-label">
-                        <p>Rs.70,000</p>
-                    </div>
-                    
-                </div>
                 </a>
                 <a href="./tours/Wildlife-Safari-Adventure.php">
-                <div class="lg-img">
-                
-                    <img src="Images/packagenew4.jpg" alt="">
-                    <div class="img-content">
-                        <h2>Wildlife-Safari-Adventure</h2>
-                        <div class="hidden-content">
-                            <span><i class="fa fa-clock"></i>4 Days</span>
-                            <span><i class="fa fa-user"></i>8 Persons</span>
-                            <span><i class="fa fa-location-dot"></i>Yala</span>
+                    <div class="lg-img">
+
+                        <img src="Images/packagenew4.jpg" alt="">
+                        <div class="img-content">
+                            <h2>Wildlife-Safari-Adventure</h2>
+                            <div class="hidden-content">
+                                <span><i class="fa fa-clock"></i>4 Days</span>
+                                <span><i class="fa fa-user"></i>8 Persons</span>
+                                <span><i class="fa fa-location-dot"></i>Yala</span>
+                            </div>
                         </div>
+                        <div class="price-label">
+                            <p>Rs.60,000</p>
+                        </div>
+
                     </div>
-                    <div class="price-label">
-                        <p>Rs.60,000</p>
-                    </div>
-               
-                </div>
                 </a>
                 <a href="./tours/Scenic-Hillside-Retreat.php">
-                <div class="lg-img">
-               
-                    <img src="Images/home12.jpg" alt="">
-                    <div class="img-content">
-                        <h2>Scenic-Hillside-Retreat</h2>
-                        <div class="hidden-content">
-                            <span><i class="fa fa-clock"></i>5 Days</span>
-                            <span><i class="fa fa-user"></i>8 Persons</span>
-                            <span><i class="fa fa-location-dot"></i>Nuwara Eliya</span>
+                    <div class="lg-img">
+
+                        <img src="Images/home12.jpg" alt="">
+                        <div class="img-content">
+                            <h2>Scenic-Hillside-Retreat</h2>
+                            <div class="hidden-content">
+                                <span><i class="fa fa-clock"></i>5 Days</span>
+                                <span><i class="fa fa-user"></i>8 Persons</span>
+                                <span><i class="fa fa-location-dot"></i>Nuwara Eliya</span>
+                            </div>
                         </div>
+                        <div class="price-label">
+                            <p>Rs.100,000</p>
+                        </div>
+
                     </div>
-                    <div class="price-label">
-                        <p>Rs.100,000</p>
-                    </div>
-               
-                </div>
                 </a>
             </div>
         </div>
@@ -284,7 +276,7 @@
                             <p>15% Off</p>
                         </div>
                     </div>
-                    <div class="carousel swiper-slide " >
+                    <div class="carousel swiper-slide ">
                         <img src="./destinations/Images/Arugam Bay1.jpg" alt="">
                         <div class="carousel-img-overlay">
                             <div class="img-content">
@@ -432,9 +424,9 @@
                 </div>
                 <div class="slider-content-wrapper swiper3">
                     <div class="swiper-wrapper">
-                           
+
                         <div class="carousel swiper-slide">
-                    
+
                             <img src="Images/package6.jpg" alt="">
                             <div class="carousel-img-overlay">
                                 <div class="img-content">
@@ -451,7 +443,7 @@
                             </div>
 
                         </div>
-                        
+
                         <div class="carousel swiper-slide">
                             <img src="Images/adams-peak.jpg" alt="">
                             <div class="carousel-img-overlay">

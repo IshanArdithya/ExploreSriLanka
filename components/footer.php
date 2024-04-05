@@ -18,7 +18,7 @@
                 </div>
                 <div class="content">
                     <p class="lead"> Write For Us</p>
-                    <p> official@vexploresrilanka.com</p>
+                    <p> admin@exploresrilanka.com</p>
                 </div>
             </div>
             <div class="ft-content">

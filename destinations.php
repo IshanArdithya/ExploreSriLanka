@@ -43,77 +43,34 @@
         <div class="container">
             <div class="category-contain destination-search">
                 <form method="post" id="package_filter_form" class="form">
-                    <!-- <div class="form-group">
-                    <label for="pkg_category">Category</label>
-                    <select aria-label="Title" class="form-control" name="pkg_category" id="pkg_category">
-                        <option value="">Please Select</option>
-                        <option value="ayurvedic-tours">Ayurvedic tours</option>
-                        <option value="beach-holidays">Beach holidays</option>
-                        <option value="cultural-tours">Cultural tours</option>
-                        <option value="hill-country-tours">Hill country tours</option>
-                        <option value="honeymoon-tours">Honeymoon tours</option>
-                        <option value="luxury-tours">Luxury tours</option>
-                        <option value="sports-tours">Sports tours</option>
-                        <option value="wildlife-adventure-tours">Wildlife &amp; Adventure tours</option>
-                    </select>
-                </div> -->
 
                     <div class="form-group">
-                        <label for="pkg_destination">Destinations</label>
-                        <select aria-label="Destination" class="form-control" name="pkg_destination" id="pkg_destination">
-                            <option value="">Please Select</option>
+                        <label for="district">Select District</label>
+                        <select aria-label="District" class="form-control" name="district" id="district">
+                            <option value="">All</option>
                             <option value="Anuradhapura">Anuradhapura</option>
-                            <option value="Bentota">Bentota</option>
-                            <option value="Ella">Ella</option>
-                            <option value="Kalpitiya">Kalpitiya</option>
-                            <option value="Kalutara">Kalutara</option>
-                            <option value="Kandy">Kandy</option>
-                            <option value="Kitulgala">Kitulgala</option>
-                            <option value="Matara">Matara</option>
-                            <option value="Mihintale">Mihintale</option>
-                            <option value="Mirissa">Mirissa</option>
-                            <option value="Dabulla">Dabulla</option>
-                            <option value="Negombo">Negombo</option>
-                            <option value="Nuwara-Eliya">Nuwara Eliya</option>
-                            <option value="Pasikudah">Pasikudah</option>
-                            <option value="Polonnaruwa">Polonnaruwa</option>
-                            <option value="Sigiriya">Sigiriya</option>
-                            <option value="Sinharaja">Sinharaja</option>
-                            <option value="Tangalle">Tangalle</option>
-                            <option value="Trincomalee">Trincomalee</option>
+                            <option value="Badulla">Badulla</option>
                             <option value="Colombo">Colombo</option>
                             <option value="Galle">Galle</option>
-                            <option value="Unawatuna">Unawatuna</option>
-                            <option value="Weligama">Weligama</option>
-                            <option value="Arugam-Bay">Arugam Bay</option>
-                            <option value="Hikkaduwa">Hikkaduwa</option>
-                            <option value="Induruwa">Induruwa</option>
-                            <option value="Bandarawela">Bandarawela</option>
-                            <option value="Beruwala">Beruwala</option>
-                            <option value="Batticaloa">Batticaloa</option>
-                            <option value="Habarana">Habarana</option>
-                            <option value="Haputale">Haputale</option>
-                            <option value="Horton-Plains">Horton Plains</option>
+                            <option value="Hambantota">Hambantota</option>
+                            <option value="Ampara">Ampara</option>
+                            <option value="Kalutara">Kalutara</option>
+                            <option value="Kandy">Kandy</option>
+                            <option value="Kegalle">Kegalle</option>
+                            <option value="Matara">Matara</option>
+                            <option value="Matale">Matale</option>
+                            <option value="Nuwara Eliya">Nuwara Eliya</option>
+                            <option value="Polonnaruwa">Polonnaruwa</option>
+                            <option value="Puttalam">Puttalam</option>
+                            <option value="Rathnapura">Rathnapura</option>
+                            <option value="Trincomalee">Trincomalee</option>
+                            <option value="Gampaha">Gampaha</option>
                         </select>
                     </div>
-
-
-                    <!-- <div class="form-group">
-                    <label for="pkg_nights">Number of Nights</label>
-                    <select aria-label="Number of Nights" class="form-control" name="pkg_nights" id="pkg_nights">
-                        <option value="">Please Select</option>
-                        <option value="2">2</option>
-                        <option value="7">7</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                    </select>
-                </div> -->
-
-                    <div class="form-group" style="margin-top: 20px;">
+                    <!-- <div class="form-group" style="margin-top: 20px;">
                         <button type="button" id="pkg_filter_btn" name="signup" class="primary-btn-search" id>Search Now</button>
                         <button id="reserBtnn" class="primary-btn btn-new-btn" onclick="showAll()" style="display: none; margin-left: 10px;">Reset</button>
-                    </div>
+                    </div> -->
                 </form>
             </div>
         </div>
@@ -211,7 +168,7 @@
                             <img src="./destinations/Images/pasikudahmain.avif" alt="">
                         </div>
                         <div class="text-item-box tour-item-box">
-                            <div class="heading-legend">Passikudah</div>
+                            <div class="heading-legend">Pasikudah</div>
                             <div class="text-small-legend"></div>
                             <div class="btn-wrapper-common">
                                 <span>Find Out More</span>
@@ -569,10 +526,90 @@
     <?php
     include 'components/footer.php';
     ?>
-    
-<button id="toTop" class="fa fa-arrow-up"></button>
+
+    <button id="toTop" class="fa fa-arrow-up"></button>
 
     <script src="js/script.js"></script>
+    <script>
+    document.getElementById('district').addEventListener('change', function() {
+        var selectedDistrict = this.value;
+        var items = document.querySelectorAll('.item-box');
+
+        items.forEach(function(item) {
+            var destination = item.getAttribute('href').split('/')[1].split('.')[0]; // Extracting destination from href
+            var district = getDistrict(destination); // Getting district based on destination
+
+            if (selectedDistrict === '' || district === selectedDistrict) {
+                item.style.display = 'block'; // Show item if district matches selected or no district selected
+            } else {
+                item.style.display = 'none'; // Hide item if district does not match selected
+            }
+        });
+    });
+
+    // Function to map destinations to their districts
+    function getDistrict(destination) {
+        switch (destination) {
+            case 'Pasikudah':
+            case 'Batticaloa':
+                return 'Batticaloa';
+            case 'Anuradhapura':
+                return 'Anuradhapura';
+            case 'Polonnaruwa':
+                return 'Polonnaruwa';
+            case 'Sinharaja':
+                return 'Rathnapura';
+            case 'Nuwara-Eliya':
+                return 'Nuwara Eliya';
+            case 'Sigiriya':
+                return 'Matale';
+            case 'Ella':
+                return 'Badulla';
+            case 'Galle':
+            case 'Bentota':
+            case 'Unawatuna':
+            case 'Induruwa':
+                return 'Galle';
+            case 'Tangalle':
+                return 'Hambantota';
+            case 'Arugam-Bay':
+                return 'Ampara';
+            case 'Bandarawela':
+                return 'Badulla';
+            case 'Trincomalee':
+                return 'Trincomalee';
+            case 'Kalpitiya':
+                return 'Puttalam';
+            case 'Kalutara':
+                return 'Kalutara';
+            case 'Kandy':
+                return 'Kandy';
+            case 'Kitulgala':
+                return 'Kegalle';
+            case 'Matara':
+            case 'Mirissa':
+            case 'Weligama':
+                return 'Matara';
+            case 'Dambulla':
+            case 'Mihintale':
+                return 'Matale';
+            case 'Habarana':
+                return 'Anuradhapura';
+            case 'Haputale':
+                return 'Badulla';
+            case 'Hikkaduwa':
+                return 'Galle';
+            case 'Horton-Plains':
+                return 'Nuwara Eliya';
+            case 'Beruwala':
+                return 'Kalutara';
+            case 'Negombo':
+                return 'Gampaha';
+            default:
+                return '';
+        }
+    }
+</script>
 
 </body>
 

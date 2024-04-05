@@ -17,6 +17,7 @@
 
 html {
   font-size: 16px;
+  scroll-behavior: smooth;
 }
 
 .container {
@@ -95,6 +96,14 @@ a {
   color: var(--white-color);
   cursor: pointer;
 }
+
+
+
+.primary-btn1:hover {
+  background-color: #e65a00;
+}
+
+
 
 /* Header */
 
@@ -309,6 +318,56 @@ main {
   -webkit-text-stroke: 1px var(--white-color);
 }
 
+#scroll-down {
+  text-align: center;
+  margin-top: 30px; 
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-down-link {
+  display: block;
+  width: 30px;
+  height: 50px;
+  position: relative;
+  animation: bounce 2s infinite;
+  align-items: center;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  transform: translateY(0);
+  opacity: 1;
+  margin-bottom: 20px;
+}
+
+.scroll-down-link span {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  border-radius: 50%;
+  color: var(--white-color);
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  transition: all 1s ease-in-out;
+  opacity: 1;
+  cursor: pointer;
+  scroll-behavior: smooth;
+}
+
+.scroll-down-link span:hover {
+  color: var(--primary-color);
+}
+@keyframes bounce {
+  0%, 100% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(20px);
+  }
+}
 /* Search */
 
 #location-search {
