@@ -20,7 +20,13 @@
     ?>
 
     <div class="top-image">
+<<<<<<< Updated upstream
     </div>
+=======
+        <img src="./Images/slides/slide-25.jpg" alt="">
+        <h1 class="headings sub-heading">About Us</h1>
+    </div>      
+>>>>>>> Stashed changes
 
     <!-- Breadcrumbs -->
     <div class="container">
