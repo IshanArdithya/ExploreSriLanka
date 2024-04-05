@@ -23,6 +23,7 @@
   ?>
 
   <div class="top-image">
+  <img src="./Images/slides/slide-24.jpg" alt="">
     <h1 class="headings sub-heading"></h1>
   </div>
 
