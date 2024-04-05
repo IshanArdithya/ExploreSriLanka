@@ -1,16 +1,22 @@
 <?php
 
-$packageName = 'Adventure Expedition';
-$packagedays = 1;
+$package_name = 'Adventure Expedition';
+$packagedays = 3;
+$packageDistrict = array('Badulla');
+
+$cityCondition = '';
+
+foreach ($packageDistrict as $city) {
+  $cityCondition .= "'" . $city . "', ";
+}
+$cityCondition = rtrim($cityCondition, ', ');
 
 require_once '../config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  // Check if action parameter is set
   if (isset($_POST['action'])) {
     $action = $_POST['action'];
 
-    // Handle action based on its value
     switch ($action) {
       case 'fetchData':
         handleFetchData();
@@ -19,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         handleAddReservation();
         break;
       default:
-        // Invalid action
         echo json_encode(array(
           'success' => false,
           'message' => 'Invalid action specified.'
@@ -27,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         break;
     }
   } else {
-    // No action parameter provided
     echo json_encode(array(
       'success' => false,
       'message' => 'No action specified.'
@@ -35,32 +39,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 }
 
-// Function to handle fetching available hotels and tour guides
 function handleFetchData()
 {
-  global $conn, $packagedays;
+  global $conn, $packagedays, $cityCondition;
 
-  // Check if selectedDate parameter is set
   if (isset($_POST['selectedDate'])) {
-    // Retrieve selected date from the POST request
     $selectedDate = $_POST['selectedDate'];
 
-    // Step 2: Calculate the next day
     $nextDay = date('Y-m-d', strtotime($selectedDate . ' +' . $packagedays . ' day'));
 
-    // Step 3: Query the hotelrooms table to get the available hotels
-    // Modify your SQL query to fetch available hotels with their IDs
     $sqlHotels = "SELECT h.hotel_id, h.name, hr.room_id
-                    FROM hotelrooms hr
-                    JOIN hotels h ON hr.hotel_id = h.hotel_id
-                    LEFT JOIN hotelreservation r 
-                    ON hr.hotel_id = r.hotel_id 
-                    AND hr.room_id = r.room_number
-                    AND ('$selectedDate' <= r.reserved_till) 
-                    AND ('$nextDay' >= r.reserved_from) 
-                    WHERE hr.add_to_packages = 'Yes' 
-                    AND hr.city = 'Kandy'
-                    AND r.room_number IS NULL";
+                        FROM hotelrooms hr
+                        JOIN hotels h ON hr.hotel_id = h.hotel_id
+                        LEFT JOIN hotelreservation r 
+                        ON hr.hotel_id = r.hotel_id 
+                        AND hr.room_id = r.room_number
+                        AND ('$selectedDate' <= r.reserved_till) 
+                        AND ('$nextDay' >= r.reserved_from) 
+                        WHERE hr.add_to_packages = 'Yes' 
+                        AND hr.district IN ($cityCondition)
+                        AND h.active = 1
+                        AND r.room_number IS NULL";
 
     $resultHotels = mysqli_query($conn, $sqlHotels);
 
@@ -73,21 +72,18 @@ function handleFetchData()
       );
     }
 
-    // Step 4: Query the tourguide table to get available tour guides
-    // Modify your SQL query to fetch available tour guides with their IDs
     $sqlTourGuides = "SELECT tg.tg_id, tg.full_name 
                         FROM tourguide tg
                         LEFT JOIN tourguidebooking tb
                         ON tg.tg_id = tb.tg_id
                         AND ('$selectedDate' <= tb.booked_till) 
                         AND ('$nextDay' >= tb.booked_from)
-                        WHERE tg.city = 'Kandy'
+                        WHERE tg.district IN ($cityCondition)
                         AND tg.active = 1
                         AND tb.tg_id IS NULL";
 
     $resultTourGuides = mysqli_query($conn, $sqlTourGuides);
 
-    // Fetch available tour guides with IDs from query result
     $availableTourGuides = array();
     while ($row = mysqli_fetch_assoc($resultTourGuides)) {
       $availableTourGuides[] = array(
@@ -96,19 +92,15 @@ function handleFetchData()
       );
     }
 
-    // Step 5: Encode the list of available hotels and tour guides as JSON
     $response = array(
       'hotels' => $availableHotels,
       'tourGuides' => $availableTourGuides
     );
 
-    // Send the JSON response
     echo json_encode($response);
 
-    // Terminate the script to prevent further output
     exit;
   } else {
-    // selectedDate parameter not provided
     echo json_encode(array(
       'success' => false,
       'message' => 'Selected date not provided.'
@@ -116,14 +108,11 @@ function handleFetchData()
   }
 }
 
-// Function to handle adding reservation
 function handleAddReservation()
 {
-  global $conn, $packagedays;
+  global $conn, $packagedays, $package_name;
 
-  // Check if all required parameters are set
   if (isset($_POST['selectedDate'], $_POST['hotelId'], $_POST['hotelName'], $_POST['tourGuideId'], $_POST['tourGuideName'], $_POST['roomNumber']) && isset($_SESSION['customer_email'])) {
-    // Retrieve selected data from the POST request
     $selectedDate = $_POST['selectedDate'];
     $hotelId = $_POST['hotelId'];
     $hotelName = $_POST['hotelName'];
@@ -131,10 +120,8 @@ function handleAddReservation()
     $tourGuideName = $_POST['tourGuideName'];
     $roomNumber = $_POST['roomNumber'];
 
-    // Retrieve customer data from session
     $customer_email = $_SESSION['customer_email'];
 
-    // Fetch customer data from the database using the email
     $sql = "SELECT * FROM customers WHERE email = '$customer_email'";
     $result = mysqli_query($conn, $sql);
 
@@ -143,7 +130,6 @@ function handleAddReservation()
       $customer_id = $customer_data['customer_id'];
       $customer_name = $customer_data['full_name'];
     } else {
-      // Customer not found
       echo json_encode(array(
         'success' => false,
         'message' => 'Customer not found.'
@@ -151,23 +137,17 @@ function handleAddReservation()
       exit;
     }
 
-    // Step 2: Calculate the reserved till date
     $nextDay = date('Y-m-d', strtotime($selectedDate . ' +' . $packagedays . ' day'));
 
-    // Step 3: Prepare data for insertion into packageorders table
     $reservedFrom = $selectedDate;
     $reservedTill = $nextDay;
 
-    // Generate a unique package order ID
     $sql = "SELECT MAX(RIGHT(pkg_order_id, 5)) AS max_id FROM packageorders";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     $max_id = $row['max_id'];
     $next_id = $max_id + 1;
     $pkg_order_id = 'PKG' . str_pad($next_id, 5, '0', STR_PAD_LEFT);
-
-
-    $package_name = 'Adventure Expedition';
 
     $sqlInsertPackageOrder = "INSERT INTO packageorders (pkg_order_id, package_name, customer_id, customer_name, reserved_from, reserved_till) 
                                     VALUES ('$pkg_order_id', '$package_name', '$customer_id', '$customer_name', '$reservedFrom', '$reservedTill')";
@@ -315,7 +295,7 @@ function handleAddReservation()
               </div>
               <div class="text-content">
                 <h4 class="content-destination-tittle"> Duration: 3 days / 2 nights</h4>
-                <h4 class="content-destination-tittle">City: Ella</h4>
+                <h4 class="content-destination-tittle">District: Ella</h4>
                 <h4 class="content-destination-tittle">Number of Persons: 4 Persons</h4>
 
                 <p class="content-destinaation-tittle">
@@ -373,7 +353,7 @@ function handleAddReservation()
                 die("Connection failed: " . mysqli_connect_error());
               }
 
-              $sql = "SELECT name, short_desc, hotel_picture, distance, city, hotel_url FROM hotels WHERE city IN ('Kandy', 'Colombo')";
+              $sql = "SELECT name, short_desc, hotel_picture, distance, district, hotel_url FROM hotels WHERE district IN ($cityCondition) AND active = 1";
               $result = mysqli_query($conn, $sql);
 
               if (mysqli_num_rows($result) > 0) {
@@ -387,13 +367,13 @@ function handleAddReservation()
                   echo '<div class="destination-hotel-container">';
                   echo '<h3 class="content-title">' . $row['name'] . '</h3>';
                   echo '<p class="content-paragraph">' . $row['short_desc'] . '</p>';
-                  echo '<p class="content-paragraph">' . $row['distance'] . ' km away from ' . $row['city'] . '.</p>';
+                  echo '<p class="content-paragraph">' . $row['distance'] . ' km away from ' . $row['district'] . '.</p>';
                   echo '<p class="content-paragraph"><a href="../hotels/' . $row['hotel_url'] . '">Read more</a></p>';
                   echo '</div>';
                   echo '</div>';
                 }
               } else {
-                echo "No hotels found in Kandy.";
+                echo "No hotels found in $cityCondition.";
               }
 
               mysqli_close($conn);
@@ -413,7 +393,7 @@ function handleAddReservation()
                 die("Connection failed: " . mysqli_connect_error());
               }
 
-              $sql = "SELECT full_name, picture, specialty, short_desc, experience FROM tourguide WHERE city IN ('Kandy', 'Colombo')";
+              $sql = "SELECT full_name, picture, specialty, short_desc, experience FROM tourguide WHERE district IN ($cityCondition) AND active = 1";
               $result = mysqli_query($conn, $sql);
 
               if (mysqli_num_rows($result) > 0) {
@@ -446,7 +426,7 @@ function handleAddReservation()
       </div>
     </div>
 
-    <h1 class="headings">Related <span>Packages</span></h1>
+    <!-- <h1 class="headings">Related <span>Packages</span></h1>
 
     <div class="owl-carousel owl-theme">
       <div class="owl-caousel-item"> <img src="../Images/slide2.jpg" alt=""> </div>
@@ -454,11 +434,9 @@ function handleAddReservation()
       <div class="owl-caousel-item"> <img src="../Images/slide2.jpg" alt=""> </div>
       <div class="owl-caousel-item"> <img src="../Images/slide2.jpg" alt=""> </div>
 
-    </div>
+    </div> -->
 
   </div>
-
-
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -479,10 +457,6 @@ function handleAddReservation()
     });
   </script>
 
-
-
-
-
   <!-- Footer -->
   <?php
   include '../components/footer.php';
@@ -490,7 +464,6 @@ function handleAddReservation()
 
   <script src="../node_modules/jquery/dist/jquery.js"></script>
   <script src="../node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
-  <script src="../js/script.js"></script>
 
   <script>
     $(document).ready(function() {
@@ -520,20 +493,28 @@ function handleAddReservation()
       const bookNowButton = document.querySelector('.btn-book-now');
 
       bookNowButton.addEventListener('click', function() {
-        // Check if session "customer_email" exists
         const customerEmail = "<?php echo isset($_SESSION['customer_email']) ? $_SESSION['customer_email'] : '' ?>";
 
         if (!customerEmail) {
-          // If session does not exist, show login message
           Swal.fire({
             title: "Login",
             text: "You're not logged in. Please login.",
             icon: "error"
           });
         } else {
+
+          const currentDate = new Date();
+          const minDate = new Date();
+          minDate.setDate(currentDate.getDate() + 2);
+          const maxDate = new Date();
+          maxDate.setFullYear(maxDate.getFullYear() + 1);
+
+          const minDateString = minDate.toISOString().split('T')[0];
+          const maxDateString = maxDate.toISOString().split('T')[0];
+
           Swal.fire({
             title: "Select the Date",
-            html: '<input id="datepicker" class="custom-datepicker" type="date">',
+            html: `<input id="datepicker" class="custom-datepicker" type="date" min="${minDateString}" max="${maxDateString}">`,
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
@@ -541,6 +522,15 @@ function handleAddReservation()
             cancelButtonText: "Cancel",
             allowOutsideClick: false,
             allowEscapeKey: false,
+            didOpen: () => {
+              const nextButton = Swal.getConfirmButton();
+              nextButton.disabled = true;
+
+              const datepicker = document.getElementById('datepicker');
+              datepicker.addEventListener('input', () => {
+                nextButton.disabled = !datepicker.value;
+              });
+            }
           }).then((result) => {
             if (result.isConfirmed) {
               const selectedDate = document.getElementById('datepicker').value;
@@ -680,10 +670,9 @@ function handleAddReservation()
     });
   </script>
 
+  <button id="toTop" class="fa fa-arrow-up"></button>
 
-
-
-
+  <script src="../js/script.js"></script>
 
 </body>
 

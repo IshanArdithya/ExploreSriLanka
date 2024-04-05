@@ -1,3 +1,218 @@
+<?php
+
+$package_name = 'Rainforest Adventure Trek';
+$packagedays = 3;
+$packageDistrict = array('Rathnapura');
+
+$cityCondition = '';
+
+foreach ($packageDistrict as $city) {
+  $cityCondition .= "'" . $city . "', ";
+}
+$cityCondition = rtrim($cityCondition, ', ');
+
+require_once '../config.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  if (isset($_POST['action'])) {
+    $action = $_POST['action'];
+
+    switch ($action) {
+      case 'fetchData':
+        handleFetchData();
+        break;
+      case 'addReservation':
+        handleAddReservation();
+        break;
+      default:
+        echo json_encode(array(
+          'success' => false,
+          'message' => 'Invalid action specified.'
+        ));
+        break;
+    }
+  } else {
+    echo json_encode(array(
+      'success' => false,
+      'message' => 'No action specified.'
+    ));
+  }
+}
+
+function handleFetchData()
+{
+  global $conn, $packagedays, $cityCondition;
+
+  if (isset($_POST['selectedDate'])) {
+    $selectedDate = $_POST['selectedDate'];
+
+    $nextDay = date('Y-m-d', strtotime($selectedDate . ' +' . $packagedays . ' day'));
+
+    $sqlHotels = "SELECT h.hotel_id, h.name, hr.room_id
+                        FROM hotelrooms hr
+                        JOIN hotels h ON hr.hotel_id = h.hotel_id
+                        LEFT JOIN hotelreservation r 
+                        ON hr.hotel_id = r.hotel_id 
+                        AND hr.room_id = r.room_number
+                        AND ('$selectedDate' <= r.reserved_till) 
+                        AND ('$nextDay' >= r.reserved_from) 
+                        WHERE hr.add_to_packages = 'Yes' 
+                        AND hr.district IN ($cityCondition)
+                        AND h.active = 1
+                        AND r.room_number IS NULL";
+
+    $resultHotels = mysqli_query($conn, $sqlHotels);
+
+    $availableHotels = array();
+    while ($row = mysqli_fetch_assoc($resultHotels)) {
+      $availableHotels[] = array(
+        'id' => $row['hotel_id'],
+        'name' => $row['name'],
+        'roomNumber' => $row['room_id']
+      );
+    }
+
+    $sqlTourGuides = "SELECT tg.tg_id, tg.full_name 
+                        FROM tourguide tg
+                        LEFT JOIN tourguidebooking tb
+                        ON tg.tg_id = tb.tg_id
+                        AND ('$selectedDate' <= tb.booked_till) 
+                        AND ('$nextDay' >= tb.booked_from)
+                        WHERE tg.district IN ($cityCondition)
+                        AND tg.active = 1
+                        AND tb.tg_id IS NULL";
+
+    $resultTourGuides = mysqli_query($conn, $sqlTourGuides);
+
+    $availableTourGuides = array();
+    while ($row = mysqli_fetch_assoc($resultTourGuides)) {
+      $availableTourGuides[] = array(
+        'id' => $row['tg_id'],
+        'name' => $row['full_name']
+      );
+    }
+
+    $response = array(
+      'hotels' => $availableHotels,
+      'tourGuides' => $availableTourGuides
+    );
+
+    echo json_encode($response);
+
+    exit;
+  } else {
+    echo json_encode(array(
+      'success' => false,
+      'message' => 'Selected date not provided.'
+    ));
+  }
+}
+
+function handleAddReservation()
+{
+  global $conn, $packagedays, $package_name;
+
+  if (isset($_POST['selectedDate'], $_POST['hotelId'], $_POST['hotelName'], $_POST['tourGuideId'], $_POST['tourGuideName'], $_POST['roomNumber']) && isset($_SESSION['customer_email'])) {
+    $selectedDate = $_POST['selectedDate'];
+    $hotelId = $_POST['hotelId'];
+    $hotelName = $_POST['hotelName'];
+    $tourGuideId = $_POST['tourGuideId'];
+    $tourGuideName = $_POST['tourGuideName'];
+    $roomNumber = $_POST['roomNumber'];
+
+    $customer_email = $_SESSION['customer_email'];
+
+    $sql = "SELECT * FROM customers WHERE email = '$customer_email'";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+      $customer_data = mysqli_fetch_assoc($result);
+      $customer_id = $customer_data['customer_id'];
+      $customer_name = $customer_data['full_name'];
+    } else {
+      echo json_encode(array(
+        'success' => false,
+        'message' => 'Customer not found.'
+      ));
+      exit;
+    }
+
+    $nextDay = date('Y-m-d', strtotime($selectedDate . ' +' . $packagedays . ' day'));
+
+    $reservedFrom = $selectedDate;
+    $reservedTill = $nextDay;
+
+    $sql = "SELECT MAX(RIGHT(pkg_order_id, 5)) AS max_id FROM packageorders";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $max_id = $row['max_id'];
+    $next_id = $max_id + 1;
+    $pkg_order_id = 'PKG' . str_pad($next_id, 5, '0', STR_PAD_LEFT);
+
+    $sqlInsertPackageOrder = "INSERT INTO packageorders (pkg_order_id, package_name, customer_id, customer_name, reserved_from, reserved_till) 
+                                    VALUES ('$pkg_order_id', '$package_name', '$customer_id', '$customer_name', '$reservedFrom', '$reservedTill')";
+
+    if (mysqli_query($conn, $sqlInsertPackageOrder)) {
+      $sql = "SELECT MAX(RIGHT(reservation_id, 5)) AS max_id FROM hotelreservation";
+      $result = mysqli_query($conn, $sql);
+      $row = mysqli_fetch_assoc($result);
+      $max_id = $row['max_id'];
+      $next_id = $max_id + 1;
+      $reservation_id = 'RES' . str_pad($next_id, 5, '0', STR_PAD_LEFT);
+
+      $sqlInsertReservation = "INSERT INTO hotelreservation (reservation_id, hotel_id, name, room_number, reserved_from, reserved_till, pkg_order_id) 
+                                VALUES ('$reservation_id', '$hotelId', '$hotelName', '$roomNumber', '$reservedFrom', '$reservedTill', '$pkg_order_id')";
+
+      if (mysqli_query($conn, $sqlInsertReservation)) {
+
+        $sql = "SELECT MAX(RIGHT(booking_id, 5)) AS max_id FROM tourguidebooking";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $max_id = $row['max_id'];
+        $next_id = $max_id + 1;
+        $booking_id = 'B' . str_pad($next_id, 5, '0', STR_PAD_LEFT);
+
+        $sqlInsertTourGuideBooking = "INSERT INTO tourguidebooking (booking_id, tg_id, name, booked_from, booked_till, pkg_order_id) 
+                                        VALUES ('$booking_id', '$tourGuideId', '$tourGuideName', '$reservedFrom', '$reservedTill', '$pkg_order_id')";
+
+        if (mysqli_query($conn, $sqlInsertTourGuideBooking)) {
+
+          $response = array(
+            'success' => true,
+            'message' => 'Reservation, package order, and tour guide booking added successfully.'
+          );
+        } else {
+          $response = array(
+            'success' => false,
+            'message' => 'Failed to add tour guide booking: ' . mysqli_error($conn)
+          );
+        }
+      } else {
+        $response = array(
+          'success' => false,
+          'message' => 'Failed to add reservation: ' . mysqli_error($conn)
+        );
+      }
+    } else {
+      $response = array(
+        'success' => false,
+        'message' => 'Failed to add package order: ' . mysqli_error($conn)
+      );
+    }
+
+    echo json_encode($response);
+
+    exit;
+  } else {
+    echo json_encode(array(
+      'success' => false,
+      'message' => 'One or more required parameters are missing or customer email not found in session.'
+    ));
+  }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,19 +255,19 @@
     <!-- Heading -->
     <h1 class="mini-heading" style="margin-top: 20px;">Rainforest Adventure Trek</h1>
     <p class="lead mini-lead">
-Embark on an exhilarating journey through the lush rainforests of Sri Lanka with our "Rainforest Adventure Trek" package. Immerse yourself in the breathtaking beauty of pristine wilderness as you trek through dense foliage, cascading waterfalls, and verdant valleys teeming with exotic flora and fauna. Explore the hidden treasures of Sri Lanka's rainforests as you discover hidden trails and secret pathways, guided by experienced naturalists who possess an intimate knowledge of the region. They will unravel the mysteries of the rainforest ecosystem, sharing fascinating insights into the intricate relationships between the plants, animals, and the environment. Refresh your senses in the cool, clear waters of mountain streams and cascading waterfalls that punctuate the landscape, offering moments of tranquility and rejuvenation. Take a dip in natural pools hidden within the heart of the rainforest, surrounded by the lush greenery and serenity of your surroundings.</p>
+      Embark on an exhilarating journey through the lush rainforests of Sri Lanka with our "Rainforest Adventure Trek" package. Immerse yourself in the breathtaking beauty of pristine wilderness as you trek through dense foliage, cascading waterfalls, and verdant valleys teeming with exotic flora and fauna. Explore the hidden treasures of Sri Lanka's rainforests as you discover hidden trails and secret pathways, guided by experienced naturalists who possess an intimate knowledge of the region. They will unravel the mysteries of the rainforest ecosystem, sharing fascinating insights into the intricate relationships between the plants, animals, and the environment. Refresh your senses in the cool, clear waters of mountain streams and cascading waterfalls that punctuate the landscape, offering moments of tranquility and rejuvenation. Take a dip in natural pools hidden within the heart of the rainforest, surrounded by the lush greenery and serenity of your surroundings.</p>
 
     <!-- Content -->
 
 
     <div class="owl-carousel owl-theme" id="owl1">
-    <div class="owl-caousel-item"> <img src="./Images/forest33.jpeg" alt=""> </div>
-    <div class="owl-caousel-item"> <img src="./Images/forest6.jpeg" alt=""> </div>
-    <div class="owl-caousel-item"> <img src="./Images/forest22.jpeg" alt=""> </div>
-    <div class="owl-caousel-item"> <img src="./Images/forest5.jpeg" alt=""> </div>
-    <div class="owl-caousel-item"> <img src="./Images/forest8.jpeg" alt=""> </div>
-    <div class="owl-caousel-item"> <img src="./Images/forest7.jpeg" alt=""> </div>
-    <div class="owl-caousel-item"> <img src="./Images/forest1.jpeg" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="./Images/forest33.jpeg" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="./Images/forest6.jpeg" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="./Images/forest22.jpeg" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="./Images/forest5.jpeg" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="./Images/forest8.jpeg" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="./Images/forest7.jpeg" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="./Images/forest1.jpeg" alt=""> </div>
     </div>
 
 
@@ -115,6 +330,8 @@ Embark on an exhilarating journey through the lush rainforests of Sri Lanka with
 
                 <h3 class="content-destination-tittle">Price: LKR 50,000</h3>
 
+                <button id="book-now-btn" class="btn-book-now">Book Now</button>
+
               </div>
             </div>
           </div>
@@ -131,7 +348,7 @@ Embark on an exhilarating journey through the lush rainforests of Sri Lanka with
                 die("Connection failed: " . mysqli_connect_error());
               }
 
-              $sql = "SELECT name, short_desc, hotel_picture FROM hotels WHERE city IN ('Kandy', 'Colombo')";
+              $sql = "SELECT name, short_desc, hotel_picture, distance, district, hotel_url FROM hotels WHERE district IN ($cityCondition) AND active = 1";
               $result = mysqli_query($conn, $sql);
 
               if (mysqli_num_rows($result) > 0) {
@@ -145,12 +362,13 @@ Embark on an exhilarating journey through the lush rainforests of Sri Lanka with
                   echo '<div class="destination-hotel-container">';
                   echo '<h3 class="content-title">' . $row['name'] . '</h3>';
                   echo '<p class="content-paragraph">' . $row['short_desc'] . '</p>';
-                  echo '<p class="content-paragraph">Read more</p>';
+                  echo '<p class="content-paragraph">' . $row['distance'] . ' km away from ' . $row['district'] . '.</p>';
+                  echo '<p class="content-paragraph"><a href="../hotels/' . $row['hotel_url'] . '">Read more</a></p>';
                   echo '</div>';
                   echo '</div>';
                 }
               } else {
-                echo "No hotels found in Kandy.";
+                echo "No hotels found in $cityCondition.";
               }
 
               mysqli_close($conn);
@@ -170,7 +388,7 @@ Embark on an exhilarating journey through the lush rainforests of Sri Lanka with
                 die("Connection failed: " . mysqli_connect_error());
               }
 
-              $sql = "SELECT full_name, picture, specialty, short_desc, experience FROM tourguide WHERE city IN ('Kandy', 'Colombo')";
+              $sql = "SELECT full_name, picture, specialty, short_desc, experience FROM tourguide WHERE district IN ($cityCondition) AND active = 1";
               $result = mysqli_query($conn, $sql);
 
               if (mysqli_num_rows($result) > 0) {
@@ -199,12 +417,10 @@ Embark on an exhilarating journey through the lush rainforests of Sri Lanka with
           </div>
         </div>
 
-
       </div>
     </div>
 
-
-    <h1 class="headings">Related <span>Packages</span></h1>
+    <!-- <h1 class="headings">Related <span>Packages</span></h1>
 
     <div class="owl-carousel owl-theme">
       <div class="owl-caousel-item"> <img src="../Images/slide2.jpg" alt=""> </div>
@@ -212,11 +428,9 @@ Embark on an exhilarating journey through the lush rainforests of Sri Lanka with
       <div class="owl-caousel-item"> <img src="../Images/slide2.jpg" alt=""> </div>
       <div class="owl-caousel-item"> <img src="../Images/slide2.jpg" alt=""> </div>
 
-    </div>
+    </div> -->
 
   </div>
-
-
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -237,10 +451,6 @@ Embark on an exhilarating journey through the lush rainforests of Sri Lanka with
     });
   </script>
 
-
-
-
-
   <!-- Footer -->
   <?php
   include '../components/footer.php';
@@ -248,7 +458,6 @@ Embark on an exhilarating journey through the lush rainforests of Sri Lanka with
 
   <script src="../node_modules/jquery/dist/jquery.js"></script>
   <script src="../node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
-  <script src="../js/script.js"></script>
 
   <script>
     $(document).ready(function() {
@@ -271,6 +480,194 @@ Embark on an exhilarating journey through the lush rainforests of Sri Lanka with
       });
     });
   </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const bookNowButton = document.querySelector('.btn-book-now');
+
+      bookNowButton.addEventListener('click', function() {
+        const customerEmail = "<?php echo isset($_SESSION['customer_email']) ? $_SESSION['customer_email'] : '' ?>";
+
+        if (!customerEmail) {
+          Swal.fire({
+            title: "Login",
+            text: "You're not logged in. Please login.",
+            icon: "error"
+          });
+        } else {
+
+          const currentDate = new Date();
+          const minDate = new Date();
+          minDate.setDate(currentDate.getDate() + 2);
+          const maxDate = new Date();
+          maxDate.setFullYear(maxDate.getFullYear() + 1);
+
+          const minDateString = minDate.toISOString().split('T')[0];
+          const maxDateString = maxDate.toISOString().split('T')[0];
+
+          Swal.fire({
+            title: "Select the Date",
+            html: `<input id="datepicker" class="custom-datepicker" type="date" min="${minDateString}" max="${maxDateString}">`,
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Next",
+            cancelButtonText: "Cancel",
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            didOpen: () => {
+              const nextButton = Swal.getConfirmButton();
+              nextButton.disabled = true;
+
+              const datepicker = document.getElementById('datepicker');
+              datepicker.addEventListener('input', () => {
+                nextButton.disabled = !datepicker.value;
+              });
+            }
+          }).then((result) => {
+            if (result.isConfirmed) {
+              const selectedDate = document.getElementById('datepicker').value;
+
+              $.ajax({
+                url: '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                  action: 'fetchData',
+                  selectedDate: selectedDate
+                },
+                success: function(response) {
+                  Swal.close();
+
+                  Swal.fire({
+                    title: "Choose a hotel and a tour guide",
+                    html: `
+                    <p>Selected Date: ${selectedDate}</p>
+                    <div class="package-book-swal">
+                        <p class="small-paragraph">Hotels: <select id="hotels" class="swal-select"></select></p>
+                        <p class="small-paragraph">Tour guides: <select id="tourGuides" class="swal-select"></select></p>
+                        <p class="small-paragraph" id="package-swal-text">Please note this is the hotel and tour guide you'll be accompanied with.</p>
+                    </div>
+                  `,
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Confirm",
+                    cancelButtonText: "Cancel",
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    didRender: () => {
+                      const hotelsDropdown = document.getElementById('hotels');
+                      response.hotels.forEach(function(hotel) {
+                        const option = document.createElement('option');
+                        option.value = hotel.id;
+                        option.setAttribute('hotel-name', hotel.name);
+                        option.setAttribute('hotel-room-number', hotel.roomNumber);
+                        option.text = `${hotel.name} - Room ${hotel.roomNumber}`;
+                        hotelsDropdown.appendChild(option);
+                      });
+
+                      const tourguideDropdown = document.getElementById('tourGuides');
+                      response.tourGuides.forEach(function(tourguide) {
+                        const option = document.createElement('option');
+                        option.value = tourguide.id;
+                        option.text = tourguide.name;
+                        tourguideDropdown.appendChild(option);
+                      });
+
+                      if (response.hotels.length === 0) {
+                        const notFoundOption = document.createElement('option');
+                        notFoundOption.text = 'No Available Hotels';
+                        hotelsDropdown.appendChild(notFoundOption);
+                        hotelsDropdown.disabled = true;
+                      }
+
+                      if (response.tourGuides.length === 0) {
+                        const notFoundOption = document.createElement('option');
+                        notFoundOption.text = 'No Available Tour Guides';
+                        tourguideDropdown.appendChild(notFoundOption);
+                        tourguideDropdown.disabled = true;
+                      }
+
+                      if (response.hotels.length === 0 || response.tourGuides.length === 0) {
+                        document.querySelector('.swal2-confirm').disabled = true;
+                        document.getElementById('package-swal-text').innerText = "Unfortunately, there are no tour guides / hotels available for the selected date.";
+                      }
+                    }
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      const selectedHotelId = document.getElementById('hotels').value;
+                      const selectedHotelName = document.getElementById('hotels').options[document.getElementById('hotels').selectedIndex].getAttribute('hotel-name');
+                      const selectedHotelRoomNumber = document.getElementById('hotels').options[document.getElementById('hotels').selectedIndex].getAttribute('hotel-room-number');
+                      const selectedTourGuideId = document.getElementById('tourGuides').value;
+                      const selectedTourGuideName = document.getElementById('tourGuides').options[document.getElementById('tourGuides').selectedIndex].text;
+
+                      const reservedTill = new Date(selectedDate);
+                      reservedTill.setDate(reservedTill.getDate() + 1);
+
+                      const data = {
+                        action: 'addReservation',
+                        selectedDate: selectedDate,
+                        hotelId: selectedHotelId,
+                        hotelName: selectedHotelName,
+                        tourGuideId: selectedTourGuideId,
+                        tourGuideName: selectedTourGuideName,
+                        roomNumber: selectedHotelRoomNumber
+                      };
+
+                      $.ajax({
+                        url: '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: data,
+                        success: function(response) {
+                          if (response.success) {
+                            Swal.fire({
+                              title: 'Success!',
+                              text: response.message,
+                              icon: 'success'
+                            });
+                          } else {
+                            Swal.fire({
+                              title: 'Error!',
+                              text: response.message,
+                              icon: 'error'
+                            });
+                          }
+                        },
+                        error: function(xhr, status, error) {
+                          console.error(error);
+                          Swal.fire({
+                            title: 'Error!',
+                            text: 'Failed to add reservation. Please try again later.',
+                            icon: 'error'
+                          });
+                        }
+                      });
+                    }
+                  });
+                },
+                error: function(xhr, status, error) {
+                  console.error(error);
+                  Swal.fire({
+                    title: 'Error!',
+                    text: 'Failed to fetch available hotels and tour guides. Please try again later.',
+                    icon: 'error'
+                  });
+                }
+              });
+            }
+          });
+        }
+      });
+    });
+  </script>
+
+  <button id="toTop" class="fa fa-arrow-up"></button>
+
+  <script src="../js/script.js"></script>
+
 </body>
 
 </html>
