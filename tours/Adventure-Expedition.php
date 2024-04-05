@@ -267,13 +267,13 @@ function handleAddReservation()
     <!-- Content -->
 
     <div class="owl-carousel owl-theme" id="owl1">
-      <div class="owl-caousel-item"> <img src="./Images/ella1.jpeg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/ella6.avif" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/ella2.avif" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/ella7.avif" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/ella4.avif" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/ella3.avif" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/ella5.avif" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="Images/ella1.jpeg" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="Images/ella6.avif" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="Images/ella2.avif" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="Images/ella7.avif" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="Images/ella4.avif" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="Images/ella3.avif" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="Images/ella5.avif" alt=""> </div>
 
     </div>
 

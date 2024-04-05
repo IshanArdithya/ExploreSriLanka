@@ -96,11 +96,7 @@
                     </div>
                     <div class="text-item-box ">
                         <div class="heading-legend">Adventure Expedition</div>
-<<<<<<< Updated upstream
-                        <!-- <div class="text-small-legend">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus, perspiciatis?</div> -->
-=======
                         <div class="text-small-legend">Embark on an adrenaline-fueled journey through breathtaking landscapes, offering a perfect blend of excitement and natural beauty.</div>
->>>>>>> Stashed changes
                         <div class="btn-wrapper-common">
                             <span>Find Out More</span>
                             <!-- <button>Find Out More</button> -->
@@ -108,11 +104,7 @@
                     </div>
                     <div class="hidden-content-package">
                         <span><i class="fa fa-moon"></i> 2 Nights</span><br>
-<<<<<<< Updated upstream
-                        <span><i class="fa fa-clock"></i> 3 days </span><br>
-=======
                         <span><i class="fa fa-clock"></i> 3 Days</span><br>
->>>>>>> Stashed changes
                         <span><i class="fa fa-user"></i> 4 Persons</span><br>
                     </div>
                 </a>
@@ -175,13 +167,8 @@
                         <img src="./tours/Images/north01.avif" alt="">
                     </div>
                     <div class="text-item-box tour-item-box">
-<<<<<<< Updated upstream
-                        <div class="heading-legend">Northern Discovery</div>
-                        <div class="text-small-legend"></div>
-=======
                         <div class="heading-legend">Northern Discovery </div>
                         <div class="text-small-legend">Uncover the untouched northern wilderness, where rugged landscapes, pristine lakes, and enchanting forests offer off-the-beaten-path adventures.</div>
->>>>>>> Stashed changes
                         <div class="btn-wrapper-common">
                             <span>Find Out More</span>
                         </div>
