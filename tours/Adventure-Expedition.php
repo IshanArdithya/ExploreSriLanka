@@ -243,6 +243,7 @@ function handleAddReservation()
   ?>
 
   <div class="top-image">
+    <img src="./Images/slide1.jpg" alt="">
     <!-- <h1 class="headings sub-heading">Wildlife Adventure</h1>
         <h2 class="heading-normal-txt-mini">Tours</h2> -->
   </div>
