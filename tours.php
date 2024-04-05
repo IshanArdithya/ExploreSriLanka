@@ -20,6 +20,7 @@
     ?>
 
     <div class="top-image">
+        <img src="./Images/slides/slide-13.jpg" alt="">
         <h1 class="headings sub-heading"></h1>
     </div>
 
@@ -95,7 +96,11 @@
                     </div>
                     <div class="text-item-box ">
                         <div class="heading-legend">Adventure Expedition</div>
+<<<<<<< Updated upstream
                         <!-- <div class="text-small-legend">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus, perspiciatis?</div> -->
+=======
+                        <div class="text-small-legend">Embark on an adrenaline-fueled journey through breathtaking landscapes, offering a perfect blend of excitement and natural beauty.</div>
+>>>>>>> Stashed changes
                         <div class="btn-wrapper-common">
                             <span>Find Out More</span>
                             <!-- <button>Find Out More</button> -->
@@ -103,7 +108,11 @@
                     </div>
                     <div class="hidden-content-package">
                         <span><i class="fa fa-moon"></i> 2 Nights</span><br>
+<<<<<<< Updated upstream
                         <span><i class="fa fa-clock"></i> 3 days </span><br>
+=======
+                        <span><i class="fa fa-clock"></i> 3 Days</span><br>
+>>>>>>> Stashed changes
                         <span><i class="fa fa-user"></i> 4 Persons</span><br>
                     </div>
                 </a>
@@ -113,7 +122,7 @@
                     </div>
                     <div class="text-item-box tour-item-box">
                         <div class="heading-legend">Ancient Cities Exploration</div>
-                        <div class="text-small-legend"></div>
+                        <div class="text-small-legend">Step back in time and immerse yourself in the rich history and cultural heritage of ancient cities, where every corner tells a story of civilizations long past.</div>
                         <div class="btn-wrapper-common">
                             <span>Find Out More</span>
                         </div>
@@ -131,7 +140,7 @@
                     </div>
                     <div class="text-item-box tour-item-box">
                         <div class="heading-legend">Beach Bliss Retreat</div>
-                        <div class="text-small-legend"></div>
+                        <div class="text-small-legend">Indulge in ultimate relaxation as you sink your toes into powdery sands, bask in the warm sun, and let the rhythmic waves lull you into a state of serenity.</div>
                         <div class="btn-wrapper-common">
                             <span>Find Out More</span>
                         </div>
@@ -149,7 +158,7 @@
                     </div>
                     <div class="text-item-box tour-item-box">
                         <div class="heading-legend">Coastal Dive Expedition</div>
-                        <div class="text-small-legend"></div>
+                        <div class="text-small-legend">Dive into the vibrant underwater world of coastal regions, where colorful coral reefs and exotic marine life await exploration beneath the azure waters.</div>
                         <div class="btn-wrapper-common">
                             <span>Find Out More</span>
                         </div>
@@ -166,8 +175,13 @@
                         <img src="./tours/Images/north01.avif" alt="">
                     </div>
                     <div class="text-item-box tour-item-box">
+<<<<<<< Updated upstream
                         <div class="heading-legend">Northern Discovery</div>
                         <div class="text-small-legend"></div>
+=======
+                        <div class="heading-legend">Northern Discovery </div>
+                        <div class="text-small-legend">Uncover the untouched northern wilderness, where rugged landscapes, pristine lakes, and enchanting forests offer off-the-beaten-path adventures.</div>
+>>>>>>> Stashed changes
                         <div class="btn-wrapper-common">
                             <span>Find Out More</span>
                         </div>
@@ -185,7 +199,8 @@
                     </div>
                     <div class="text-item-box tour-item-box">
                         <div class="heading-legend"> Rainforest Adventure Trek</div>
-                        <div class="text-small-legend"></div>
+                        <div class="text-small-legend">
+                            Explore lush rainforests' heart, where towering trees, cascading waterfalls, and diverse wildlife offer an immersive nature playground.</div>
                         <div class="btn-wrapper-common">
                             <span>Find Out More</span>
                         </div>
@@ -203,7 +218,7 @@
                     </div>
                     <div class="text-item-box tour-item-box">
                         <div class="heading-legend">Scenic Hillside Retreat </div>
-                        <div class="text-small-legend"></div>
+                        <div class="text-small-legend">Indulge in hillside hideaways with panoramic views, where nature's tranquility meets luxury for discerning travelers.</div>
                         <div class="btn-wrapper-common">
                             <span>Find Out More</span>
                         </div>
@@ -221,7 +236,7 @@
                     </div>
                     <div class="text-item-box tour-item-box">
                         <div class="heading-legend">Wildlife Safari Adventure </div>
-                        <div class="text-small-legend"></div>
+                        <div class="text-small-legend">Explore thrilling safaris in untamed wilderness, encountering majestic lions, elephants, and giraffes for unforgettable moments.</div>
                         <div class="btn-wrapper-common">
                             <span>Find Out More</span>
                         </div>
@@ -239,7 +254,7 @@
                     </div>
                     <div class="text-item-box tour-item-box">
                         <div class="heading-legend"> Coastal Escape Retreat</div>
-                        <div class="text-small-legend"></div>
+                        <div class="text-small-legend">Discover coastal luxury in exclusive retreats by pristine shores, where indulgent amenities and perfect sunsets ensure ultimate relaxation.</div>
                         <div class="btn-wrapper-common">
                             <span>Find Out More</span>
                         </div>
