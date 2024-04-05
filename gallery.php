@@ -211,6 +211,8 @@
   include 'components/footer.php';
   ?>
 
+<button id="toTop" class="fa fa-arrow-up"></button>
+
   <script src="js/script.js"></script>
 
 </body>

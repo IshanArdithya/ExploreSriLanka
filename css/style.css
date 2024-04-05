@@ -50,6 +50,7 @@ a {
   color: var(--white-color);
 }
 
+
 .headings {
   font-size: 3rem;
   font-family: "ubuntu";
@@ -66,6 +67,11 @@ a {
   font-family: "ubuntu";
   padding: 1rem 0;
 }
+
+.secondary-headings span{
+  color: var(--primary-color);
+}
+
 
 .lead {
   font-size: 1.1rem;
@@ -1006,6 +1012,12 @@ select {
   padding-bottom: 2rem;
   letter-spacing: 10px;
 }
+
+.mini-headings span{
+  color: var(--primary-color);
+}
+
+
 
 /* search */
 
@@ -2208,8 +2220,7 @@ Align select elements .package-book-swal select {
   text-align: center;
   padding-top: 50px;
   font-size: 42px;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .title h1::after {
   content: "";
@@ -2243,6 +2254,10 @@ Align select elements .package-book-swal select {
   justify-content: center;
 }
 
+.card-about-page:hover{
+  transform: scale(1.05);
+}
+
 .card-about-page .icon {
   font-size: 35px;
   margin-bottom: 10px;
@@ -2253,8 +2268,7 @@ Align select elements .package-book-swal select {
   color: rgb(255, 255, 255);
   margin-bottom: 20px;
   z-index: 1;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .card-about-page p {
   font-size: 15px;
@@ -2265,23 +2279,24 @@ Align select elements .package-book-swal select {
   justify-content: center;
 }
 .card-about-page:nth-child(1) {
-  background-image: url(/Images/about/Hotel1.jpg);
+  background-image: url(../Images/about/Hotel1.jpg);
 }
 
 .card-about-page:nth-child(2) {
-  background-image: url(/Images/about/Tourguide.jpg);
+  background-image: url(../Images/about/Tourguide.jpg);
 }
 
 .card-about-page:nth-child(3) {
-  background-image: url(/Images/about/kandy.jpg);
+  background-image: url(../Images/about/kandy.jpg);
 }
 
 .card-about-page:nth-child(4) {
-  background-image: url(/Images/about/Galle-Fort-1.jpg);
+  background-image: url(../Images/about/Galle-Fort-1.jpg);
 }
 .card-about-page:hover {
   color: white;
-  background-image: none;
+  background-color: rgba(0, 0, 0, 0.1);
+  /* background-image: none; */
 }
 .card-about-page .about-overlay {
   position: absolute;
@@ -2316,12 +2331,17 @@ Align select elements .package-book-swal select {
   text-wrap: wrap;
 }
 
+.ceo-details img:hover {
+  transform: scale(1.05);
+}
+
+
 .ceo-details img {
   width: 20%;
   height: 20%;
   border-radius: 5%;
   margin-right: 20px;
-  margin-left: 140px;
+  margin-left: 50px;
 }
 
 .ceo-info {
@@ -2335,13 +2355,13 @@ Align select elements .package-book-swal select {
   margin-bottom: 10px;
 }
 
-.ceo-info p {
+/* .ceo-info p {
   color: #000000;
   font-size: 16px;
   line-height: 1.6;
   justify-content: center;
   text-align: justify;
-}
+} */
 
 /*Cart Icon and things*/
 .cart-icon-container {

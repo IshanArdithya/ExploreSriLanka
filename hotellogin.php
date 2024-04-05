@@ -45,7 +45,7 @@
                         </div>
                     </form>
                 </div>
-                <span class="close-icon" onclick="index.php">&times;</span>
+                <a href="index.php"><span class="close-icon" >&times;</span></a>
 
                 <div class="register-form-box">
                     <form action="" class="register" id="registerForm" style="display:none;">

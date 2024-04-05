@@ -40,13 +40,13 @@
 
             <label class="profile-label">First Name</label>
             <div>
-            <input type="text" class="profile-control control-names profile-settings-row" value="nmaxwell">
+            <input type="text" class="profile-control control-names profile-settings-row" placeholder="First Name">
             </div>
           </div>
           <div class="profile-group">
             <label class="profile-label">Last Name</label>
             <div>
-            <input type="text" class="profile-control control-names profile-settings-row" value="nmaxwell">
+            <input type="text" class="profile-control control-names profile-settings-row" placeholder="Last Name">
             </div>
           </div>
 
@@ -60,7 +60,7 @@
           <div class="profile-group">
             <label class="profile-label">Phone</label>
             <div>
-            <input type="text" class="profile-control" value="+0 (123) 456 7891">
+            <input type="text" class="profile-control" placeholder="Telephone">
             </div>
           </div>
         
