@@ -23,27 +23,27 @@
         <div class="slider-container swiper">
             <div class="slider-content swiper-wrapper">
                 <div class="overlay swiper-slide">
-                    <img src="Images/slide1.jpg" alt="">
+                    <img src="./Images/slides/slide-10.jpg" alt="">
                     <div class="img-overlay">
                         <p>Lets Travel around Srilanka with us</p>
-                        <h2><span>Discover</span>The Island</h2>
-                        <h2>With Our Guide</h2>
+                        <h2><span>Discover</span> Sri Lanka</h2>
+                        <h2>with Our Guide</h2>
                     </div>
                 </div>
                 <div class="overlay swiper-slide">
-                    <img src="Images/slide2.jpg" alt="">
+                    <img src="./Images/slides/slide-8.jpg" alt="">
                     <div class="img-overlay">
-                        <p>Lets Travel around Srilanka with us</p>
-                        <h2><span>Discover</span>The Island</h2>
-                        <h2>With Our Guide</h2>
+                        <p>Escape to the beauty of Sri Lanka's coastline with us</p>
+                        <h2><span>Find Your </span>Perfect Beach</h2>
+                        <h2>Enjoy Coastal Bliss</h2>
                     </div>
                 </div>
                 <div class="overlay swiper-slide">
-                    <img src="Images/slide3.jpg" alt="">
+                    <img src="./Images/slides/slide-9.jpg" alt="">
                     <div class="img-overlay">
-                        <p>Lets Travel around Srilanka with us</p>
-                        <h2>Discover The Island</h2>
-                        <h2>With Our <span>Guide</span></h2>
+                        <p>Escape natural wonders of Sri Lanka's landscapes.</p>
+                        <h2>Explore <span>Nature's Retreats</span></h2>
+                        <h2>Enveloped in Elegance</h2>
                     </div>
                 </div>
 
