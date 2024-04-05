@@ -27,13 +27,13 @@
     <div class="container">
         <div class="row">
             <ol class="breadcrumb">
-                <li><a href="../index.php" title="Explore Sri Lanka" class="bolds">Home</a></li>
+                <li><a href="index.php" title="Explore Sri Lanka" class="bolds">Home</a></li>
                 <li class="active">Hotel</li>
             </ol>
         </div>
 
         <div class="container">
-            <h1 class="headings mini-heading">Recommended Places to Stay</h1>
+            <h1 class="headings mini-heading">Hotels to Stay</h1>
             <p class="lead mini-lead"></p>
 
             <div class="list-container">
