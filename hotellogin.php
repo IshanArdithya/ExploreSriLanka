@@ -8,7 +8,7 @@ if (isset($_POST['login'])) {
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) == 1) {
-        $_SESSION['email'] = $email;
+        $_SESSION['hotel_email'] = $email;
         header('Location: hotel_dashboard.php');
         exit();
     } else {
