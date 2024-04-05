@@ -19,14 +19,10 @@
     include 'components/header.php';
     ?>
 
-    <div class="top-image">
-<<<<<<< Updated upstream
-    </div>
-=======
+<div class="top-image">
         <img src="./Images/slides/slide-25.jpg" alt="">
-        <h1 class="headings sub-heading">About Us</h1>
-    </div>      
->>>>>>> Stashed changes
+        <h1 class="headings sub-heading"></h1>
+    </div>
 
     <!-- Breadcrumbs -->
     <div class="container">

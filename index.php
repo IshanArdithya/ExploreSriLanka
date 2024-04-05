@@ -54,7 +54,7 @@
 
     <!-- Search Location -->
 
-    <section id="location-search">
+    <!-- <section id="location-search">
         <div class="container">
             <div class="form-wrapper">
                 <form action="#">
@@ -78,7 +78,7 @@
                 </form>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- About -->
 
@@ -639,7 +639,7 @@
     </section>
 
     <!-- Travel Blogs -->
-    <section id="travel-blog">
+    <!-- <section id="travel-blog">
         <div class="container">
             <p class="heading-normal-txt">TRAVEL BLOG</p>
             <h2 class="headings-travel">TRAVEL <span>EXPERIENCE</span></h2>
@@ -708,7 +708,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- review -->
     <section id="review">

@@ -422,7 +422,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="css/login.css">
-    <title>Sign-In</title>
+    <title>Sign-In | Explore Srilanka</title>
   </head>
   <body>
     <div class="container">
@@ -507,9 +507,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
           <div class="content">
             <h3>New here ?</h3>
             <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
-              ex ratione. Aliquid!
-            </p>
+            Feel free to sign up and join our community. We're excited to embark on this journey with you!            </p>
             <button class="btn transparent" id="sign-up-btn">
               Sign up
             </button>
@@ -520,9 +518,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
           <div class="content">
             <h3>One of us ?</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-              laboriosam ad deleniti.
-            </p>
+            Sign in to continue accessing your account and exploring all the amazing features we have to offer. We're glad to have you back with us. Let's get started!            </p>
             <button class="btn transparent" id="sign-in-btn">
               Sign in
             </button>

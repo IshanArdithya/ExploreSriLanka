@@ -113,6 +113,25 @@ header.sticky {
   background: var(--primary-color);
 }
 
+header.sticky .sign-in-up-btn a.custom-btn {
+  background-color: #000;
+}
+
+.sign-in-up-btn a.custom-btn:hover {
+  background-color: #fff;
+  color:var(--primary-color);
+  transform: scale(1.1);
+}
+
+header.sticky nav ul .main-navigation::before{
+  background: #fff;
+}
+
+header.sticky nav ul .main-navigation::after {
+  background: #4e5558;
+}
+
+
 .logo img {
   width: 35%;
   height: 25%;
@@ -147,7 +166,8 @@ nav ul .main-navigation::before {
   left: 0;
   width: 0;
   height: 3px;
-  background: var(--white-color);
+  background: var(--primary-color);
+  font-style: bold;
   opacity: 0;
   transition: all 0.3s ease-in;
 }
@@ -155,6 +175,22 @@ nav ul .main-navigation::before {
 nav ul .main-navigation:hover::before {
   opacity: 1;
   width: 100%;
+}
+
+nav ul .main-navigation::after {
+  content: "";
+  position: absolute;
+  bottom: -5px; 
+  left: 0;
+  width: 0;
+  height: 3px; 
+  color: var(--primary-color);
+  background: var(--primary-color); 
+  transition: width 0.5s ease; 
+}
+
+nav ul .main-navigation.active::after {
+  width: 100%; 
 }
 
 .btn {
