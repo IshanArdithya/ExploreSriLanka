@@ -18,7 +18,7 @@
                 </div>
                 <div class="content">
                     <p class="lead"> Write For Us</p>
-                    <p>admin@exploresrilanka.com</p>
+                    <p> official@vexploresrilanka.com</p>
                 </div>
             </div>
             <div class="ft-content">
@@ -27,7 +27,7 @@
                 </div>
                 <div class="content">
                     <p class="lead"> Address</p>
-                    <p>18/A Flower Road, Colombo 03</p>
+                    <p>No 58/A, Sri Jayewardenepura, Kotte</p>
                 </div>
             </div>
         </div>
