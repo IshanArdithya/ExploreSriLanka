@@ -214,3 +214,48 @@ span {
   display: none;
 }
 
+.input-group {
+  flex: 1;
+}
+
+.input-label {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.form-control {
+  width: calc(100% - 16px);
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.card-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 50px;
+  width: 99%;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.card h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}

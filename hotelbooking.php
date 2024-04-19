@@ -29,132 +29,110 @@
         </div>
 
         <div class="container">
-            <h1 class="headings mini-heading">Hotels to Stay</h1>
-            <p class="lead mini-lead"></p>
+    <h1 class="headings mini-heading">Hotels to Stay</h1>
+    <p class="lead mini-lead"></p>
+    <div class="card">
+        <div class="card-row">
+            <form method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                <div class="input-group">
+                    <label class="input-label">Date</label>
+                    <input name="date" type="date" class="form-control">
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Planning on Staying</label>
+                    <select name="duration" class="form-control">
+                        <option value="1">1 day</option>
+                        <option value="2">2 days</option>
+                        <option value="3">3 days</option>
+                        <option value="4">4 days</option>
+                        <option value="5">5 days</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Guest(s)</label>
+                    <select name="guests" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <br>
+                    <button type="submit" class="form-control">Search</button>
+                </div>
+            </form>
+        </div>
+        <div class="card-row">
+            <!-- Results will be displayed here -->
+            <div id="hotelResults">
+                <?php
+                // Check if form submitted
+                if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['date']) && isset($_GET['duration']) && isset($_GET['guests'])) {
+                    // Process form submission
+                    $selectedDate = $_GET['date'];
+                    $stayDuration = $_GET['duration'];
+                    $guestCount = $_GET['guests'];
 
-            <div class="list-container">
-                <div class="left-col">
+                    // Calculate checkout date
+                    $checkoutDate = date('Y-m-d', strtotime($selectedDate . ' + ' . ($stayDuration - 1) . ' days'));
 
-                    <?php
-                    $conn = new mysqli($hostname, $username, $password, $database);
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    }
+                    // Query to fetch available rooms
+                    $sql = "SELECT hr.hotel_id, h.name AS hotel_name, h.district, hr.description, hr.guests, hr.price, h.hotel_picture
+                            FROM hotelrooms hr
+                            INNER JOIN hotels h ON hr.hotel_id = h.hotel_id
+                            WHERE hr.guests = $guestCount
+                            AND NOT EXISTS (
+                                SELECT 1
+                                FROM hotelreservation
+                                WHERE hotel_id = hr.hotel_id
+                                AND room_number = hr.room_id
+                                AND reserved_from <= '$checkoutDate'
+                                AND reserved_till >= '$selectedDate'
+                            )";
 
-                    $filterCondition = "WHERE h.active = 1";
+                    $result = $conn->query($sql);
 
-                    if (isset($_GET['search']) && !empty($_GET['search'])) {
-                        $searchTerm = $_GET['search'];
-                        $filterCondition .= " AND (h.district LIKE '%$searchTerm%' OR h.name LIKE '%$searchTerm%' OR hr.description LIKE '%$searchTerm%')";
-                    }
-
-                    if (isset($_GET['filter']) && isset($_GET['district'])) {
-                        $selectedDistricts = explode(',', $_GET['district']);
-                        $selectedDistrictsStr = implode("','", $selectedDistricts);
-                        $filterCondition .= " AND h.district IN ('$selectedDistrictsStr')";
-                    }
-
-                    $countSql = "SELECT COUNT(*) AS total FROM hotelrooms hr JOIN hotels h ON hr.hotel_id = h.hotel_id $filterCondition";
-                    $countResult = mysqli_query($conn, $countSql);
-                    $rowCount = mysqli_fetch_assoc($countResult)['total'];
-                    echo '<p>' . $rowCount . ' Options</p>';
-
-                    $perPage = 5;
-                    $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
-                    $offset = ($currentPage - 1) * $perPage;
-
-                    $sql = "SELECT hr.hotel_id, h.district, h.name AS hotel_name, h.hotel_picture, hr.description, hr.price, hr.guests, h.distance, h.district 
-                            FROM hotelrooms hr 
-                            JOIN hotels h ON hr.hotel_id = h.hotel_id 
-                            $filterCondition
-                            LIMIT $offset, $perPage";
-
-                    $result = mysqli_query($conn, $sql);
-                    if (mysqli_num_rows($result) > 0) {
-                        while ($row = mysqli_fetch_assoc($result)) {
+                    if ($result->num_rows > 0) {
+                        // Output data of each row
+                        while ($row = $result->fetch_assoc()) {
+                            // Output HTML for displaying hotel rooms
                             echo '<div class="house">';
                             echo '<div class="house-img">';
-                            echo '<img src="' . $row['hotel_picture'] . '">';
+                            echo '<img src="' . $row["hotel_picture"] . '">';
                             echo '</div>';
-                            echo '<div class="house-info" id="house-info">';
-                            echo '<p>Hotel in ' . $row['district'] . '</p>';
-                            echo '<h3>' . $row['hotel_name'] . '</h3>';
-                            echo '<p>' . $row['description'] . '</p>';
-                            echo '<p>' . $row['distance'] . ' km away from ' . $row['district'] . '.</p>';
+                            echo '<div class="house-info">';
+                            echo '<p>Hotel in ' . $row["district"] . '</p>';
+                            echo '<h3>' . $row["hotel_name"] . '</h3>';
                             echo '<div class="house-price">';
-                            echo '<p>' . $row['guests'] . ' Guest(s)</p>';
-                            echo '<h4>LKR ' . $row['price'] . ' <span1>/ day</span1></h4>';
+                            echo '<p>' . $row["guests"] . ' Guest(s)</p>';
+                            echo '<h4>Price: $' . $row["price"] . ' / day</h4>';
                             echo '</div>';
                             echo '</div>';
                             echo '</div>';
                         }
                     } else {
-                        echo "No hotel rooms found.";
+                        echo "No available rooms found.";
                     }
-                    mysqli_close($conn);
-                    ?>
-                </div>
-                <div class="right-col">
-                    <div class="sidebar">
-                        <h2>Select Filters</h2>
-                        <input type="text" id="searchInput" placeholder="Search...">
-                        <h3>Districts</h3>
 
-                        <?php
-                        $conn = new mysqli($hostname, $username, $password, $database);
-                        if ($conn->connect_error) {
-                            die("Connection failed: " . $conn->connect_error);
-                        }
-
-                        $districtSql = "SELECT DISTINCT h.district, COUNT(hr.hotel_id) AS room_count FROM hotels h LEFT JOIN hotelrooms hr ON h.hotel_id = hr.hotel_id WHERE h.active = 1 GROUP BY h.district";
-                        $districtResult = mysqli_query($conn, $districtSql);
-
-                        // Check if districts are found
-                        if (mysqli_num_rows($districtResult) > 0) {
-                            while ($districtRow = mysqli_fetch_assoc($districtResult)) {
-                                $district = $districtRow['district'];
-                                $roomCount = $districtRow['room_count'];
-                                echo '<div class="filter">';
-                                echo '<input type="checkbox" name="district" value="' . $district . '">';
-                                echo '<p>' . $district . '</p>';
-                                echo '<span>(' . $roomCount . ')</span>';
-                                echo '</div>';
-                            }
-                        } else {
-                            echo "No districts found.";
-                        }
-
-                        mysqli_close($conn);
-                        ?>
-
-                        <button id="filterButton" disabled>Filter</button>
-                        <button id="resetButton">Reset</button>
-                    </div>
-                </div>
+                    $conn->close();
+                }
+                ?>
             </div>
         </div>
     </div>
-
-    <div class="pagination">
-        <?php
-        $totalPages = ceil($rowCount / $perPage);
-        for ($i = 1; $i <= $totalPages; $i++) {
-            $link = '?page=' . $i;
-            if (isset($_GET['filter'])) {
-                $link .= '&filter=1';
-                if (!empty($selectedDistricts)) {
-                    $link .= '&district=' . urlencode(implode(',', $selectedDistricts));
-                }
-            }
-            echo '<a href="' . $link . '" class="' . ($i == $currentPage ? 'current' : '') . '">' . $i . '</a>';
-        }
-        ?>
+</div>
     </div>
+
 
     <!-- Footer -->
     <?php include 'components/footer.php'; ?>
 
     <button id="toTop" class="fa fa-arrow-up"></button>
+
+
+
+
+
 
     <script>
         window.onload = function() {
@@ -208,7 +186,7 @@
         });
     </script>
 
-    <script src="js/script.js"></script>
+    <!-- <script src="js/script.js"></script> -->
 
 </body>
 
