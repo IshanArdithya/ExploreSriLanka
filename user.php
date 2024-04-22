@@ -22,8 +22,22 @@
   ?>
 
 </head>
+
 <body >
+  
+<div class="top-image">
+    <h1 class="headings sub-heading"></h1>
+  </div>
+
   <div class="container">
+  <div class="row">
+      <ol class="breadcrumb">
+        <li><a href="../index.php" title="Explore Sri Lanka" class="bolds">Home</a></li>
+        <li><a href="./new-profile.php" title="Explore Sri Lanka" class="bolds">User-Profile</a></li>
+        <li class="active">Settings</li>
+      </ol>
+    </div>
+
     <div class="profile-settings-container">
       <h1>Account settings</h1>
       <div class="profile-sub-container">

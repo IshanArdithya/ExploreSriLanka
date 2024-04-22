@@ -2516,8 +2516,8 @@ Align select elements .package-book-swal select {
 
 /*profile page*/
 .profile-settings-container {
-  max-width: 800px;
-  margin: 7rem auto;
+  /* max-width: 800px; */
+  margin: 20px auto;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 10px;
@@ -2531,7 +2531,7 @@ Align select elements .package-book-swal select {
 
 .profile-sub-container {
   display: flex;
-  gap: 3rem;
+  gap: 10rem;
   align-items: flex-start;
   justify-content: center;
 }
@@ -2636,11 +2636,12 @@ Align select elements .package-book-swal select {
   width: 220px;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 870px) {
   .profile-sub-container {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 1.5rem;
   }
 }
 
@@ -2797,4 +2798,184 @@ Align select elements .package-book-swal select {
 
 .contact-small{
   line-height: 40px;
+}
+
+/*user profile page*/
+.container-user-profile {
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.user-profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 14px 20px 14px;
+}
+
+.user-menu-link {
+  padding-top: 0.5rem;
+}
+
+.user-profile-header h1 {
+  margin: 0;
+  color: black;
+}
+
+.user-profile-menu {
+  display: flex;
+}
+
+.user-profile-menu a {
+  text-decoration: none;
+  color: black;
+  margin-right: 20px;
+}
+
+.user-profile-content {
+  margin-top: 20px;
+  display: none;
+}
+
+.user-profile-content.active {
+  display: block;
+}
+
+.user-profile-content p {
+  line-height: 30px;
+}
+
+.user-profile-description {
+  color: black;
+  margin-left: 14px;
+}
+
+.user-profile-intro {
+  margin-top: 20px;
+  background-color: #333;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.user-profile-intro h2 {
+  margin-top: 0;
+}
+
+.user-profile-intro p {
+  margin: 5px 0;
+}
+
+.user-profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #333;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.user-profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-settings-link {
+  background-color: #2095ae;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+.user-settings-link:hover {
+  background-color: whitesmoke;
+  color: #2095ae;
+}
+
+.user-profile-intro {
+  margin-top: 20px;
+  background-color: lightblue;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.user-profile-intro h2 {
+  margin-top: 0;
+  color: black;
+  font-weight: 800;
+}
+
+.user-profile-intro p {
+  margin: 20px 0 25px 0;
+  color: black;
+}
+
+.user-profile-intro ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.user-profile-intro ul li {
+  margin-bottom: 12px;
+  color: black;
+}
+
+.user-profile-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  color: black;
+  background-color: lightgray;
+}
+
+.user-profile-content table tbody tr:nth-child(even) {
+  background-color: lightblue;
+}
+
+.user-profile-content table
+th,
+td {
+  padding: 10px;
+  border-bottom: 1px solid #444;
+  text-align: left;
+}
+
+.user-profile-content table th {
+  background-color: darkblue;
+  color: whitesmoke;
+}
+
+.user-profile-content table td {
+  background-color: lightblue;
+  color: black;
+}
+
+.user-profile-content table tbody tr:hover {
+  background-color: lightgray;
+}
+
+@media only screen and (max-width: 1000px) {
+  
+  .user-profile-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .user-profile-menu a {
+    margin: 5px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+
+  .user-profile-menu a {
+    display: block;
+    text-align: center;
+    width: 50%;
+    margin: 5px 0;
+  }
 }
