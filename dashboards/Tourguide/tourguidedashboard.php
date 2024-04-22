@@ -1,3 +1,5 @@
+<?php require_once '../../config.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="../css/hotel,tourguide.css">
-    <script src="../js/hotel,tourguide.js"></script>
-    <title>Hotel Dashboard</title>
+    <link rel="stylesheet" href="../../css/hotel,tourguide.css">
+    <script src="../../js/hotel,tourguide.js"></script>
+    <title>TourGuide dashboard</title>
 </head>
 
 <body>
@@ -28,10 +30,28 @@
                 </div>
             </div>
 
-            <?php
-            require_once 'partials/sidebar.php';
-            ?>
+            <div class="sidebar">
+                <a href="#" class="active" span class="material-icons-sharp">
+                    <span class="icon">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </span>
+                    <h3>Tour Guide</h3>
+                </a>
 
+                <a href="tourguideinquiries.php">
+                    <span class=icons>
+                        <i class="fa-solid fa-info"></i>
+                    </span>
+                    <h3>Inquries</h3>
+                </a>
+
+                <a href="admin.logout.html">
+                    <span class="material-icons-sharp">
+                        logout
+                    </span>
+                    <h3>Logout</h3>
+                </a>
+            </div>
         </aside>
         <!-- End of Sidebar Section -->
 
@@ -59,10 +79,29 @@
                 </div>
 
 
+                <div class="count">
+                    <div class="status">
+                        <div class="info">
+                            <h3>Tour Guides Count</h3>
+                            <h1>24,981</h1>
+                        </div>
+
+                        <div class="progresss">
+                            <svg>
+                                <circle cx="38" cy="38" r="36"></circle>
+                            </svg>
+                            <div class="percentage">
+                                <p>-48%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="visits">
                     <div class="status">
                         <div class="info">
-                            <h3>Hotel Visit</h3>
+                            <h3>Customer Count</h3>
                             <h1>24,981</h1>
                         </div>
 
@@ -78,29 +117,10 @@
                 </div>
 
 
-                <div class="rooms">
+                <div class="available">
                     <div class="status">
                         <div class="info">
-                            <h3>Rooms Reservations</h3>
-                            <h1>24,981</h1>
-                        </div>
-
-                        <div class="progresss">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="percentage">
-                                <p>-48%</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="roomtype">
-                    <div class="status">
-                        <div class="info">
-                            <h3>Room Types</h3>
+                            <h3>Availibility</h3>
                             <h1>24,981</h1>
                         </div>
 
@@ -135,28 +155,29 @@
             </div>
             <!-- End of Analyses -->
 
-            <!-- Approve hotels Table -->
+
+
+            <!-- Approved Tour Guides Table -->
             <div class="recent-user">
-                <h2>Approve Hotels</h2>
+                <h2>Update Tour Guides</h2>
                 <table>
                     <thead>
                         <tr>
-                            <th>Hotel ID</th>
+                            <th>Tour Guide ID</th>
                             <th>Customer Name</th>
-                            <th>Payment Status</th>
+                            <th>Booking Status</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Table rows content -->
                         <tr>
                             <td>JavaScript Tutorial</td>
                             <td>85743</td>
                             <td>Due</td>
                             <td>Pending</td>
                             <td>
-                                <a href="manage.hotel.html" class="btn-secondary">Accept</a>
+                                <a href="manage.tourguide.html" class="btn-secondary">Update</a>
                                 <a href="#" class="btn-danger">Delete</a>
                             </td>
                         </tr>
@@ -167,55 +188,7 @@
                             <td>Extra</td>
                             <td>Active</td>
                             <td>
-                                <a href="#" class="btn-secondary">Accept</a>
-                                <a href="#" class="btn-danger">Delete</a>
-                            </td>
-                        </tr>
-                        <!-- Add more extra rows-->
-                        <tr>
-                            <td colspan="5">
-                                <a href="#" class="show-all-link">Show All</a>
-                                <a href="#" class="show-less-link" style="display: none;">Show Less</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- End of Approve Hotels Table -->
-
-            <!-- Booking Details Table -->
-            <div class="recent-user">
-                <h2>Booking Details</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>User ID</th>
-                            <th>User Name</th>
-                            <th>Payment Status</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Table rows content -->
-                        <tr>
-                            <td>JavaScript Tutorial</td>
-                            <td>85743</td>
-                            <td>Due</td>
-                            <td>Pending</td>
-                            <td>
-                                <a href="manage.hotel.html" class="btn-secondary">Update</a>
-                                <a href="#" class="btn-danger">Delete</a>
-                            </td>
-                        </tr>
-
-                        <tr class="extra-row" style="display: none;">
-                            <td>Extra Row 1</td>
-                            <td>12345</td>
-                            <td>Extra</td>
-                            <td>Active</td>
-                            <td>
-                                <a href="#" class="btn-secondary">Update</a>
+                                <a href="manage.tourguide.html" class="btn-secondary">Update</a>
                                 <a href="#" class="btn-danger">Delete</a>
                             </td>
                         </tr>
@@ -228,14 +201,97 @@
                         </tr>
                     </tbody>
                 </table>
-                <!-- End of Booking Details Table -->
+            </div>
+            <!-- End of Approved Tour Guides Table -->
+
+            <!-- Booking Details Table -->
+            <div class="recent-user">
+                <h2>Booking Details</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hotel ID</th>
+                            <th>Customer Name</th>
+                            <th>Payment Status</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>JavaScript Tutorial</td>
+                            <td>85743</td>
+                            <td>Due</td>
+                            <td>Pending</td>
+                            <td>
+                                <a href="#" class="btn-secondary">Confirm</a>
+                                <a href="#" class="btn-danger">Delete</a>
+                            </td>
+                        </tr>
+
+                        <tr class="extra-row" style="display: none;">
+                            <td>Extra Row 1</td>
+                            <td>12345</td>
+                            <td>Extra</td>
+                            <td>Active</td>
+                            <td>
+                                <a href="#" class="btn-secondary">Confirm</a>
+                                <a href="#" class="btn-danger">Delete</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="5">
+                                <a href="#" class="show-all-link">Show More</a>
+                                <a href="#" class="show-less-link" style="display: none;">Show Less</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- End of Booking Details Table -->
+
+
         </main>
         <!-- End of Main Content -->
 
-        <?php
-            include 'partials/rightsection.php';
-        ?>
+        <!-- Right Section -->
+        <div class="right-section">
+            <div class="nav">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">
+                        menu
+                    </span>
+                </button>
+                <div class="dark-mode">
+                    <span class="material-icons-sharp active">
+                        light_mode
+                    </span>
+                    <span class="material-icons-sharp">
+                        dark_mode
+                    </span>
+                </div>
 
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b>Tour Guide</b></p>
+                        <small class="text-muted">Tour Guide</small>
+                    </div>
+                    <div class="profile-photo">
+                        <img src="/img/profile-2.jpg">
+                    </div>
+                </div>
+
+            </div>
+            <!-- End of Nav -->
+
+            <div class="user-profile">
+                <div class="logo">
+                    <img src="../../Images/logoblack.png">
+                    <h2></h2>
+                </div>
+            </div>
+        </div>
     </div>
     </div>
 

@@ -1,4 +1,4 @@
-<?php require_once '../config.php';?>
+<?php require_once '../../config.php';?>
 
 
 <!DOCTYPE html>
@@ -10,8 +10,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="../css/hotel,tourguide.css">
-    <script src="../js/hotel,tourguide.js"></script>
+    <link rel="stylesheet" href="../../css/hotel,tourguide.css">
+    <script src="../../js/hotel,tourguide.js"></script>
     <title>update hotel</title>
 </head>
 

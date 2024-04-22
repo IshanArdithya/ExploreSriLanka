@@ -15,7 +15,7 @@
     <li class="main-navigation <?php echo (basename($_SERVER['PHP_SELF']) == 'shop.php') ? 'active' : ''; ?>"><a href="/ExploreSriLanka/shop.php">Shop</a></li>
     <li class="main-navigation <?php echo (basename($_SERVER['PHP_SELF']) == 'hotelbooking.php') ? 'active' : ''; ?>"><a href="/ExploreSriLanka/hotelbooking.php">Hotel</a></li>
     <li class="main-navigation <?php echo (basename($_SERVER['PHP_SELF']) == 'gallery.php') ? 'active' : ''; ?>"><a href="/ExploreSriLanka/gallery.php">Gallery</a></li>
-    <li class="main-navigation <?php echo (basename($_SERVER['PHP_SELF']) == 'contact.php') ? 'active' : ''; ?>"><a href="/ExploreSriLanka/contact.php">Contact</a></li>
+    <li class="main-navigation <?php echo (basename($_SERVER['PHP_SELF']) == 'contact.php') ? 'active' : ''; ?>"><a href="/ExploreSriLanka/contactus.php">Contact</a></li>
 </ul>
 
       <?php
