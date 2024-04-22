@@ -70,24 +70,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Explore Sri Lanka</title>
 
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/checkout.css">
+    <!-- <link rel="stylesheet" href="css/checkout.css"> -->
 
 </head>
 
 <body>
-    <span id="closeIcon" class="close-icon" onclick="closeCheckout()">X</span>
+
+    <!-- Header -->
+    <?php
+    include 'components/header.php';
+    ?>
+
+
+    <div class="top-image">
+        <h1 class="headings sub-heading"></h1>
+    </div>
 
     <div class="container">
-        <div class="checkout-form">
-            <h2>Checkout</h2>
+        <div class="row">
+            <ol class="breadcrumb">
+                <li><a href="../index.php" title="Explore Sri Lanka" class="bolds">Home</a></li>
+                <li class="active">Profile</li>
+            </ol>
+        </div>
+        <!-- <span id="closeIcon" class="close-icon" onclick="closeCheckout()">X</span> -->
+
+        <div class="checkout-main-container">
+        <div class="checkout-summary-form">
+            <h2 class="checkout-sub-title">Checkout</h2>
             <form id="checkoutForm" method="post">
-                <div class="name-row">
+                <div class="checkout-name-row">
                     <input type="text" id="firstname" name="firstname" placeholder="First Name" value="<?php echo htmlspecialchars($firstName); ?>" <?php echo !empty($firstName) ? 'readonly' : ''; ?> required>
                     <input type="text" id="lastname" name="lastname" placeholder="Last Name" value="<?php echo htmlspecialchars($lastName); ?>" <?php echo !empty($lastName) ? 'readonly' : ''; ?> required>
                 </div>
@@ -103,13 +126,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
         </div>
 
-        <div class="order-summary">
+        <div class="checkout-order-summary">
             <h2>Order Summary</h2>
 
-            <div class="item-list">
-                <div class="item-table">
-                    <div class="table-row">
-                        <div class="item-name">Product Name</div>
+            <div class="checkout-item-list">
+                <div class="checkout-item-table">
+                    <div class="checkout-table-row">
+                        <div class="checkout-item-name">Product Name</div>
                         <div class="subtotal">Subtotal</div>
                     </div>
                     <?php
@@ -124,8 +147,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $subtotal = $item['item_price'] * $quantity;
                         $total += $subtotal;
 
-                        echo '<div class="table-row">';
-                        echo '<div class="item-name">' . htmlspecialchars($item['item_name']) . ' x ' . $quantity . '</div>';
+                        echo '<div class="checkout-table-row">';
+                        echo '<div class="checkout-item-name">' . htmlspecialchars($item['item_name']) . ' x ' . $quantity . '</div>';
                         echo '<div class="subtotal">LKR. ' . number_format($subtotal, 2) . '</div>';
                         echo '</div>';
                     }
@@ -133,20 +156,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
 
-            <div class="total-row">
-                <span class="total-label">Total:</span>
-                <span class="total-price">LKR. <?php echo number_format($total, 2); ?></span>
+            <div class="checkout-total-row">
+                <span class="checkout-total-label">Total:</span>
+                <span class="checkout-total-price">LKR. <?php echo number_format($total, 2); ?></span>
             </div>
 
             <button class="place-order-btn" type="button" onclick="submitForm()">Place Order</button>
         </div>
     </div>
 
-    <script>
-        function submitForm() {
-            document.getElementById("checkoutForm").submit();
-        }
-    </script>
+    </div>
+</body>
+<script>
+    function submitForm() {
+        document.getElementById("checkoutForm").submit();
+    }
+</script>
+
+<!-- Footer -->
+<?php include 'components/footer.php'; ?>
 
 </body>
 
