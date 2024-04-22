@@ -91,7 +91,7 @@
             <h5><br>- Booking ID: {{reservation_id}}<br>
                 <br>- Start Date: {{checkin_date}}<br>
 				<br>- End Date: {{checkout_date}}<br>
-                <br>- Tour: {{room_number}}<br>
+                <br>- Tour: {{package_name}}<br>
                 <br></h5>
             <h3>Please get in touch with the traveler as soon as possible to arrange the details.<br>check the account dashboard for more information.
 			

@@ -129,6 +129,7 @@ function handleAddReservation()
       $customer_data = mysqli_fetch_assoc($result);
       $customer_id = $customer_data['customer_id'];
       $customer_name = $customer_data['full_name'];
+
     } else {
       echo json_encode(array(
         'success' => false,
@@ -160,22 +161,44 @@ function handleAddReservation()
       $next_id = $max_id + 1;
       $reservation_id = 'RES' . str_pad($next_id, 5, '0', STR_PAD_LEFT);
 
-      $sqlInsertReservation = "INSERT INTO hotelreservation (reservation_id, hotel_id, name, room_number, reserved_from, reserved_till, pkg_order_id) 
-                                VALUES ('$reservation_id', '$hotelId', '$hotelName', '$roomNumber', '$reservedFrom', '$reservedTill', '$pkg_order_id')";
+      $sqlInsertReservation = "INSERT INTO hotelreservation (reservation_id, hotel_id, name, room_number, reserved_from, reserved_till, customer_id, pkg_order_id, approval) 
+                                VALUES ('$reservation_id', '$hotelId', '$hotelName', '$roomNumber', '$reservedFrom', '$reservedTill', '$customer_id', '$pkg_order_id', 'Approved')";
 
       if (mysqli_query($conn, $sqlInsertReservation)) {
 
+        // generate booking_id to tourguide
         $sql = "SELECT MAX(RIGHT(booking_id, 5)) AS max_id FROM tourguidebooking";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         $max_id = $row['max_id'];
         $next_id = $max_id + 1;
         $booking_id = 'B' . str_pad($next_id, 5, '0', STR_PAD_LEFT);
+        
+        // get hotel data from hotel_id
+        $sql = "SELECT * FROM hotels WHERE hotel_id = '$hotelId'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $hotelEmail = $row['email'];
 
-        $sqlInsertTourGuideBooking = "INSERT INTO tourguidebooking (booking_id, tg_id, name, booked_from, booked_till, pkg_order_id) 
-                                        VALUES ('$booking_id', '$tourGuideId', '$tourGuideName', '$reservedFrom', '$reservedTill', '$pkg_order_id')";
+        // get tourguide data from tg_id
+        $sql = "SELECT * FROM tourguide WHERE tg_id = '$tourGuideId'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $tourguideEmail = $row['email'];
+        
+        // customer data from session
+        $customerEmail = $_SESSION['customer_email'];
+        $sql = "SELECT first_name FROM customers WHERE email = '$customerEmail'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $customerFirstName = $row['first_name'];
+
+        $sqlInsertTourGuideBooking = "INSERT INTO tourguidebooking (booking_id, tg_id, name, booked_from, booked_till, customer_id, pkg_order_id) 
+                                        VALUES ('$booking_id', '$tourGuideId', '$tourGuideName', '$reservedFrom', '$reservedTill', '$customer_id', '$pkg_order_id')";
 
         if (mysqli_query($conn, $sqlInsertTourGuideBooking)) {
+
+          include 'send_emails.php';
 
           $response = array(
             'success' => true,
@@ -610,32 +633,42 @@ function handleAddReservation()
                         roomNumber: selectedHotelRoomNumber
                       };
 
-                      $.ajax({
-                        url: '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>',
-                        type: 'POST',
-                        dataType: 'json',
-                        data: data,
-                        success: function(response) {
-                          if (response.success) {
-                            Swal.fire({
-                              title: 'Success!',
-                              text: response.message,
-                              icon: 'success'
-                            });
-                          } else {
-                            Swal.fire({
-                              title: 'Error!',
-                              text: response.message,
-                              icon: 'error'
-                            });
-                          }
-                        },
-                        error: function(xhr, status, error) {
-                          console.error(error);
-                          Swal.fire({
-                            title: 'Error!',
-                            text: 'Failed to add reservation. Please try again later.',
-                            icon: 'error'
+                      Swal.fire({
+                        title: 'Processing...',
+                        showConfirmButton: false,
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                        didOpen: () => {
+                          Swal.showLoading();
+                          $.ajax({
+                            url: '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>',
+                            type: 'POST',
+                            dataType: 'json',
+                            data: data,
+                            success: function(response) {
+                              if (response.success) {
+                                Swal.fire({
+                                  title: 'Success!',
+                                  text: response.message,
+                                  icon: 'success'
+                                });
+                              } else {
+                                Swal.fire({
+                                  title: 'Error!',
+                                  text: response.message,
+                                  icon: 'error'
+                                });
+                              }
+                            },
+                            error: function(xhr, status, error) {
+                              console.error(error);
+                              Swal.fire({
+                                title: 'Error!',
+                                text: 'Failed to add reservation. Please try again later.',
+                                icon: 'error'
+                              });
+                            }
                           });
                         }
                       });

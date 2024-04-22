@@ -103,15 +103,14 @@
     <div class="container">
         <div class="pic1">
             <img src="https://i.postimg.cc/xdcXcXvn/logo-no-background-Copy.png">
-            <h1>Hello {{user_name}},<br>Thanks for purchasing the package.<br>
-                Currently, the reservation is still pending. You'll receive an email with the room details once the reservation is approved.</h1>
+            <h1>Hello {{user_name}},<br>Thanks for purchasing the package.</h1>
             <h2>Booking Details:</h2>
             <h5><br>- Package: {{package_name}}<br>
                 <br>- Hotel Name: {{hotel_name}}<br>
-                <br>- Reservation ID: {{reservation_id}}<br>
+                <br>- Reservation ID: {{package_id}}<br>
                 <br>
             </h5>
-            <h3>Your reservation will be approved within few hours.<br>Once approved, you'll receive an email.
+            <h3>You'll be contacted by Tour Guide soon to arrange the details.
 
                 <br><br><br>Safe Travels,<br>The Explore SriLanka Team
             </h3>

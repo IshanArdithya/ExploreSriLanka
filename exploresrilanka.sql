@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2024 at 04:16 AM
+-- Generation Time: Apr 23, 2024 at 12:42 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -51,7 +51,8 @@ INSERT INTO `customers` (`customer_id`, `email`, `password`, `first_name`, `last
 ('C00006', 'irontharindu@gmail.com', '', 'Tharindu', 'Hulangamuwa', 'Tharindu Hulangamuwa', 'images/users/C00006.jpg', NULL, NULL, NULL, '2024-03-21 02:17:45'),
 ('C00008', 'heoughten100@gmail.com', '', 'Ishan', 'Ardithya', 'Ishan Ardithya', 'images/users/C00008.jpg', '1778266684', 'United States', NULL, '2024-03-22 00:39:57'),
 ('C00010', 'heoughten111@gmail.com', '', 'Ishan', 'Ardithya', 'Ishan Ardithya', 'images/users/C00010.jpg', '94778266684', 'Sri Lanka (ශ්‍රී ලංකාව)', NULL, '2024-03-22 02:01:03'),
-('C00011', 'ardithya123@gmail.com', '123', 'Ishan', 'Ardithya', 'Ishan Ardithya', 'images/users/C00011.jpg', '94778266684', 'Sri Lanka (ශ්‍රී ලංකාව)', NULL, '2024-03-22 02:29:15');
+('C00011', 'ardithya123@gmail.com', '123', 'Ishan', 'Ardithya', 'Ishan Ardithya', 'images/users/C00011.jpg', '94778266684', 'Sri Lanka (ශ්‍රී ලංකාව)', NULL, '2024-03-22 02:29:15'),
+('C00012', 'ishanardithya@gmail.com', '', 'Ishan', 'Ardithya Bandarigoda', 'Ishan Ardithya Bandarigoda', 'images/users/C00012.jpg', '121313', 'United States', NULL, '2024-04-05 18:23:06');
 
 -- --------------------------------------------------------
 
@@ -66,18 +67,24 @@ CREATE TABLE `hotelreservation` (
   `room_number` int(10) NOT NULL,
   `reserved_from` date NOT NULL,
   `reserved_till` date NOT NULL,
-  `pkg_order_id` varchar(10) DEFAULT NULL
+  `customer_id` varchar(6) NOT NULL,
+  `totalprice` decimal(10,2) NOT NULL,
+  `pkg_order_id` varchar(10) DEFAULT NULL,
+  `approval` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `hotelreservation`
 --
 
-INSERT INTO `hotelreservation` (`reservation_id`, `hotel_id`, `name`, `room_number`, `reserved_from`, `reserved_till`, `pkg_order_id`) VALUES
-('RES00001', 'H00002', 'Grand Plaza Hotel', 201, '2050-01-01', '2050-01-02', 'PKG00007'),
-('RES00002', 'H00002', 'Grand Plaza Hotel', 201, '2051-01-01', '2051-01-02', 'PKG00008'),
-('RES00003', 'H00001', 'Colombo Reach Hotel', 101, '2052-02-02', '2052-02-03', 'PKG00009'),
-('RES00004', 'H00002', 'Grand Plaza Hotel', 201, '2055-05-05', '2055-05-06', 'PKG00010');
+INSERT INTO `hotelreservation` (`reservation_id`, `hotel_id`, `name`, `room_number`, `reserved_from`, `reserved_till`, `customer_id`, `totalprice`, `pkg_order_id`, `approval`) VALUES
+('RES00001', 'H00002', 'Grand Plaza Hotel', 201, '2050-01-01', '2050-01-02', '', 0.00, 'PKG00007', ''),
+('RES00002', 'H00002', 'Grand Plaza Hotel', 201, '2051-01-01', '2051-01-02', '', 0.00, 'PKG00008', 'Approved'),
+('RES00003', 'H00001', 'Colombo Reach Hotel', 101, '2024-04-09', '2024-04-20', '', 0.00, 'PKG00009', 'Approved'),
+('RES00004', 'H00002', 'Grand Plaza Hotel', 201, '2055-05-05', '2055-05-06', '', 0.00, 'PKG00010', 'Pending'),
+('RES00005', 'H00003', 'Ocean View Resort', 303, '2024-04-21', '2024-04-23', '', 3000.00, NULL, 'Pending'),
+('RES00006', 'H00005', 'Mountain Retreat Inn', 501, '2024-04-24', '2024-04-27', 'C00011', 0.00, 'PKG00009', 'Approved'),
+('RES00007', 'H00005', 'Mountain Retreat Inn', 501, '2024-05-15', '2024-05-18', '', 0.00, 'PKG00011', '');
 
 -- --------------------------------------------------------
 
@@ -89,7 +96,11 @@ CREATE TABLE `hotelrooms` (
   `hotel_id` varchar(6) NOT NULL,
   `name` varchar(200) NOT NULL,
   `district` varchar(50) NOT NULL,
+  `description` varchar(150) NOT NULL,
+  `guests` int(11) NOT NULL,
+  `room_type` varchar(50) NOT NULL,
   `room_id` int(6) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
   `add_to_packages` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -97,22 +108,22 @@ CREATE TABLE `hotelrooms` (
 -- Dumping data for table `hotelrooms`
 --
 
-INSERT INTO `hotelrooms` (`hotel_id`, `name`, `district`, `room_id`, `add_to_packages`) VALUES
-('H00001', 'Colombo Reach Hotel', 'Colombo', 101, 'Yes'),
-('H00001', 'Colombo Reach Hotel', 'Colombo', 102, 'No'),
-('H00001', 'Colombo Reach Hotel', 'Colombo', 103, 'No'),
-('H00002', 'Grand Plaza Hotel', 'Kandy', 201, 'Yes'),
-('H00002', 'Grand Plaza Hotel', 'Kandy', 202, 'Yes'),
-('H00002', 'Grand Plaza Hotel', 'Kandy', 203, 'Yes'),
-('H00003', 'Ocean View Resort', 'Galle', 301, 'No'),
-('H00003', 'Ocean View Resort', 'Galle', 302, 'No'),
-('H00003', 'Ocean View Resort', 'Galle', 303, 'Yes'),
-('H00004', 'Sunset Beach Hotel', 'Hikkaduwa', 401, 'Yes'),
-('H00004', 'Sunset Beach Hotel', 'Hikkaduwa', 402, 'No'),
-('H00004', 'Sunset Beach Hotel', 'Hikkaduwa', 403, 'No'),
-('H00005', 'Mountain Retreat Inn', 'Badulla', 501, 'Yes'),
-('H00005', 'Mountain Retreat Inn', 'Badulla', 502, 'Yes'),
-('H00005', 'Mountain Retreat Inn', 'Badulla', 503, 'Yes');
+INSERT INTO `hotelrooms` (`hotel_id`, `name`, `district`, `description`, `guests`, `room_type`, `room_id`, `price`, `add_to_packages`) VALUES
+('H00001', 'Colombo Reach Hotel', 'Colombo', 'This is a description.', 1, 'Luxury', 101, 100.00, 'Yes'),
+('H00001', 'Colombo Reach Hotel', 'Colombo', 'This is a description..', 2, 'Standard', 102, 100.00, 'No'),
+('H00001', 'Colombo Reach Hotel', 'Colombo', 'This is a discription...', 2, 'Luxury', 103, 100.00, 'No'),
+('H00002', 'Grand Plaza Hotel', 'Kandy', 'This is a discription....', 2, 'Standard', 201, 100.00, 'Yes'),
+('H00002', 'Grand Plaza Hotel', 'Kandy', 'This is a discription.....', 1, 'Luxury', 202, 100.00, 'Yes'),
+('H00002', 'Grand Plaza Hotel', 'Kandy', 'This is a discription......', 2, 'Standard', 203, 1000.00, 'Yes'),
+('H00003', 'Ocean View Resort', 'Galle', 'This is a discription.......', 3, 'Luxury', 301, 1000.00, 'No'),
+('H00003', 'Ocean View Resort', 'Galle', 'This is a discription........', 3, 'Standard', 302, 1000.00, 'No'),
+('H00003', 'Ocean View Resort', 'Galle', 'This is a discription.........', 1, 'Luxury', 303, 1000.00, 'Yes'),
+('H00004', 'Sunset Beach Hotel', 'Hikkaduwa', 'This is a discription..........', 2, 'Standard', 401, 1000.00, 'Yes'),
+('H00004', 'Sunset Beach Hotel', 'Hikkaduwa', 'This is a discription...........', 2, 'Luxury', 402, 1000.00, 'No'),
+('H00004', 'Sunset Beach Hotel', 'Hikkaduwa', 'This is a discription............', 3, 'Standard', 403, 1000.00, 'No'),
+('H00005', 'Mountain Retreat Inn', 'Badulla', 'This is a discription.............', 2, 'Luxury', 501, 1000.00, 'Yes'),
+('H00005', 'Mountain Retreat Inn', 'Badulla', 'This is a discription..............', 1, 'Standard', 502, 1000.00, 'Yes'),
+('H00005', 'Mountain Retreat Inn', 'Badulla', 'This is a discription...............', 1, 'Luxury', 503, 1000.00, 'Yes');
 
 -- --------------------------------------------------------
 
@@ -133,19 +144,20 @@ CREATE TABLE `hotels` (
   `hotel_picture` varchar(255) DEFAULT NULL,
   `hotel_url` varchar(250) NOT NULL,
   `active` int(1) NOT NULL,
-  `verified` varchar(10) DEFAULT NULL
+  `status` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `hotels`
 --
 
-INSERT INTO `hotels` (`hotel_id`, `email`, `password`, `name`, `address`, `contact_number`, `district`, `distance`, `short_desc`, `hotel_picture`, `hotel_url`, `active`, `verified`) VALUES
-('H00001', 'colomboreach@example.com', '123', 'Colombo Reach Hotel', '123 Main Street, Colombo', '123456789', 'Colombo', 5, 'Luxurious hotel in the heart of Colombo.', NULL, 'hotel_ColomboReachHotel.php', 1, 'Verified'),
-('H00002', 'grandplaza@example.com', 'grandplazapass', 'Grand Plaza Hotel', '456 Central Avenue, Kandy', '987654321', 'Kandy', 8, 'Elegant hotel offering stunning views of Kandy.', NULL, '', 1, '2023-01-01'),
-('H00003', 'oceanview@example.com', 'oceanviewpass', 'Ocean View Resort', '789 Beach Road, Galle', '456789123', 'Galle', 3, 'Seaside resort offering relaxation and tranquility.', NULL, '', 1, '2023-01-01'),
-('H00004', 'sunsetbeach@example.com', 'sunsetbeachpass', 'Sunset Beach Hotel', '10 Ocean Drive, Hikkaduwa', '789123456', 'Hikkaduwa', 10, 'Beachfront hotel perfect for a tropical getaway.', NULL, '', 1, '2023-01-01'),
-('H00005', 'mountainretreat@example.com', 'mountainretreatpass', 'Mountain Retreat Inn', '15 Mountain View, Nuwara Eliya', '321654987', 'Anuradhapura', 15, 'Cozy inn nestled in the picturesque mountains.', NULL, '', 1, '2023-01-01');
+INSERT INTO `hotels` (`hotel_id`, `email`, `password`, `name`, `address`, `contact_number`, `district`, `distance`, `short_desc`, `hotel_picture`, `hotel_url`, `active`, `status`) VALUES
+('H00001', 'colomboreach@example.com', '123', 'Colombo Reach Hotel', '123 Main Street, Colombo', '123456789', 'Colombo', 5, 'Luxurious hotel in the heart of Colombo.', 'Images/home4.jpg', 'hotel_ColomboReachHotel.php', 1, 'Verified'),
+('H00002', 'grandplaza@example.com', 'grandplazapass', 'Grand Plaza Hotel', '456 Central Avenue, Kandy', '987654321', 'Kandy', 8, 'Elegant hotel offering stunning views of Kandy.', 'Images/ella2.jpg', '', 1, 'Verified'),
+('H00003', 'heoughten111@gmail.com', 'oceanviewpass', 'Ocean View Resort', '789 Beach Road, Galle', '456789123', 'Galle', 3, 'Seaside resort offering relaxation and tranquility.', NULL, '', 1, 'Verified'),
+('H00004', 'sunsetbeach@example.com', 'sunsetbeachpass', 'Sunset Beach Hotel', '10 Ocean Drive, Hikkaduwa', '789123456', 'Galle', 10, 'Beachfront hotel perfect for a tropical getaway.', NULL, '', 1, 'Verified'),
+('H00005', 'heoughten111@gmail.com', 'mountainretreatpass', 'Mountain Retreat Inn', '15 Mountain View, Nuwara Eliya', '321654987', 'Nuwara Eliya', 15, 'Cozy inn nestled in the picturesque mountains.', 'Images/package3.jpg', '', 1, 'Verified'),
+('H00006', 'Heoughten123@gmail.com', '$2y$10$VrzegAOuE8FTYemJey2A1.dqy89Z6phulVtMXV3VmZ1LGgriI1QR6', 'Sunrises Hotel', '123', '123', 'Colombo', 4, NULL, NULL, '', 0, 'Verified');
 
 -- --------------------------------------------------------
 
@@ -173,9 +185,7 @@ INSERT INTO `packageorders` (`pkg_order_id`, `package_name`, `customer_id`, `cus
 ('PKG00004', 'Adventure Expedition', 'C00010', 'Ishan Ardithya', '2024-12-18', '2024-12-19'),
 ('PKG00006', '', 'C00011', 'Ishan Ardithya', '2050-01-01', '2050-01-02'),
 ('PKG00007', '', 'C00011', 'Ishan Ardithya', '2050-01-01', '2050-01-02'),
-('PKG00008', '', 'C00011', 'Ishan Ardithya', '2051-01-01', '2051-01-02'),
-('PKG00009', 'Adventure Expedition', 'C00011', 'Ishan Ardithya', '2052-02-02', '2052-02-03'),
-('PKG00010', 'Adventure Expedition', 'C00011', 'Ishan Ardithya', '2055-05-05', '2055-05-06');
+('PKG00008', '', 'C00011', 'Ishan Ardithya', '2051-01-01', '2051-01-02');
 
 -- --------------------------------------------------------
 
@@ -256,24 +266,25 @@ CREATE TABLE `tourguide` (
   `contact_number` varchar(13) DEFAULT NULL,
   `district` varchar(50) DEFAULT NULL,
   `experience` int(3) DEFAULT NULL,
-  `specialty` varchar(150) DEFAULT NULL,
+  `specialty` varchar(255) DEFAULT NULL,
   `short_desc` varchar(200) DEFAULT NULL,
   `picture` varchar(255) DEFAULT NULL,
   `active` int(1) NOT NULL,
-  `email_verified_at` datetime DEFAULT NULL
+  `status` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tourguide`
 --
 
-INSERT INTO `tourguide` (`tg_id`, `email`, `password`, `first_name`, `last_name`, `full_name`, `age`, `contact_number`, `district`, `experience`, `specialty`, `short_desc`, `picture`, `active`, `email_verified_at`) VALUES
-('TG0001', 'sunil@example.com', 'sunilpass', 'Sunil', 'Perera', 'Sunil Perera', 35, '123456789', 'Colombo', 5, 'History', 'Passionate tour guide with extensive knowledge in history.', NULL, 1, '2023-01-01 00:00:00'),
-('TG0002', 'kamal@example.com', 'kamalpass', 'Kamal', 'Silva', 'Kamal Silva', 40, '987654321', 'Kandy', 8, 'Adventure', 'Experienced adventure tour guide specializing in outdoor activities.', NULL, 1, '2023-01-01 00:00:00'),
-('TG0003', 'nimal@example.com', 'nimalpass', 'Nimal', 'Fernando', 'Nimal Fernando', 30, '777888999', 'Galle', 3, 'Cultural', 'Enthusiastic about showcasing cultural heritage sites.', NULL, 1, '2023-01-01 00:00:00'),
-('TG0004', 'anil@example.com', 'anilpass', 'Anil', 'Kumar', 'Anil Kumar', 28, '555666777', 'Anuradhapura', 4, 'Wildlife', 'Passionate wildlife enthusiast with in-depth knowledge of flora and fauna.', NULL, 1, '2023-01-01 00:00:00'),
-('TG0005', 'priya@example.com', 'priyapass', 'Priya', 'Ranasinghe', 'Priya Ranasinghe', 32, '333444555', 'Nuwara Eliya', 6, 'Nature', 'Dedicated to showcasing the beauty of nature through guided tours.', NULL, 1, '2023-01-01 00:00:00'),
-('TG0006', 'samantha@example.com', 'samanthapass', 'Samantha', 'Jayasinghe', 'Samantha Jayasinghe', 36, '999000111', 'Badulla', 7, 'Hiking', 'Experienced hiking guide passionate about exploring scenic trails.', NULL, 1, '2023-01-01 00:00:00');
+INSERT INTO `tourguide` (`tg_id`, `email`, `password`, `first_name`, `last_name`, `full_name`, `age`, `contact_number`, `district`, `experience`, `specialty`, `short_desc`, `picture`, `active`, `status`) VALUES
+('TG0001', 'sunil@example.com', 'sunilpass', 'Sunil', 'Perera', 'Sunil Perera', 35, '123456789', 'Colombo', 5, 'History', 'Passionate tour guide with extensive knowledge in history.', NULL, 1, 'Verified'),
+('TG0002', 'kamal@example.com', 'kamalpass', 'Kamal', 'Silva', 'Kamal Silva', 40, '987654321', 'Kandy', 8, 'Adventure', 'Experienced adventure tour guide specializing in outdoor activities.', NULL, 1, 'Verified'),
+('TG0003', 'nimal@example.com', 'nimalpass', 'Nimal', 'Fernando', 'Nimal Fernando', 30, '777888999', 'Galle', 3, 'Cultural', 'Enthusiastic about showcasing cultural heritage sites.', NULL, 1, 'Verified'),
+('TG0004', 'anil@example.com', 'anilpass', 'Anil', 'Kumar', 'Anil Kumar', 28, '555666777', 'Anuradhapura', 4, 'Wildlife', 'Passionate wildlife enthusiast with in-depth knowledge of flora and fauna.', NULL, 1, 'Verified'),
+('TG0005', 'priya@example.com', 'priyapass', 'Priya', 'Ranasinghe', 'Priya Ranasinghe', 32, '333444555', 'Nuwara Eliya', 6, 'Nature', 'Dedicated to showcasing the beauty of nature through guided tours.', NULL, 1, 'Verified'),
+('TG0006', 'nice1djbravo@gmail.com', 'samanthapass', 'Samantha', 'Jayasinghe', 'Samantha Jayasinghe', 36, '999000111', 'Badulla', 7, 'Hiking', 'Experienced hiking guide passionate about exploring scenic trails.', NULL, 1, 'Verified'),
+('TG0007', 'ardithya123@gmail.com', '$2y$10$NdKtB012Su4jbo0dxO5PlO0rlKnksU2481dlup7dqSh3NEN6nidY2', 'Ishan', 'Ardithya', 'Ishan Ardithya', 55, '123', 'Colombo', 5, 'Wild Life, Adventures', NULL, NULL, 0, 'Verified');
 
 -- --------------------------------------------------------
 
@@ -287,6 +298,7 @@ CREATE TABLE `tourguidebooking` (
   `name` varchar(200) NOT NULL,
   `booked_from` date NOT NULL,
   `booked_till` date NOT NULL,
+  `customer_id` varchar(6) NOT NULL,
   `pkg_order_id` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -294,15 +306,14 @@ CREATE TABLE `tourguidebooking` (
 -- Dumping data for table `tourguidebooking`
 --
 
-INSERT INTO `tourguidebooking` (`booking_id`, `tg_id`, `name`, `booked_from`, `booked_till`, `pkg_order_id`) VALUES
-('B00001', 'TG0002', 'Kamal Silva', '2024-05-05', '2024-05-06', 'PKG00001'),
-('B00002', 'TG0006', 'Samantha Jayasinghe', '2024-05-05', '2024-05-06', 'PKG00002'),
-('B00003', 'TG0006', 'Samantha Jayasinghe', '2024-12-15', '2024-12-16', 'PKG00003'),
-('B00004', 'TG0002', 'Kamal Silva', '2024-12-18', '2024-12-19', 'PKG00004'),
-('B00005', 'TG0002', 'Kamal Silva', '2050-01-01', '2050-01-02', 'PKG00007'),
-('B00006', 'TG0001', 'Sunil Perera', '2051-01-01', '2051-01-02', 'PKG00008'),
-('B00007', 'TG0001', 'Sunil Perera', '2052-02-02', '2052-02-03', 'PKG00009'),
-('B00008', 'TG0002', 'Kamal Silva', '2055-05-05', '2055-05-06', 'PKG00010');
+INSERT INTO `tourguidebooking` (`booking_id`, `tg_id`, `name`, `booked_from`, `booked_till`, `customer_id`, `pkg_order_id`) VALUES
+('B00001', 'TG0002', 'Kamal Silva', '2024-05-05', '2024-05-06', '', 'PKG00001'),
+('B00002', 'TG0006', 'Samantha Jayasinghe', '2024-05-05', '2024-05-06', '', 'PKG00002'),
+('B00003', 'TG0006', 'Samantha Jayasinghe', '2024-12-15', '2024-12-16', '', 'PKG00003'),
+('B00004', 'TG0002', 'Kamal Silva', '2024-12-18', '2024-12-19', '', 'PKG00004'),
+('B00005', 'TG0002', 'Kamal Silva', '2050-01-01', '2050-01-02', '', 'PKG00007'),
+('B00006', 'TG0001', 'Sunil Perera', '2051-01-01', '2051-01-02', '', 'PKG00008'),
+('B00007', 'TG0001', 'Sunil Perera', '2052-02-02', '2052-02-03', '', 'PKG00009');
 
 --
 -- Indexes for dumped tables
