@@ -813,6 +813,14 @@
                 title: "Signed in successfully"
             });
         };
+
+        if (getUrlParameter('hotelregister') === '1') {
+            Swal.fire({
+                title: "Success",
+                text: "Registration successful! You'll receive an email once your account is approved.",
+                icon: "success"
+            });
+        };
     </script>
 </body>
 

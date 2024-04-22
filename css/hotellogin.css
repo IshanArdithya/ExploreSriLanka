@@ -197,6 +197,7 @@ body {
   border-radius: 20px;
   cursor: pointer;
   margin-top: 10px;
+  transition: opacity 0.9s ease;
 }
 
 a {
@@ -404,4 +405,13 @@ a.forgot:hover {
   .design {
     display: block;
   }
+}
+
+.disabled {
+  opacity: 0.5;
+  transition: opacity 0.9s ease;
+}
+
+.disabled:hover {
+  opacity: 0.3;
 }
