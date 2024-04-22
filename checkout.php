@@ -101,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="row">
             <ol class="breadcrumb">
                 <li><a href="../index.php" title="Explore Sri Lanka" class="bolds">Home</a></li>
-                <li class="active">Profile</li>
+                <li class="active">Checkout</li>
             </ol>
         </div>
         <!-- <span id="closeIcon" class="close-icon" onclick="closeCheckout()">X</span> -->
