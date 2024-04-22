@@ -415,3 +415,12 @@ a.forgot:hover {
     display: block;
   }
 }
+
+.disabled {
+  opacity: 0.5;
+  transition: opacity 0.9s ease;
+}
+
+.disabled:hover {
+  opacity: 0.3;
+}

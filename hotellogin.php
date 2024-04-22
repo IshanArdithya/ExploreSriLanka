@@ -92,7 +92,7 @@ if ($conn->connect_error) {
                 $mail->Body = $Body;
                 $mail->send();
 
-                $sql = "INSERT INTO hotels (hotel_id, email, password, name, address, contact_number, district, distance, verified) VALUES ('$hotel_id', '$email', '$hashed_password', '$hotelName', '$hotelAddress', '$contactNumber', '$district', '$distanceFromDistrict', NULL)";
+                $sql = "INSERT INTO hotels (hotel_id, email, password, name, address, contact_number, district, distance, status) VALUES ('$hotel_id', '$email', '$hashed_password', '$hotelName', '$hotelAddress', '$contactNumber', '$district', '$distanceFromDistrict', 'Pending')";
                 $result = mysqli_query($conn, $sql);
 
                 if ($result) {
@@ -120,11 +120,11 @@ if ($conn->connect_error) {
             $row = mysqli_fetch_assoc($result);
             $hashed_password = $row["password"];
             if (password_verify($loginPassword, $hashed_password)) {
-                if ($row["verified"] === "Verified") {
+                if ($row["status"] === "Verified") {
                     $_SESSION['hotel_email'] = $email;
                     header("Location: hoteldashboard.php");
                     exit();
-                } elseif ($row["verified"] === "Pending") {
+                } elseif ($row["status"] === "Pending") {
                     echo "<script>
                     Swal.fire({
                         title: 'Pending',
@@ -134,7 +134,7 @@ if ($conn->connect_error) {
                         heightAuto: false
                     });
                 </script>";
-                } elseif ($row["verified"] === "Rejected") {
+                } elseif ($row["status"] === "Rejected") {
                     echo "<script>
                     Swal.fire({
                         title: 'Rejected!',
