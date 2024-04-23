@@ -121,7 +121,7 @@ if ($conn->connect_error) {
             $hashed_password = $row["password"];
             if (password_verify($loginPassword, $hashed_password)) {
                 if ($row["status"] === "Verified") {
-                    $_SESSION['hotel_email'] = $email;
+                    $_SESSION['hotel_email'] = $loginEmail;
                     header("Location: hoteldashboard.php");
                     exit();
                 } elseif ($row["status"] === "Pending") {
