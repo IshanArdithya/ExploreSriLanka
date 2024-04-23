@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../../css/admin.style.css">
     <script src="user.js"></script>
     <script src="../../js/admin.index.js"></script>
-    <title>update tourguide</title>
+    <title>update shop</title>
 </head>
 
 <body>
@@ -23,27 +23,23 @@
         <!-- End of Sidebar Section -->
 
 
-        <!-- form for update user -->
+        <!-- form for update products -->
         <main>
             <div class="update">
-                <h1>Update Tour Guide</h1>
+                <h1>Update Products</h1>
                 <form action="" method="POST" enctype="multipart/form-data">
                     <table class="tbl-30">
                         <tr>
-                            <td>Tour Guide Name : </td>
+                            <td>Product Name : </td>
                             <td><input type="text" name="name" value=""></td>
                         </tr>
                         <tr>
-                            <td>Tour Guide Email : </td>
-                            <td><input type="email" name="email" value=""></td>
-                        </tr>
-                        <tr>
-                            <td>Years Of Experience: </td>
-                            <td><input type="number" name="exp" value=""></td>
+                            <td>Stock Quantity: </td>
+                            <td><input type="number" name="qty" value=""></td>
                         </tr>
                         </tr>
                         <tr>
-                            <td>Profile Picture: </td>
+                            <td>Item Image: </td>
                             <td><input type="file" name="new_img_name"></td>
                         </tr>
                         <tr>
@@ -62,8 +58,8 @@
                         <td colspan="2">
                             <input type="hidden" name="id" value="">
                             <input type="hidden" name="current_img" value="">
-                            <input type="submit" name="submit" value="Update Tour Guide" class="btn-secondary">
-                            <input type="submit" name="submit" value="Delete Tour Guide" class="btn-danger">
+                            <input type="submit" name="submit" value="Update Product" class="btn-secondary">
+                            <input type="submit" name="submit" value="Delete Product" class="btn-danger">
                         </td>
 
                     </table>
@@ -71,7 +67,7 @@
             </div>
 
             <div class="back">
-                <a href="admin.tourguide.html" class="btn btn-back">Back</a>
+                <a href="admin.shop.html" class="btn btn-back">Back</a>
             </div>
 
         </main>
