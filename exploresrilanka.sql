@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2024 at 12:42 AM
+-- Generation Time: Apr 23, 2024 at 11:48 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -38,21 +38,22 @@ CREATE TABLE `customers` (
   `contact_number` varchar(20) DEFAULT NULL,
   `country` varchar(100) DEFAULT NULL,
   `verification_code` int(8) DEFAULT NULL,
-  `email_verified_at` datetime DEFAULT NULL
+  `email_verified_at` datetime DEFAULT NULL,
+  `registered` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`customer_id`, `email`, `password`, `first_name`, `last_name`, `full_name`, `picture`, `contact_number`, `country`, `verification_code`, `email_verified_at`) VALUES
-('C00004', 'heoughten123@gmail.com', '123', 'Ishan Ardithya', 'Bandarigoda', '', NULL, '94778266684', 'Sri Lanka (ශ්‍රී ලංකාව)', NULL, '2024-03-18 03:06:08'),
-('C00005', 'nice1djbravo@gmail.com', '', 'Heoughten', '', 'Heoughten', 'images/users/C00005.jpg', NULL, NULL, NULL, '2024-03-21 02:05:22'),
-('C00006', 'irontharindu@gmail.com', '', 'Tharindu', 'Hulangamuwa', 'Tharindu Hulangamuwa', 'images/users/C00006.jpg', NULL, NULL, NULL, '2024-03-21 02:17:45'),
-('C00008', 'heoughten100@gmail.com', '', 'Ishan', 'Ardithya', 'Ishan Ardithya', 'images/users/C00008.jpg', '1778266684', 'United States', NULL, '2024-03-22 00:39:57'),
-('C00010', 'heoughten111@gmail.com', '', 'Ishan', 'Ardithya', 'Ishan Ardithya', 'images/users/C00010.jpg', '94778266684', 'Sri Lanka (ශ්‍රී ලංකාව)', NULL, '2024-03-22 02:01:03'),
-('C00011', 'ardithya123@gmail.com', '123', 'Ishan', 'Ardithya', 'Ishan Ardithya', 'images/users/C00011.jpg', '94778266684', 'Sri Lanka (ශ්‍රී ලංකාව)', NULL, '2024-03-22 02:29:15'),
-('C00012', 'ishanardithya@gmail.com', '', 'Ishan', 'Ardithya Bandarigoda', 'Ishan Ardithya Bandarigoda', 'images/users/C00012.jpg', '121313', 'United States', NULL, '2024-04-05 18:23:06');
+INSERT INTO `customers` (`customer_id`, `email`, `password`, `first_name`, `last_name`, `full_name`, `picture`, `contact_number`, `country`, `verification_code`, `email_verified_at`, `registered`) VALUES
+('C00004', 'heoughten123@gmail.com', '123', 'Ishan Ardithya', 'Bandarigoda', '', NULL, '94778266684', 'Sri Lanka (ශ්‍රී ලංකාව)', NULL, '2024-03-18 03:06:08', '2024-03-18'),
+('C00005', 'nice1djbravo@gmail.com', '', 'Heoughten', '', 'Heoughten', 'images/users/C00005.jpg', NULL, NULL, NULL, '2024-03-21 02:05:22', '2024-03-21'),
+('C00006', 'irontharindu@gmail.com', '', 'Tharindu', 'Hulangamuwa', 'Tharindu Hulangamuwa', 'images/users/C00006.jpg', NULL, NULL, NULL, '2024-03-21 02:17:45', '2024-03-21'),
+('C00008', 'heoughten100@gmail.com', '', 'Ishan', 'Ardithya', 'Ishan Ardithya', 'images/users/C00008.jpg', '1778266684', 'United States', NULL, '2024-03-22 00:39:57', '2024-03-22'),
+('C00010', 'heoughten111@gmail.com', '', 'Ishan', 'Ardithya', 'Ishan Ardithya', 'images/users/C00010.jpg', '94778266684', 'Sri Lanka (ශ්‍රී ලංකාව)', NULL, '2024-03-22 02:01:03', '2024-03-22'),
+('C00011', 'ardithya123@gmail.com', '123', 'Ishan', 'Ardithya', 'Ishan Ardithya', 'images/users/C00011.jpg', '94778266684', 'Sri Lanka (ශ්‍රී ලංකාව)', NULL, '2024-03-25 02:29:15', '2024-03-25'),
+('C00012', 'ishanardithya@gmail.com', '', 'Ishan', 'Ardithya Bandarigoda', 'Ishan Ardithya Bandarigoda', 'images/users/C00012.jpg', '121313', 'United States', NULL, '2024-04-05 18:23:06', '2024-04-05');
 
 -- --------------------------------------------------------
 
@@ -144,20 +145,21 @@ CREATE TABLE `hotels` (
   `hotel_picture` varchar(255) DEFAULT NULL,
   `hotel_url` varchar(250) NOT NULL,
   `active` int(1) NOT NULL,
-  `status` varchar(10) DEFAULT NULL
+  `status` varchar(10) DEFAULT NULL,
+  `registered` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `hotels`
 --
 
-INSERT INTO `hotels` (`hotel_id`, `email`, `password`, `name`, `address`, `contact_number`, `district`, `distance`, `short_desc`, `hotel_picture`, `hotel_url`, `active`, `status`) VALUES
-('H00001', 'colomboreach@example.com', '123', 'Colombo Reach Hotel', '123 Main Street, Colombo', '123456789', 'Colombo', 5, 'Luxurious hotel in the heart of Colombo.', 'Images/home4.jpg', 'hotel_ColomboReachHotel.php', 1, 'Verified'),
-('H00002', 'grandplaza@example.com', 'grandplazapass', 'Grand Plaza Hotel', '456 Central Avenue, Kandy', '987654321', 'Kandy', 8, 'Elegant hotel offering stunning views of Kandy.', 'Images/ella2.jpg', '', 1, 'Verified'),
-('H00003', 'heoughten111@gmail.com', 'oceanviewpass', 'Ocean View Resort', '789 Beach Road, Galle', '456789123', 'Galle', 3, 'Seaside resort offering relaxation and tranquility.', NULL, '', 1, 'Verified'),
-('H00004', 'sunsetbeach@example.com', 'sunsetbeachpass', 'Sunset Beach Hotel', '10 Ocean Drive, Hikkaduwa', '789123456', 'Galle', 10, 'Beachfront hotel perfect for a tropical getaway.', NULL, '', 1, 'Verified'),
-('H00005', 'heoughten111@gmail.com', 'mountainretreatpass', 'Mountain Retreat Inn', '15 Mountain View, Nuwara Eliya', '321654987', 'Nuwara Eliya', 15, 'Cozy inn nestled in the picturesque mountains.', 'Images/package3.jpg', '', 1, 'Verified'),
-('H00006', 'Heoughten123@gmail.com', '$2y$10$VrzegAOuE8FTYemJey2A1.dqy89Z6phulVtMXV3VmZ1LGgriI1QR6', 'Sunrises Hotel', '123', '123', 'Colombo', 4, NULL, NULL, '', 0, 'Verified');
+INSERT INTO `hotels` (`hotel_id`, `email`, `password`, `name`, `address`, `contact_number`, `district`, `distance`, `short_desc`, `hotel_picture`, `hotel_url`, `active`, `status`, `registered`) VALUES
+('H00001', 'colomboreach@example.com', '123', 'Colombo Reach Hotel', '123 Main Street, Colombo', '123456789', 'Colombo', 5, 'Luxurious hotel in the heart of Colombo.', 'Images/home4.jpg', 'hotel_ColomboReachHotel.php', 1, 'Verified', '2024-03-18'),
+('H00002', 'grandplaza@example.com', 'grandplazapass', 'Grand Plaza Hotel', '456 Central Avenue, Kandy', '987654321', 'Kandy', 8, 'Elegant hotel offering stunning views of Kandy.', 'Images/ella2.jpg', '', 1, 'Verified', '2024-04-01'),
+('H00003', 'heoughten111@gmail.com', 'oceanviewpass', 'Ocean View Resort', '789 Beach Road, Galle', '456789123', 'Galle', 3, 'Seaside resort offering relaxation and tranquility.', NULL, '', 1, 'Verified', '2024-04-02'),
+('H00004', 'sunsetbeach@example.com', 'sunsetbeachpass', 'Sunset Beach Hotel', '10 Ocean Drive, Hikkaduwa', '789123456', 'Galle', 10, 'Beachfront hotel perfect for a tropical getaway.', NULL, '', 1, 'Verified', '2024-04-07'),
+('H00005', 'heoughten111@gmail.com', 'mountainretreatpass', 'Mountain Retreat Inn', '15 Mountain View, Nuwara Eliya', '321654987', 'Nuwara Eliya', 15, 'Cozy inn nestled in the picturesque mountains.', 'Images/package3.jpg', '', 1, 'Verified', '2024-04-15'),
+('H00006', 'Heoughten123@gmail.com', '$2y$10$VrzegAOuE8FTYemJey2A1.dqy89Z6phulVtMXV3VmZ1LGgriI1QR6', 'Sunrises Hotel', '123', '123', 'Colombo', 4, NULL, NULL, '', 0, 'Verified', '2024-04-22');
 
 -- --------------------------------------------------------
 
@@ -171,21 +173,22 @@ CREATE TABLE `packageorders` (
   `customer_id` varchar(6) NOT NULL,
   `customer_name` varchar(200) NOT NULL,
   `reserved_from` date NOT NULL,
-  `reserved_till` date NOT NULL
+  `reserved_till` date NOT NULL,
+  `reserved_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `packageorders`
 --
 
-INSERT INTO `packageorders` (`pkg_order_id`, `package_name`, `customer_id`, `customer_name`, `reserved_from`, `reserved_till`) VALUES
-('PKG00001', 'Adventure Expedition', 'C00010', 'Ishan Ardithya', '2024-05-05', '2024-05-06'),
-('PKG00002', 'Adventure Expedition', 'C00010', 'Ishan Ardithya', '2024-05-05', '2024-05-06'),
-('PKG00003', 'Adventure Expedition', 'C00010', 'Ishan Ardithya', '2024-12-15', '2024-12-16'),
-('PKG00004', 'Adventure Expedition', 'C00010', 'Ishan Ardithya', '2024-12-18', '2024-12-19'),
-('PKG00006', '', 'C00011', 'Ishan Ardithya', '2050-01-01', '2050-01-02'),
-('PKG00007', '', 'C00011', 'Ishan Ardithya', '2050-01-01', '2050-01-02'),
-('PKG00008', '', 'C00011', 'Ishan Ardithya', '2051-01-01', '2051-01-02');
+INSERT INTO `packageorders` (`pkg_order_id`, `package_name`, `customer_id`, `customer_name`, `reserved_from`, `reserved_till`, `reserved_date`) VALUES
+('PKG00001', 'Adventure Expedition', 'C00010', 'Ishan Ardithya', '2024-05-05', '2024-05-06', '2024-03-05'),
+('PKG00002', 'Adventure Expedition', 'C00010', 'Ishan Ardithya', '2024-05-05', '2024-05-06', '2024-04-02'),
+('PKG00003', 'Adventure Expedition', 'C00010', 'Ishan Ardithya', '2024-12-15', '2024-12-16', '2024-04-02'),
+('PKG00004', 'Adventure Expedition', 'C00010', 'Ishan Ardithya', '2024-12-18', '2024-12-19', '2024-04-05'),
+('PKG00006', '', 'C00011', 'Ishan Ardithya', '2050-01-01', '2050-01-02', '2024-04-10'),
+('PKG00007', '', 'C00011', 'Ishan Ardithya', '2050-01-01', '2050-01-02', '2024-04-11'),
+('PKG00008', '', 'C00011', 'Ishan Ardithya', '2051-01-01', '2051-01-02', '2024-04-18');
 
 -- --------------------------------------------------------
 
@@ -208,15 +211,8 @@ CREATE TABLE `shopitems` (
 --
 
 INSERT INTO `shopitems` (`item_id`, `item_name`, `item_price`, `item_description`, `item_photo`, `stocks`, `shopitemurl`) VALUES
-('ITEM00001', 'AAA', 12.00, 'gg', 'images/shop/369859512_122425494279690_8855905069679084746_n.jpg', 1, 'shop-items/item-AAA.php'),
-('ITEM00002', 'BBB', 12.00, 'asadasd', 'images/shop/bocchi-bocchitherock.gif', 0, 'shop-items/item-BBB.php'),
-('ITEM00003', 'CCC', 123.00, 'asdada', 'images/shop/bocchi-bocchi-the-rock.gif', 123, 'shop-items/item-CCC.php'),
-('ITEM00004', 'DDD', 213.00, 'asdadad', 'images/shop/bocchi-the-rock-hitori.gif', 41234, 'shop-items/item-DDD.php'),
-('ITEM00005', 'FFF', 21312.00, 'adasda', 'images/shop/ezgif.com-webp-to-png-converter.png', 0, 'shop-items/item-FFF.php'),
-('ITEM00006', 'NEW', 1231.00, 'adasdad', 'images/shop/bocchi-bocchi-the-rock.gif', 2, 'shop-items/item-NEW.php'),
-('ITEM00007', 'xzx', 99.00, '0000000', 'images/shop/k63jtqtxu38b1.gif', 0, 'shop-items/item-xzx.php'),
-('ITEM00008', 'ZZZ', 123.00, 'asdasdad', 'images/shop/bocchi-the-rock-anime-character-pink-haired-musician-girl-wallpaper-2732x768_73.jpg', 123, 'shop-items/item-ZZZ.php'),
-('ITEM00009', 'VVVVVV', 123.00, 'asdasdasda', 'images/shop/FB_IMG_1695844247292.jpg', 0, 'shop-items/item-VVVVVV.php');
+('ITEM00001', 'Must be Free', 0.01, 'Very Epic!', 'images/shop/hitori__bocchi__gotoh_padoru_by_factoryofsadness_dfg7ge3-pre.png', 1, 'shop-items/item-MustbeFree.php'),
+('ITEM00002', 'Bocchii', 500.00, 'TESTTTTTTTTT', 'images/shop/bocchi-bocchitherock.gif', 1, 'shop-items/item-Bocchii.php');
 
 -- --------------------------------------------------------
 
@@ -225,6 +221,7 @@ INSERT INTO `shopitems` (`item_id`, `item_name`, `item_price`, `item_description
 --
 
 CREATE TABLE `shoporders` (
+  `order_id` varchar(10) NOT NULL,
   `customer_id` varchar(6) NOT NULL,
   `customer_name` varchar(200) NOT NULL,
   `street_address` varchar(200) NOT NULL,
@@ -235,19 +232,17 @@ CREATE TABLE `shoporders` (
   `contact_number2` varchar(20) NOT NULL,
   `special_notes` varchar(255) NOT NULL,
   `items` varchar(400) NOT NULL,
-  `totalprice` decimal(10,2) NOT NULL
+  `totalprice` decimal(10,2) NOT NULL,
+  `order_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `shoporders`
 --
 
-INSERT INTO `shoporders` (`customer_id`, `customer_name`, `street_address`, `district`, `city`, `email`, `contact_number`, `contact_number2`, `special_notes`, `items`, `totalprice`) VALUES
-('', 'Ishan Ardithya', '', '', '', 'ardithya123@gmail.com', '', '', '', '', 43263.00),
-('', 'Ishan Ardithya', '', '', '', 'ardithya123@gmail.com', '', '', '', 'FFF*2, DDD*3', 43263.00),
-('', 'Ishan Ardithya', '', '', '', 'ardithya123@gmail.com', '', '', '', 'FFF*2, DDD*3', 43263.00),
-('', 'Ishan Ardithya', '', '', '', 'ardithya123@gmail.com', '', '', '', '*2, *2', 43050.00),
-('', 'Ishan Ardithya', '', '', '', 'ardithya123@gmail.com', '', '', '', 'ITEM00005*2, ITEM00004*2', 43050.00);
+INSERT INTO `shoporders` (`order_id`, `customer_id`, `customer_name`, `street_address`, `district`, `city`, `email`, `contact_number`, `contact_number2`, `special_notes`, `items`, `totalprice`, `order_date`) VALUES
+('ORDER00001', 'C00011', 'Ishan Ardithya', '81/127', 'Colombo', 'Homagama', 'ardithya123@gmail.com', '077', '011', 'GGEZZZ', 'ITEM00002*1, ITEM00001*2', 500.02, '2024-03-23'),
+('ORDER00002', 'C00011', 'Ishan Ardithya', '81/127', 'Colombo', 'Colombo', 'ardithya123@gmail.com', '123', '011', 'GGEZZZZ', 'ITEM00002*3, ITEM00001*2', 1500.02, '2024-04-24');
 
 -- --------------------------------------------------------
 
@@ -270,21 +265,22 @@ CREATE TABLE `tourguide` (
   `short_desc` varchar(200) DEFAULT NULL,
   `picture` varchar(255) DEFAULT NULL,
   `active` int(1) NOT NULL,
-  `status` varchar(10) DEFAULT NULL
+  `status` varchar(10) DEFAULT NULL,
+  `registered` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tourguide`
 --
 
-INSERT INTO `tourguide` (`tg_id`, `email`, `password`, `first_name`, `last_name`, `full_name`, `age`, `contact_number`, `district`, `experience`, `specialty`, `short_desc`, `picture`, `active`, `status`) VALUES
-('TG0001', 'sunil@example.com', 'sunilpass', 'Sunil', 'Perera', 'Sunil Perera', 35, '123456789', 'Colombo', 5, 'History', 'Passionate tour guide with extensive knowledge in history.', NULL, 1, 'Verified'),
-('TG0002', 'kamal@example.com', 'kamalpass', 'Kamal', 'Silva', 'Kamal Silva', 40, '987654321', 'Kandy', 8, 'Adventure', 'Experienced adventure tour guide specializing in outdoor activities.', NULL, 1, 'Verified'),
-('TG0003', 'nimal@example.com', 'nimalpass', 'Nimal', 'Fernando', 'Nimal Fernando', 30, '777888999', 'Galle', 3, 'Cultural', 'Enthusiastic about showcasing cultural heritage sites.', NULL, 1, 'Verified'),
-('TG0004', 'anil@example.com', 'anilpass', 'Anil', 'Kumar', 'Anil Kumar', 28, '555666777', 'Anuradhapura', 4, 'Wildlife', 'Passionate wildlife enthusiast with in-depth knowledge of flora and fauna.', NULL, 1, 'Verified'),
-('TG0005', 'priya@example.com', 'priyapass', 'Priya', 'Ranasinghe', 'Priya Ranasinghe', 32, '333444555', 'Nuwara Eliya', 6, 'Nature', 'Dedicated to showcasing the beauty of nature through guided tours.', NULL, 1, 'Verified'),
-('TG0006', 'nice1djbravo@gmail.com', 'samanthapass', 'Samantha', 'Jayasinghe', 'Samantha Jayasinghe', 36, '999000111', 'Badulla', 7, 'Hiking', 'Experienced hiking guide passionate about exploring scenic trails.', NULL, 1, 'Verified'),
-('TG0007', 'ardithya123@gmail.com', '$2y$10$NdKtB012Su4jbo0dxO5PlO0rlKnksU2481dlup7dqSh3NEN6nidY2', 'Ishan', 'Ardithya', 'Ishan Ardithya', 55, '123', 'Colombo', 5, 'Wild Life, Adventures', NULL, NULL, 0, 'Verified');
+INSERT INTO `tourguide` (`tg_id`, `email`, `password`, `first_name`, `last_name`, `full_name`, `age`, `contact_number`, `district`, `experience`, `specialty`, `short_desc`, `picture`, `active`, `status`, `registered`) VALUES
+('TG0001', 'sunil@example.com', 'sunilpass', 'Sunil', 'Perera', 'Sunil Perera', 35, '123456789', 'Colombo', 5, 'History', 'Passionate tour guide with extensive knowledge in history.', NULL, 1, 'Verified', '2024-03-04'),
+('TG0002', 'kamal@example.com', 'kamalpass', 'Kamal', 'Silva', 'Kamal Silva', 40, '987654321', 'Kandy', 8, 'Adventure', 'Experienced adventure tour guide specializing in outdoor activities.', NULL, 1, 'Verified', '2024-03-05'),
+('TG0003', 'nimal@example.com', 'nimalpass', 'Nimal', 'Fernando', 'Nimal Fernando', 30, '777888999', 'Galle', 3, 'Cultural', 'Enthusiastic about showcasing cultural heritage sites.', NULL, 1, 'Verified', '2024-03-10'),
+('TG0004', 'anil@example.com', 'anilpass', 'Anil', 'Kumar', 'Anil Kumar', 28, '555666777', 'Anuradhapura', 4, 'Wildlife', 'Passionate wildlife enthusiast with in-depth knowledge of flora and fauna.', NULL, 1, 'Verified', '2024-04-02'),
+('TG0005', 'priya@example.com', 'priyapass', 'Priya', 'Ranasinghe', 'Priya Ranasinghe', 32, '333444555', 'Nuwara Eliya', 6, 'Nature', 'Dedicated to showcasing the beauty of nature through guided tours.', NULL, 1, 'Verified', '2024-04-07'),
+('TG0006', 'nice1djbravo@gmail.com', 'samanthapass', 'Samantha', 'Jayasinghe', 'Samantha Jayasinghe', 36, '999000111', 'Badulla', 7, 'Hiking', 'Experienced hiking guide passionate about exploring scenic trails.', NULL, 1, 'Verified', '2024-04-08'),
+('TG0007', 'ardithya123@gmail.com', '$2y$10$NdKtB012Su4jbo0dxO5PlO0rlKnksU2481dlup7dqSh3NEN6nidY2', 'Ishan', 'Ardithya', 'Ishan Ardithya', 55, '123', 'Colombo', 5, 'Wild Life, Adventures', NULL, NULL, 0, 'Verified', '2024-04-09');
 
 -- --------------------------------------------------------
 
@@ -357,6 +353,12 @@ ALTER TABLE `packageorders`
 --
 ALTER TABLE `shopitems`
   ADD PRIMARY KEY (`item_id`);
+
+--
+-- Indexes for table `shoporders`
+--
+ALTER TABLE `shoporders`
+  ADD PRIMARY KEY (`order_id`);
 
 --
 -- Indexes for table `tourguide`
