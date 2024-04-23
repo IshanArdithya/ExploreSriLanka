@@ -11,7 +11,7 @@ try {
 
 $sql = "SELECT * FROM shopitems WHERE item_id = ?";
 $stmt = $pdo->prepare($sql);
-$stmt->execute(['{item_id}']);
+$stmt->execute([$item_id]);
 $product = $stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>

@@ -125,7 +125,7 @@
                 $itemPagePath = "shop-items/" . $itemPageName;
 
                 // Copy the template file
-                $templateFilePath = "item-template.php";
+                $templateFilePath = "item-template-link.php";
                 copy($templateFilePath, $itemPagePath);
 
                 // Replace placeholder values with actual data in the new item page file
