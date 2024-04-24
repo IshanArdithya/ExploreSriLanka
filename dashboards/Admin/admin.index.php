@@ -280,7 +280,7 @@ $shopOrdersLast30Days = $row["shopOrdersLast30Days"];
                 <h2>Users Details</h2>
                 <div class="search-bar">
                     <input type="text" id="searchInput" placeholder="Search...">
-                    <button onclick="filterTable()">Filter</button>
+                    <button class="btn-primary" onclick="filterTable()">Filter</button>
                 </div>
                 <table>
                     <thead>
@@ -325,7 +325,7 @@ $shopOrdersLast30Days = $row["shopOrdersLast30Days"];
                                 <th>Reviewer Name</th>
                                 <th>Description</th>
                                 <th>Ratings</th>
-                                <th>Action</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -337,39 +337,14 @@ $shopOrdersLast30Days = $row["shopOrdersLast30Days"];
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
+                                    <i class="fas fa-star"></i>
                                     <i class="far fa-star"></i>
-                                    (3.5/5)
+                                    (4/5)
                                 </td>
-                                <td>
-                                    <a href="manage.feedback.html" class="btn-secondary">Edit</a>
-                                    <a href="#" class="btn-danger">Delete</a>
-                                </td>
+                                
                             </tr>
                             <!-- add more rows here -->
-                            <tr class="extra-row" style="display: none;">
-                                <td>Alex Perera</td>
-                                <td>Lorem ipsum dolor sit amet consectetur, adipisici</td>
-                                <td class="star-rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    (3/5)
-                                </td>
-                                <td>
-                                    <a href="manage.feedback.html" class="btn-secondary">Edit</a>
-                                    <a href="#" class="btn-danger">Delete</a>
-                                </td>
-                            </tr>
-                            <!-- add more extra rows  -->
-                            <tr>
-                                <td colspan="4">
-                                    <a href="#" class="show-all-link">Show More</a>
-                                    <a href="#" class="show-less-link" style="display: none;">Show Less</a>
-                                </td>
-                            </tr>
+                            
                         </tbody>
                     </table>
                 </div>

@@ -278,7 +278,8 @@ main .analyse .sales svg circle.progress-ring,
 main .analyse .visits svg circle.progress-ring,
 main .analyse .hotels svg circle.progress-ring,
 main .analyse .tourguides svg circle.progress-ring,
-main .analyse .searches svg circle.progress-ring {
+main .analyse .searches svg circle.progress-ring,
+main .analyse .rooms svg circle.progress-ring {
     stroke: var(--color-success);
      /* Change this value to adjust the percentage */
     stroke-dasharray: 229.54; /* This value should be the circumference of the circle (2 * π * radius) */
@@ -288,16 +289,11 @@ main .analyse .sales svg circle,
 main .analyse .visits svg circle,
 main .analyse .hotels svg circle,
 main .analyse .tourguides svg circle,
-main .analyse .searches svg circle {
+main .analyse .searches svg circle,
+main .analyse .rooms svg circle {
     stroke: rgb(234, 234, 234);
     stroke-dashoffset: 0;
     stroke-dasharray: 229.54; /* This value should be the circumference of the circle (2 * π * radius) */
-}
-
-main .analyse .rooms svg circle {
-    stroke: var(--color-danger);
-    stroke-dashoffset: -30;
-    stroke-dasharray: 200;
 }
 
 main .analyse .roomtype svg circle {
