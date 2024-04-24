@@ -343,7 +343,7 @@
 
     <!-- video background -->
 
-    <section id="video-cover">
+    <!-- <section id="video-cover">
         <div class="video-bg">
             <video autoplay loop muted preload="auto">
                 <source src="Images/video.mp4" type="video/mp4">
@@ -357,7 +357,7 @@
                 <span><i class="fa fa-location"></i>10 Sri Lanka</span>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Tour Details  -->
 
