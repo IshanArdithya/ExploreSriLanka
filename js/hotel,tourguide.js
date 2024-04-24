@@ -76,4 +76,15 @@ function toggleExtraRows() {
     });
 }
 
+function toggleStatus() {
+    var activeInput = document.getElementById('active');
+    var toggleCheckbox = document.getElementById('active_toggle');
+
+    if (toggleCheckbox.checked) {
+        activeInput.value = 'YES';
+    } else {
+        activeInput.value = 'NO';
+    }
+}
+
 
