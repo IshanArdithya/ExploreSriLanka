@@ -45,7 +45,7 @@
                     <h3>Settings</h3>
                 </a>
 
-                <a href="admin.logout.html">
+                <a href="/tourguidelogin.php">
                     <span class="material-icons-sharp">
                         logout
                     </span>

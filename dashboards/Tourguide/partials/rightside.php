@@ -4,19 +4,6 @@
 <!-- Right Section -->
         <div class="right-section">
             <div class="nav">
-                <button id="menu-btn">
-                    <span class="material-icons-sharp">
-                        menu
-                    </span>
-                </button>
-                <div class="dark-mode">
-                    <span class="material-icons-sharp active">
-                        light_mode
-                    </span>
-                    <span class="material-icons-sharp">
-                        dark_mode
-                    </span>
-                </div>
 
                 <div class="profile">
                     <div class="info">
@@ -24,7 +11,7 @@
                         <small class="text-muted">Tour Guide</small>
                     </div>
                     <div class="profile-photo">
-                        <img src="/img/profile-2.jpg">
+                        <img src="../../Images/users/avatar_placeholder.png">
                     </div>
                 </div>
 

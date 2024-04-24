@@ -1,19 +1,31 @@
 <?php
 include('partials/sidebar.php');
 
-$tour_guide_query = "SELECT * FROM tourguide ORDER BY tg_id";
+
+$tg_id = "TG0002"; // Set the specific tour guide ID
+
+// Fetch the specific tour guide's details including email
+$tour_guide_query = "SELECT * FROM tourguide WHERE tg_id = '$tg_id'";
 $tour_guide_result = mysqli_query($conn, $tour_guide_query);
 
-// check if the query
+// Check if the tour guide exists
 if($tour_guide_result && mysqli_num_rows($tour_guide_result) > 0) {
+    $tour_guide_row = mysqli_fetch_assoc($tour_guide_result);
 ?>
 
 <!-- Main Content -->
 <main>
     <h1>Dashboard</h1>
-    <!-- booking details table -->
+    <!-- Tour Guide Email Session -->
+    <div class="tour-guide-email">
+        <h2>Tour Guide Email</h2>
+        <p>Email: <?php echo $tour_guide_row['email']; ?></p>
+    </div>
+    <!-- End of Tour Guide Email Session -->
+
+    <!-- Booking Details Table -->
     <div class="recent-user">
-        <h2>Booking Details</h2>
+        <h2>Your Booking Details <?php echo $tour_guide_row['tg_id']; ?></h2>
         <table>
             <thead>
                 <tr>
@@ -27,13 +39,11 @@ if($tour_guide_result && mysqli_num_rows($tour_guide_result) > 0) {
             </thead>
             <tbody>
                 <?php
-                // Fetch bookings 
-                $booking_query = "SELECT * FROM tourguidebooking ORDER BY booking_id, tg_id, pkg_order_id";
+                // Fetch bookings for the specific tour guide
+                $booking_query = "SELECT * FROM tourguidebooking WHERE tg_id = '$tg_id' ORDER BY booking_id";
                 $booking_result = mysqli_query($conn, $booking_query);
 
-                // check if the booking query was successful
                 if($booking_result && mysqli_num_rows($booking_result) > 0) {
- 
                     while ($booking_row = mysqli_fetch_assoc($booking_result)) {
                         echo "<tr>";
                         echo "<td>" . $booking_row['booking_id'] . "</td>";
@@ -50,19 +60,19 @@ if($tour_guide_result && mysqli_num_rows($tour_guide_result) > 0) {
                         echo "</tr>";
                     }
                 } else {
-                    echo "No bookings found.";
+                    echo "<tr><td colspan='6'>No bookings found for this tour guide.</td></tr>";
                 }
                 ?>
             </tbody>
         </table>
     </div>
-    <!-- end of booking details table -->
 </main>
-<!-- end of main Content -->
+<!-- End of Main Content -->
 
 <?php 
 } else {
-    echo "No tour guides found.";
+    echo "Tour guide not found.";
 }
+
 include('partials/rightside.php');
 ?>
