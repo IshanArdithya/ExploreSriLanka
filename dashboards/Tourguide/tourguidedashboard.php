@@ -1,300 +1,68 @@
-<?php require_once '../../config.php'; ?>
+<?php
+include('partials/sidebar.php');
 
-<!DOCTYPE html>
-<html lang="en">
+$tour_guide_query = "SELECT * FROM tourguide ORDER BY tg_id";
+$tour_guide_result = mysqli_query($conn, $tour_guide_query);
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="../../css/hotel,tourguide.css">
-    <script src="../../js/hotel,tourguide.js"></script>
-    <title>TourGuide dashboard</title>
-</head>
+// check if the query
+if($tour_guide_result && mysqli_num_rows($tour_guide_result) > 0) {
+?>
 
-<body>
+<!-- Main Content -->
+<main>
+    <h1>Dashboard</h1>
+    <!-- booking details table -->
+    <div class="recent-user">
+        <h2>Booking Details</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Booking ID</th>
+                    <th>TourGuide ID</th>
+                    <th>Name</th>
+                    <th>Booked From</th>
+                    <th>Booked Till</th>
+                    <th>Package Order ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                // Fetch bookings 
+                $booking_query = "SELECT * FROM tourguidebooking ORDER BY booking_id, tg_id, pkg_order_id";
+                $booking_result = mysqli_query($conn, $booking_query);
 
-    <div class="container">
-        <!-- Sidebar Section -->
-        <aside>
-            <div class="toggle">
-                <div class="logo">
+                // check if the booking query was successful
+                if($booking_result && mysqli_num_rows($booking_result) > 0) {
+ 
+                    while ($booking_row = mysqli_fetch_assoc($booking_result)) {
+                        echo "<tr>";
+                        echo "<td>" . $booking_row['booking_id'] . "</td>";
+                        echo "<td>" . $booking_row['tg_id'] . "</td>";
+                        echo "<td>" . $booking_row['name'] . "</td>";
+                        echo "<td>" . $booking_row['booked_from'] . "</td>";
+                        echo "<td>" . $booking_row['booked_till'] . "</td>";
 
-                    <h2>Explore<span class="danger"> SriLanka</span></h2>
-                </div>
-                <div class="close" id="close-btn">
-                    <span class="material-icons-sharp">
-                        close
-                    </span>
-                </div>
-            </div>
-
-            <div class="sidebar">
-                <a href="#" class="active" span class="material-icons-sharp">
-                    <span class="icon">
-                        <i class="fa-solid fa-location-dot"></i>
-                    </span>
-                    <h3>Tour Guide</h3>
-                </a>
-
-                <a href="tourguideinquiries.php">
-                    <span class=icons>
-                        <i class="fa-solid fa-info"></i>
-                    </span>
-                    <h3>Inquries</h3>
-                </a>
-
-                <a href="admin.logout.html">
-                    <span class="material-icons-sharp">
-                        logout
-                    </span>
-                    <h3>Logout</h3>
-                </a>
-            </div>
-        </aside>
-        <!-- End of Sidebar Section -->
-
-        <!-- Main Content -->
-        <main>
-            <h1>Dashboard</h1>
-            <!-- Analyses -->
-
-            <div class="analyse">
-                <div class="sales">
-                    <div class="status">
-                        <div class="info">
-                            <h3>Total Bookings</h3>
-                            <h1>$65,024</h1>
-                        </div>
-                        <div class="progresss">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="percentage">
-                                <p>+81%</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="count">
-                    <div class="status">
-                        <div class="info">
-                            <h3>Tour Guides Count</h3>
-                            <h1>24,981</h1>
-                        </div>
-
-                        <div class="progresss">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="percentage">
-                                <p>-48%</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="visits">
-                    <div class="status">
-                        <div class="info">
-                            <h3>Customer Count</h3>
-                            <h1>24,981</h1>
-                        </div>
-
-                        <div class="progresss">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="percentage">
-                                <p>-48%</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="available">
-                    <div class="status">
-                        <div class="info">
-                            <h3>Availibility</h3>
-                            <h1>24,981</h1>
-                        </div>
-
-                        <div class="progresss">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="percentage">
-                                <p>-48%</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="searches">
-                    <div class="status">
-                        <div class="info">
-                            <h3>Searches</h3>
-                            <h1>14,147</h1>
-                        </div>
-                        <div class="progresss">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="percentage">
-                                <p>+21%</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End of Analyses -->
-
-
-
-            <!-- Approved Tour Guides Table -->
-            <div class="recent-user">
-                <h2>Update Tour Guides</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Tour Guide ID</th>
-                            <th>Customer Name</th>
-                            <th>Booking Status</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>JavaScript Tutorial</td>
-                            <td>85743</td>
-                            <td>Due</td>
-                            <td>Pending</td>
-                            <td>
-                                <a href="manage.tourguide.html" class="btn-secondary">Update</a>
-                                <a href="#" class="btn-danger">Delete</a>
-                            </td>
-                        </tr>
-                        <!-- Add more rows here -->
-                        <tr class="extra-row" style="display: none;">
-                            <td>Extra Row 1</td>
-                            <td>12345</td>
-                            <td>Extra</td>
-                            <td>Active</td>
-                            <td>
-                                <a href="manage.tourguide.html" class="btn-secondary">Update</a>
-                                <a href="#" class="btn-danger">Delete</a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td colspan="5">
-                                <a href="#" class="show-all-link">Show More</a>
-                                <a href="#" class="show-less-link" style="display: none;">Show Less</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- End of Approved Tour Guides Table -->
-
-            <!-- Booking Details Table -->
-            <div class="recent-user">
-                <h2>Booking Details</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Hotel ID</th>
-                            <th>Customer Name</th>
-                            <th>Payment Status</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>JavaScript Tutorial</td>
-                            <td>85743</td>
-                            <td>Due</td>
-                            <td>Pending</td>
-                            <td>
-                                <a href="#" class="btn-secondary">Confirm</a>
-                                <a href="#" class="btn-danger">Delete</a>
-                            </td>
-                        </tr>
-
-                        <tr class="extra-row" style="display: none;">
-                            <td>Extra Row 1</td>
-                            <td>12345</td>
-                            <td>Extra</td>
-                            <td>Active</td>
-                            <td>
-                                <a href="#" class="btn-secondary">Confirm</a>
-                                <a href="#" class="btn-danger">Delete</a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td colspan="5">
-                                <a href="#" class="show-all-link">Show More</a>
-                                <a href="#" class="show-less-link" style="display: none;">Show Less</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- End of Booking Details Table -->
-
-
-        </main>
-        <!-- End of Main Content -->
-
-        <!-- Right Section -->
-        <div class="right-section">
-            <div class="nav">
-                <button id="menu-btn">
-                    <span class="material-icons-sharp">
-                        menu
-                    </span>
-                </button>
-                <div class="dark-mode">
-                    <span class="material-icons-sharp active">
-                        light_mode
-                    </span>
-                    <span class="material-icons-sharp">
-                        dark_mode
-                    </span>
-                </div>
-
-                <div class="profile">
-                    <div class="info">
-                        <p>Hey, <b>Tour Guide</b></p>
-                        <small class="text-muted">Tour Guide</small>
-                    </div>
-                    <div class="profile-photo">
-                        <img src="/img/profile-2.jpg">
-                    </div>
-                </div>
-
-            </div>
-            <!-- End of Nav -->
-
-            <div class="user-profile">
-                <div class="logo">
-                    <img src="../../Images/logoblack.png">
-                    <h2></h2>
-                </div>
-            </div>
-        </div>
+                        if(isset($booking_row['pkg_order_id'])) {
+                            echo "<td>" . $booking_row['pkg_order_id'] . "</td>";
+                        } else {
+                            echo "<td>N/A</td>";
+                        }
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "No bookings found.";
+                }
+                ?>
+            </tbody>
+        </table>
     </div>
-    </div>
+    <!-- end of booking details table -->
+</main>
+<!-- end of main Content -->
 
-</body>
-
-</html>
+<?php 
+} else {
+    echo "No tour guides found.";
+}
+include('partials/rightside.php');
+?>

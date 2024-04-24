@@ -220,126 +220,7 @@ aside .sidebar .message-count {
     border-radius: var(--border-radius-1);
 }
 
-/* analyse  */
-main {
-    margin-top: 1.4rem;
-}
 
-main .analyse {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1rem;
-}
-
-main .analyse > div {
-    background-color: var(--color-white);
-    padding: var(--card-padding);
-    border-radius: var(--card-border-radius);
-    margin-top: 1rem;
-    box-shadow: var(--box-shadow);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-main .analyse > div:hover {
-    box-shadow: none;
-}
-
-main .analyse > div .status {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-main .analyse h3 {
-    margin-left: 0.6rem;
-    font-size: 1rem;
-}
-
-main .analyse .progresss {
-    position: relative;
-    width: 92px;
-    height: 92px;
-    border-radius: 50%;
-}
-
-main .analyse svg {
-    width: 7rem;
-    height: 7rem;
-}
-
-main .analyse svg circle {
-    fill: none;
-    stroke-width: 10;
-    stroke-linecap: round;
-    transform: translate(5px, 5px);
-}
-
-main .analyse .sales svg circle {
-    stroke: var(--color-success);
-    stroke-dashoffset: -30;
-    stroke-dasharray: 200;
-}
-
-main .analyse .visits svg circle {
-    stroke: var(--color-danger);
-    stroke-dashoffset: -30;
-    stroke-dasharray: 200;
-}
-
-main .analyse .hotels svg circle {
-    stroke: var(--color-danger);
-    stroke-dashoffset: -30;
-    stroke-dasharray: 200;
-}
-
-main .analyse .tourguides svg circle {
-    stroke: var(--color-danger);
-    stroke-dashoffset: -30;
-    stroke-dasharray: 200;
-}
-
-main .analyse .rooms svg circle {
-    stroke: var(--color-danger);
-    stroke-dashoffset: -30;
-    stroke-dasharray: 200;
-}
-
-main .analyse .roomtype svg circle {
-    stroke: var(--color-danger);
-    stroke-dashoffset: -30;
-    stroke-dasharray: 200;
-}
-
-main .analyse .count svg circle {
-    stroke: var(--color-danger);
-    stroke-dashoffset: -30;
-    stroke-dasharray: 200;
-}
-
-main .analyse .available svg circle {
-    stroke: var(--color-danger);
-    stroke-dashoffset: -30;
-    stroke-dasharray: 200;
-}
-
-main .analyse .searches svg circle {
-    stroke: var(--color-primary);
-    stroke-dashoffset: -30;
-    stroke-dasharray: 200;
-}
-
-main .analyse .progresss .percentage {
-    position: absolute;
-    top: -3px;
-    left: -1px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-}
-/* end  analyse */
 
 /* user detils */
 main .new-users {
@@ -473,8 +354,8 @@ main .recent-user table tbody tr:last-child td {
     text-align: center; 
 }
 
-.btn {
-    width: 800px;
+.btn.btn-secondary {
+    width: 100px;
     display: inline-block;
     padding: 10px 20px; 
     background-color: #042e5a;
@@ -486,7 +367,7 @@ main .recent-user table tbody tr:last-child td {
 
 .btn-secondary,
 .btn-danger {
-    padding: 8px 20px;
+    padding: 12px 20px;
     border-radius: 10px;
     color: #fff;
     cursor: pointer;
@@ -519,14 +400,14 @@ main .recent-user table tbody tr:last-child td {
 }
 
 .btn {
+    width: 100px;
     display: inline-block;
-    width: 500px;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 10px 20px; 
+    background-color: #042e5a;
+    color: #ffffff; 
     text-decoration: none;
-    color: #ffffff;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    border-radius: 10px; 
+    transition: background-color 0.3s;
 }
 
 .btn-back {
@@ -535,8 +416,7 @@ main .recent-user table tbody tr:last-child td {
 }
 
 .btn-back:hover {
-    background-color: #353557;
-    border: 1px solid #223b57;
+    background-color: #50ddd4;
 }
 
 /* end buttons */
@@ -670,6 +550,8 @@ main .recent-orders a {
 
 input[type="text"],
 input[type="email"],
+input[type="contact"],
+input[type="description"],
 select,
 input[type="number"],
 input[type="qty"] {
@@ -680,6 +562,68 @@ input[type="qty"] {
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
+/* tooglebtn */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #c83131;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #15d642;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #fa360b;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+
 
 /* admin login */
 
