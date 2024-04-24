@@ -50,10 +50,7 @@
         </div>
     </main>
 
-
-    <!-- Search Location -->
-
-    <section id="location-search">
+    <section id="scroll-arrow">
         <div class="container">
             <div id="scroll-down">
                 <a href="#location-search" class="scroll-down-link">
@@ -261,111 +258,84 @@
             <h2 class="headings">POPULAR <span>DESTINATIONS</span></h2>
             <div class="top-destination-wrapper swiper2">
                 <div class="swiper-wrapper">
-                    <div class="carousel swiper-slide">
+                    <a href="./destinations/Anuradhapura.php" class="carousel swiper-slide">
                         <img src="./destinations/Images/anuradhapura1.jpg" alt="">
                         <div class="carousel-img-overlay">
                             <div class="img-content">
                                 <h2><i class="fa fa-location-dot"></i>Anuradhapura</h2>
                                 <div class="hidden-content-carousel">
-                                    <span>4 Tours Packages</span>
-                                    <a href="#"><span>Explore</span><i class="fa fa-arrow-right"></i></a>
+                                    <span>More Details</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="price-label">
-                            <p>15% Off</p>
-                        </div>
-                    </div>
-                    <div class="carousel swiper-slide ">
+                    </a>
+                    <a href="./destinations/Arugam-Bay.php" class="carousel swiper-slide ">
                         <img src="./destinations/Images/Arugam Bay1.jpg" alt="">
                         <div class="carousel-img-overlay">
                             <div class="img-content">
                                 <h2><i class="fa fa-location-dot"></i>Arugam-Bay</h2>
                                 <div class="hidden-content-carousel">
-                                    <span>2 Tours Packages</span>
-                                    <a href="#"><span>Explore</span><i class="fa fa-arrow-right"></i></a>
+                                    <span>More Details</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="price-label">
-                            <p>$600</p>
-                        </div>
-                    </div>
-                    <div class="carousel swiper-slide">
+                    </a>
+                    <a href="./destinations/Batticaloa.php" class="carousel swiper-slide">
                         <img src="./destinations/Images/batticaloa.jpg" alt="">
                         <div class="carousel-img-overlay">
                             <div class="img-content">
                                 <h2><i class="fa fa-location-dot"></i>Batticaloa</h2>
                                 <div class="hidden-content-carousel">
-                                    <span>3 Tours Packages</span>
-                                    <a href="#"><span>Explore</span><i class="fa fa-arrow-right"></i></a>
+                                    <span>More Details</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="price-label">
-                            <p>New</p>
-                        </div>
-                    </div>
-                    <div class="carousel swiper-slide">
+                    </a>
+                    <a href="./destinations/Colombo.php" class="carousel swiper-slide">
                         <img src="./destinations/Images/colombo.jpg" alt="">
                         <div class="carousel-img-overlay">
                             <div class="img-content">
                                 <h2><i class="fa fa-location-dot"></i>Colombo</h2>
                                 <div class="hidden-content-carousel">
-                                    <span>3 Tours Packages</span>
-                                    <a href="#"><span>Explore</span><i class="fa fa-arrow-right"></i></a>
+                                    <span>More Details</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="price-label">
-                            <p>$100</p>
-                        </div>
-                    </div>
-                    <div class="carousel swiper-slide">
+
+                    </a>
+                    <a href="./destinations/Ella.php" class="carousel swiper-slide">
                         <img src="./destinations/Images/Ella.jpg" alt="">
                         <div class="carousel-img-overlay">
                             <div class="img-content">
                                 <h2><i class="fa fa-location-dot"></i>Ella</h2>
                                 <div class="hidden-content-carousel">
-                                    <span>3 Tours Packages</span>
-                                    <a href="#"><span>Explore</span><i class="fa fa-arrow-right"></i></a>
+                                    <span>More Details</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="price-label">
-                            <p>$200</p>
-                        </div>
-                    </div>
-                    <div class="carousel swiper-slide">
+                    </a>
+                    <a href="./destinations/Galle.php" class="carousel swiper-slide">
                         <img src="./destinations/Images/galle.jpg" alt="">
                         <div class="carousel-img-overlay">
                             <div class="img-content">
                                 <h2><i class="fa fa-location-dot"></i>Galle</h2>
                                 <div class="hidden-content-carousel">
-                                    <span>3 Tours Packages</span>
-                                    <a href="#"><span>Explore</span><i class="fa fa-arrow-right"></i></a>
+                                    <span>More Details</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="price-label">
-                            <p>$200</p>
-                        </div>
-                    </div>
-                    <div class="carousel swiper-slide">
+                    </a>
+                    <a href="./destinations/Sigiriya.php" class="carousel swiper-slide">
                         <img src="./destinations/Images/sigiriya.jpg" alt="">
                         <div class="carousel-img-overlay">
                             <div class="img-content">
                                 <h2><i class="fa fa-location-dot"></i>Sigiriya</h2>
                                 <div class="hidden-content-carousel">
-                                    <span>3 Tours Packages</span>
-                                    <a href="#"><span>Explore</span><i class="fa fa-arrow-right"></i></a>
+                                    <span>More Details</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="price-label">
-                            <p>$200</p>
-                        </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -629,78 +599,6 @@
         </div>
         </div>
     </section>
-
-    <!-- Travel Blogs -->
-    <!-- <section id="travel-blog">
-        <div class="container">
-            <p class="heading-normal-txt">TRAVEL BLOG</p>
-            <h2 class="headings-travel">TRAVEL <span>EXPERIENCE</span></h2>
-            <div class="top-destination-wrapper swiper2">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide blog">
-                        <img src="Images/seashore.jpg" alt="">
-                        <div class="blog-img-overlay">
-                            <div class="blog-img-content">
-                                <h2>Tours</h2>
-                                <p class="lead">Small Group Tours With Flights From USA</p>
-                            </div>
-                        </div>
-                        <div class="price-label">
-                            <p>15 Nov</p>
-                        </div>
-                    </div>
-                    <div class="swiper-slide blog">
-                        <img src="Images/seashore.jpg" alt="">
-                        <div class="blog-img-overlay">
-                            <div class="blog-img-content">
-                                <h2>Tours</h2>
-                                <p class="lead">Small Group Tours With Flights From USA</p>
-                            </div>
-                        </div>
-                        <div class="price-label">
-                            <p>2 Dec</p>
-                        </div>
-                    </div>
-                    <div class="swiper-slide blog">
-                        <img src="Images/seashore.jpg" alt="">
-                        <div class="blog-img-overlay">
-                            <div class="blog-img-content">
-                                <h2>Tours</h2>
-                                <p class="lead">Small Group Tours With Flights From USA</p>
-                            </div>
-                        </div>
-                        <div class="price-label">
-                            <p>1 Jan</p>
-                        </div>
-                    </div>
-                    <div class="swiper-slide blog">
-                        <img src="Images/seashore.jpg" alt="">
-                        <div class="blog-img-overlay">
-                            <div class="blog-img-content">
-                                <h2>Tours</h2>
-                                <p class="lead">Small Group Tours With Flights From USA</p>
-                            </div>
-                        </div>
-                        <div class="price-label">
-                            <p>17 Jan</p>
-                        </div>
-                    </div>
-                    <div class="swiper-slide blog">
-                        <img src="Images/seashore.jpg" alt="">
-                        <div class="blog-img-overlay">
-                            <div class="blog-img-content">
-                                <h2>Tours</h2>
-                                <p class="lead">Small Group Tours With Flights From USA</p>
-                            </div>
-                        </div>
-                        <div class="price-label">
-                            <p>17 Jan</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
 
     <!-- review -->
     <section id="review">
