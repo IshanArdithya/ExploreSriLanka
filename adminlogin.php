@@ -4,7 +4,7 @@ if (isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $adminEmail = 'admin@exploresrilanka';
+    $adminEmail = 'admin@exploresrilanka.com';
     $adminPassword = 'admin';
 
     if ($email === $adminEmail && $password === $adminPassword) {
@@ -20,7 +20,7 @@ if (isset($_POST['login'])) {
                 }, 2000); // 2000 milliseconds delay (2 seconds)
             });
         </script>';
-        header('Location: admin.php');
+        header('Location: dashboards/admin/admin.index.php');
         exit();
     } else {
         $_SESSION['login_error'] = "Invalid email or password" ;

@@ -25,8 +25,9 @@
 
         <!-- form for update user -->
         <main>
+            <h1>Shop > Add Products</h1>
             <div class="update">
-                <h1>Add Products</h1>
+                <h2>Add a New Product</h2>
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
                     <table class="tbl-30">
                         <tr>
@@ -93,7 +94,7 @@
 
                     $relativeFilePath = "images/shop/" . $_FILES["itemPhoto"]["name"];
 
-                    $sql = "INSERT INTO shopitems (item_id, item_name, item_price, item_description, item_photo, stocks) VALUES ('$item_id', '$itemName', $itemPrice, '$itemDescription', '$relativeFilePath', $stockCount)";
+                    $sql = "INSERT INTO shopitems (item_id, item_name, item_price, item_description, item_photo, stocks, date_added) VALUES ('$item_id', '$itemName', $itemPrice, '$itemDescription', '$relativeFilePath', $stockCount, NOW())";
 
                     if ($conn->query($sql) === TRUE) {
                         echo "<p>New item added successfully.</p>";

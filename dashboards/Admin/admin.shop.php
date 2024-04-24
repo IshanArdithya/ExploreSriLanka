@@ -62,7 +62,7 @@ $ordersLast30Days = $row["ordersLast30Days"];
 
         <!-- Main Content -->
         <main>
-            <h1>Dashboard</h1>
+            <h1>Shop</h1>
             <!-- Analyses -->
 
             <div class="analyse shoppage">
@@ -143,7 +143,7 @@ $ordersLast30Days = $row["ordersLast30Days"];
                                 echo "</tr>";
                             }
                         } else {
-                            echo "<tr><td colspan='9'>No recent reservations found</td></tr>";
+                            echo "<tr><td colspan='9'>No products found</td></tr>";
                         }
 
                         if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['action']) && isset($_GET['id'])) {

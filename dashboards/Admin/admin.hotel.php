@@ -73,7 +73,7 @@ $hotelsLast30Days = $row["hotelsLast30Days"];
 
         <!-- Main Content -->
         <main>
-            <h1>Dashboard</h1>
+            <h1>Hotels</h1>
             <!-- Analyses -->
 
             <div class="analyse hotelpage">

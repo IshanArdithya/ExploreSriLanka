@@ -62,7 +62,7 @@ $tourguidesLast30Days = $row["tourguidesLast30Days"];
 
         <!-- Main Content -->
         <main>
-            <h1>Dashboard</h1>
+            <h1>Tour Guides</h1>
             <!-- Analyses -->
 
             <div class="analyse tourguidepage">

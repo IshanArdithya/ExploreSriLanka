@@ -1,11 +1,8 @@
-<!-- 
+<?php
+session_start();
 
-// Destroy the session
-session_destroy();
+unset($_SESSION['admin_email']);
 
-// Redirect to the login page
-header('location: ' . 'admin/login.php');
-
-// Stop further execution
-
-?><?php -->
+header("Location: ../../index.php");
+exit;
+?>

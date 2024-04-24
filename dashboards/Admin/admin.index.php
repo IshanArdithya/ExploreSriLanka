@@ -102,7 +102,7 @@ $shopOrdersLast30Days = $row["shopOrdersLast30Days"];
 
         <!-- Main Content -->
         <main>
-            <h1>Dashboard</h1>
+            <h1>Customers</h1>
             <!-- Analyses -->
 
             <div class="analyse">
@@ -213,7 +213,6 @@ $shopOrdersLast30Days = $row["shopOrdersLast30Days"];
                 <div class="user-list">
                     <?php
 
-                    // Get last 4 customers
                     $sql = "SELECT * FROM customers ORDER BY registered DESC LIMIT 4";
                     $result = $conn->query($sql);
 
@@ -331,8 +330,8 @@ $shopOrdersLast30Days = $row["shopOrdersLast30Days"];
                         <tbody>
                             <!-- Table rows content -->
                             <tr>
-                                <td>Alex Perera</td>
-                                <td>Lorem ipsum dolor sit amet consectetur, adipisici</td>
+                                <td>Developing</td>
+                                <td>Still Under Maintenance</td>
                                 <td class="star-rating">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>

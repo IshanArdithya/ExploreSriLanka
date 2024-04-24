@@ -38,12 +38,9 @@ if ($conn->connect_error) {
 
         <!-- Main Content -->
         <main>
+        <h1>Inquiries</h1>
             <!-- Inquiries Table -->
-            <div class="recent-user">
-                <br>
-                <br>
-                <br>
-                <h2>Inquiries</h2>
+            <div class="recent-user">  
                 <table>
                     <thead>
                         <tr>
