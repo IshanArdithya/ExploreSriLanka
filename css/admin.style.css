@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-    --color-primary: #6C9BCF;
+    --color-primary: #2095ae;
     --color-danger: #2b5de5;
     --color-success: #1B9C85;
     --color-warning: #F7D060;
@@ -236,6 +236,10 @@ main .analyse {
 }
 
 .tourguidepage {
+    grid-template-columns: repeat(2, 1fr) !important;
+}
+
+.shoppage {
     grid-template-columns: repeat(2, 1fr) !important;
 }
 
@@ -1054,4 +1058,103 @@ body.login {
     border-radius: var(--card-border-radius);
     transition: all 0.3s ease;
     margin-bottom: 0.5rem;
+}
+
+/* Shop Items Update */
+.update-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-photo {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.swal2-input,
+.swal2-textarea {
+    width: calc(100% - 20px);
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin: 0 0 20px 0;
+}
+
+.swal2-input[readonly] {
+    background-color: #eee;
+}
+
+.swal2-input:focus,
+.swal2-textarea:focus {
+    outline: none;
+    border-color: #4caf50;
+}
+
+.swal2-textarea {
+    resize: none;
+}
+
+.input-container input[type="text"],
+.input-container input[type="number"] {
+    width: 95%;
+    border-radius: 5px;
+}
+
+.field-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.confirmation-text {
+    margin-bottom: 10px;
+}
+
+.confirmation-change {
+    font-weight: bold;
+    color: #2095ae;
+}
+
+.current-info {
+    color: #333;
+}
+
+.changed-info {
+    color: var(--color-primary);
+}
+
+.arrow-down {
+    margin: 0 5px;
+}
+
+.info-container {
+    background-color: #e7e7e7;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.product-container {
+    background-color: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: all 0.3s ease;
 }

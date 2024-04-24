@@ -151,7 +151,7 @@ $tourguidesLast30Days = $row["tourguidesLast30Days"];
                                     echo "</tr>";
                                 }
                             } else {
-                                echo "<tr><td colspan='8'>No hotels pending approval</td></tr>";
+                                echo "<tr><td colspan='8'>No tour guides pending approval</td></tr>";
                             }
 
                             if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['action']) && isset($_GET['id'])) {

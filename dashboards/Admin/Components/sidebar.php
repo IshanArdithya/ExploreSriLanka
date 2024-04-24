@@ -33,11 +33,11 @@
                     <h3>Tour Guide</h3>
                 </a>
 
-                <a href="manage.inquries.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'manage.inquries.php') ? 'active' : ''; ?>">
-                    <span class=icons>
-                        <i class="fa-solid fa-info"></i>
+                <a href="admin.shop.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'admin.shop.php') ? 'active' : ''; ?>">
+                    <span class="icon">
+                        <i class="fa-brands fa-shopify"></i>
                     </span>
-                    <h3>Inquries</h3>
+                    <h3>Shop</h3>
                 </a>
 
                 <a href="admin.order.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'admin.order.php') ? 'active' : ''; ?>">
@@ -47,11 +47,11 @@
                     <h3>Order</h3>
                 </a>
 
-                <a href="admin.shop.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'admin.shop.php') ? 'active' : ''; ?>">
-                    <span class="icon">
-                        <i class="fa-brands fa-shopify"></i>
+                <a href="manage.inquries.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'manage.inquries.php') ? 'active' : ''; ?>">
+                    <span class=icons>
+                        <i class="fa-solid fa-info"></i>
                     </span>
-                    <h3>Shop</h3>
+                    <h3>Inquries</h3>
                 </a>
 
                 </a>

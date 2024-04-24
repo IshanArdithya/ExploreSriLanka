@@ -1,3 +1,15 @@
+<?php
+
+include_once '../../config.php';
+
+$conn = new mysqli($hostname, $username, $password, $database);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,9 +28,9 @@
 
     <div class="container">
         <!-- Sidebar Section -->
-        
-        <?php 
-            include 'Components/sidebar.php'
+
+        <?php
+        include 'Components/sidebar.php'
         ?>
 
         <!-- End of Sidebar Section -->
@@ -35,70 +47,50 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>User Name</th>
-                            <th>Description</th>
-                            <th>Action</th>
+                            <th>Inquiry ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Contact Number</th>
+                            <th>Country</th>
+                            <th>Message</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Table rows content -->
                         <tr>
-                            <td>Alex Perera</td>
-                            <td>Lorem ipsum dolor sit amet consectetur, adipisici</td>
-                            <td>
-                                <a href="#" class="btn-primary" onclick="toggleDetails(0)">View Details</a>
-                                <input type="submit" name="submit" value="Accept" class="btn-secondary">
-                                <input type="submit" name="submit" value="Decline" class="btn-danger">
-                            </td>
-                        </tr>
-                        <!-- Additional row with details hidden by default -->
-                        <tr class="extra-row" style="display: none;">
-                            <td colspan="3">
-                                <div id="details-0" style="display: none;">
-                                    <p>Details for Alex Perera:</p>
-                                    <p>Lorem ipsum dolor sit amet consectetur, adipisici elit. Provident, ratione.</p>
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- Add more rows -->
-                        <tr>
-                            <td>John Doe</td>
-                            <td>Lorem ipsum dolor sit amet consectetur, adipisici</td>
-                            <td>
-                                <a href="#" class="btn-primary" onclick="toggleDetails(1)">View Details</a>
-                                <input type="submit" name="submit" value="Accept" class="btn-secondary">
-                                <input type="submit" name="submit" value="Decline" class="btn-danger">
-                            </td>
-                        </tr>
-                        <tr class="extra-row" style="display: none;">
-                            <td colspan="3">
-                                <div id="details-1" style="display: none;">
-                                    <p>Details for John Doe:</p>
-                                    <p>Lorem ipsum dolor sit amet consectetur, adipisici elit. Provident, ratione.</p>
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- Add more extra rows-->
-                        <tr>
-                            <td colspan="3">
-                                <a href="#" class="show-all-link" onclick="toggleExtraRows()">Show More</a>
-                                <a href="#" class="show-less-link" style="display: none;" onclick="toggleExtraRows()">Show Less</a>
-                            </td>
+                            <?php
+
+
+                            $sql = "SELECT * FROM contactus ORDER BY inquiry_id DESC LIMIT 15";
+                            $result = $conn->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td>" . $row['inquiry_id'] . "</td>";
+                                    echo "<td>" . $row['name'] . "</td>";
+                                    echo "<td>" . $row['email'] . "</td>";
+                                    echo "<td>" . $row['contact_number'] . "</td>";
+                                    echo "<td>" . $row['country'] . "</td>";
+                                    echo "<td>" . $row['message'] . "</td>";
+                                    echo "</tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='9'>No recent reservations found</td></tr>";
+                            }
+
+
+                            ?>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <!-- End of Inquiries Table -->
 
-            <div class="back">
-                <a href="admin.shop.html" class="btn btn-back">Back</a>
-            </div>
-
         </main>
         <!-- End of Main Content -->
 
         <!-- Right Section -->
-        
+
         <?php
         include 'Components/rightsection.php'
         ?>
