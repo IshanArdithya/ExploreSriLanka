@@ -2763,6 +2763,22 @@ Align select elements .package-book-swal select {
   border-radius: 50px;
   background: radial-gradient(465px at -15.1% -25%, rgb(17, 130, 193) 0%, rgb(67, 166, 238) 49%, rgb(126, 203, 244) 90.2%);
   cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.contact-left button:hover {
+  opacity: 0.9;
+  transition: opacity 0.3s;
+}
+
+.disabled {
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
+.disabled:hover {
+  opacity: 0.3;
+  transition: opacity 0.3s;
 }
 
 .contact-left button img {

@@ -76,7 +76,7 @@ $hotelsLast30Days = $row["hotelsLast30Days"];
             <h1>Dashboard</h1>
             <!-- Analyses -->
 
-            <div class="analyse">
+            <div class="analyse hotelpage">
                 <div class="sales">
                     <div class="status">
                         <div class="info">
@@ -292,7 +292,6 @@ $hotelsLast30Days = $row["hotelsLast30Days"];
                     </thead>
                     <tbody>
                         <?php
-                        // Fetch last 5 rows from the hotelreservation table
                         $sql = "SELECT * FROM hotelreservation ORDER BY reservation_id DESC LIMIT 5";
                         $result = $conn->query($sql);
 

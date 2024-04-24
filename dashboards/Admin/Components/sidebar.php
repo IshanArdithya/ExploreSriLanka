@@ -26,18 +26,18 @@
                     <h3>Hotel</h3>
                 </a>
 
-                <a href="manage.inquries.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'admin.inquries.php') ? 'active' : ''; ?>">
-                    <span class=icons>
-                        <i class="fa-solid fa-info"></i>
-                    </span>
-                    <h3>Inquries</h3>
-                </a>
-
                 <a href="admin.tourguide.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'admin.tourguide.php') ? 'active' : ''; ?>">
                     <span class="icon">
                         <i class="fa-solid fa-location-dot"></i>
                     </span>
                     <h3>Tour Guide</h3>
+                </a>
+
+                <a href="manage.inquries.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'manage.inquries.php') ? 'active' : ''; ?>">
+                    <span class=icons>
+                        <i class="fa-solid fa-info"></i>
+                    </span>
+                    <h3>Inquries</h3>
                 </a>
 
                 <a href="admin.order.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'admin.order.php') ? 'active' : ''; ?>">

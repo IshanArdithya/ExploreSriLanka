@@ -31,7 +31,7 @@
                 <br>
                 <br>
                 <br>
-                <h2>Inquaries</h2>
+                <h2>Inquiries</h2>
                 <table>
                     <thead>
                         <tr>

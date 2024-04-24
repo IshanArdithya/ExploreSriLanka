@@ -490,7 +490,7 @@ $shopOrdersLast30Days = $row["shopOrdersLast30Days"];
                 confirmButtonText: 'Confirm'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Redirect to delete the profile
+
                     window.location.href = "<?= $_SERVER['PHP_SELF'] ?>?id=" + customerId;
                 }
             });
