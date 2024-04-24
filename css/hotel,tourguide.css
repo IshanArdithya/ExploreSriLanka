@@ -220,7 +220,9 @@ aside .sidebar .message-count {
     border-radius: var(--border-radius-1);
 }
 
-
+main {
+    margin-top: 1.4rem;
+}
 
 /* user detils */
 main .new-users {

@@ -126,7 +126,7 @@ if ($conn->connect_error) {
             if (password_verify($loginPassword, $hashed_password)) {
                 if ($row["status"] === "Verified") {
                     $_SESSION['tourguide_email'] = $loginEmail;
-                    header("Location: tourguidedashboard.php");
+                    header("Location: dashboards/tourguide/tourguidedashboard.php");
                     exit();
                 } elseif ($row["status"] === "Pending") {
                     echo "<script>

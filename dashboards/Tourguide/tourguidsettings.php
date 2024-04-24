@@ -4,6 +4,12 @@ include('partials/sidebar1.php');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+// tourguide data from session
+$tourguideEmail = $_SESSION['tourguide_email'];
+$sql = "SELECT tg_id FROM tourguide WHERE email = '$tourguideEmail'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$tg_id = $row['tg_id'];
 
 // Initialize variables
 $id = '';
