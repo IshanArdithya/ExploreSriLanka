@@ -11,9 +11,21 @@ if (isset($_POST['destroy_session']) && isset($_POST['session_name'])) {
 echo "<h2>Sessions</h2>";
 echo "<ul>";
 foreach ($_SESSION as $key => $value) {
-    echo "<li><strong>$key:</strong> $value</li>";
+    echo "<li><strong>$key:</strong>";
+    if (is_array($value)) {
+        // If the session value is an array, display each element separately
+        echo "<ul>";
+        foreach ($value as $subKey => $subValue) {
+            echo "<li>$subKey: $subValue</li>";
+        }
+        echo "</ul>";
+    } else {
+        // If the session value is not an array, display it as usual
+        echo " $value</li>";
+    }
 }
 echo "</ul>";
+
 
 echo "<form method='post'>";
 echo "<label for='session_name'>Select session to destroy:</label>";
@@ -24,4 +36,5 @@ foreach ($_SESSION as $key => $value) {
 echo "</select>";
 echo "<button type='submit' name='destroy_session'>Destroy Session</button>";
 echo "</form>";
+
 ?>
