@@ -667,7 +667,9 @@
                         </div>
                     </div>
                 </div>
-
+            </div>
+            <div class="review-button" >
+                <button class="review-btn" id="reviewButton">Leave Us A Review</button>
             </div>
         </div>
     </section>
@@ -719,7 +721,128 @@
                 icon: "success"
             });
         };
-    </script>
-</body>
+
+        document.getElementById('reviewButton').addEventListener('click', function() {
+    Swal.fire({
+        title: 'Leave a Review',
+        html: `
+            <div class="review-container">
+            <input id="nameInput" class="swal2-input" placeholder="Your Name" required>
+            <input id="emailInput" type="email" class="swal2-input" placeholder="Your Email" required>
+            <div class="rating-container">
+                <span class="rating-text">Rating:</span>
+                <div id="stars" class="star-rating">
+                    <i class="fas fa-star" data-rating="1"></i>
+                    <i class="fas fa-star" data-rating="2"></i>
+                    <i class="fas fa-star" data-rating="3"></i>
+                    <i class="fas fa-star" data-rating="4"></i>
+                    <i class="fas fa-star" data-rating="5"></i>
+                </div>
+            </div>
+            <textarea id="descriptionInput" class="swal2-textarea" placeholder="Write a short description (optional)"></textarea>
+            </div>
+        `,
+        showCancelButton: true,
+        confirmButtonText: 'Submit',
+        customClass: {
+            confirmButton: 'swal2-btn',
+            cancelButton: 'swal2-btn'
+        },
+        didOpen: () => {
+            const stars = document.querySelectorAll('.star-rating i');
+
+            stars.forEach(star => {
+                star.addEventListener('click', () => {
+                    const ratingValue = parseInt(star.getAttribute('data-rating'));
+                    stars.forEach(s => {
+                        if (parseInt(s.getAttribute('data-rating')) <= ratingValue) {
+                            s.classList.add('rated');
+                        } else {
+                            s.classList.remove('rated');
+                        }
+                    });
+                });
+            });
+        },
+        preConfirm: () => {
+            const name = document.getElementById('nameInput').value;
+            const email = document.getElementById('emailInput').value;
+            const selectedRating = document.querySelector('.star-rating i.rated')?.getAttribute('data-rating');
+            const description = document.getElementById('descriptionInput').value;
+
+            if (!name || !email || !selectedRating) {
+                Swal.showValidationMessage('Please fill in all required fields and select a rating');
+                return false;
+            }
+
+            return {
+                name: name,
+                email: email,
+                rating: selectedRating,
+                description: description
+            };
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const { name, email, rating, description } = result.value;
+            // Here you can submit the review data (e.g., send it to your server)
+            Swal.fire('Thank you!', 'Your review has been submitted.', 'success');
+        }
+    });
+});
+</script>
+
+<style>
+
+.review-container{
+    margin: 2px 2px 2px 2px;
+    align-items: center;
+    justify-content: center;
+}
+.swal2-input, .swal2-textarea {
+    margin-bottom: 2px;
+    margin-left: 2px;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+}
+
+.star-rating {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.star-rating i {
+    cursor: pointer;
+    color: #aaa;
+    transition: color 0.2s;
+}
+
+.star-rating i:hover,
+.star-rating i.rated {
+    color: #2095ae; 
+}
+
+.rating-text {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.swal2-btn {
+    background-color: #3085d6;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.swal2-btn:hover {
+    background-color: #1f69c5;
+}
+</style></body>
 
 </html>
+
