@@ -152,7 +152,7 @@ $cityCondition = "'Galle'";
 
     <h1 class="headings mini-heading">Similar Destinations</h1>
 
-    <div class="owl-carousel owl-theme ">
+    <div class="owl-carousel owl-theme destinations-images">
       <a href="Pasikudahnew.php"><div class="owl-caousel-item ">  <img src="../destinations/Images/pasikudah.jpg" alt="destination_image"> <h2>pasikudah</h2></div></a>
 
       <a href="Bentota.php"><div class="owl-caousel-item  ">  <img src="../destinations/Images/bentota-beach.jpg" alt="destination_image"><h2>Bentota</h2> </div></a>
