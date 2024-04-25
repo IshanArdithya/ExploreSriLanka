@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2024 at 11:17 AM
+-- Generation Time: Apr 25, 2024 at 02:55 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -222,16 +222,18 @@ CREATE TABLE `shopitems` (
   `item_description` text NOT NULL,
   `item_photo` varchar(255) NOT NULL,
   `stocks` int(11) NOT NULL,
-  `shopitemurl` varchar(255) NOT NULL
+  `shopitemurl` varchar(255) NOT NULL,
+  `date_added` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `shopitems`
 --
 
-INSERT INTO `shopitems` (`item_id`, `item_name`, `item_price`, `item_description`, `item_photo`, `stocks`, `shopitemurl`) VALUES
-('ITEM00001', 'Must be Free', 0.01, 'Very Epic!', 'images/shop/hitori__bocchi__gotoh_padoru_by_factoryofsadness_dfg7ge3-pre.png', 1, 'shop-items/item-MustbeFree.php'),
-('ITEM00002', 'Bocchii', 500.00, 'TESTTTTTTTTT', 'images/shop/bocchi-bocchitherock.gif', 1, 'shop-items/item-Bocchii.php');
+INSERT INTO `shopitems` (`item_id`, `item_name`, `item_price`, `item_description`, `item_photo`, `stocks`, `shopitemurl`, `date_added`) VALUES
+('ITEM00001', 'TEST2024', 2000.00, '2024TEST', 'images/shop/425495886_122097390284210734_708901627464760107_n.jpg', 10, 'shop-items/item-TEST2024.php', '2024-02-25'),
+('ITEM00002', 'Project A', 555.00, 'AAAAAAA', 'images/shop/bocchi-bocchi-the-rock.gif', 5, 'shop-items/item-ProjectA.php', '2024-04-25'),
+('ITEM00003', 'Bocchiii', 0.01, 'Bocchii for sale!', 'images/shop/bocchi-bocchitherock.gif', 1, 'shop-items/item-Bocchiii.php', '2024-04-25');
 
 -- --------------------------------------------------------
 
@@ -260,7 +262,7 @@ CREATE TABLE `shoporders` (
 --
 
 INSERT INTO `shoporders` (`order_id`, `customer_id`, `customer_name`, `street_address`, `district`, `city`, `email`, `contact_number`, `contact_number2`, `special_notes`, `items`, `totalprice`, `order_date`) VALUES
-('ORDER00001', 'C00011', 'Ishan Ardithya', '81/127', 'Colombo', 'Homagama', 'ardithya123@gmail.com', '077', '011', 'GGEZZZ', 'ITEM00002*1, ITEM00001*2', 500.02, '2024-03-23'),
+('ORDER00001', 'C00011', 'Ishan Ardithya', '81/127', 'Colombo', 'Homagama', 'ardithya123@gmail.com', '077', '011', 'GGEZZZ', 'ITEM00003*1, ITEM00001*2', 500.02, '2024-03-23'),
 ('ORDER00002', 'C00011', 'Ishan Ardithya', '81/127', 'Colombo', 'Colombo', 'ardithya123@gmail.com', '123', '011', 'GGEZZZZ', 'ITEM00002*3, ITEM00001*2', 1500.02, '2024-04-24');
 
 -- --------------------------------------------------------
@@ -299,7 +301,8 @@ INSERT INTO `tourguide` (`tg_id`, `email`, `password`, `first_name`, `last_name`
 ('TG0004', 'anil@example.com', 'anilpass', 'Anil', 'Kumar', 'Anil Kumar', 28, '555666777', 'Anuradhapura', 4, 'Wildlife', 'Passionate wildlife enthusiast with in-depth knowledge of flora and fauna.', NULL, 1, 'Verified', '2024-04-02'),
 ('TG0005', 'priya@example.com', 'priyapass', 'Priya', 'Ranasinghe', 'Priya Ranasinghe', 32, '333444555', 'Nuwara Eliya', 6, 'Nature', 'Dedicated to showcasing the beauty of nature through guided tours.', NULL, 1, 'Verified', '2024-04-07'),
 ('TG0006', 'nice1djbravo@gmail.com', 'samanthapass', 'Samantha', 'Jayasinghe', 'Samantha Jayasinghe', 36, '999000111', 'Badulla', 7, 'Hiking', 'Experienced hiking guide passionate about exploring scenic trails.', NULL, 1, 'Pending', '2024-04-08'),
-('TG0007', 'ardithya123@gmail.com', '$2y$10$NdKtB012Su4jbo0dxO5PlO0rlKnksU2481dlup7dqSh3NEN6nidY2', 'Ishan', 'Ardithya', 'Ishan Ardithya', 55, '123', 'Colombo', 5, 'Wild Life, Adventures', NULL, NULL, 0, 'Verified', '2024-04-09');
+('TG0007', 'ardithya123@gmail.com', '$2y$10$NdKtB012Su4jbo0dxO5PlO0rlKnksU2481dlup7dqSh3NEN6nidY2', 'Ishan', 'Ardithya', 'Ishan Ardithya', 55, '123', 'Colombo', 5, 'Wild Life, Adventures', NULL, NULL, 0, 'Verified', '2024-04-09'),
+('TG0008', 'ishanardithya@gmail.com', '$2y$10$TgA0qDHoC1vuGh0q5KLDD.flOu9hDsC3WAgkdwLaAIbHSULiAFUDG', 'Ishan', 'Ardithya', 'Ishan Ardithya', 55, '123', 'Colombo', 12, 'Wild Life, Adventures', NULL, NULL, 0, 'Verified', NULL);
 
 -- --------------------------------------------------------
 
@@ -328,7 +331,7 @@ INSERT INTO `tourguidebooking` (`booking_id`, `tg_id`, `name`, `booked_from`, `b
 ('B00004', 'TG0002', 'Kamal Silva', '2024-12-18', '2024-12-19', '', 'PKG00004'),
 ('B00005', 'TG0002', 'Kamal Silva', '2050-01-01', '2050-01-02', '', 'PKG00007'),
 ('B00006', 'TG0001', 'Sunil Perera', '2051-01-01', '2051-01-02', '', 'PKG00008'),
-('B00007', 'TG0001', 'Sunil Perera', '2052-02-02', '2052-02-03', '', 'PKG00009');
+('B00007', 'TG0008', 'Ishan Ardithya', '2052-02-02', '2052-02-03', 'C00014', 'PKG00009');
 
 --
 -- Indexes for dumped tables
