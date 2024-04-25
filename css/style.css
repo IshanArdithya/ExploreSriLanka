@@ -3176,3 +3176,7 @@ td {
   color: black;
   margin: 15px;
 }
+
+#searchInput{
+  padding: 0.5rem;
+}

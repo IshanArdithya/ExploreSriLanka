@@ -28,7 +28,7 @@
     <div class="row">
       <ol class="breadcrumb">
         <li><a href="../index.php" title="Explore Sri Lanka" class="bolds">Home</a></li>
-        <li class="active">Profile</li>
+        <li class="active">User Profile | Explore Sri Lanka</li>
       </ol>
     </div>
 

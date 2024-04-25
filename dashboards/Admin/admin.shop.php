@@ -46,7 +46,8 @@ $ordersLast30Days = $row["ordersLast30Days"];
     <script src="user.js"></script>
     <script src="../../js/admin.index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Shop dashboard</title>
+    <title>Shop Dashboard | Explore Srilanka</title>
+
 </head>
 
 <body>

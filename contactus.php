@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css">
-  <title>Contact Us</title>
+    <title>Contact Us | Explore Sri Lanka</title> 
 
 </head>
 
@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
   ?>
 
   <div class="top-image">
-    <img src="./Images/slides/slide-27.jpeg" alt="">
+    <img src="./Images/slides/slide4.jpg" alt="">
     <h1 class="headings sub-heading"></h1>
   </div>
 
@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     <div class="row">
       <ol class="breadcrumb">
         <li><a href="../index.php" title="Explore Sri Lanka" class="bolds">Home</a></li>
-        <li class="active">Contact</li>
+        <li class="active">Contact Us</li>
       </ol>
     </div>
 

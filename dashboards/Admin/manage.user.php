@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="../../css/admin.style.css">
     <script src="user.js"></script>
     <script src="../../js/admin.index.js"></script>
-    <title>update user</title>
+    <title>Update User | Explore Srilanka</title>
+
 </head>
 
 <body>

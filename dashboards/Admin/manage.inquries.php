@@ -22,6 +22,8 @@ if ($conn->connect_error) {
     <script src="user.js"></script>
     <script src="../../js/admin.index.js"></script>
     <title>Admin dashboard</title>
+    <title>Admin Inquaries | Explore Srilanka</title>
+
 </head>
 
 <body>

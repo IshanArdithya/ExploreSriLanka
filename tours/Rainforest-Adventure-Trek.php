@@ -250,7 +250,8 @@ function handleAddReservation()
   <link rel="stylesheet" href="../node_modules/owl.carousel/dist/assets/owl.carousel.min.css" />
 
 
-  <title>About - Explore Srilanka</title>
+  <title>Rainforest Adventure Trek | Explore Srilanka</title>
+
 </head>
 
 <body>
@@ -314,6 +315,7 @@ function handleAddReservation()
               <div class="text-content">
                 <h4 class="content-destination-tittle"> Duration: 3 days / 2 nights</h4>
                 <h4 class="content-destination-tittle">City: Sinharaja</h4>
+                <h4 class="content-destination-tittle">District: Rathnapura</h4>
                 <h4 class="content-destination-tittle">Number of Persons: 6 Persons</h4>
 
                 <p class="content-destinaation-tittle">Experience the thrill of exploring hidden trails and secret pathways as you traverse the untouched wilderness, guided by experienced naturalists who will unravel the mysteries of the rainforest ecosystem. Learn about the intricate relationships between plants and animals, and discover the fascinating adaptations that allow them to thrive in this diverse and dynamic environment. From towering canopy trees to tranquil streams and vibrant birdlife, every step of your trek promises an unforgettable adventure amidst the wonders of nature. Marvel at the sight of rare orchids, colorful butterflies, and playful monkeys as you make your way through the dense jungle. Listen to the symphony of sounds that fills the air, from the calls of tropical birds to the gentle rustle of leaves in the breeze. Feel the cool mist of cascading waterfalls on your skin as you stand in awe of their majestic beauty.</p>

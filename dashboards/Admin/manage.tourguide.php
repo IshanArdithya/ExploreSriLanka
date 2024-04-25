@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="../../css/admin.style.css">
     <script src="user.js"></script>
     <script src="../../js/admin.index.js"></script>
-    <title>update tourguide</title>
+    <title>Update Tourguide | Explore Srilanka</title>
+
 </head>
 
 <body>

@@ -10,7 +10,8 @@
     <script src="user.js"></script>
     <script src="../../js/admin.index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>add products</title>
+    <title>Add Product| Explore Srilanka</title>
+
 </head>
 
 <body>

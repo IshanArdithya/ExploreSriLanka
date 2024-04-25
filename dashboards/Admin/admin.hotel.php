@@ -57,7 +57,8 @@ $hotelsLast30Days = $row["hotelsLast30Days"];
     <link rel="stylesheet" href="../../css/admin.style.css">
     <script src="../../js/admin.index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Hotel dashboard</title>
+    <title>Hotel Dashboard | Explore Srilanka</title>
+
 </head>
 
 <body>

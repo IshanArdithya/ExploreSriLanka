@@ -34,7 +34,84 @@ $product = $stmt->fetch(PDO::FETCH_ASSOC);
   ?>
 
 </head>
+ <style>
+  /* Cart Popup Styles */
+.cart-popup {
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 300px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
 
+#cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#cart-content {
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+
+.cart-item {
+    margin-bottom: 8px;
+}
+
+.item-name {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+#cart-total-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#cart-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.close-btn {
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;    
+  }
+.close-btn:hover {
+    background-color: #007bff;
+    color: #ffffff;
+    border-radius: 50%;
+}
+
+button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 3px;
+    background-color: #007bff;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+ </style>
 <body>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -51,15 +128,35 @@ $product = $stmt->fetch(PDO::FETCH_ASSOC);
   ?>
 
   <div class="cart-icon-container">
-    <a href="../checkout.php">
+    <!-- <a href="../checkout.php"> -->
       <i class="fas fa-shopping-cart"></i>
       <span id="cartItemCount"><?php echo isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0; ?></span>
-    </a>
+    <!-- </a> -->
   </div>
 
   <div class="top-image">
     <h1 class="headings sub-heading"></h1>
   </div>
+
+  <!-- Cart Popup -->
+<div id="cart-popup" class="cart-popup">
+    <div id="cart-header">
+        <span class="close-btn" onclick="closeCartPopup()"> &times; </span>
+        <h2>Shopping Cart</h2>
+    </div>
+    <div id="cart-content">
+      <p>Item:</p>
+      <p>Price</p>
+    </div>
+    <div id="cart-total-container">
+        <p>Total:</p>
+        <p id="cart-total">Rs. 0.00</p>
+    </div>
+    <div id="cart-buttons">
+        <button onclick="checkout()">Checkout</button>
+        <button onclick="clearCart()">Clear Cart</button>
+    </div>
+</div>
 
   <!-- Breadcrumbs -->
   <div class="container">
@@ -189,6 +286,47 @@ $product = $stmt->fetch(PDO::FETCH_ASSOC);
         quantityInput.value = maxStocks;
       }
     });
+
+    function updateCartUI() {
+    var cartContent = document.getElementById("cart-content");
+    cartContent.innerHTML = '';
+
+    cartItemsArray.forEach(function(cartItem) {
+        var itemElement = document.createElement('div');
+        itemElement.className = 'cart-item';
+        itemElement.innerHTML = '<p class="item-name">' + cartItem.name + '</p>' +
+                                '<p class="item-price">Rs. ' + cartItem.price.toFixed(2) + '</p>';
+        cartContent.appendChild(itemElement);
+    });
+
+    document.getElementById("cart-total").textContent = 'Rs. ' + totalCartPrice.toFixed(2);
+}
+
+// JavaScript to handle cart popup display
+document.addEventListener('DOMContentLoaded', function() {
+    var cartPopup = document.getElementById('cart-popup');
+    var cartIconContainer = document.querySelector('.cart-icon-container');
+
+    // Show cart popup when cart icon is clicked
+    cartIconContainer.addEventListener('click', function(event) {
+        event.preventDefault();
+        cartPopup.style.display = 'block';
+    });
+
+    // Close cart popup when close button is clicked
+    var closeBtn = cartPopup.querySelector('.close-btn');
+    closeBtn.addEventListener('click', function() {
+        cartPopup.style.display = 'none';
+    });
+
+    // Close cart popup when clicking outside of it
+    window.addEventListener('click', function(event) {
+        if (event.target === cartPopup) {
+            cartPopup.style.display = 'none';
+        }
+    });
+});
+
   </script>
 
   <script>
@@ -260,6 +398,30 @@ $product = $stmt->fetch(PDO::FETCH_ASSOC);
         });
       }
     });
+
+    document.addEventListener('DOMContentLoaded', function() {
+    // Retrieve cart data from sessionStorage
+    if (sessionStorage.getItem('cartItems')) {
+        cartItemsArray = JSON.parse(sessionStorage.getItem('cartItems'));
+    }
+
+    if (sessionStorage.getItem('totalCartPrice')) {
+        totalCartPrice = parseFloat(sessionStorage.getItem('totalCartPrice'));
+    }
+
+    // Update cart UI
+    updateCartUI();
+
+    // Attach event listeners to cart buttons
+    var addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+    addToCartButtons.forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            var itemId = this.getAttribute('data-item-id');
+            addToCart(itemId);
+        });
+    });
+});
   </script>
 
 </body>

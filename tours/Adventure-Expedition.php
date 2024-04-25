@@ -251,7 +251,8 @@ function handleAddReservation()
   <link rel="stylesheet" href="../node_modules/owl.carousel/dist/assets/owl.carousel.min.css" />
 
 
-  <title>About - Explore Srilanka</title>
+  <title>Adventure Expedition | Explore Srilanka</title>
+
 </head>
 
 <body>
@@ -315,7 +316,8 @@ function handleAddReservation()
               </div>
               <div class="text-content">
                 <h4 class="content-destination-tittle"> Duration: 3 days / 2 nights</h4>
-                <h4 class="content-destination-tittle">District: Ella</h4>
+                <h4 class="content-destination-tittle">City: Ella</h4>
+                <h4 class="content-destination-tittle">District: Badulla</h4>
                 <h4 class="content-destination-tittle">Number of Persons: 4 Persons</h4>
 
                 <p class="content-destinaation-tittle">
