@@ -535,10 +535,10 @@
                             </div>
                         </div>
                         <div class="carousel swiper-slide">
-                            <img src="Images/slide5.jpg" alt="">
+                            <img src="Images/slide6.webp" alt="">
                             <div class="carousel-img-overlay">
                                 <div class="img-content">
-                                    <h2>Lovers Leap</h2>
+                                    <h2>Pigeon Island</h2>
                                     <div class="hidden-content-carousel">
                                         <span><i class="fa fa-clock"></i>3 Days</span>
                                         <span><i class="fa fa-user"></i>6 Persons</span>
