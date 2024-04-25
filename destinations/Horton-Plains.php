@@ -27,7 +27,7 @@ $cityCondition = "'Nuwara Eliya'";
   ?>
 
   <div class="top-image">
-  <img src="./Images/slide32.jpg" alt="">
+  <img src="./Images/slide32.jpg" alt="destination_image">
   </div>
 
   <!-- Breadcrumbs -->
@@ -48,10 +48,10 @@ $cityCondition = "'Nuwara Eliya'";
     <!-- Content -->
 
     <div class="owl-carousel owl-theme">
-      <div class="owl-caousel-item"> <img src="./Images/HortonPlains.jpg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/Horton-Plains.jpg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/HortonPlains.jpg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/Horton-Plains.jpg" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="./Images/HortonPlains.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/Horton-Plains.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/HortonPlains.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/Horton-Plains.jpg" alt="destination_image"> </div>
     </div>
 
 
@@ -121,7 +121,7 @@ $cityCondition = "'Nuwara Eliya'";
                     echo '<div class="destination-content-container">';
                     echo '<div class="destination-image-container">';
                     $image_location = $row['hotel_picture'];
-                    echo '<img src="../' . $image_location . '" alt="">';
+                    echo '<img src="../' . $image_location . '" alt="destination_image">';
                     echo '</div>';
                     echo '<div class="destination-hotel-container">';
                     echo '<h3 class="content-title">' . $row['name'] . '</h3>';

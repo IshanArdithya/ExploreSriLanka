@@ -261,7 +261,7 @@ function handleAddReservation()
   ?>
 
   <div class="top-image">
-    <img src="./Images/slide11.jpg" alt="">
+    <img src="./Images/slide11.jpg" alt="image">
     <!-- <h1 class="headings sub-heading">Wildlife Adventure</h1>
         <h2 class="heading-normal-txt-mini">Tours</h2> -->
   </div>
@@ -287,15 +287,15 @@ function handleAddReservation()
 
 
     <div class="owl-carousel owl-theme" id="owl1">
-      <div class="owl-caousel-item"> <img src="./Images/hills001.jpeg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/hills002.jpeg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/hills003.jpeg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/hills004.jpeg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/hills008.avif" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/hills005.jpeg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/hills006.jpeg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/hills007.jpeg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/hills01.avif" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="./Images/hills001.jpeg" alt="tours_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/hills002.jpeg" alt="tours_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/hills003.jpeg" alt="tours_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/hills004.jpeg" alt="tours_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/hills008.avif" alt="tours_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/hills005.jpeg" alt="tours_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/hills006.jpeg" alt="tours_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/hills007.jpeg" alt="tours_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/hills01.avif" alt="tours_image"> </div>
     </div>
 
 
@@ -383,7 +383,7 @@ function handleAddReservation()
                   echo '<div class="destination-content-container">';
                   echo '<div class="destination-image-container">';
                   $image_location = $row['hotel_picture'];
-                  echo '<img src="../' . $image_location . '" alt="">';
+                  echo '<img src="../' . $image_location . '" alt="image">';
                   echo '</div>';
                   echo '<div class="destination-hotel-container">';
                   echo '<h3 class="content-title">' . $row['name'] . '</h3>';
@@ -423,7 +423,7 @@ function handleAddReservation()
                   echo '<div class="destination-content-container">';
                   echo '<div class="tourguide-image-container">';
                   $image_location = $row['picture'];
-                  echo '<img src="../' . $image_location . '" alt="">';
+                  echo '<img src="../' . $image_location . '" alt="image">';
                   echo '</div>';
                   echo '<div class="destination-hotel-container">';
                   echo '<h3 class="content-title">' . $row['full_name'] . '</h3>';

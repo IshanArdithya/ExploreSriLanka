@@ -261,7 +261,7 @@ function handleAddReservation()
   ?>
 
   <div class="top-image">
-    <img src="./Images/slide3.jpg" alt="">
+    <img src="./Images/slide3.jpg" alt="image">
     <!-- <h1 class="headings sub-heading">Wildlife Adventure</h1>
         <h2 class="heading-normal-txt-mini">Tours</h2> -->
   </div>
@@ -285,11 +285,11 @@ function handleAddReservation()
     <!-- Content -->
 
     <div class="owl-carousel owl-theme" id="owl1">
-      <div class="owl-caousel-item"> <img src="./Images/beach1.avif" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/beach2.avif" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/beach4.avif" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/beach5.avif" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/beach6.avif" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="./Images/beach1.avif" alt="tours_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/beach2.avif" alt="tours_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/beach4.avif" alt="tours_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/beach5.avif" alt="tours_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/beach6.avif" alt="tours_image"> </div>
     </div>
 
 
@@ -376,7 +376,7 @@ function handleAddReservation()
                   echo '<div class="destination-content-container">';
                   echo '<div class="destination-image-container">';
                   $image_location = $row['hotel_picture'];
-                  echo '<img src="../' . $image_location . '" alt="">';
+                  echo '<img src="../' . $image_location . '" alt="image">';
                   echo '</div>';
                   echo '<div class="destination-hotel-container">';
                   echo '<h3 class="content-title">' . $row['name'] . '</h3>';
@@ -416,7 +416,7 @@ function handleAddReservation()
                   echo '<div class="destination-content-container">';
                   echo '<div class="tourguide-image-container">';
                   $image_location = $row['picture'];
-                  echo '<img src="../' . $image_location . '" alt="">';
+                  echo '<img src="../' . $image_location . '" alt="image">';
                   echo '</div>';
                   echo '<div class="destination-hotel-container">';
                   echo '<h3 class="content-title">' . $row['full_name'] . '</h3>';

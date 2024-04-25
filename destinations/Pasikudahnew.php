@@ -27,7 +27,7 @@ $cityCondition = "'Batticaloa'";
   ?>
 
   <div class="top-image">
-  <img src="./Images/slide7-1.png" alt="">
+  <img src="./Images/slide7-1.png" alt="destination_image">
     <!-- <h1 class="headings sub-heading">Destinations</h1> -->
   </div>
 
@@ -49,10 +49,10 @@ $cityCondition = "'Batticaloa'";
     <!-- Content -->
 
     <div class="owl-carousel owl-theme">
-      <div class="owl-caousel-item"> <img src="./Images/pasidudahh.jpg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/pasikudah.jpg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/mirissa1.jpg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/bentota-beachh.jpg" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="./Images/pasidudahh.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/pasikudah.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/mirissa1.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/bentota-beachh.jpg" alt="destination_image"> </div>
     </div>
 
     <div class="tab-package">
@@ -116,7 +116,7 @@ $cityCondition = "'Batticaloa'";
                     echo '<div class="destination-content-container">';
                     echo '<div class="destination-image-container">';
                     $image_location = $row['hotel_picture'];
-                    echo '<img src="../' . $image_location . '" alt="">';
+                    echo '<img src="../' . $image_location . '" alt="destination_image">';
                     echo '</div>';
                     echo '<div class="destination-hotel-container">';
                     echo '<h3 class="content-title">' . $row['name'] . '</h3>';
@@ -146,7 +146,7 @@ $cityCondition = "'Batticaloa'";
 
               <div class="destination-content-container">
                 <div class="destination-image-container">
-                  <img src="../Images/slide1.jpg" alt="">
+                  <img src="../Images/slide1.jpg" alt="destination_image">
                 </div>
                 <div class="destination-hotel-contntents">
                   <h3 class="content-title">MAALU MAALU RESORT</h3>
@@ -156,7 +156,7 @@ $cityCondition = "'Batticaloa'";
               </div>
               <div class="destination-content-container">
                 <div class="destination-image-container">
-                  <img src="../Images/slide1.jpg" alt="">
+                  <img src="../Images/slide1.jpg" alt="destination_image">
                 </div>
                 <div class="destination-hotel-contntents">
                   <h3 class="content-title">MAALU MAALU RESORT</h3>
@@ -166,7 +166,7 @@ $cityCondition = "'Batticaloa'";
               </div>
               <div class="destination-content-container">
                 <div class="destination-image-container">
-                  <img src="../Images/slide1.jpg" alt="">
+                  <img src="../Images/slide1.jpg" alt="destination_image">
                 </div>
                 <div class="destination-hotel-contntents">
                   <h3 class="content-title">MAALU MAALU RESORT</h3>
@@ -186,7 +186,7 @@ $cityCondition = "'Batticaloa'";
                 <div class="destination-content-container">
 
                   <div class="destination-image-container">
-                    <img src="../Images/slide1.jpg" alt="">
+                    <img src="../Images/slide1.jpg" alt="destination_image">
                   </div>
                   <div class="destination-hotel-contntents">
                     <h3 class="content-title">MAALU MAALU RESORT</h3>
@@ -196,7 +196,7 @@ $cityCondition = "'Batticaloa'";
                 </div>
                 <div class="destination-content-container">
                   <div class="destination-image-container">
-                    <img src="../Images/slide1.jpg" alt="">
+                    <img src="../Images/slide1.jpg" alt="destination_image">
                   </div>
                   <div class="destination-hotel-contntents">
                     <h3 class="content-title">MAALU MAALU RESORT</h3>
@@ -206,7 +206,7 @@ $cityCondition = "'Batticaloa'";
                 </div>
                 <div class="destination-content-container">
                   <div class="destination-image-container">
-                    <img src="../Images/slide1.jpg" alt="">
+                    <img src="../Images/slide1.jpg" alt="destination_image">
                   </div>
                   <div class="destination-hotel-contntents">
                     <h3 class="content-title">MAALU MAALU RESORT</h3>

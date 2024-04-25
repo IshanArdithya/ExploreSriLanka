@@ -261,7 +261,7 @@ function handleAddReservation()
   ?>
 
   <div class="top-image">
-    <img src="./Images/slide7.jpg" alt="">
+    <img src="./Images/slide7.jpg" alt="image">
     <!-- <h1 class="headings sub-heading">Wildlife Adventure</h1>
         <h2 class="heading-normal-txt-mini">Tours</h2> -->
   </div>
@@ -285,13 +285,13 @@ function handleAddReservation()
     <!-- Content -->
 
     <div class="owl-carousel owl-theme" id="owl1">
-      <div class="owl-caousel-item"> <img src="./Images/escape8.jpeg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/escape9.jpeg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/escape6.webp" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/escape10.jpeg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/escape4.jpeg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/escape5.webp" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/escape7.avif" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="./Images/escape8.jpeg" alt="tours_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/escape9.jpeg" alt="tours_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/escape6.webp" alt="tours_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/escape10.jpeg" alt="tours_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/escape4.jpeg" alt="tours_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/escape5.webp" alt="tours_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/escape7.avif" alt="tours_image"> </div>
     </div>
 
     <div class="tab-package">
@@ -374,7 +374,7 @@ function handleAddReservation()
                   echo '<div class="destination-content-container">';
                   echo '<div class="destination-image-container">';
                   $image_location = $row['hotel_picture'];
-                  echo '<img src="../' . $image_location . '" alt="">';
+                  echo '<img src="../' . $image_location . '" alt="image">';
                   echo '</div>';
                   echo '<div class="destination-hotel-container">';
                   echo '<h3 class="content-title">' . $row['name'] . '</h3>';
@@ -414,7 +414,7 @@ function handleAddReservation()
                   echo '<div class="destination-content-container">';
                   echo '<div class="tourguide-image-container">';
                   $image_location = $row['picture'];
-                  echo '<img src="../' . $image_location . '" alt="">';
+                  echo '<img src="../' . $image_location . '" alt="image">';
                   echo '</div>';
                   echo '<div class="destination-hotel-container">';
                   echo '<h3 class="content-title">' . $row['full_name'] . '</h3>';
