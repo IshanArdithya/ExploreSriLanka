@@ -67,10 +67,6 @@
                             <option value="Gampaha">Gampaha</option>
                         </select>
                     </div>
-                    <!-- <div class="form-group" style="margin-top: 20px;">
-                        <button type="button" id="pkg_filter_btn" name="signup" class="primary-btn-search" id>Search Now</button>
-                        <button id="reserBtnn" class="primary-btn btn-new-btn" onclick="showAll()" style="display: none; margin-left: 10px;">Reset</button>
-                    </div> -->
                 </form>
             </div>
         </div>
@@ -530,13 +526,13 @@
         var items = document.querySelectorAll('.item-box');
 
         items.forEach(function(item) {
-            var destination = item.getAttribute('href').split('/')[1].split('.')[0]; // Extracting destination from href
-            var district = getDistrict(destination); // Getting district based on destination
+            var destination = item.getAttribute('href').split('/')[1].split('.')[0]; 
+            var district = getDistrict(destination); 
 
             if (selectedDistrict === '' || district === selectedDistrict) {
-                item.style.display = 'block'; // Show item if district matches selected or no district selected
+                item.style.display = 'block'; 
             } else {
-                item.style.display = 'none'; // Hide item if district does not match selected
+                item.style.display = 'none'; 
             }
         });
     });

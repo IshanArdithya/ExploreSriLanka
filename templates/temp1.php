@@ -42,7 +42,7 @@ $cityCondition = "'Anuradhapura'";
 
     <div class="container">
       <h1 class="headings mini-heading">Hotel Name</h1>
-      <p class="lead mini-lead"></p>
+      <p class="lead mini-lead">Discover unparalleled comfort, exceptional service, and unforgettable experiences at our exquisite hotel. Indulge in the epitome of luxury and hospitality, where you can immerse yourself in a world of elegance, comfort, and impeccable service. Your perfect retreat starts with us.</p>
     </div>
 
     <!-- Content -->

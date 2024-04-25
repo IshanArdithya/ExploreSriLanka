@@ -650,7 +650,7 @@
                     </div>
                 </div>
             </div>
-            <div class="review-button" >
+            <div class="review-button">
                 <button class="review-btn" id="reviewButton">Leave A Review</button>
             </div>
         </div>
@@ -678,7 +678,6 @@
 
         // Check if login_success parameter is present
         if (getUrlParameter('login_success') === '1') {
-            // Display toast notification
             const Toast = Swal.mixin({
                 toast: true,
                 position: "top-end",
@@ -705,9 +704,9 @@
         };
 
         document.getElementById('reviewButton').addEventListener('click', function() {
-    Swal.fire({
-        title: 'Leave a Review',
-        html: `
+            Swal.fire({
+                title: 'Leave a Review',
+                html: `
             <div class="review-container">
             <input id="nameInput" class="swal2-input" placeholder="Your Name" required>
             <input id="emailInput" type="email" class="swal2-input" placeholder="Your Email" required>
@@ -724,106 +723,112 @@
             <textarea id="descriptionInput" class="swal2-textarea" placeholder="Write a short description (optional)"></textarea>
             </div>
         `,
-        showCancelButton: true,
-        confirmButtonText: 'Submit',
-        customClass: {
-            confirmButton: 'swal2-btn',
-            cancelButton: 'swal2-btn'
-        },
-        didOpen: () => {
-            const stars = document.querySelectorAll('.star-rating i');
+                showCancelButton: true,
+                confirmButtonText: 'Submit',
+                customClass: {
+                    confirmButton: 'swal2-btn',
+                    cancelButton: 'swal2-btn'
+                },
+                didOpen: () => {
+                    const stars = document.querySelectorAll('.star-rating i');
 
-            stars.forEach(star => {
-                star.addEventListener('click', () => {
-                    const ratingValue = parseInt(star.getAttribute('data-rating'));
-                    stars.forEach(s => {
-                        if (parseInt(s.getAttribute('data-rating')) <= ratingValue) {
-                            s.classList.add('rated');
-                        } else {
-                            s.classList.remove('rated');
-                        }
+                    stars.forEach(star => {
+                        star.addEventListener('click', () => {
+                            const ratingValue = parseInt(star.getAttribute('data-rating'));
+                            stars.forEach(s => {
+                                if (parseInt(s.getAttribute('data-rating')) <= ratingValue) {
+                                    s.classList.add('rated');
+                                } else {
+                                    s.classList.remove('rated');
+                                }
+                            });
+                        });
                     });
-                });
+                },
+                preConfirm: () => {
+                    const name = document.getElementById('nameInput').value;
+                    const email = document.getElementById('emailInput').value;
+                    const selectedRating = document.querySelector('.star-rating i.rated')?.getAttribute('data-rating');
+                    const description = document.getElementById('descriptionInput').value;
+
+                    if (!name || !email || !selectedRating) {
+                        Swal.showValidationMessage('Please fill in all required fields and select a rating');
+                        return false;
+                    }
+
+                    return {
+                        name: name,
+                        email: email,
+                        rating: selectedRating,
+                        description: description
+                    };
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const {
+                        name,
+                        email,
+                        rating,
+                        description
+                    } = result.value;
+                    Swal.fire('Thank you!', 'Your review has been submitted.', 'success');
+                }
             });
-        },
-        preConfirm: () => {
-            const name = document.getElementById('nameInput').value;
-            const email = document.getElementById('emailInput').value;
-            const selectedRating = document.querySelector('.star-rating i.rated')?.getAttribute('data-rating');
-            const description = document.getElementById('descriptionInput').value;
+        });
+    </script>
 
-            if (!name || !email || !selectedRating) {
-                Swal.showValidationMessage('Please fill in all required fields and select a rating');
-                return false;
-            }
-
-            return {
-                name: name,
-                email: email,
-                rating: selectedRating,
-                description: description
-            };
+    <style>
+        .review-container {
+            margin: 2px 2px 2px 2px;
+            align-items: center;
+            justify-content: center;
         }
-    }).then((result) => {
-        if (result.isConfirmed) {
-            const { name, email, rating, description } = result.value;
-            Swal.fire('Thank you!', 'Your review has been submitted.', 'success');
+
+        .swal2-input,
+        .swal2-textarea {
+            margin-bottom: 2px;
+            margin-left: 2px;
+            width: 80%;
+            align-items: center;
+            justify-content: center;
         }
-    });
-});
-</script>
 
-<style>
+        .star-rating {
+            font-size: 24px;
+            margin-top: 10px;
+        }
 
-.review-container{
-    margin: 2px 2px 2px 2px;
-    align-items: center;
-    justify-content: center;
-}
-.swal2-input, .swal2-textarea {
-    margin-bottom: 2px;
-    margin-left: 2px;
-    width: 80%;
-    align-items: center;
-    justify-content: center;
-}
+        .star-rating i {
+            cursor: pointer;
+            color: #aaa;
+            transition: color 0.2s;
+        }
 
-.star-rating {
-    font-size: 24px;
-    margin-top: 10px;
-}
+        .star-rating i:hover,
+        .star-rating i.rated {
+            color: #2095ae;
+        }
 
-.star-rating i {
-    cursor: pointer;
-    color: #aaa;
-    transition: color 0.2s;
-}
+        .rating-text {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
 
-.star-rating i:hover,
-.star-rating i.rated {
-    color: #2095ae; 
-}
+        .swal2-btn {
+            background-color: #3085d6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
 
-.rating-text {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.swal2-btn {
-    background-color: #3085d6;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.swal2-btn:hover {
-    background-color: #1f69c5;
-}
-</style></body>
+        .swal2-btn:hover {
+            background-color: #1f69c5;
+        }
+    </style>
+</body>
 
 </html>
-
