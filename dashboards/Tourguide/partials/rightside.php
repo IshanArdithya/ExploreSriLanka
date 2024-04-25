@@ -1,5 +1,29 @@
        
-<?php require_once '../../config.php'; ?>
+<?php
+require_once '../../config.php';
+
+$conn = new mysqli($hostname, $username, $password, $database);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if (isset($_SESSION['tourguide_email'])) {
+    $tourguide_email = $_SESSION['tourguide_email'];
+
+    $sql = "SELECT * FROM tourguide WHERE email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $tourguide_email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $tourguide = $result->fetch_assoc();
+
+    $first_name = $tourguide['first_name'];
+} else {
+    header("location: tourguidelogin.php");
+}
+
+?>
 
 <!-- Right Section -->
         <div class="right-section">
@@ -7,7 +31,7 @@
 
                 <div class="profile">
                     <div class="info">
-                        <p>Hey, <b>Tour Guide</b></p>
+                        <p>Hey, <b><?php echo htmlspecialchars($first_name); ?></b></p>
                         <small class="text-muted">Tour Guide</small>
                     </div>
                     <div class="profile-photo">
