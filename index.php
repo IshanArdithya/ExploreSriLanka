@@ -341,24 +341,6 @@
         </div>
     </section>
 
-    <!-- video background -->
-
-    <!-- <section id="video-cover">
-        <div class="video-bg">
-            <video autoplay loop muted preload="auto">
-                <source src="Images/video.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="container">
-            <div class="video-content">
-                <h2>Explore Sri Lanka</h2>
-                <span><i class="fa fa-clock"></i>10 Days</span>
-                <span><i class="fa fa-user"></i>10+</span>
-                <span><i class="fa fa-location"></i>10 Sri Lanka</span>
-            </div>
-        </div>
-    </section> -->
-
     <!-- Tour Details  -->
 
     <section id="travel-areas">
@@ -785,7 +767,6 @@
     }).then((result) => {
         if (result.isConfirmed) {
             const { name, email, rating, description } = result.value;
-            // Here you can submit the review data (e.g., send it to your server)
             Swal.fire('Thank you!', 'Your review has been submitted.', 'success');
         }
     });
