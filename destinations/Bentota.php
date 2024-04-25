@@ -155,7 +155,7 @@ $cityCondition = "'Galle'";
     <div class="owl-carousel owl-theme destinations-images">
       <a href="Tangalle.php"> <div class="owl-caousel-item">  <img src="../destinations/Images/tangallee.jpg" alt="destination_image"> <h2>Tangalle</h2> </div> </a>
       <a href="Unawatuna.php"> <div class="owl-caousel-item">  <img src="../destinations/Images/Unawatuna.jpg" alt="destination_image"> <h2>Unawatuna</h2> </div> </a>
-      <a href="weligamaa.php"> <div class="owl-caousel-item">  <img src="../destinations/Images/weligamaa.jpg" alt="destination_image"> <h2>weligamaa</h2> </div> </a>
+      <a href="weligamaa.php"> <div class="owl-caousel-item">  <img src="../destinations/Images/weligamaa.jpg" alt="destination_image"> <h2>Weligama</h2> </div> </a>
       <a href="Dabulla.php"> <div class="owl-caousel-item">  <img src="../destinations/Images/Dambulla.jpg" alt="destination_image"> <h2>Dambulla</h2> </div> </a>
       <a href="Kalpitiya.php"> <div class="owl-caousel-item">  <img src="../destinations/Images/kalpitiyamain.jpg" alt="destination_image"> <h2>Kalpitiya</h2> </div> </a>
     </div>

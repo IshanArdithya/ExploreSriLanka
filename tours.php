@@ -28,7 +28,7 @@
     <div class="container">
         <div class="row">
             <ol class="breadcrumb">
-                <li><a href="../index.php" title="Explore Sri Lanka" class="bolds">Home</a></li>
+                <li><a href="index.php" title="Explore Sri Lanka" class="bolds">Home</a></li>
                 <li class="active">Tours</li>
             </ol>
         </div>
@@ -46,43 +46,16 @@
                         <label for="pkg_category">Category</label>
                         <select aria-label="Title" class="form-control" name="pkg_category" id="pkg_category">
                             <option value="">All</option>
-                            <option value="Adventure-Expeditions">Adventure Expeditions</option>
-                            <option value="Historical and Cultural Exploration">Historical and Cultural Exploration</option>
-                            <option value="Beach and Coastal Retreats">Beach and Coastal Retreats</option>
-                            <option value="Nature Retreats and Scenic Tours">Nature Retreats and Scenic Tours</option>
-                            <option value="Northern Exploration">Northern Exploration</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="pkg_destination">Destinations</label>
-                        <select aria-label="Destination" class="form-control" name="pkg_destination" id="pkg_destination">
-                            <option value="">All</option>
-                            <option value="Anuradhapura">Anuradhapura</option>
-                            <option value="Ella">Ella</option>
-                            <option value="Jaffna">Jaffna</option>
-                            <option value="Kalpitiya">Sinharaja</option>
-                            <option value="Trincomalee">Trincomalee</option>
-                            <option value="Hikkaduwa">Hikkaduwa</option>
-                            <option value="Yala">Yala</option>
-                            <option value="Nuwara-Eliya">Nuwara-Eliya</option>
-                            <option value="Unawatuna">Unawatuna</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="pkg_days">Number of Days</label>
-                        <select aria-label="Number of Nights" class="form-control" name="pkg_days" id="pkg_days">
-                            <option value="">All</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
+                            <option value="Adventure-Expeditions">Adventure </option>
+                            <option value="Historical and Cultural Exploration">Historical and Cultural </option>
+                            <option value="Beach and Coastal Retreats">Beach and Coastal </option>
+                            <option value="Nature Retreats and Scenic Tours">Nature </option>
+                            <option value="Northern Exploration">Northern </option>
                         </select>
                     </div>
 
                     <div class="form-group" style="margin-top: 20px;">
-                        <button type="button" id="pkg_filter_btn" name="signup" class="primary-btn-search">Search Now</button>
-                        <button id="reserBtnn" class="primary-btn btn-new-btn" onclick="showAll()" style="display: none; margin-left: 10px;">Reset</button>
+                        <button id="resetBtnn" class="primary-btn-search" onclick="showAll()" style="display: none; margin-left: 20px;">Reset</button>
                     </div>
                 </form>
             </div>
@@ -268,48 +241,71 @@
     <script src="js/script.js"></script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Get references to select elements and search button
-            var categorySelect = document.getElementById("pkg_category");
-            var tourItems = document.querySelectorAll(".item-box");
-            var searchButton = document.getElementById("pkg_filter_btn");
+document.addEventListener("DOMContentLoaded", function() {
+    // Display the reset button when the DOM content is loaded
+    
+    var resetButton = document.getElementById('resetBtnn');
+    resetButton.style.display = 'none';
 
-            // Event listener for search button click
-            searchButton.addEventListener("click", function(event) {
-                event.preventDefault(); // Prevent the default form submission
+    // Get references to select elements and tour items
+    var categorySelect = document.getElementById("pkg_category");
+    var tourItems = document.querySelectorAll(".item-box");
 
-                // Get the selected category
-                var selectedCategory = categorySelect.value;
+    // Event listener for category change
+    categorySelect.addEventListener("change", function() {
+        var selectedCategory = categorySelect.value;
+        // Hide all tour items
+        tourItems.forEach(function(item) {
+            item.style.display = "none";
+        });
 
-                // Hide all tour items
-                tourItems.forEach(function(item) {
-                    item.style.display = "none";
-                });
-
-                // Show tour items based on selected category
-                if (selectedCategory === "Adventure-Expeditions") {
-                    showTourItems(["Adventure-Expedition", "Rainforest-Adventure-Trek", "Wildlife-Safari-Adventure"]);
-                } else if (selectedCategory === "Historical and Cultural Exploration") {
-                    showTourItems(["Ancient-Cities-Exploration"]);
-                } else if (selectedCategory === "Beach and Coastal Retreats") {
-                    showTourItems(["Beach-Bliss-Retreat", "Coastal-Dive-Expedition", "Coastal-Escape-Retreat"]);
-                } else if (selectedCategory === "Nature Retreats and Scenic Tours") {
-                    showTourItems(["Scenic-Hillside-Retreat"]);
-                } else if (selectedCategory === "Northern Exploration") {
-                    showTourItems(["Northern-Discovery"]);
-                }
+        // Show tour items based on selected category
+        if (selectedCategory === "Adventure-Expeditions") {
+            showTourItems(["Adventure-Expedition", "Rainforest-Adventure-Trek", "Wildlife-Safari-Adventure"]);
+        } else if (selectedCategory === "Historical and Cultural Exploration") {
+            showTourItems(["Ancient-Cities-Exploration"]);
+        } else if (selectedCategory === "Beach and Coastal Retreats") {
+            showTourItems(["Beach-Bliss-Retreat", "Coastal-Dive-Expedition", "Coastal-Escape-Retreat"]);
+        } else if (selectedCategory === "Nature Retreats and Scenic Tours") {
+            showTourItems(["Scenic-Hillside-Retreat"]);
+        } else if (selectedCategory === "Northern Exploration") {
+            showTourItems(["Northern-Discovery"]);
+        } else if (selectedCategory === "") {
+            // Show all tour items when "All" is selected
+            tourItems.forEach(function(item) {
+                item.style.display = "block";
             });
+        }
 
-            // Function to show specific tour items
-            function showTourItems(tourItemIds) {
-                tourItemIds.forEach(function(itemId) {
-                    var tourItem = document.querySelector('a[href="tours/' + itemId + '.php"]');
-                    if (tourItem) {
-                        tourItem.style.display = "block";
-                    }
-                });
+        // Show or hide reset button based on category selection
+        resetButton.style.display = selectedCategory ? 'none' : 'none';
+    });
+
+    // Function to show specific tour items
+    function showTourItems(tourItemIds) {
+        tourItemIds.forEach(function(itemId) {
+            var tourItem = document.querySelector('a[href="tours/' + itemId + '.php"]');
+            if (tourItem) {
+                tourItem.style.display = "block";
             }
         });
+    }
+
+    // Function to handle reset button click event
+    function showAll() {
+        // Show all tour items
+        tourItems.forEach(function(item) {
+            item.style.display = "none";
+        });
+
+        // Reset category selection
+        categorySelect.value = "";
+
+        // Hide the reset button again
+        resetButton.style.display = 'none';
+    }
+});
+
 
 </script>    
 </body>

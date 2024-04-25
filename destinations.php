@@ -86,14 +86,8 @@
                         <div class="text-small-legend"></div>
                         <div class="btn-wrapper-common">
                             <span>Find Out More</span>
-                            <!-- <button>Find Out More</button> -->
                         </div>
                     </div>
-                    <!-- <div class="hidden-content-package">
-                    <span><i class="fa fa-moon"></i> 9 Nights</span><br>
-                    <span><i class="fa fa-clock"></i> 10 Days</span><br>
-                    <span><i class="fa fa-user"></i> 12+</span><br>
-                </div> -->
 
                     <a class="item-box" href="destinations/Ella.php">
                         <div class="img-wrapper">

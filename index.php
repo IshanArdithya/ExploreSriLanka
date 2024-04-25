@@ -669,7 +669,7 @@
                 </div>
             </div>
             <div class="review-button" >
-                <button class="review-btn" id="reviewButton">Leave Us A Review</button>
+                <button class="review-btn" id="reviewButton">Leave A Review</button>
             </div>
         </div>
     </section>
