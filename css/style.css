@@ -864,6 +864,29 @@ select {
   margin: 1rem 0;
 }
 
+.review-button {
+  display: flex;
+  margin-top: 10px;
+  padding: 1rem 0.1rem;
+  transition: all 0.5s ease;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+.review-btn{
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: none;
+  padding: 0.7rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+}
+
 /* Footer */
 
 #footer {
@@ -2353,6 +2376,7 @@ Align select elements .package-book-swal select {
 
 .card-about-page:hover{
   transform: scale(1.05);
+  transition: transform 0.5s ease-in-out;
 }
 
 .card-about-page .icon {
@@ -2405,6 +2429,7 @@ Align select elements .package-book-swal select {
   background: rgba(13, 13, 13, 0.5);
   z-index: 1;
 }
+
 /* CEO Section */
 .ceo .content {
   background-color: rgb(255, 255, 255);
@@ -2998,7 +3023,7 @@ td {
   }
 }
 
-/*pproduct checkout page*/
+/*product checkout page*/
 .checkout-main-container {
   margin: 50px auto;
   display: flex;
