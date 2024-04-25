@@ -153,12 +153,13 @@ $cityCondition = "'Matara'";
     <h1 class="headings mini-heading">Similar Destinations</h1>
 
 
+
     <div class="owl-carousel owl-theme">
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/slide4.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/slide32.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/slide31.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/slide30.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/slide29.jpg" alt="destination_image"> </div>
     </div>
   </div>
 

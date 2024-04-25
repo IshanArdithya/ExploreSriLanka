@@ -153,11 +153,11 @@ $cityCondition = "'Hambantota'";
 
 
     <div class="owl-carousel owl-theme">
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/Anuradhapura.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/Arugam Bay1.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/Bandarawela.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/batticaloa.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/bentota-beach.jpg" alt="destination_image"> </div>
     </div>
   </div>
 

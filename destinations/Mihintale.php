@@ -151,16 +151,14 @@ $cityCondition = "'Anuradhapura'";
 
     <h1 class="headings mini-heading">Similar Destinations</h1>
 
-
     <div class="owl-carousel owl-theme">
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/slide3.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/slide25.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/slide28.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/slide27.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/slide26.jpg" alt="destination_image"> </div>
     </div>
   </div>
-
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {

@@ -153,11 +153,11 @@ $cityCondition = "'Batticaloa'";
 
 
     <div class="owl-carousel owl-theme">
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/slide1-1.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/slde9.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/slide25.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/slide7.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/slide3.jpg" alt="destination_image"> </div>
     </div>
   </div>
 

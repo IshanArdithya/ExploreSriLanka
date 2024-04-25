@@ -150,13 +150,12 @@ $cityCondition = "'Anuradhapura'";
 
     <h1 class="headings mini-heading">Similar Destinations</h1>
 
-
     <div class="owl-carousel owl-theme">
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images//mihintale.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/mirissa.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/negombo.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/nuwara eliya1.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/pasikudah.jpg"  alt="destination_image"> </div>
     </div>
   </div>
 

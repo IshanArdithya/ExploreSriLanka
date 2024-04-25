@@ -51,8 +51,9 @@ $cityCondition = "'Galle'";
 
     <div class="owl-carousel owl-theme">
       <div class="owl-caousel-item"> <img src="./Images/hikkaduwa.jpg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/hikkaduwa.jpg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/hikkaduwa.jpg" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="./Images/hikkaduwamain.jpg" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="./Images/bentota-beach.jpg" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="./Images/mirissaa.jpg" alt=""> </div>
     </div>
 
     <div class="tab-package">
@@ -153,11 +154,11 @@ $cityCondition = "'Galle'";
 
 
     <div class="owl-carousel owl-theme">
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/where-weligama.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/vatadage.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/Unawatunaaa.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/Trincomaleeee.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/tangallee.jpg" alt="destination_image"> </div>
     </div>
   </div>
 

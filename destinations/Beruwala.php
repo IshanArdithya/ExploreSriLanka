@@ -2,8 +2,6 @@
 $cityCondition = "'Kalutara'";
 ?>
 
-</html>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -154,14 +152,17 @@ $cityCondition = "'Kalutara'";
     <h1 class="headings mini-heading">Similar Destinations</h1>
 
 
+
     <div class="owl-carousel owl-theme">
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/slide6.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/slide9-1webp.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/slide5.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/slide8-1.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/slide7.jpg" alt="destination_image"> </div>
     </div>
   </div>
+
+
 
 
   <script>

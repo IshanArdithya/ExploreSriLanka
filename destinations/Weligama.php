@@ -26,8 +26,8 @@ $cityCondition = "'Matara'";
   include '../components/header.php';
   ?>
 
-<div class="top-image">
-  <img src="./Images/slide15.jpg" alt="">
+  <div class="top-image">
+    <img src="./Images/slide15.jpg" alt="">
   </div>
 
   <!-- Breadcrumbs -->
@@ -51,9 +51,8 @@ $cityCondition = "'Matara'";
       <div class="owl-caousel-item"> <img src="./Images/weliagama.jpg" alt=""> </div>
       <div class="owl-caousel-item"> <img src="./Images/weligamaa.jpg" alt=""> </div>
       <div class="owl-caousel-item"> <img src="./Images/where-weligama.jpg" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="./Images/Unawatunaaa.jpg" alt=""> </div>
     </div>
-
-    <div class="owl-caousel-item"> <img src="./Images/weliagama.jpg" alt=""> </div>
 
     <div class="tab-package">
       <div class="tabbed-content">
@@ -153,11 +152,11 @@ $cityCondition = "'Matara'";
 
 
     <div class="owl-carousel owl-theme">
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/Polonnaruwa.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/sigiriya.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/Sinharaja.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/Tangalle.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item">  <img src="../destinations/Images/Trincomale.jpg" alt="destination_image"> </div>
     </div>
   </div>
 
