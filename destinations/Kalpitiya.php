@@ -27,7 +27,7 @@ $cityCondition = "'Puttalam'";
   ?>
 
   <div class="top-image">
-  <img src="./Images/slide24.jpg" alt="">
+  <img src="./Images/kalpitiya.jpg" alt="destination_image">
   </div>
 
   <!-- Breadcrumbs -->
@@ -48,10 +48,10 @@ $cityCondition = "'Puttalam'";
     <!-- Content -->
 
     <div class="owl-carousel owl-theme">
-      <div class="owl-caousel-item"> <img src="./Images/kalpitiya.jpg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/Trincomale.jpg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/mirissa1.jpg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/mirissa.jpg" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="./Images/kalpitiya.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/Trincomale.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/mirissa1.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/mirissa.jpg" alt="destination_image"> </div>
     </div>
 
     <div class="tab-package">
@@ -120,7 +120,7 @@ $cityCondition = "'Puttalam'";
                     echo '<div class="destination-content-container">';
                     echo '<div class="destination-image-container">';
                     $image_location = $row['hotel_picture'];
-                    echo '<img src="../' . $image_location . '" alt="">';
+                    echo '<img src="../' . $image_location . '" alt="destination_image">';
                     echo '</div>';
                     echo '<div class="destination-hotel-container">';
                     echo '<h3 class="content-title">' . $row['name'] . '</h3>';
@@ -150,13 +150,12 @@ $cityCondition = "'Puttalam'";
 
     <h1 class="headings mini-heading">Similar Destinations</h1>
 
-
-    <div class="owl-carousel owl-theme">
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
+  <div class="owl-carousel owl-theme destinations-images">
+     <a href="Galle.php"> <div class="owl-caousel-item">  <img src="../destinations/Images/slide13.jpg" alt="destination_image"> <h2>Galle</h2> </div> </a>
+    <a href="Negombo.php">  <div class="owl-caousel-item">  <img src="../destinations/Images/negombo.jpg" alt="destination_image"> <h2>Negombo</h2> </div> </a>
+    <a href="Mirissa.php"> <div class="owl-caousel-item">  <img src="../destinations/Images/mirissa.jpg" alt="destination_image"> <h2>Miissa</h2> </div> </a>
+     <a href="Matara.php"> <div class="owl-caousel-item">  <img src="../destinations/Images/matara.jpg" alt="destination_image"> <h2>Matara</h2> </div> </a>
+     <a href="Kalutara.php"> <div class="owl-caousel-item">  <img src="../destinations/Images/kalutara2.jpg" alt="destination_image"> <h2>Kalutara</h2> </div> </a>
     </div>
   </div>
 

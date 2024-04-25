@@ -27,7 +27,7 @@ $cityCondition = "'Batticaloa'";
   ?>
 
   <div class="top-image">
-  <img src="./Images/slide7-1.png" alt="">
+  <img src="./Images/slide7-1.png" alt="destination_image">
     <!-- <h1 class="headings sub-heading">Destinations</h1> -->
   </div>
 
@@ -49,10 +49,10 @@ $cityCondition = "'Batticaloa'";
     <!-- Content -->
 
     <div class="owl-carousel owl-theme">
-      <div class="owl-caousel-item"> <img src="./Images/pasidudahh.jpg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/pasikudah.jpg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/mirissa1.jpg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/bentota-beachh.jpg" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="./Images/pasidudahh.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/pasikudah.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/mirissa1.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/bentota-beachh.jpg" alt="destination_image"> </div>
     </div>
 
     <div class="tab-package">
@@ -116,7 +116,7 @@ $cityCondition = "'Batticaloa'";
                     echo '<div class="destination-content-container">';
                     echo '<div class="destination-image-container">';
                     $image_location = $row['hotel_picture'];
-                    echo '<img src="../' . $image_location . '" alt="">';
+                    echo '<img src="../' . $image_location . '" alt="destination_image">';
                     echo '</div>';
                     echo '<div class="destination-hotel-container">';
                     echo '<h3 class="content-title">' . $row['name'] . '</h3>';
@@ -146,7 +146,7 @@ $cityCondition = "'Batticaloa'";
 
               <div class="destination-content-container">
                 <div class="destination-image-container">
-                  <img src="../Images/slide1.jpg" alt="">
+                  <img src="../Images/slide1.jpg" alt="destination_image">
                 </div>
                 <div class="destination-hotel-contntents">
                   <h3 class="content-title">MAALU MAALU RESORT</h3>
@@ -156,7 +156,7 @@ $cityCondition = "'Batticaloa'";
               </div>
               <div class="destination-content-container">
                 <div class="destination-image-container">
-                  <img src="../Images/slide1.jpg" alt="">
+                  <img src="../Images/slide1.jpg" alt="destination_image">
                 </div>
                 <div class="destination-hotel-contntents">
                   <h3 class="content-title">MAALU MAALU RESORT</h3>
@@ -166,7 +166,7 @@ $cityCondition = "'Batticaloa'";
               </div>
               <div class="destination-content-container">
                 <div class="destination-image-container">
-                  <img src="../Images/slide1.jpg" alt="">
+                  <img src="../Images/slide1.jpg" alt="destination_image">
                 </div>
                 <div class="destination-hotel-contntents">
                   <h3 class="content-title">MAALU MAALU RESORT</h3>
@@ -186,7 +186,7 @@ $cityCondition = "'Batticaloa'";
                 <div class="destination-content-container">
 
                   <div class="destination-image-container">
-                    <img src="../Images/slide1.jpg" alt="">
+                    <img src="../Images/slide1.jpg" alt="destination_image">
                   </div>
                   <div class="destination-hotel-contntents">
                     <h3 class="content-title">MAALU MAALU RESORT</h3>
@@ -196,7 +196,7 @@ $cityCondition = "'Batticaloa'";
                 </div>
                 <div class="destination-content-container">
                   <div class="destination-image-container">
-                    <img src="../Images/slide1.jpg" alt="">
+                    <img src="../Images/slide1.jpg" alt="destination_image">
                   </div>
                   <div class="destination-hotel-contntents">
                     <h3 class="content-title">MAALU MAALU RESORT</h3>
@@ -206,7 +206,7 @@ $cityCondition = "'Batticaloa'";
                 </div>
                 <div class="destination-content-container">
                   <div class="destination-image-container">
-                    <img src="../Images/slide1.jpg" alt="">
+                    <img src="../Images/slide1.jpg" alt="destination_image">
                   </div>
                   <div class="destination-hotel-contntents">
                     <h3 class="content-title">MAALU MAALU RESORT</h3>
@@ -227,16 +227,14 @@ $cityCondition = "'Batticaloa'";
     <h1 class="headings mini-heading">Similar Destinations</h1>
 
 
-    <div class="owl-carousel owl-theme">
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
+    <div class="owl-carousel owl-theme destinations-images">
+      <a href="Kitulgala.php"> <div class="owl-caousel-item">  <img src="../destinations/Images/slide17-1.jpg" alt="destination_image"> <h2> Kitulgala</h2> </div> </a>
+      <a href="Sinharaja.php"><div class="owl-caousel-item">  <img src="../destinations/Images/slide16.jpg" alt="destination_image"> <h2> Sinharaja </h2> </div> </a>
+      <a href="Kalpitiya.php"><div class="owl-caousel-item">  <img src="../destinations/Images/slide17.jpg" alt="destination_image"> <h2> Kalpitiya </h2> </div> </a>
+      <a href="Batticaloa.php"><div class="owl-caousel-item">  <img src="../destinations/Images/slide15.jpg" alt="destination_image"> <h2> Batticaloa </h2> </div> </a>
+      <a href="Bentota.php"><div class="owl-caousel-item">  <img src="../destinations/Images/slide14.jpg" alt="destination_image"> <h2> Bentota</h2> </div> </a>
     </div>
   </div>
-
-
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       var tabs = document.querySelectorAll('.tabs a');

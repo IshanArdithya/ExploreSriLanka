@@ -27,7 +27,7 @@ $cityCondition = "'Galle'";
   ?>
 
   <div class="top-image">
-    <img src="./Images/slide17.jpg" alt="">
+    <img src="./Images/slide17.jpg" alt="destination_image">
   </div>
 
   <!-- Breadcrumbs -->
@@ -50,9 +50,10 @@ $cityCondition = "'Galle'";
 
 
     <div class="owl-carousel owl-theme">
-      <div class="owl-caousel-item"> <img src="./Images/hikkaduwa.jpg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/hikkaduwa.jpg" alt=""> </div>
-      <div class="owl-caousel-item"> <img src="./Images/hikkaduwa.jpg" alt=""> </div>
+      <div class="owl-caousel-item"> <img src="./Images/hikkaduwa.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/hikkaduwamain.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/bentota-beach.jpg" alt="destination_image"> </div>
+      <div class="owl-caousel-item"> <img src="./Images/mirissaa.jpg" alt="destination_image"> </div>
     </div>
 
     <div class="tab-package">
@@ -121,7 +122,7 @@ $cityCondition = "'Galle'";
                     echo '<div class="destination-content-container">';
                     echo '<div class="destination-image-container">';
                     $image_location = $row['hotel_picture'];
-                    echo '<img src="../' . $image_location . '" alt="">';
+                    echo '<img src="../' . $image_location . '" alt="destination_image">';
                     echo '</div>';
                     echo '<div class="destination-hotel-container">';
                     echo '<h3 class="content-title">' . $row['name'] . '</h3>';
@@ -151,16 +152,18 @@ $cityCondition = "'Galle'";
 
     <h1 class="headings mini-heading">Similar Destinations</h1>
 
+    <div class="owl-carousel owl-theme ">
+      <a href="Pasikudahnew.php"><div class="owl-caousel-item ">  <img src="../destinations/Images/pasikudah.jpg" alt="destination_image"> <h2>pasikudah</h2></div></a>
 
-    <div class="owl-carousel owl-theme">
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
-      <div> <img src="../Images/about.jpg" alt=""> </div>
+      <a href="Bentota.php"><div class="owl-caousel-item  ">  <img src="../destinations/Images/bentota-beach.jpg" alt="destination_image"><h2>Bentota</h2> </div></a>
+
+      <a href="Batticaloa.php"><div class="owl-caousel-item ">  <img src="../destinations/Images/Batticaloaa.png" alt="destination_image"><h2>Batticaloa</h2> </div></a>
+
+      <a href="Beruwala.php"><div class="owl-caousel-item ">  <img src="../destinations/Images/Trincomaleeee.jpg" alt="destination_image"><h2>Beruwala</h2> </div></a>
+
+      <a href="Trincomalee.php"><div class="owl-caousel-item ">  <img src="../destinations/Images/tangallee.jpg" alt="destination_image"> <h2>Trincomalee</h2></div></a>
     </div>
   </div>
-
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
