@@ -20,13 +20,20 @@ $district = $row['district'];
 if (isset($_POST['submit'])) {
     $room_type = $_POST['room_type'];
     $guests = $_POST['guests'];
-    $roomid = $_POST['roomid'];
+    $room_id = $_POST['roomid'];
     $short_desc = $_POST['short_desc'];
     $price = $_POST['price'];
     $addtopackages = $_POST['addtopackages'];
     $hotelEmail = $_SESSION['hotel_email'];
 
     $profile_picture = $_FILES['room_picture'];
+
+    $sql = "SELECT MAX(RIGHT(roomid, 5)) AS max_id FROM hotelrooms";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $max_id = $row['max_id'];
+    $next_id = $max_id + 1;
+    $roomid = 'R' . str_pad($next_id, 5, '0', STR_PAD_LEFT);
 
     if ($profile_picture['error'] === UPLOAD_ERR_OK) {
         $file_extension = pathinfo($profile_picture['name'], PATHINFO_EXTENSION);
@@ -46,7 +53,7 @@ if (isset($_POST['submit'])) {
     }
 
 
-    $sql = "INSERT INTO hotelrooms (hotel_id, name, district, description, guests, room_type, room_id, price, room_picture, add_to_packages) VALUES ('$hotel_id', '$name', '$district', '$short_desc', '$guests', '$room_type', '$roomid', '$price', '$picturepath', '$addtopackages')";
+    $sql = "INSERT INTO hotelrooms (roomid, hotel_id, name, district, description, guests, room_type, room_id, price, room_picture, add_to_packages) VALUES ('$roomid', '$hotel_id', '$name', '$district', '$short_desc', '$guests', '$room_type', '$room_id', '$price', '$picturepath', '$addtopackages')";
 
     if ($conn->query($sql) === TRUE) {
         echo "<script>Swal.fire('Updated!',
@@ -170,7 +177,7 @@ if (isset($_POST['submit'])) {
                         echo "</tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='6'>No pending reservations found!</td></tr>";
+                    echo "<tr><td colspan='6'>No rooms found!</td></tr>";
                 }
 
                 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['action']) && isset($_GET['id'])) {

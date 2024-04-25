@@ -19,7 +19,7 @@ if (isset($_SESSION['hotel_email'])) {
 
     $full_name = $hotels['name'];
 } else {
-    header("location: hotellogin.php");
+    header("location: ../../hotellogin.php");
 }
 
 ?>

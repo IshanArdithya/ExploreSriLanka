@@ -177,58 +177,69 @@
         });
     </script>
 
-<script>
-    function bookNow(hotelName, roomType, selectedDate, stayDuration, checkoutDate, price, hotelId, roomId) {
-        Swal.fire({
-            title: 'Booking Confirmation',
-            html: '<h3>' + hotelName + '</h3>' +
-                '<p>Room Type: ' + roomType + '</p>' +
-                '<p>Selected Date: ' + selectedDate + '</p>' +
-                '<p>Checkout Date: ' + checkoutDate + '</p>' +
-                '<p>Total Price: LKR' + (price * stayDuration) + '</p>',
-            showCancelButton: true,
-            confirmButtonText: 'Confirm',
-            cancelButtonText: 'Cancel'
-        }).then((result) => {
-            if (result.isConfirmed) {
+    <script>
+        function bookNow(hotelName, roomType, selectedDate, stayDuration, checkoutDate, price, hotelId, roomId) {
+            const customerEmail = "<?php echo isset($_SESSION['customer_email']) ? $_SESSION['customer_email'] : '' ?>";
+
+            if (!customerEmail) {
                 Swal.fire({
-                    title: 'Processing...',
-                    showConfirmButton: false,
-                    allowOutsideClick: false,
-                    allowEscapeKey: false,
-                    allowEnterKey: false,
-                    didOpen: () => {
-                        swal.showLoading();
-                        var xhr = new XMLHttpRequest();
-                        xhr.onreadystatechange = function() {
-                            if (xhr.readyState === XMLHttpRequest.DONE) {
-                                if (xhr.status === 200) {
-                                    Swal.fire({
-                                        title: "Thank you!",
-                                        text: "Your room booking request has been submitted. You will receive an email once your booking is approved.",
-                                        icon: "success"
-                                    });
-                                } else {
-                                    Swal.fire({
-                                        title: "Oops...",
-                                        text: "Something went wrong!",
-                                        icon: "error"
-                                    });
-                                }
+                    title: "Login",
+                    text: "You're not logged in. Please login.",
+                    icon: "error"
+                });
+            } else {
+
+                Swal.fire({
+                    title: 'Booking Confirmation',
+                    html: '<h3>' + hotelName + '</h3>' +
+                        '<p>Room Type: ' + roomType + '</p>' +
+                        '<p>Selected Date: ' + selectedDate + '</p>' +
+                        '<p>Checkout Date: ' + checkoutDate + '</p>' +
+                        '<p>Total Price: LKR' + (price * stayDuration) + '</p>',
+                    showCancelButton: true,
+                    confirmButtonText: 'Confirm',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: 'Processing...',
+                            showConfirmButton: false,
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            allowEnterKey: false,
+                            didOpen: () => {
+                                swal.showLoading();
+                                var xhr = new XMLHttpRequest();
+                                xhr.onreadystatechange = function() {
+                                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                                        if (xhr.status === 200) {
+                                            Swal.fire({
+                                                title: "Thank you!",
+                                                text: "Your room booking request has been submitted. You will receive an email once your booking is approved.",
+                                                icon: "success"
+                                            });
+                                        } else {
+                                            Swal.fire({
+                                                title: "Oops...",
+                                                text: "Something went wrong!",
+                                                icon: "error"
+                                            });
+                                        }
+                                    }
+                                };
+
+                                var params = 'hotel_id=' + hotelId + '&name=' + hotelName + '&room_number=' + roomId + '&reserved_from=' + selectedDate + '&reserved_till=' + checkoutDate + '&stay_duration=' + stayDuration + '&approval=Pending';
+
+                                xhr.open('POST', 'hotelbooking-backend.php', true);
+                                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                                xhr.send(params);
                             }
-                        };
-
-                        var params = 'hotel_id=' + hotelId + '&name=' + hotelName + '&room_number=' + roomId + '&reserved_from=' + selectedDate + '&reserved_till=' + checkoutDate + '&stay_duration=' + stayDuration + '&approval=Pending';
-
-                        xhr.open('POST', 'hotelbooking-backend.php', true);
-                        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-                        xhr.send(params);
+                        });
                     }
                 });
             }
-        });
-    }
-</script>
+        }
+    </script>
 
 
     <script src="js/script.js"></script>

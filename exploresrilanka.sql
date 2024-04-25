@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2024 at 02:55 PM
+-- Generation Time: Apr 26, 2024 at 12:40 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -104,7 +104,8 @@ INSERT INTO `hotelreservation` (`reservation_id`, `hotel_id`, `name`, `room_numb
 ('RES00004', 'H00002', 'Grand Plaza Hotel', 201, '2055-05-05', '2055-05-06', '', 0.00, 'PKG00010', 'Pending'),
 ('RES00005', 'H00003', 'Ocean View Resort', 303, '2024-02-21', '2024-04-23', '', 3000.00, NULL, 'Pending'),
 ('RES00006', 'H00005', 'Mountain Retreat Inn', 501, '2024-04-24', '2024-04-27', 'C00011', 0.00, 'PKG00009', 'Approved'),
-('RES00007', 'H00005', 'Mountain Retreat Inn', 501, '2024-05-15', '2024-05-18', '', 0.00, 'PKG00011', '');
+('RES00007', 'H00005', 'Mountain Retreat Inn', 501, '2024-05-15', '2024-05-18', '', 0.00, 'PKG00011', ''),
+('RES00008', 'H00006', 'Sunrises Hotels', 9999, '2024-04-26', '2024-04-26', '', 7222.00, NULL, 'Approved');
 
 -- --------------------------------------------------------
 
@@ -113,6 +114,7 @@ INSERT INTO `hotelreservation` (`reservation_id`, `hotel_id`, `name`, `room_numb
 --
 
 CREATE TABLE `hotelrooms` (
+  `roomid` varchar(11) NOT NULL,
   `hotel_id` varchar(6) NOT NULL,
   `name` varchar(200) NOT NULL,
   `district` varchar(50) NOT NULL,
@@ -121,6 +123,7 @@ CREATE TABLE `hotelrooms` (
   `room_type` varchar(50) NOT NULL,
   `room_id` int(6) NOT NULL,
   `price` decimal(10,2) NOT NULL,
+  `room_picture` varchar(255) NOT NULL,
   `add_to_packages` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -128,22 +131,21 @@ CREATE TABLE `hotelrooms` (
 -- Dumping data for table `hotelrooms`
 --
 
-INSERT INTO `hotelrooms` (`hotel_id`, `name`, `district`, `description`, `guests`, `room_type`, `room_id`, `price`, `add_to_packages`) VALUES
-('H00001', 'Colombo Reach Hotel', 'Colombo', 'This is a description.', 1, 'Luxury', 101, 100.00, 'Yes'),
-('H00001', 'Colombo Reach Hotel', 'Colombo', 'This is a description..', 2, 'Standard', 102, 100.00, 'No'),
-('H00001', 'Colombo Reach Hotel', 'Colombo', 'This is a discription...', 2, 'Luxury', 103, 100.00, 'No'),
-('H00002', 'Grand Plaza Hotel', 'Kandy', 'This is a discription....', 2, 'Standard', 201, 100.00, 'Yes'),
-('H00002', 'Grand Plaza Hotel', 'Kandy', 'This is a discription.....', 1, 'Luxury', 202, 100.00, 'Yes'),
-('H00002', 'Grand Plaza Hotel', 'Kandy', 'This is a discription......', 2, 'Standard', 203, 1000.00, 'Yes'),
-('H00003', 'Ocean View Resort', 'Galle', 'This is a discription.......', 3, 'Luxury', 301, 1000.00, 'No'),
-('H00003', 'Ocean View Resort', 'Galle', 'This is a discription........', 3, 'Standard', 302, 1000.00, 'No'),
-('H00003', 'Ocean View Resort', 'Galle', 'This is a discription.........', 1, 'Luxury', 303, 1000.00, 'Yes'),
-('H00004', 'Sunset Beach Hotel', 'Hikkaduwa', 'This is a discription..........', 2, 'Standard', 401, 1000.00, 'Yes'),
-('H00004', 'Sunset Beach Hotel', 'Hikkaduwa', 'This is a discription...........', 2, 'Luxury', 402, 1000.00, 'No'),
-('H00004', 'Sunset Beach Hotel', 'Hikkaduwa', 'This is a discription............', 3, 'Standard', 403, 1000.00, 'No'),
-('H00005', 'Mountain Retreat Inn', 'Badulla', 'This is a discription.............', 2, 'Luxury', 501, 1000.00, 'Yes'),
-('H00005', 'Mountain Retreat Inn', 'Badulla', 'This is a discription..............', 1, 'Standard', 502, 1000.00, 'Yes'),
-('H00005', 'Mountain Retreat Inn', 'Badulla', 'This is a discription...............', 1, 'Luxury', 503, 1000.00, 'Yes');
+INSERT INTO `hotelrooms` (`roomid`, `hotel_id`, `name`, `district`, `description`, `guests`, `room_type`, `room_id`, `price`, `room_picture`, `add_to_packages`) VALUES
+('R00002', 'H00001', 'Colombo Reach Hotel', 'Colombo', 'This is a description..', 2, 'Standard', 102, 100.00, '0', 'No'),
+('R00003', 'H00001', 'Colombo Reach Hotel', 'Colombo', 'This is a discription...', 2, 'Luxury', 103, 100.00, '0', 'No'),
+('R00004', 'H00002', 'Grand Plaza Hotel', 'Kandy', 'This is a discription....', 2, 'Standard', 201, 100.00, '0', 'Yes'),
+('R00005', 'H00002', 'Grand Plaza Hotel', 'Kandy', 'This is a discription.....', 1, 'Luxury', 202, 100.00, '0', 'Yes'),
+('R00006', 'H00002', 'Grand Plaza Hotel', 'Kandy', 'This is a discription......', 2, 'Standard', 203, 1000.00, '0', 'Yes'),
+('R00007', 'H00003', 'Ocean View Resort', 'Galle', 'This is a discription.......', 3, 'Luxury', 301, 1000.00, '0', 'No'),
+('R00008', 'H00003', 'Ocean View Resort', 'Galle', 'This is a discription........', 3, 'Standard', 302, 1000.00, '0', 'No'),
+('R00009', 'H00003', 'Ocean View Resort', 'Galle', 'This is a discription.........', 1, 'Luxury', 303, 1000.00, '0', 'Yes'),
+('R00010', 'H00004', 'Sunset Beach Hotel', 'Hikkaduwa', 'This is a discription..........', 2, 'Standard', 401, 1000.00, '0', 'Yes'),
+('R00011', 'H00004', 'Sunset Beach Hotel', 'Hikkaduwa', 'This is a discription...........', 2, 'Luxury', 402, 1000.00, '0', 'No'),
+('R00012', 'H00004', 'Sunset Beach Hotel', 'Hikkaduwa', 'This is a discription............', 3, 'Standard', 403, 1000.00, '0', 'No'),
+('R00013', 'H00005', 'Mountain Retreat Inn', 'Badulla', 'This is a discription.............', 2, 'Luxury', 501, 1000.00, '0', 'Yes'),
+('R00014', 'H00005', 'Mountain Retreat Inn', 'Badulla', 'This is a discription..............', 1, 'Standard', 502, 1000.00, '0', 'Yes'),
+('R00015', 'H00005', 'Mountain Retreat Inn', 'Badulla', 'This is a discription...............', 1, 'Luxury', 503, 1000.00, '0', 'Yes');
 
 -- --------------------------------------------------------
 
@@ -160,7 +162,7 @@ CREATE TABLE `hotels` (
   `contact_number` varchar(200) NOT NULL,
   `district` varchar(100) DEFAULT NULL,
   `distance` int(3) DEFAULT NULL,
-  `short_desc` varchar(255) DEFAULT NULL,
+  `short_desc` varchar(255) NOT NULL,
   `hotel_picture` varchar(255) DEFAULT NULL,
   `hotel_url` varchar(250) NOT NULL,
   `active` int(1) NOT NULL,
@@ -175,10 +177,10 @@ CREATE TABLE `hotels` (
 INSERT INTO `hotels` (`hotel_id`, `email`, `password`, `name`, `address`, `contact_number`, `district`, `distance`, `short_desc`, `hotel_picture`, `hotel_url`, `active`, `status`, `registered`) VALUES
 ('H00001', 'colomboreach@example.com', '123', 'Colombo Reach Hotel', '123 Main Street, Colombo', '123456789', 'Colombo', 5, 'Luxurious hotel in the heart of Colombo.', 'Images/home4.jpg', 'hotel_ColomboReachHotel.php', 1, 'Verified', '2024-03-18'),
 ('H00002', 'grandplaza@example.com', 'grandplazapass', 'Grand Plaza Hotel', '456 Central Avenue, Kandy', '987654321', 'Kandy', 8, 'Elegant hotel offering stunning views of Kandy.', 'Images/ella2.jpg', '', 1, 'Verified', '2024-04-01'),
-('H00003', 'heoughten111@gmail.com', 'oceanviewpass', 'Ocean View Resort', '789 Beach Road, Galle', '456789123', 'Galle', 3, 'Seaside resort offering relaxation and tranquility.', NULL, '', 1, 'Verified', '2024-04-02'),
-('H00004', 'sunsetbeach@example.com', 'sunsetbeachpass', 'Sunset Beach Hotel', '10 Ocean Drive, Hikkaduwa', '789123456', 'Galle', 10, 'Beachfront hotel perfect for a tropical getaway.', NULL, '', 1, 'Declined', '2024-04-07'),
+('H00003', 'heoughten111@gmail.com', 'oceanviewpass', 'Ocean View Resort', '789 Beach Road, Galle', '456789123', 'Galle', 3, 'Seaside resort offering relaxation and tranquility.', '', '', 1, 'Verified', '2024-04-02'),
+('H00004', 'sunsetbeach@example.com', 'sunsetbeachpass', 'Sunset Beach Hotel', '10 Ocean Drive, Hikkaduwa', '789123456', 'Galle', 10, 'Beachfront hotel perfect for a tropical getaway.', '', '', 1, 'Declined', '2024-04-07'),
 ('H00005', 'heoughten111@gmail.com', 'mountainretreatpass', 'Mountain Retreat Inn', '15 Mountain View, Nuwara Eliya', '321654987', 'Nuwara Eliya', 15, 'Cozy inn nestled in the picturesque mountains.', 'Images/package3.jpg', '', 1, 'Verified', '2024-04-15'),
-('H00006', 'Heoughten123@gmail.com', '$2y$10$VrzegAOuE8FTYemJey2A1.dqy89Z6phulVtMXV3VmZ1LGgriI1QR6', 'Sunrises Hotel', '123', '123', 'Colombo', 4, NULL, NULL, '', 0, 'Verified', '2024-04-22');
+('H00006', 'Heoughten123@gmail.com', '$2y$10$VrzegAOuE8FTYemJey2A1.dqy89Z6phulVtMXV3VmZ1LGgriI1QR6', 'Sunrises Hotels', '12345666', '011232225', 'Colombo', 5, 'GG', 'images/hotels/H00006.jpg', '', 1, 'Verified', '2024-04-22');
 
 -- --------------------------------------------------------
 
@@ -231,9 +233,8 @@ CREATE TABLE `shopitems` (
 --
 
 INSERT INTO `shopitems` (`item_id`, `item_name`, `item_price`, `item_description`, `item_photo`, `stocks`, `shopitemurl`, `date_added`) VALUES
-('ITEM00001', 'TEST2024', 2000.00, '2024TEST', 'images/shop/425495886_122097390284210734_708901627464760107_n.jpg', 10, 'shop-items/item-TEST2024.php', '2024-02-25'),
-('ITEM00002', 'Project A', 555.00, 'AAAAAAA', 'images/shop/bocchi-bocchi-the-rock.gif', 5, 'shop-items/item-ProjectA.php', '2024-04-25'),
-('ITEM00003', 'Bocchiii', 0.01, 'Bocchii for sale!', 'images/shop/bocchi-bocchitherock.gif', 1, 'shop-items/item-Bocchiii.php', '2024-04-25');
+('ITEM00001', 'Product 1', 200.00, 'GGG', 'images/shop/2 (1).jpg', 500, 'shop-items/item-Product1.php', '2024-04-25'),
+('ITEM00002', 'BBBB', 500.00, 'adasdas', 'images/shop/bocchi-the-rock-anime-character-pink-haired-musician-girl-wallpaper-2732x768_73.jpg', 5, 'shop-items/item-BBBB.php', '2024-04-25');
 
 -- --------------------------------------------------------
 
@@ -283,7 +284,7 @@ CREATE TABLE `tourguide` (
   `district` varchar(50) DEFAULT NULL,
   `experience` int(3) DEFAULT NULL,
   `specialty` varchar(255) DEFAULT NULL,
-  `short_desc` varchar(200) DEFAULT NULL,
+  `short_desc` varchar(200) NOT NULL,
   `picture` varchar(255) DEFAULT NULL,
   `active` int(1) NOT NULL,
   `status` varchar(10) DEFAULT NULL,
@@ -301,8 +302,8 @@ INSERT INTO `tourguide` (`tg_id`, `email`, `password`, `first_name`, `last_name`
 ('TG0004', 'anil@example.com', 'anilpass', 'Anil', 'Kumar', 'Anil Kumar', 28, '555666777', 'Anuradhapura', 4, 'Wildlife', 'Passionate wildlife enthusiast with in-depth knowledge of flora and fauna.', NULL, 1, 'Verified', '2024-04-02'),
 ('TG0005', 'priya@example.com', 'priyapass', 'Priya', 'Ranasinghe', 'Priya Ranasinghe', 32, '333444555', 'Nuwara Eliya', 6, 'Nature', 'Dedicated to showcasing the beauty of nature through guided tours.', NULL, 1, 'Verified', '2024-04-07'),
 ('TG0006', 'nice1djbravo@gmail.com', 'samanthapass', 'Samantha', 'Jayasinghe', 'Samantha Jayasinghe', 36, '999000111', 'Badulla', 7, 'Hiking', 'Experienced hiking guide passionate about exploring scenic trails.', NULL, 1, 'Pending', '2024-04-08'),
-('TG0007', 'ardithya123@gmail.com', '$2y$10$NdKtB012Su4jbo0dxO5PlO0rlKnksU2481dlup7dqSh3NEN6nidY2', 'Ishan', 'Ardithya', 'Ishan Ardithya', 55, '123', 'Colombo', 5, 'Wild Life, Adventures', NULL, NULL, 0, 'Verified', '2024-04-09'),
-('TG0008', 'ishanardithya@gmail.com', '$2y$10$TgA0qDHoC1vuGh0q5KLDD.flOu9hDsC3WAgkdwLaAIbHSULiAFUDG', 'Ishan', 'Ardithya', 'Ishan Ardithya', 55, '123', 'Colombo', 12, 'Wild Life, Adventures', NULL, NULL, 0, 'Verified', NULL);
+('TG0007', 'ardithya123@gmail.com', '$2y$10$NdKtB012Su4jbo0dxO5PlO0rlKnksU2481dlup7dqSh3NEN6nidY2', 'Ishan', 'Ardithya', 'Ishan Ardithya', 55, '1234', 'Kandy', 5, 'Wild Life, Adventures', '', 'Images/tourguide/user.jpg', 0, 'Verified', '2024-04-09'),
+('TG0008', 'ishanardithya@gmail.com', '$2y$10$cj8nIXv42MyWqvyJPWyC7uHuvg155ul2OEW2Ed2UH1MZudr0n3b2y', 'Ishan', 'Ardithya', 'Ishan Ardithya', 55, '1234', 'Colombo', 55, 'Wild Life, Adventuresss', 'gg', 'images/tourguides/TG0008.png', 1, 'Verified', NULL);
 
 -- --------------------------------------------------------
 
@@ -360,7 +361,7 @@ ALTER TABLE `hotelreservation`
 -- Indexes for table `hotelrooms`
 --
 ALTER TABLE `hotelrooms`
-  ADD PRIMARY KEY (`hotel_id`,`room_id`),
+  ADD PRIMARY KEY (`roomid`),
   ADD KEY `hotel_id_index` (`hotel_id`);
 
 --
