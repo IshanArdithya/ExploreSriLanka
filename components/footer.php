@@ -61,7 +61,7 @@
                     <li><a href="destinations.php">Destination</a></li>
                     <li><a href="shop.php">Shop</a></li>
                     <li><a href="gallery.php">Gallery</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="contactus.php">Contact</a></li>
                 </ul>
             </div>
             <div class="others">
