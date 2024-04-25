@@ -4,79 +4,77 @@ include('partials/sidebar1.php');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// tourguide data from session
-$tourguideEmail = $_SESSION['tourguide_email'];
-$sql = "SELECT tg_id FROM tourguide WHERE email = '$tourguideEmail'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-$tg_id = $row['tg_id'];
+// Check if the user is logged in and retrieve the tour guide ID from the session
+if(isset($_SESSION['tg_id'])) {
+    $tourguide_id = $_SESSION['tg_id'];
 
-// Initialize variables
-$id = '';
-$first_name = '';
-$last_name = '';
-$contact_number = '';
-$district = '';
-$experience = '';
-$specialty = '';
-$short_desc = '';
-$active = '';
-$profile_picture = '';
+    // Initialize other variables
+    $id = '';
+    $first_name = '';
+    $last_name = '';
+    $contact_number = '';
+    $district = '';
+    $experience = '';
+    $specialty = '';
+    $short_desc = '';
+    $active = '';
+    $profile_picture = '';
+    $all_districts = array();
 
-if(isset($_POST['submit'])) {
-    // Sanitize form data
-    $id = isset($_POST['id']) ? $_POST['id'] : '';
-    $first_name = isset($_POST['first_name']) ? $_POST['first_name'] : '';
-    $last_name = isset($_POST['last_name']) ? $_POST['last_name'] : '';
-    $contact_number = isset($_POST['contact_number']) ? $_POST['contact_number'] : '';
-    $district = isset($_POST['district']) ? $_POST['district'] : '';
-    $experience = isset($_POST['experience']) ? $_POST['experience'] : '';
-    $specialty = isset($_POST['specialty']) ? $_POST['specialty'] : '';
-    $short_desc = isset($_POST['short_desc']) ? $_POST['short_desc'] : '';
-    $active = isset($_POST['active']) && $_POST['active'] == '1' ? 'YES' : 'NO';
+    // Check if the form is submitted
+    if(isset($_POST['submit'])) {
+        // Sanitize form data
+        $id = isset($_POST['tg_id']) ? $_POST['tg_id'] : '';
+        $first_name = isset($_POST['first_name']) ? $_POST['first_name'] : '';
+        $last_name = isset($_POST['last_name']) ? $_POST['last_name'] : '';
+        $contact_number = isset($_POST['contact_number']) ? $_POST['contact_number'] : '';
+        $district = isset($_POST['district']) ? $_POST['district'] : '';
+        $experience = isset($_POST['experience']) ? $_POST['experience'] : '';
+        $specialty = isset($_POST['specialty']) ? $_POST['specialty'] : '';
+        $short_desc = isset($_POST['short_desc']) ? $_POST['short_desc'] : '';
+        $active = isset($_POST['active']) && $_POST['active'] == '1' ? 'YES' : 'NO';
 
-    // Upload profile picture
-    if (isset($_FILES['picture']) && $_FILES['picture']['name']) {
-        $file_name = $_FILES['picture']['name'];
-        $file_tmp = $_FILES['picture']['tmp_name'];
-        $extension = pathinfo($file_name, PATHINFO_EXTENSION);
-        $profile_picture = "TG000" . uniqid() . "." . $extension; 
-        $target_dir = "Images/tourguide/";
-        $target_path = $target_dir . $profile_picture;
-        move_uploaded_file($file_tmp, $target_path);
-    }
+        // Upload profile picture
+        if (isset($_FILES['picture']) && $_FILES['picture']['name']) {
+            $file_name = $_FILES['picture']['name'];
+            $file_tmp = $_FILES['picture']['tmp_name'];
+            $extension = pathinfo($file_name, PATHINFO_EXTENSION);
+            $profile_picture = "TG000" . uniqid() . "." . $extension; 
+            $target_dir = "Images/tourguide/";
+            $target_path = $target_dir . $profile_picture;
+            move_uploaded_file($file_tmp, $target_path);
+        }
 
-    // Generate full name
-    $full_name = $first_name . ' ' . $last_name;
+        // Generate full name
+        $full_name = $first_name . ' ' . $last_name;
 
-    // Update database
-    $sql = "UPDATE tourguide SET full_name='$full_name', first_name='$first_name', last_name='$last_name', contact_number='$contact_number', district='$district', experience='$experience', specialty='$specialty', short_desc='$short_desc', picture='$profile_picture', active='$active' WHERE tg_id='$id'";
+        // Update database
+        $sql = "UPDATE tourguide SET full_name='$full_name', first_name='$first_name', last_name='$last_name', contact_number='$contact_number', district='$district', experience='$experience', specialty='$specialty', short_desc='$short_desc', picture='$profile_picture', active='$active' WHERE tg_id='$tourguide_id'";
 
-    if ($conn->query($sql) === TRUE) {
-        echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>';
-        echo '<script>
-                Swal.fire({
-                    title: "Success",
-                    text: "Record updated successfully!",
-                    icon: "success",
-                    confirmButtonText: "OK"
-                }).then(function() {
-                    window.location.href = "tourguidedashboard.php";
-                });
-              </script>';
+        if ($conn->query($sql) === TRUE) {
+            // Show SweetAlert message
+            echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>';
+            echo '<script>
+                    Swal.fire({
+                        title: "Success",
+                        text: "Changes saved successfully!",
+                        icon: "success",
+                        confirmButtonText: "OK"
+                    }).then(function() {
+                        window.location.href = "tourguidedashboard.php";
+                    });
+                  </script>';
+        } else {
+            echo "Error updating record: " . $conn->error;
+        }
     } else {
-        echo "Error updating record: " . $conn->error;
-    }
-
-    $conn->close();
-} else {
-    $id = isset($_GET['id']) ? $_GET['id'] : '';
-    if (!empty($id)) {
-        $sql = "SELECT * FROM tourguide WHERE tg_id='$id'"; 
+        // Fetch tour guide details based on tour guide ID
+        $sql = "SELECT * FROM tourguide WHERE tg_id='$tourguide_id'";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
+            $id = $row['tg_id']; // Set tour guide ID
             $first_name = $row['first_name'];
             $last_name = $row['last_name'];
             $contact_number = $row['contact_number'];
@@ -87,7 +85,20 @@ if(isset($_POST['submit'])) {
             $active = $row['active'];
             $profile_picture = $row['picture'];
         }
+
+        // Fetch all districts
+        $sql_districts = "SELECT DISTINCT district FROM tourguide";
+        $result_districts = $conn->query($sql_districts);
+        if ($result_districts->num_rows > 0) {
+            while ($row_district = $result_districts->fetch_assoc()) {
+                $all_districts[] = $row_district['district'];
+            }
+        }
     }
+} else {
+    // Redirect to login page if the user is not logged in
+    header("Location: login.php");
+    exit();
 }
 ?>
 
@@ -116,8 +127,7 @@ if(isset($_POST['submit'])) {
                         <select name="district" id="district" required>
                             <option value="" selected disabled>Select District</option>
                             <?php
-                            $districts = array("Colombo", "Gampaha", "Kalutara", "Kandy", "Matale", "Nuwara Eliya", "Galle", "Matara", "Hambantota", "Jaffna", "Kilinochchi", "Mannar", "Mullaitivu", "Vavuniya", "Puttalam", "Kurunegala", "Anuradhapura", "Polonnaruwa", "Badulla", "Monaragala", "Ratnapura", "Kegalle", "Trincomalee", "Batticaloa", "Ampara");
-                            foreach ($districts as $d) {
+                            foreach ($all_districts as $d) {
                                 echo '<option value="' . $d . '" ' . ($district == $d ? 'selected' : '') . '>' . $d . '</option>';
                             }
                             ?>
