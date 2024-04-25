@@ -1766,11 +1766,13 @@ Align select elements .package-book-swal select {
 
 .shopping-col-4 p {
   line-height: 32px;
+  color: #000;
 }
 
 .shopping-col-4 h4 {
   margin: 0.5rem 0;
   font-size: 1.2rem;
+  color: #000;
 }
 
 .shop-price {
@@ -3167,4 +3169,10 @@ td {
   .checkout-main-container {
    flex-direction: column;
   }
+}
+
+.destinations-images h2{
+  text-align: center;
+  color: black;
+  margin: 15px;
 }

@@ -151,13 +151,16 @@ $cityCondition = "'Hambantota'";
 
     <h1 class="headings mini-heading">Similar Destinations</h1>
 
+    <div class="owl-carousel owl-theme destinations-images">
+      <a href="Pasikudahnew.php"><div class="owl-caousel-item ">  <img src="../destinations/Images/pasikudah.jpg" alt="destination_image"> <h2>pasikudah</h2></div></a>
 
-    <div class="owl-carousel owl-theme">
-      <div class="owl-caousel-item">  <img src="../destinations/Images/Anuradhapura.jpg" alt="destination_image"> </div>
-      <div class="owl-caousel-item">  <img src="../destinations/Images/Arugam Bay1.jpg" alt="destination_image"> </div>
-      <div class="owl-caousel-item">  <img src="../destinations/Images/Bandarawela.jpg" alt="destination_image"> </div>
-      <div class="owl-caousel-item">  <img src="../destinations/Images/batticaloa.jpg" alt="destination_image"> </div>
-      <div class="owl-caousel-item">  <img src="../destinations/Images/bentota-beach.jpg" alt="destination_image"> </div>
+      <a href="Bentota.php"><div class="owl-caousel-item  ">  <img src="../destinations/Images/bentota-beach.jpg" alt="destination_image"><h2>Bentota</h2> </div></a>
+
+      <a href="Batticaloa.php"><div class="owl-caousel-item ">  <img src="../destinations/Images/Batticaloaa.png" alt="destination_image"><h2>Batticaloa</h2> </div></a>
+
+      <a href="Beruwala.php"><div class="owl-caousel-item ">  <img src="../destinations/Images/Trincomaleeee.jpg" alt="destination_image"><h2>Beruwala</h2> </div></a>
+
+      <a href="Trincomalee.php"><div class="owl-caousel-item ">  <img src="../destinations/Images/tangallee.jpg" alt="destination_image"> <h2>Trincomalee</h2></div></a>
     </div>
   </div>
 

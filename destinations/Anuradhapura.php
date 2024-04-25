@@ -156,12 +156,16 @@ $cityCondition = "'Anuradhapura'";
     <h1 class="headings mini-heading">Similar Destinations</h1>
 
 
-    <div class="owl-carousel owl-theme">
-      <div class="owl-caousel-item">  <img src="../destinations/Images/where-weligama.jpg" alt="destination_image"> </div>
-      <div class="owl-caousel-item">  <img src="../destinations/Images/vatadage.jpg" alt="destination_image"> </div>
-      <div class="owl-caousel-item">  <img src="../destinations/Images/Unawatunaaa.jpg" alt="destination_image"> </div>
-      <div class="owl-caousel-item">  <img src="../destinations/Images/Trincomaleeee.jpg" alt="destination_image"> </div>
-      <div class="owl-caousel-item">  <img src="../destinations/Images/tangallee.jpg" alt="destination_image"> </div>
+    <div class="owl-carousel owl-theme destinations-images">
+      <a href="Pasikudahnew.php"><div class="owl-caousel-item">  <img src="../destinations/Images/dambullaa.jpg" alt="destination_image"> <h2>Dambulla</h2></div></a>
+
+      <a href="Polonnaruwa.php"><div class="owl-caousel-item ">  <img src="../destinations/Images/vatadage.jpg" alt="destination_image"><h2>Polonnaruwa</h2> </div></a>
+
+      <a href="Kandy.php"><div class="owl-caousel-item">  <img src="../destinations/Images/kandy1.jpg" alt="destination_image"><h2>Kandy</h2> </div></a>
+
+      <a href="Beruwala.php"><div class="owl-caousel-item">  <img src="../destinations/Images/Trincomaleeee.jpg" alt="destination_image"><h2>Beruwala</h2> </div></a>
+
+      <a href="Trincomalee.php"><div class="owl-caousel-item">  <img src="../destinations/Images/tangallee.jpg" alt="destination_image"> <h2>Trincomalee</h2></div></a>
     </div>
   </div>
 

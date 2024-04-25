@@ -152,12 +152,12 @@ $cityCondition = "'Nuwara Eliya'";
     <h1 class="headings mini-heading">Similar Destinations</h1>
 
 
-    <div class="owl-carousel owl-theme">
-      <div class="owl-caousel-item">  <img src="../destinations/Images/tangallee.jpg" alt="destination_image"> </div>
-      <div class="owl-caousel-item">  <img src="../destinations/Images/Unawatuna.jpg" alt="destination_image"> </div>
-      <div class="owl-caousel-item">  <img src="../destinations/Images/weligamaa.jpg" alt="destination_image"> </div>
-      <div class="owl-caousel-item">  <img src="../destinations/Images/Dambulla.jpg" alt="destination_image"> </div>
-      <div class="owl-caousel-item">  <img src="../destinations/Images/kalpitiyamain.jpg" alt="destination_image"> </div>
+    <div class="owl-carousel owl-theme destinations-images">
+      <a href="Dabulla.php"> <div class="owl-caousel-item">  <img src="../destinations/Images/slide21.jpg" alt="destination_image"> <h2> Dambulla </h2> </div> </a>
+      <a href="Mihintale.php"> <div class="owl-caousel-item">  <img src="../destinations/Images/slide20.jpg" alt="destination_image"> <h2>Mihintale </h2> </div> </a>
+      <a href="Ella.php"> <div class="owl-caousel-item">  <img src="../destinations/Images/slide2.jpg" alt="destination_image">  <h2> Ella</h2></div> </a>  
+      <a href="Galle.php"> <div class="owl-caousel-item">  <img src="../destinations/Images/slide19.jpg" alt="destination_image"> <h2> Galle </h2> </div> </a>
+      <a href="Mirissa.php"> <div class="owl-caousel-item">  <img src="../destinations/Images/slide18.jpg" alt="destination_image"> <h2> Mirissa </h2> </div> </a>
     </div>
   </div>
 

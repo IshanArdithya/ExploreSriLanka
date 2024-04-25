@@ -153,13 +153,13 @@ $cityCondition = "'Kandy'";
     </div>
 
 
-    <h1 class="headings mini-heading">Similar Destinations</h1>
-    <div class="owl-carousel owl-theme">
-      <div class="owl-caousel-item">  <img src="../destinations/Images/slide3.jpg" alt="destination_image"> </div>
-      <div class="owl-caousel-item">  <img src="../destinations/Images/slide25.jpg" alt="destination_image"> </div>
-      <div class="owl-caousel-item">  <img src="../destinations/Images/slide28.jpg" alt="destination_image"> </div>
-      <div class="owl-caousel-item">  <img src="../destinations/Images/slide27.jpg" alt="destination_image"> </div>
-      <div class="owl-caousel-item">  <img src="../destinations/Images/slide26.jpg" alt="destination_image"> </div>
+    <h1 class="headings mini-heading ">Similar Destinations</h1>
+    <div class="owl-carousel owl-theme destinations-images">
+     <a href="Galle.php"> <div class="owl-caousel-item">  <img src="../destinations/Images/slide13.jpg" alt="destination_image"> <h2>Galle</h2> </div> </a>
+    <a href="Anuradhapura.php">  <div class="owl-caousel-item">  <img src="../destinations/Images/slide1.jpg" alt="destination_image"> <h2>Anuradhapura</h2> </div> </a>
+    <a href="Polonnaruwa.php"> <div class="owl-caousel-item">  <img src="../destinations/Images/polonnaruwaa.jpg" alt="destination_image"> <h2>Polonnaruwa</h2> </div> </a>
+     <a href="Dabulla.php"> <div class="owl-caousel-item">  <img src="../destinations/Images/Dambulla.jpg" alt="destination_image"> <h2>Dambulla</h2> </div> </a>
+     <a href="Colombo.php"> <div class="owl-caousel-item">  <img src="../destinations/Images/slide12.jpg" alt="destination_image"> <h2>Colombo</h2> </div> </a>
     </div>
   </div>
 

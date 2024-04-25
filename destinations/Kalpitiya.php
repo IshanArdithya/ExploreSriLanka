@@ -27,7 +27,7 @@ $cityCondition = "'Puttalam'";
   ?>
 
   <div class="top-image">
-  <img src="./Images/slide24.jpg" alt="destination_image">
+  <img src="./Images/kalpitiya.jpg" alt="destination_image">
   </div>
 
   <!-- Breadcrumbs -->
@@ -150,13 +150,12 @@ $cityCondition = "'Puttalam'";
 
     <h1 class="headings mini-heading">Similar Destinations</h1>
 
-
-    <div class="owl-carousel owl-theme">
-      <div class="owl-caousel-item">  <img src="../destinations/Images/slide13.jpg" alt="destination_image"> </div>
-      <div class="owl-caousel-item">  <img src="../destinations/Images/slide12.jpg" alt="destination_image"> </div>
-      <div class="owl-caousel-item">  <img src="../destinations/Images/slide11.jpg" alt="destination_image"> </div>
-      <div class="owl-caousel-item">  <img src="../destinations/Images/slide10.jpg" alt="destination_image"> </div>
-      <div class="owl-caousel-item">  <img src="../destinations/Images/slide1.jpg" alt="destination_image"> </div>
+  <div class="owl-carousel owl-theme destinations-images">
+     <a href="Galle.php"> <div class="owl-caousel-item">  <img src="../destinations/Images/slide13.jpg" alt="destination_image"> <h2>Galle</h2> </div> </a>
+    <a href="Negombo.php">  <div class="owl-caousel-item">  <img src="../destinations/Images/negombo.jpg" alt="destination_image"> <h2>Negombo</h2> </div> </a>
+    <a href="Mirissa.php"> <div class="owl-caousel-item">  <img src="../destinations/Images/mirissa.jpg" alt="destination_image"> <h2>Miissa</h2> </div> </a>
+     <a href="Matara.php"> <div class="owl-caousel-item">  <img src="../destinations/Images/matara.jpg" alt="destination_image"> <h2>Matara</h2> </div> </a>
+     <a href="Kalutara.php"> <div class="owl-caousel-item">  <img src="../destinations/Images/kalutara2.jpg" alt="destination_image"> <h2>Kalutara</h2> </div> </a>
     </div>
   </div>
 

@@ -148,16 +148,14 @@ $cityCondition = "'Ratnapura'";
 
     <h1 class="headings mini-heading">Similar Destinations</h1>
 
-
-    <div class="owl-carousel owl-theme">
-      <div class="owl-caousel-item">  <img src="../destinations/Images/tangallee.jpg" alt="destination_image"> </div>
-      <div class="owl-caousel-item">  <img src="../destinations/Images/Unawatuna.jpg" alt="destination_image"> </div>
-      <div class="owl-caousel-item">  <img src="../destinations/Images/weligamaa.jpg" alt="destination_image"> </div>
-      <div class="owl-caousel-item">  <img src="../destinations/Images/Dambulla.jpg" alt="destination_image"> </div>
-      <div class="owl-caousel-item">  <img src="../destinations/Images/kalpitiyamain.jpg" alt="destination_image"> </div>
+    <div class="owl-carousel owl-theme destinations-images">
+      <a href="Kitulgala.php"> <div class="owl-caousel-item">  <img src="../destinations/Images/slide17.jpg" alt="destination_image"> <h2> Kitulgala</h2> </div> </a>
+      <a href="Nuwara-Eliya.php"><div class="owl-caousel-item">  <img src="../destinations/Images/slide17-1.jpg" alt="destination_image"> <h2> Nuwara-Eliya </h2> </div> </a>
+      <a href="Kalpitiya.php"><div class="owl-caousel-item">  <img src="../destinations/Images/slide16.jpg" alt="destination_image"> <h2> </h2> Kalpitiya</div> </a>
+      <a href="Batticaloa.php"><div class="owl-caousel-item">  <img src="../destinations/Images/slide15.jpg" alt="destination_image"> <h2> Batticaloa </h2> </div> </a>
+      <a href="Bentota.php"><div class="owl-caousel-item">  <img src="../destinations/Images/slide14.jpg" alt="destination_image"> <h2> Bentota</h2> </div> </a>
     </div>
   </div>
-
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
