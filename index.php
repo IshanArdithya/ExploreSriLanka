@@ -53,7 +53,7 @@
     <section id="scroll-arrow">
         <div class="container">
             <div id="scroll-down">
-                <a href="#location-search" class="scroll-down-link">
+                <a href="#about" class="scroll-down-link">
                     <span><i class="fa-solid fa-angles-down"></i></span>
                 </a>
             </div>
