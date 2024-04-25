@@ -34,9 +34,9 @@ $product = $stmt->fetch(PDO::FETCH_ASSOC);
   ?>
 
 </head>
- <style>
+<style>
   /* Cart Popup Styles */
-.cart-popup {
+  .cart-popup {
     display: none;
     position: fixed;
     bottom: 80px;
@@ -48,55 +48,56 @@ $product = $stmt->fetch(PDO::FETCH_ASSOC);
     border-radius: 5px;
     z-index: 1000;
     transition: transform 0.3s ease;
-}
+  }
 
-#cart-header {
+  #cart-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
-}
+  }
 
-#cart-content {
+  #cart-content {
     max-height: 200px;
     overflow-y: auto;
     padding-right: 10px;
     margin-bottom: 10px;
-}
+  }
 
-.cart-item {
+  .cart-item {
     margin-bottom: 8px;
-}
+  }
 
-.item-name {
+  .item-name {
     font-weight: bold;
     margin-bottom: 4px;
-}
+  }
 
-#cart-total-container {
+  #cart-total-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
-}
+  }
 
-#cart-buttons {
+  #cart-buttons {
     display: flex;
     justify-content: space-between;
-}
+  }
 
-.close-btn {
+  .close-btn {
     font-size: 24px;
     cursor: pointer;
-    transition: all 0.3s ease;    
+    transition: all 0.3s ease;
   }
-.close-btn:hover {
+
+  .close-btn:hover {
     background-color: #007bff;
     color: #ffffff;
     border-radius: 50%;
-}
+  }
 
-button {
+  button {
     padding: 8px 16px;
     border: none;
     border-radius: 3px;
@@ -105,13 +106,13 @@ button {
     font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
+  }
 
-button:hover {
+  button:hover {
     background-color: #0056b3;
-}
+  }
+</style>
 
- </style>
 <body>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -129,8 +130,8 @@ button:hover {
 
   <div class="cart-icon-container">
     <!-- <a href="../checkout.php"> -->
-      <i class="fas fa-shopping-cart"></i>
-      <span id="cartItemCount"><?php echo isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0; ?></span>
+    <i class="fas fa-shopping-cart"></i>
+    <span id="cartItemCount"><?php echo isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0; ?></span>
     <!-- </a> -->
   </div>
 
@@ -139,24 +140,39 @@ button:hover {
   </div>
 
   <!-- Cart Popup -->
-<div id="cart-popup" class="cart-popup">
+  <div id="cart-popup" class="cart-popup">
     <div id="cart-header">
-        <span class="close-btn" onclick="closeCartPopup()"> &times; </span>
-        <h2>Shopping Cart</h2>
+      <span class="close-btn" onclick="closeCartPopup()"> &times; </span>
+      <h2>Shopping Cart</h2>
     </div>
     <div id="cart-content">
-      <p>Item:</p>
-      <p>Price</p>
+      <?php
+      $cart = $_SESSION['cart'] ?? array();
+      $total = 0;
+
+      foreach ($cart as $itemId => $quantity) {
+        $stmt = $pdo->prepare("SELECT item_name, item_price FROM shopitems WHERE item_id = ?");
+        $stmt->execute([$itemId]);
+        $item = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $subtotal = $item['item_price'] * $quantity;
+        $total += $subtotal;
+
+        echo '<p>' . htmlspecialchars($item['item_name']) . ' x ' . $quantity . '</p>';
+        echo '<p>LKR. ' . number_format($subtotal, 2) . '</p>';
+      }
+      ?>
     </div>
     <div id="cart-total-container">
-        <p>Total:</p>
-        <p id="cart-total">Rs. 0.00</p>
+      <p>Total:</p>
+      <p id="cart-total">LKR. <?php echo number_format($total, 2); ?></p>
     </div>
     <div id="cart-buttons">
-        <button onclick="checkout()">Checkout</button>
-        <button onclick="clearCart()">Clear Cart</button>
+      <button onclick="checkout()">Checkout</button>
+      <button onclick="clearCart()">Clear Cart</button>
     </div>
-</div>
+  </div>
+
 
   <!-- Breadcrumbs -->
   <div class="container">
@@ -250,7 +266,7 @@ button:hover {
   </div>
 
   </div>
-  
+
   <!-- Footer -->
   <?php
   include '../components/footer.php';
@@ -288,55 +304,47 @@ button:hover {
     });
 
     function updateCartUI() {
-    var cartContent = document.getElementById("cart-content");
-    cartContent.innerHTML = '';
+      var cartContent = document.getElementById("cart-content");
+      cartContent.innerHTML = '';
 
-    cartItemsArray.forEach(function(cartItem) {
+      cartItemsArray.forEach(function(cartItem) {
         var itemElement = document.createElement('div');
         itemElement.className = 'cart-item';
         itemElement.innerHTML = '<p class="item-name">' + cartItem.name + '</p>' +
-                                '<p class="item-price">Rs. ' + cartItem.price.toFixed(2) + '</p>';
+          '<p class="item-price">Rs. ' + cartItem.price.toFixed(2) + '</p>';
         cartContent.appendChild(itemElement);
-    });
+      });
 
-    document.getElementById("cart-total").textContent = 'Rs. ' + totalCartPrice.toFixed(2);
-}
+      document.getElementById("cart-total").textContent = 'Rs. ' + totalCartPrice.toFixed(2);
+    }
 
-// JavaScript to handle cart popup display
-document.addEventListener('DOMContentLoaded', function() {
-    var cartPopup = document.getElementById('cart-popup');
-    var cartIconContainer = document.querySelector('.cart-icon-container');
+    document.addEventListener('DOMContentLoaded', function() {
+      var cartPopup = document.getElementById('cart-popup');
+      var cartIconContainer = document.querySelector('.cart-icon-container');
 
-    // Show cart popup when cart icon is clicked
-    cartIconContainer.addEventListener('click', function(event) {
+      cartIconContainer.addEventListener('click', function(event) {
         event.preventDefault();
         cartPopup.style.display = 'block';
-    });
+      });
 
-    // Close cart popup when close button is clicked
-    var closeBtn = cartPopup.querySelector('.close-btn');
-    closeBtn.addEventListener('click', function() {
+      var closeBtn = cartPopup.querySelector('.close-btn');
+      closeBtn.addEventListener('click', function() {
         cartPopup.style.display = 'none';
-    });
+      });
 
-    // Close cart popup when clicking outside of it
-    window.addEventListener('click', function(event) {
+      window.addEventListener('click', function(event) {
         if (event.target === cartPopup) {
-            cartPopup.style.display = 'none';
+          cartPopup.style.display = 'none';
         }
+      });
     });
-});
-
   </script>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Function to handle adding to cart
       function addToCart(itemId) {
-        // Get the quantity from the input field
         var quantity = document.getElementById("quantityInput").value;
 
-        // Send an AJAX request to add the item to the cart
         var xhr = new XMLHttpRequest();
         xhr.open('POST', 'add-to-cart.php');
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -344,7 +352,6 @@ document.addEventListener('DOMContentLoaded', function() {
           if (xhr.status === 200) {
             var response = JSON.parse(xhr.responseText);
             if (response.success) {
-              // Show a pop-up notification
               Swal.fire("Added to Cart!");
             } else {
               console.error(response.message);
@@ -353,11 +360,9 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Request failed. Status: ' + xhr.status);
           }
         };
-        // Send both item ID and quantity to the server
         xhr.send('item_id=' + encodeURIComponent(itemId) + '&quantity=' + encodeURIComponent(quantity));
       }
 
-      // Add event listeners to all add-to-cart buttons
       var addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
       addToCartButtons.forEach(function(button) {
         button.addEventListener('click', function(event) {
@@ -367,61 +372,71 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       });
 
-      // Get the maximum stocks from PHP
       var maxStocks = <?php echo $product['stocks']; ?>;
 
-      // Get the quantity input element
       var quantityInput = document.getElementById("quantityInput");
 
-      // Set the initial value of the quantity input
       quantityInput.value = 1;
 
-      // Add event listener for change event on quantity input
       quantityInput.addEventListener('change', function() {
         // Check if the input value is less than 1
         if (quantityInput.value < 1) {
-          quantityInput.value = 1; // Set value to 1
+          quantityInput.value = 1;
         }
-        // Check if the input value is greater than the maximum stocks
         if (quantityInput.value > maxStocks) {
-          quantityInput.value = maxStocks; // Set value to maximum stocks
+          quantityInput.value = maxStocks;
         }
       });
 
-      // Check if stocks are 0, disable input and set value to 0
       if (maxStocks === 0) {
         quantityInput.disabled = true;
         quantityInput.value = 0;
         addToCartButtons.forEach(function(button) {
-          button.removeAttribute('href'); // Remove href attribute to prevent clicking
-          button.setAttribute('disabled', true); // Disable the button
+          button.removeAttribute('href');
+          button.setAttribute('disabled', true);
         });
       }
     });
 
     document.addEventListener('DOMContentLoaded', function() {
-    // Retrieve cart data from sessionStorage
-    if (sessionStorage.getItem('cartItems')) {
+      if (sessionStorage.getItem('cartItems')) {
         cartItemsArray = JSON.parse(sessionStorage.getItem('cartItems'));
-    }
+      }
 
-    if (sessionStorage.getItem('totalCartPrice')) {
+      if (sessionStorage.getItem('totalCartPrice')) {
         totalCartPrice = parseFloat(sessionStorage.getItem('totalCartPrice'));
+      }
+
+      updateCartUI();
+
+      var addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+      addToCartButtons.forEach(function(button) {
+        button.addEventListener('click', function(event) {
+          event.preventDefault();
+          var itemId = this.getAttribute('data-item-id');
+          addToCart(itemId);
+        });
+      });
+    });
+
+    function checkout() {
+      window.location.href = 'checkout.php';
     }
 
-    // Update cart UI
-    updateCartUI();
+    function clearCart() {
+      <?php
+      session_start();
+      unset($_SESSION['cart']);
+      ?>
 
-    // Attach event listeners to cart buttons
-    var addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-    addToCartButtons.forEach(function(button) {
-        button.addEventListener('click', function(event) {
-            event.preventDefault();
-            var itemId = this.getAttribute('data-item-id');
-            addToCart(itemId);
-        });
-    });
-});
+      Swal.fire({
+        title: "Cleared!",
+        text: "Cart Cleared Successfully!",
+        icon: "success"
+      });
+
+      window.location.reload();
+    }
   </script>
 
 </body>
