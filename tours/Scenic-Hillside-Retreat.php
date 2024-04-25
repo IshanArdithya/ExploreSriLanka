@@ -250,7 +250,7 @@ function handleAddReservation()
   <link rel="stylesheet" href="../node_modules/owl.carousel/dist/assets/owl.carousel.min.css" />
 
 
-  <title>About - Explore Srilanka</title>
+  <title>Scenic Hillside Retreat | Explore Srilanka</title>
 </head>
 
 <body>
@@ -317,7 +317,8 @@ function handleAddReservation()
               </div>
               <div class="text-content">
                 <h4 class="content-destination-tittle"> Duration: 5 days / 4 nights</h4>
-                <h4 class="content-destination-tittle">City: Nuwara Eliya</h4>
+                <h4 class="content-destination-tittle">City: Nuwara-Eliya</h4>
+                <h4 class="content-destination-tittle">District: Nuwara-Eliya</h4>
                 <h4 class="content-destination-tittle">Number of Persons: 8 Persons</h4>
 
                 <p class="content-destination-tittle">

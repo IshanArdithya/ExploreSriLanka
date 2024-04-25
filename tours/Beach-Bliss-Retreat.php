@@ -250,7 +250,8 @@ function handleAddReservation()
   <link rel="stylesheet" href="../node_modules/owl.carousel/dist/assets/owl.carousel.min.css" />
 
 
-  <title>About - Explore Srilanka</title>
+  <title>Beach Bliss Retreat | Explore Srilanka</title>
+
 </head>
 
 <body>
@@ -312,6 +313,7 @@ function handleAddReservation()
               <div class="text-content">
                 <h4 class="content-destination-tittle"> Duration: 3 days / 2 nights</h4>
                 <h4 class="content-destination-tittle">City: Trincomalee</h4>
+                <h4 class="content-destination-tittle">District: Trincomalee</h4>
                 <h4 class="content-destination-tittle">Number of Persons: 6 Persons</h4>
 
                 <p class="content-destinaation-tittle">

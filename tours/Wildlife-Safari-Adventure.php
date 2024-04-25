@@ -250,7 +250,8 @@ function handleAddReservation()
   <link rel="stylesheet" href="../node_modules/owl.carousel/dist/assets/owl.carousel.min.css" />
 
 
-  <title>About - Explore Srilanka</title>
+  <title>Wildlife Safari Adventure | Explore Srilanka</title>
+
 </head>
 
 <body>
@@ -314,6 +315,7 @@ function handleAddReservation()
               <div class="text-content">
                 <h4 class="content-destination-tittle"> Duration: 4 days / 3 nights</h4>
                 <h4 class="content-destination-tittle">City: Yala</h4>
+                <h4 class="content-destination-tittle">District: Monaragala</h4>
                 <h4 class="content-destination-tittle">Number of Persons: 8 Persons</h4>
 
                 <p class="content-destination-tittle">
