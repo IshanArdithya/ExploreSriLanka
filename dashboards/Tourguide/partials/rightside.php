@@ -1,4 +1,3 @@
-       
 <?php
 require_once '../../config.php';
 
@@ -20,7 +19,7 @@ if (isset($_SESSION['tourguide_email'])) {
 
     $first_name = $tourguide['first_name'];
 } else {
-    header("location: tourguidelogin.php");
+    header("location: ../../tourguidelogin.php");
 }
 
 ?>
@@ -55,3 +54,7 @@ if (isset($_SESSION['tourguide_email'])) {
 </body>
 
 </html>
+
+<?php
+$conn->close();
+?>

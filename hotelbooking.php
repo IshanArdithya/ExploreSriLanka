@@ -84,7 +84,7 @@
 
                             $checkoutDate = date('Y-m-d', strtotime($selectedDate . ' + ' . ($stayDuration - 1) . ' days'));
 
-                            $sql = "SELECT hr.hotel_id, h.name AS hotel_name, h.district, hr.description, hr.guests, hr.price, h.hotel_picture, h.distance, hr.room_type, hr.room_id
+                            $sql = "SELECT hr.hotel_id, h.name AS hotel_name, h.district, hr.description, hr.guests, hr.price, hr.room_picture, h.distance, hr.room_type, hr.room_id
                                     FROM hotelrooms hr
                                     INNER JOIN hotels h ON hr.hotel_id = h.hotel_id
                                     WHERE hr.guests = $guestCount
@@ -103,7 +103,7 @@
                                 while ($row = $result->fetch_assoc()) {
                                     echo '<div class="house">';
                                     echo '<div class="house-img">';
-                                    echo '<img src="' . $row["hotel_picture"] . '">';
+                                    echo '<img src="' . $row["room_picture"] . '">';
                                     echo '</div>';
                                     echo '<div class="house-info">';
                                     echo '<p>Hotel in ' . $row["district"] . '</p>';

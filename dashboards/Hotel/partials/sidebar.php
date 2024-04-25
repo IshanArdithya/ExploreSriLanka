@@ -32,21 +32,28 @@
             </div>
 
             <div class="sidebar">
-                <a href="hoteldashboard.php" class="active" span class="material-icons-sharp">
+                <a href="hoteldashboard.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'hoteldashboard.php') ? 'active' : ''; ?>">
                     <span class="icon">
                         <i class="fa-solid fa-hotel"></i>
                     </span>
-                    <h3>Hotel</h3>
+                    <h3>Reservations</h3>
                 </a>
 
-                <a href="hotelinquiries.php">
+                <a href="hotelrooms.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'hotelrooms.php') ? 'active' : ''; ?>">
                     <span class=icons>
-                        <i class="fa-solid fa-info"></i>
+                        <i class="fa-solid fa-house"></i>
                     </span>
-                    <h3>Inquries</h3>
+                    <h3>Rooms</h3>
                 </a>
 
-                <a href="admin.logout.html">
+                <a href="hotelsettings.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'hotelsettings.php') ? 'active' : ''; ?>">
+                    <span class=icons>
+                        <i class="fa-solid fa-gear"></i>
+                    </span>
+                    <h3>Settings</h3>
+                </a>
+
+                <a href="hotellogout.php">
                     <span class="material-icons-sharp">
                         logout
                     </span>
