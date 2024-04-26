@@ -271,7 +271,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["verify_email"])) {
   exit();
 }
 
-// Send Verification Code (Email Verification Modal)
+// Send Verification Code 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
   $email = $_POST['email'];
 
@@ -566,11 +566,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
         var span = document.getElementsByClassName("close")[0];
         var verifiedEmailInput = document.getElementById("verified_email");
 
+<<<<<<< HEAD
         verifiedEmailInput.value = email; // Set the email in the hidden input
 
         // close modal when user click x
         span.onclick = function() {
           modal.style.display = "none";
+=======
+      verifiedEmailInput.value = email; 
+
+      // close 
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+
+      // this prevents user from closing the modal by clicking outside of it
+      modal.onclick = function(event) {
+        if (event.target === modal) {
+          return false; 
+>>>>>>> cb4c59c7054fdef13449c281410a9e7f53b7b1a2
         }
 
         // this prevents user from closing the modal by clicking outside of it
