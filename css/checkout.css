@@ -105,54 +105,44 @@ body {
     }
 
 
-    /* Styles for item list */
 .item-list {
     margin-bottom: 20px;
 }
 
-/* Styles for item table */
 .item-table {
     display: flex;
     flex-direction: column;
 }
 
-/* Styles for table row */
 .table-row {
     display: flex;
     justify-content: space-between;
     padding: 8px 0;
 }
 
-/* Styles for item name */
 .item-name {
     flex-grow: 1;
     text-align: left;
 }
 
-/* Styles for subtotal */
 .subtotal {
     text-align: right;
-    min-width: 100px; /* Adjust as needed */
+    min-width: 100px; 
 }
-
-/* Styles for total row */
 .total-row {
     margin-top: 20px;
     text-align: right;
 }
 
-/* Styles for total label */
 .total-label {
     font-weight: bold;
     margin-right: 10px;
 }
 
-/* Styles for total price */
 .total-price {
     font-weight: bold;
 }
 
-/* Styles for place order button */
 .place-order-btn {
     display: block;
     margin-top: 20px;

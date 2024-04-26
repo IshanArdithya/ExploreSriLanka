@@ -242,24 +242,20 @@
 
     <script>
 document.addEventListener("DOMContentLoaded", function() {
-    // Display the reset button when the DOM content is loaded
     
     var resetButton = document.getElementById('resetBtnn');
     resetButton.style.display = 'none';
 
-    // Get references to select elements and tour items
     var categorySelect = document.getElementById("pkg_category");
     var tourItems = document.querySelectorAll(".item-box");
 
-    // Event listener for category change
     categorySelect.addEventListener("change", function() {
         var selectedCategory = categorySelect.value;
-        // Hide all tour items
         tourItems.forEach(function(item) {
             item.style.display = "none";
         });
 
-        // Show tour items based on selected category
+        // filter function
         if (selectedCategory === "Adventure-Expeditions") {
             showTourItems(["Adventure-Expedition", "Rainforest-Adventure-Trek", "Wildlife-Safari-Adventure"]);
         } else if (selectedCategory === "Historical and Cultural Exploration") {
@@ -271,17 +267,14 @@ document.addEventListener("DOMContentLoaded", function() {
         } else if (selectedCategory === "Northern Exploration") {
             showTourItems(["Northern-Discovery"]);
         } else if (selectedCategory === "") {
-            // Show all tour items when "All" is selected
             tourItems.forEach(function(item) {
                 item.style.display = "block";
             });
         }
 
-        // Show or hide reset button based on category selection
         resetButton.style.display = selectedCategory ? 'none' : 'none';
     });
 
-    // Function to show specific tour items
     function showTourItems(tourItemIds) {
         tourItemIds.forEach(function(itemId) {
             var tourItem = document.querySelector('a[href="tours/' + itemId + '.php"]');
@@ -291,17 +284,13 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Function to handle reset button click event
     function showAll() {
-        // Show all tour items
         tourItems.forEach(function(item) {
             item.style.display = "none";
         });
 
-        // Reset category selection
         categorySelect.value = "";
 
-        // Hide the reset button again
         resetButton.style.display = 'none';
     }
 });

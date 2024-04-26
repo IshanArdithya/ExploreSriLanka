@@ -295,7 +295,7 @@ main .analyse .rooms svg circle.progress-ring,
 main .analyse .count svg circle.progress-ring {
     stroke: var(--color-success);
      /* Change this value to adjust the percentage */
-    stroke-dasharray: 229.54; /* This value should be the circumference of the circle (2 * π * radius) */
+    stroke-dasharray: 229.54; 
 }
 
 main .analyse .sales svg circle,
@@ -307,7 +307,7 @@ main .analyse .rooms svg circle,
 main .analyse .count svg circle {
     stroke: rgb(234, 234, 234);
     stroke-dashoffset: 0;
-    stroke-dasharray: 229.54; /* This value should be the circumference of the circle (2 * π * radius) */
+    stroke-dasharray: 229.54; 
 }
 
 main .analyse .roomtype svg circle {

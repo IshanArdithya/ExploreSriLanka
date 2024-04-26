@@ -9,7 +9,6 @@ if ($conn->connect_error) {
 }
 
 // reservations
-// total reservations & last 30 days reservations
 $sql = "SELECT COUNT(*) as totalReservations FROM hotelreservation";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
@@ -21,7 +20,6 @@ $row = $result->fetch_assoc();
 $reservationsLast30Days = $row["reservationsLast30Days"];
 
 // packages booked
-// total packages booked & last 30 days packages booked
 $sql = "SELECT COUNT(*) as totalPackagesBooked FROM packageorders";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
@@ -33,7 +31,6 @@ $row = $result->fetch_assoc();
 $packagesBookedLast30Days = $row["packagesBookedLast30Days"];
 
 // hotels
-// total hotels & last 30 days hotels
 $sql = "SELECT COUNT(*) as totalHotels FROM hotels";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
@@ -341,13 +338,10 @@ $hotelsLast30Days = $row["hotelsLast30Days"];
             const hotelsLast30Days = <?php echo $hotelsLast30Days; ?>;
 
             // Reservations
-            // update total reservations count
             document.getElementById('totalReservations').innerText = totalReservations;
 
-            // calc percentage - reservations
             const percentChangeReservations = ((reservationsLast30Days / totalReservations) * 100).toFixed(2);
 
-            // update percentage change & circle - reservations
             document.getElementById('percentChangeReservations').innerText = `+${percentChangeReservations}%`;
             const circleReservations = document.querySelector('.ring-reservations');
             const circleLengthReservations = 2 * Math.PI * circleReservations.getAttribute('r');
@@ -355,13 +349,10 @@ $hotelsLast30Days = $row["hotelsLast30Days"];
             circleReservations.style.strokeDashoffset = newOffsetReservations;
 
             // Packages Booked
-            // update total packages booked count
             document.getElementById('totalPackagesBooked').innerText = totalPackagesBooked;
 
-            // calc percentage - packages booked
             const percentChangePackages = ((packagesBookedLast30Days / totalPackagesBooked) * 100).toFixed(2);
 
-            // update percentage change & circle - packages booked
             document.getElementById('percentChangePackages').innerText = `+${percentChangePackages}%`;
             const circlePackages = document.querySelector('.ring-packages');
             const circleLengthPackages = 2 * Math.PI * circlePackages.getAttribute('r');
@@ -369,13 +360,11 @@ $hotelsLast30Days = $row["hotelsLast30Days"];
             circlePackages.style.strokeDashoffset = newOffsetPackages;
 
             // Hotels
-            // update total hotels count
             document.getElementById('totalHotels').innerText = totalHotels;
 
             // calc percentage - hotels
             const percentChangeHotels = ((hotelsLast30Days / totalHotels) * 100).toFixed(2);
 
-            // update percentage change & circle - hotels
             document.getElementById('percentChangeHotels').innerText = `+${percentChangeHotels}%`;
             const circleHotels = document.querySelector('.ring-hotels');
             const circleLengthHotels = 2 * Math.PI * circleHotels.getAttribute('r');

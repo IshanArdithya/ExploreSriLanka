@@ -9,7 +9,6 @@ if ($conn->connect_error) {
 }
 
 // customers
-// total users & last 30 days users
 $sql = "SELECT COUNT(*) as totalUsers FROM customers";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
@@ -21,7 +20,6 @@ $row = $result->fetch_assoc();
 $usersLast30Days = $row["usersLast30Days"];
 
 // hotels
-// total hotels & last 30 days hotels
 $sql = "SELECT COUNT(*) as totalHotels FROM hotels";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
@@ -33,7 +31,6 @@ $row = $result->fetch_assoc();
 $hotelsLast30Days = $row["hotelsLast30Days"];
 
 // tour guides
-// total tour guides & last 30 days tour guides
 $sql = "SELECT COUNT(*) as totalTourguides FROM tourguide";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
@@ -45,7 +42,6 @@ $row = $result->fetch_assoc();
 $tourguidesLast30Days = $row["tourguidesLast30Days"];
 
 // packages booked
-// total packages booked & last 30 days packages booked
 $sql = "SELECT COUNT(*) as totalPackagesBooked FROM packageorders";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
@@ -57,7 +53,6 @@ $row = $result->fetch_assoc();
 $packagesBookedLast30Days = $row["packagesBookedLast30Days"];
 
 // shop orders
-// total shop orders & last 30 days shop orders
 $sql = "SELECT COUNT(*) as totalShopOrders FROM shoporders";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
@@ -97,9 +92,6 @@ $shopOrdersLast30Days = $row["shopOrdersLast30Days"];
         <?php
         include 'Components/sidebar.php';
         ?>
-
-        <!-- End of Sidebar Section -->
-
 
         <!-- Main Content -->
         <main>
@@ -377,7 +369,6 @@ $shopOrdersLast30Days = $row["shopOrdersLast30Days"];
             const shopOrdersLast30Days = <?php echo $shopOrdersLast30Days; ?>;
 
             // Customers
-            // update total users count
             document.getElementById('totalUsers').innerText = totalUsers;
 
             // calc percentage - customers
@@ -391,7 +382,6 @@ $shopOrdersLast30Days = $row["shopOrdersLast30Days"];
             circle.style.strokeDashoffset = newOffset;
 
             // Hotels
-            // update total hotels count
             document.getElementById('totalHotels').innerText = totalHotels;
 
             // calc percentage - hotels
@@ -405,7 +395,6 @@ $shopOrdersLast30Days = $row["shopOrdersLast30Days"];
             circleHotels.style.strokeDashoffset = newOffsetHotels;
 
             // Tour Guides
-            // update total tour guides count
             document.getElementById('totalTourguides').innerText = totaltourguides;
 
             // calc percentage - tour guides
@@ -419,7 +408,6 @@ $shopOrdersLast30Days = $row["shopOrdersLast30Days"];
             circleTourguides.style.strokeDashoffset = newOffsetTourguides;
 
             // Packages Booked
-            // update total packages booked count
             document.getElementById('totalPackagesBooked').innerText = totalPackagesBooked;
 
             // calc percentage - packages booked
@@ -433,7 +421,6 @@ $shopOrdersLast30Days = $row["shopOrdersLast30Days"];
             circlePackages.style.strokeDashoffset = newOffsetPackages;
 
             // Shop Orders
-            // update total shop orders count
             document.getElementById('totalShopOrders').innerText = totalShopOrders;
 
             // calc percentage - shop orders

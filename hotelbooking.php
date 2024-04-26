@@ -129,20 +129,6 @@
                     </div>
                 </div>
             </div>
-            <!-- </div>
-                <div class="right-col">
-                    <div class="sidebar">
-                        <h2>Select Filters</h2>
-                        <input type="text" id="searchInput" placeholder="Search...">
-                        <h3>Districts</h3>
-
-                        
-
-                        <button id="filterButton" disabled>Filter</button>
-                        <button id="resetButton">Reset</button>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
 
