@@ -63,13 +63,13 @@
       ?>
           <ul>
             <li class="avatar-sub-item">
-              <a href="/ExploreSriLanka/profile.php">
+              <a href="/ExploreSriLanka/new-profile.php">
                 <i class="fa-solid fa-circle-user"></i>
                 <span>Profile</span>
               </a>
             </li>
             <li class="avatar-sub-item">
-              <a href="/ExploreSriLanka/settings.php">
+              <a href="/ExploreSriLanka/user.php">
                 <i class="fa-solid fa-gear"></i>
                 <span>Settings</span>
               </a>

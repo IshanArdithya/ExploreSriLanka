@@ -25,6 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
   $next_id = $max_id + 1;
   $customer_id = 'C' . str_pad($next_id, 5, '0', STR_PAD_LEFT);
 
+  $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
   $sql = "SELECT * FROM customers WHERE email = '$email'";
   $result = mysqli_query($conn, $sql);
 
@@ -32,11 +34,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
   if (mysqli_num_rows($result) > 0) {
     echo "<div class='alert alert-danger'>Email already exists</div>";
   } else {
-    
+
     $mail = new PHPMailer(true);
 
     try {
-      
+
       $mail->SMTPDebug = 0;
       $mail->isSMTP();
       $mail->Host = SMTP_HOST;
@@ -220,7 +222,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
       ';
       $mail->send();
 
-      $sql = "INSERT INTO customers (email, password, first_name, last_name, contact_number, country, email_verified_at, customer_id) VALUES ('$email', '$password', '$first_name', '$last_name', '$contact_number', '$country', NULL, '$customer_id')";
+      $sql = "INSERT INTO customers (email, password, first_name, last_name, contact_number, country, email_verified_at, customer_id) VALUES ('$email', '$hashed_password', '$first_name', '$last_name', '$contact_number', '$country', NULL, '$customer_id')";
       $result = mysqli_query($conn, $sql);
 
       if ($result) {
@@ -239,7 +241,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
 // check if email exists, when next button clicked (registration)
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["check_email"])) {
   $email = $_POST["email"];
-  
+
   $sql = "SELECT COUNT(*) AS count FROM customers WHERE email = '$email'";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -259,8 +261,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["verify_email"])) {
   $result = mysqli_query($conn, $sql);
 
   if (mysqli_affected_rows($conn) == 0) {
-      echo json_encode(array("status" => "error"));
-      exit();
+    echo json_encode(array("status" => "error"));
+    exit();
   }
 
   $_SESSION['customer_email'] = $email;
@@ -400,7 +402,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
 
       // Send email
       $mail->send();
-      
+
       echo "<div class='alert alert-success'>Verification code sent successfully.</div>";
     } catch (Exception $e) {
       echo "<div class='alert alert-danger'>Error sending verification code. Please try again later.</div>";
@@ -414,139 +416,138 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script
-      src="https://kit.fontawesome.com/64d58efce2.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="css/login.css">
-    <title>Sign-In | Explore Srilanka</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="forms-container">
-        <div class="signin-signup">
 
-          <!-- Sign In -->
-          <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="sign-in-form">
-            <a href="index.php" class="back-btn"><i class="fa fa-arrow-left"></i></a>
-            <h2 class="title">Sign in</h2>
-            <p class="subtitle">Fill the following to continue</p>
-            <div class="input-field input-login-error">
-              <i class="fas fa-user"></i>
-              <input type="text" name="email" placeholder="Email Address" />
-            </div>
-            <div class="input-field input-login-error">
-              <i class="fas fa-lock"></i>
-              <input type="password" name="password" placeholder="Password" />
-            </div>
-            <p class = "loginError" id="loginMessage" class="login-message"></p>
-            <input type="submit" value="Login" name="login" class="btn solid" />
-            <p class="social-text">Or Sign in with Google</p>
-            <div class="social-media">
-              <a href="<?php echo $client->createAuthUrl(); ?>" class="social-icon">
-                <i class="fab fa-google"></i>
-              </a>
-            </div>
-          </form>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/login.css">
+  <title>Sign-In | Explore Srilanka</title>
+</head>
 
-          <!-- Sign Up -->
-          <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="sign-up-form">
-            <a href="index.php" class="back-btn-signup"><i class="fa fa-arrow-left"></i></a>
-            <h2 class="title">Sign up</h2>
-            <p class="subtitle">Fill the following to continue</p>
-            <div class="input-field">
-              <i class="fas fa-envelope"></i>
-              <input type="email" id="remail" name="remail" placeholder="Email" />
-              <span id="emailError" class="error-message" style="color: red;"></span>
-            </div>
-            <div class="input-field">
-              <i class="fas fa-lock"></i>
-              <input type="password" id="rpassword" name="rpassword" placeholder="Password" />
-            </div>
-            <div class="input-field">
-              <i class="fas fa-lock"></i>
-              <input type="password" id="reenter_password" name="reenter_password" placeholder="Re-enter Password" />
-              <span id="passwordError" class="error-message" style="color: red;"></span>
-            </div>
-            <div class="input-field hidden">
-              <i class="fas fa-user"></i>
-              <input type="text" id="first_name" name="first_name" placeholder="First Name" required />
-            </div>
-            <div class="input-field hidden">
-              <i class="fas fa-user"></i>
-              <input type="text" id="last_name" name="last_name" placeholder="Last Name" required />
-            </div>
-            <div class="input-field hidden">
-              <i class="fas fa-phone"></i>
-              <input type="text" id="contact_number" name="contact_number" placeholder="Contact Number" required />
-            </div>
-            <div class="input-field hidden">
-              <i class="fas fa-globe"></i>
-              <input type="text" id="country" name="country" placeholder="Country" required />
-            </div>
-            <input type="button" class="btn next-btn" value="Next" />
-            <div class="button-container">
-              <input type="button" class="btn back-btn-form hidden" value="Back" />
-              <input type="submit" class="btn signup-btn hidden" name="register" value="Sign up" />
-            </div>            
-            <p class="social-text">Or Sign up with Google</p>
-            <div class="social-media">
-              <a href="<?php echo $client->createAuthUrl(); ?>" class="social-icon">
-                <i class="fab fa-google"></i>
-              </a>
-            </div>
-          </form>
-        </div>
-      </div>
+<body>
+  <div class="container">
+    <div class="forms-container">
+      <div class="signin-signup">
 
-      <div class="panels-container">
-        <div class="panel left-panel">
-          <div class="content">
-            <h3>New here ?</h3>
-            <p>
-            Feel free to sign up and join our community. We're excited to embark on this journey with you!            </p>
-            <button class="btn transparent" id="sign-up-btn">
-              Sign up
-            </button>
+        <!-- Sign In -->
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="sign-in-form">
+          <a href="index.php" class="back-btn"><i class="fa fa-arrow-left"></i></a>
+          <h2 class="title">Sign in</h2>
+          <p class="subtitle">Fill the following to continue</p>
+          <div class="input-field input-login-error">
+            <i class="fas fa-user"></i>
+            <input type="text" name="email" placeholder="Email Address" />
           </div>
-          <img src="img/log.svg" class="image" alt="" />
-        </div>
-        <div class="panel right-panel">
-          <div class="content">
-            <h3>One of us ?</h3>
-            <p>
-            Sign in to continue accessing your account and exploring all the amazing features we have to offer. We're glad to have you back with us. Let's get started!            </p>
-            <button class="btn transparent" id="sign-in-btn">
-              Sign in
-            </button>
+          <div class="input-field input-login-error">
+            <i class="fas fa-lock"></i>
+            <input type="password" name="password" placeholder="Password" />
           </div>
-          <img src="img/register.svg" class="image" alt="" />
-        </div>
+          <p class="loginError" id="loginMessage" class="login-message"></p>
+          <input type="submit" value="Login" name="login" class="btn solid" />
+          <p class="social-text">Or Sign in with Google</p>
+          <div class="social-media">
+            <a href="<?php echo $client->createAuthUrl(); ?>" class="social-icon">
+              <i class="fab fa-google"></i>
+            </a>
+          </div>
+        </form>
+
+        <!-- Sign Up -->
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="sign-up-form">
+          <a href="index.php" class="back-btn-signup"><i class="fa fa-arrow-left"></i></a>
+          <h2 class="title">Sign up</h2>
+          <p class="subtitle">Fill the following to continue</p>
+          <div class="input-field">
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="remail" name="remail" placeholder="Email" />
+            <span id="emailError" class="error-message" style="color: red;"></span>
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="rpassword" name="rpassword" placeholder="Password" />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="reenter_password" name="reenter_password" placeholder="Re-enter Password" />
+            <span id="passwordError" class="error-message" style="color: red;"></span>
+          </div>
+          <div class="input-field hidden">
+            <i class="fas fa-user"></i>
+            <input type="text" id="first_name" name="first_name" placeholder="First Name" required />
+          </div>
+          <div class="input-field hidden">
+            <i class="fas fa-user"></i>
+            <input type="text" id="last_name" name="last_name" placeholder="Last Name" required />
+          </div>
+          <div class="input-field hidden">
+            <i class="fas fa-phone"></i>
+            <input type="text" id="contact_number" name="contact_number" placeholder="Contact Number" required />
+          </div>
+          <div class="input-field hidden">
+            <i class="fas fa-globe"></i>
+            <input type="text" id="country" name="country" placeholder="Country" required />
+          </div>
+          <input type="button" class="btn next-btn" value="Next" />
+          <div class="button-container">
+            <input type="button" class="btn back-btn-form hidden" value="Back" />
+            <input type="submit" class="btn signup-btn hidden" name="register" value="Sign up" />
+          </div>
+          <p class="social-text">Or Sign up with Google</p>
+          <div class="social-media">
+            <a href="<?php echo $client->createAuthUrl(); ?>" class="social-icon">
+              <i class="fab fa-google"></i>
+            </a>
+          </div>
+        </form>
       </div>
     </div>
 
-    <!-- Modal for verification -->
+    <div class="panels-container">
+      <div class="panel left-panel">
+        <div class="content">
+          <h3>New here ?</h3>
+          <p>
+            Feel free to sign up and join our community. We're excited to embark on this journey with you! </p>
+          <button class="btn transparent" id="sign-up-btn">
+            Sign up
+          </button>
+        </div>
+        <img src="img/log.svg" class="image" alt="" />
+      </div>
+      <div class="panel right-panel">
+        <div class="content">
+          <h3>One of us ?</h3>
+          <p>
+            Sign in to continue accessing your account and exploring all the amazing features we have to offer. We're glad to have you back with us. Let's get started! </p>
+          <button class="btn transparent" id="sign-in-btn">
+            Sign in
+          </button>
+        </div>
+        <img src="img/register.svg" class="image" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for verification -->
   <div id="verificationModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
       <h2>Verification Code</h2>
       <form id="verificationForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-      <div>
-        <div class="input-field input-verify-error">
-          <i class="fas fa-envelope"></i>
-          <input type="text" class="form-control" id="verification_code" name="verification_code" placeholder="Enter verification code" maxlength="6" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+        <div>
+          <div class="input-field input-verify-error">
+            <i class="fas fa-envelope"></i>
+            <input type="text" class="form-control" id="verification_code" name="verification_code" placeholder="Enter verification code" maxlength="6" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+          </div>
+          <input type="hidden" id="verified_email" name="email" value="">
+          <p class="verifyError" id="verifyMessage" class="verify-message"></p>
+          <div class="modalVerifyBtn">
+            <button type="button" id="sendCodeBtn" class="btn btn-primary">Send Code</button>
+            <button type="submit" class="btn btn-success" name="verify_email">Verify</button>
+          </div>
         </div>
-        <input type="hidden" id="verified_email" name="email" value="">
-        <p class = "verifyError" id="verifyMessage" class="verify-message"></p>
-        <div class="modalVerifyBtn">
-        <button type="button" id="sendCodeBtn" class="btn btn-primary">Send Code</button>
-        <button type="submit" class="btn btn-success" name="verify_email">Verify</button>
-        </div>
-      </div>
-        
+
       </form>
       <span id="cooldownText"></span>
     </div>
@@ -554,189 +555,187 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send_code"])) {
 
   <script src="js/login.js"></script>
 
-    <!-- jQuery -->
+  <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <script>
-  $(document).ready(function() {
-    // Function to display the verification modal
-    function displayVerificationModal(email) {
-      var modal = document.getElementById("verificationModal");
-      var span = document.getElementsByClassName("close")[0];
-      var verifiedEmailInput = document.getElementById("verified_email");
+    $(document).ready(function() {
+      // Function to display the verification modal
+      function displayVerificationModal(email) {
+        var modal = document.getElementById("verificationModal");
+        var span = document.getElementsByClassName("close")[0];
+        var verifiedEmailInput = document.getElementById("verified_email");
 
-      verifiedEmailInput.value = email; // Set the email in the hidden input
+        verifiedEmailInput.value = email; // Set the email in the hidden input
 
-      // close modal when user click x
-      span.onclick = function() {
-        modal.style.display = "none";
-      }
-
-      // this prevents user from closing the modal by clicking outside of it
-      modal.onclick = function(event) {
-        if (event.target === modal) {
-          return false; // Prevent closing the modal
+        // close modal when user click x
+        span.onclick = function() {
+          modal.style.display = "none";
         }
+
+        // this prevents user from closing the modal by clicking outside of it
+        modal.onclick = function(event) {
+          if (event.target === modal) {
+            return false; // Prevent closing the modal
+          }
+        }
+
+        // display the modal
+        modal.style.display = "block";
       }
 
-      // display the modal
-      modal.style.display = "block";
-    }
+      // check if the email and password match, if yes, and email is not verified, display verification modal
+      <?php if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) : ?>
+        <?php
+        $email = $_POST['email'];
+        $password = $_POST['password'];
 
-    // check if the email and password match, if yes, and email is not verified, display verification modal
-    <?php if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])): ?>
-      <?php
-      $email = $_POST['email'];
-      $password = $_POST['password'];
+        $query = "SELECT * FROM customers WHERE email = '$email'";
+        $result = mysqli_query($conn, $query);
 
-      $query = "SELECT * FROM customers WHERE email = '$email'";
-      $result = mysqli_query($conn, $query);
+        if (mysqli_num_rows($result) == 1) {
+          $row = mysqli_fetch_assoc($result);
+          if (!empty($row['password'])) {
+            if (password_verify($password, $row['password'])) {
+              if ($row['email_verified_at'] == NULL) {
+                echo 'var needVerificationModal = true;';
+                echo 'var userEmail = "' . $email . '";';
+              } else {
 
-      if (mysqli_num_rows($result) == 1) {
-        $row = mysqli_fetch_assoc($result);
-        if (!empty($row['password'])) {
-          
-          if ($row['password'] == $password) {
-            if ($row['email_verified_at'] == NULL) {
-              echo 'var needVerificationModal = true;';
-              echo 'var userEmail = "' . $email . '";';
+                $_SESSION['customer_email'] = $email;
+                echo 'window.location.href = "index.php?login_success=1";';
+              }
             } else {
-              
-              $_SESSION['customer_email'] = $email;
-              echo 'window.location.href = "index.php?login_success=1";';
+              echo '$("#loginMessage").text("Invalid Email or Password.");';
+              echo '$(".input-login-error").css("border", "1px solid red");';
             }
           } else {
-            echo '$("#loginMessage").text("Invalid Email or Password.");';
-            echo '$(".input-login-error").css("border", "1px solid red");';
+            // if password is empty in the database (that means user registered using Google authentication)
+            echo '$("#loginMessage").text("This email is registered using Google authentication. Login through Google!");';
           }
         } else {
-          // if password is empty in the database (that means user registered using Google authentication)
-          echo '$("#loginMessage").text("This email is registered using Google authentication. Login through Google!");';
+          echo '$("#loginMessage").text("Invalid Email or Password.");';
+          echo '$(".input-login-error").css("border", "1px solid red");';
         }
-      } else {
-        echo '$("#loginMessage").text("Invalid Email or Password.");';
-        echo '$(".input-login-error").css("border", "1px solid red");';
+        ?>
+      <?php endif; ?>
+
+      if (needVerificationModal) {
+        displayVerificationModal(userEmail);
       }
-      ?>
-    <?php endif; ?>
+    });
+  </script>
 
-    if (needVerificationModal) {
-      displayVerificationModal(userEmail);
-    }
-  });
-</script>
-
-    <script>
+  <script>
     $(document).ready(function() {
-  $('#verificationForm').on('submit', function(event) {
-    event.preventDefault(); // using this to prevent form submission
+      $('#verificationForm').on('submit', function(event) {
+        event.preventDefault(); // using this to prevent form submission
 
-    // gett the email, verification code
-    var verificationCode = $('#verification_code').val();
-    var email = $('#verified_email').val();
+        // gett the email, verification code
+        var verificationCode = $('#verification_code').val();
+        var email = $('#verified_email').val();
 
-    
-    $.ajax({
-      type: 'POST',
-      url: '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>',
-      data: {
-        verify_email: true,
-        email: email,
-        verification_code: verificationCode
-      },
-      dataType: 'json',
-      success: function(response) {
-    if (response.status == 'success') {
-        window.location.href = 'index.php?login_success=1';
-    } else {
-        $(".input-verify-error").css("border", "1px solid red");
-        $('.verifyError').text("Invalid Verification Code");
-    }
-},
-      error: function(xhr, status, error) {
-        console.error(xhr.responseText);
-      }
+
+        $.ajax({
+          type: 'POST',
+          url: '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>',
+          data: {
+            verify_email: true,
+            email: email,
+            verification_code: verificationCode
+          },
+          dataType: 'json',
+          success: function(response) {
+            if (response.status == 'success') {
+              window.location.href = 'index.php?login_success=1';
+            } else {
+              $(".input-verify-error").css("border", "1px solid red");
+              $('.verifyError').text("Invalid Verification Code");
+            }
+          },
+          error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+          }
+        });
+      });
+
+      $('#sendCodeBtn').on('click', function() {
+        var btn = $(this);
+        var cooldownText = $('#sendCodeBtn');
+
+        // added a countdown to the button (60 seconds countdown & disables button)
+        var countdown = 60;
+        btn.prop('disabled', true);
+        btn.addClass('disabled');
+
+        // reset error message and the border of the input field
+        $(".input-verify-error").css("border", "none");
+        $('.verifyError').text("");
+
+        // countdown timer
+        var interval = setInterval(function() {
+          cooldownText.text('Resend Code (' + countdown + 's)');
+          countdown--;
+
+          // if countdown is 0:
+          if (countdown < 0) {
+            clearInterval(interval);
+            btn.prop('disabled', false);
+            cooldownText.text('Send Code');
+            btn.removeClass('disabled');
+          }
+        }, 1000);
+
+        $.ajax({
+          type: 'POST',
+          url: '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>',
+          data: {
+            send_code: true,
+            email: '<?php echo isset($email) ? $email : ''; ?>'
+          },
+          dataType: 'json',
+          success: function(response) {
+            if (response.status == 'success') {
+              alert(response.message);
+            } else {
+              alert(response.message);
+            }
+          },
+          error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+          }
+        });
+      });
     });
-  });
-
-  $('#sendCodeBtn').on('click', function() {
-    var btn = $(this);
-    var cooldownText = $('#sendCodeBtn');
-
-    // added a countdown to the button (60 seconds countdown & disables button)
-    var countdown = 60;
-    btn.prop('disabled', true);
-    btn.addClass('disabled');
-
-    // reset error message and the border of the input field
-    $(".input-verify-error").css("border", "none");
-    $('.verifyError').text("");
-
-    // countdown timer
-    var interval = setInterval(function() {
-      cooldownText.text('Resend Code (' + countdown + 's)');
-      countdown--;
-
-      // if countdown is 0:
-      if (countdown < 0) {
-        clearInterval(interval);
-        btn.prop('disabled', false); 
-        cooldownText.text('Send Code');
-        btn.removeClass('disabled');
-      }
-    }, 1000);
-
-    $.ajax({
-      type: 'POST',
-      url: '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>',
-      data: {
-        send_code: true,
-        email: '<?php echo isset($email) ? $email : ''; ?>'
-      },
-      dataType: 'json',
-      success: function(response) {
-        if (response.status == 'success') {
-          alert(response.message);
-        } else {
-          alert(response.message);
-        }
-      },
-      error: function(xhr, status, error) {
-        console.error(xhr.responseText);
-      }
-    });
-  });
-});
-
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
-      function getUrlParameter(name) {
-          name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-          var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-          var results = regex.exec(location.search);
-          return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-      };
+    function getUrlParameter(name) {
+      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+      var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+      var results = regex.exec(location.search);
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
 
-      if (getUrlParameter('register') === '1') {
-          Swal.fire({
-              title: "Registration Successful!",
-              text: "Thank you for registering to the site!",
-              icon: "success"
-          });
-      }
+    if (getUrlParameter('register') === '1') {
+      Swal.fire({
+        title: "Registration Successful!",
+        text: "Thank you for registering to the site!",
+        icon: "success"
+      });
+    }
 
-      if (getUrlParameter('register') === '0') {
-          Swal.fire({
-              title: "Registration Failed!",
-              text: "An error occurred while registering. Please try again later or contact support.",
-              icon: "error"
-          });
-      }
-      
+    if (getUrlParameter('register') === '0') {
+      Swal.fire({
+        title: "Registration Failed!",
+        text: "An error occurred while registering. Please try again later or contact support.",
+        icon: "error"
+      });
+    }
   </script>
 
 
-  </body>
+</body>
+
 </html>

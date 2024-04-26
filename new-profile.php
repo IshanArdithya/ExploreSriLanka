@@ -1,3 +1,35 @@
+<?php
+
+require_once 'config.php';
+
+if (isset($_SESSION['customer_email'])) {
+
+  try {
+    // Connect to the database
+    $pdo = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Prepare and execute the SQL query to fetch customer data
+    $stmt = $pdo->prepare("SELECT * FROM customers WHERE email = :email");
+    $stmt->bindParam(':email', $_SESSION['customer_email']);
+    $stmt->execute();
+    $customer = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($customer) {
+      $first_name = $customer['first_name'];
+      $last_name = $customer['last_name'];
+      $email = $customer['email'];
+      $contact_number = $customer['contact_number'];
+      $country = $customer['country'];
+    }
+  } catch (PDOException $e) {
+    // Handle database connection errors
+    echo "Error: " . $e->getMessage();
+  }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,7 +80,7 @@
 
       </div>
       <div class="user-profile-photo">
-        <img src="./Images/adams-peak.jpg" alt="Profile Photo">
+        <img src="<?php echo isset($customer['picture']) ? $customer['picture'] : '.Images/users/avatar_placeholder.png'; ?>" alt="Profile Photo">
       </div>
 
       <div class="user-profile-content active" id="activity-feed">
@@ -58,8 +90,8 @@
           <p> Enhance your experience on our tourism platform by filling out your profile. Share your travel stories, connect with like-minded individuals, and discover new destinations. Let's explore together!</p>
           <ul>
             <li><strong>Joined Date:</strong> April 20, 2023</li>
-            <li><strong>Current City:</strong> New York City</li>
-            <li><strong>Favorite Destination:</strong> Paris</li>
+            <li><strong>Current City:</strong> Test</li>
+            <li><strong>Favorite Destination:</strong> test</li>
             <li><strong>Travel Interests:</strong> Adventure travel, Cultural exploration</li>
           </ul>
 
