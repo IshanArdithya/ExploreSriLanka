@@ -1,5 +1,16 @@
 {
+  "name": "exploresrilanka",
+  "version": "1.0.0",
+  "description": "Welcome to Explore Sri Lanka, your ultimate destination for exploring the breathtaking beauty and rich cultural heritage of Sri Lanka. Whether you're seeking a serene getaway, an adventurous expedition, or a cultural immersion, we've got you covered with our customizable tour packages, expert tour guides, hotel bookings, and comprehensive travel information.",
+  "main": "index.js",
   "dependencies": {
+    "jquery": "^3.7.1",
     "owl.carousel": "^2.3.4"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
 }
