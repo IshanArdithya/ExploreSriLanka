@@ -1,6 +1,5 @@
 <?php
 include 'config.php';
-// Assuming you have already established a database connection
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['reset_password'])) {
